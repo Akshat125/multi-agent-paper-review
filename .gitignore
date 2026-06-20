@@ -1,0 +1,46 @@
+# Environment
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+
+# Archived Datasets (large, not tracked)
+archived-datasets/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output / generated
+eval/outputs/
+results/
+logs/
+*.log
+
+# Large datasets (> GitHub 100 MB file limit; regenerate via dataset/sample_eval_set.ipynb)
+dataset/deepreview_test_2025.csv
