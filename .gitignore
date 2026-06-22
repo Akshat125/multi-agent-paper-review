@@ -36,11 +36,5 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Output / generated
-eval/outputs/
-results/
-logs/
-*.log
-
 # Large datasets (> GitHub 100 MB file limit; regenerate via dataset/sample_eval_set.ipynb)
 dataset/deepreview_test_2025.csv

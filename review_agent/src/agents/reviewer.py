@@ -43,7 +43,13 @@ import os
 import time
 from typing import Optional
 
+# We record our own trace.jsonl; disable CrewAI's interactive tracing UX.
+os.environ.setdefault("CREWAI_TRACING_ENABLED", "false")
+
 from crewai import LLM, Agent, Crew, Process, Task
+from crewai.events.listeners.tracing.utils import set_suppress_tracing_messages
+
+set_suppress_tracing_messages(True)
 
 from ..utils import ReviewTraceListener, TraceLogger, parse_review
 from .prompt_loader import PromptLoader
@@ -65,8 +71,10 @@ _LEADER_GOAL = (
 _EXPECTED_OUTPUT = (
     "A complete peer review with exactly these Markdown headers: "
     "## Summary, ## Strengths, ## Weaknesses, ## Questions. "
+    "Section bodies should read like natural human review prose (paragraphs or bullets as warranted). "
     "The final line must be RATING: <integer 1-10> using the rubric "
-    "(1-3 reject, 4-5 borderline, 6-7 weak accept, 8-10 accept)."
+    "(1-3 reject, 4-5 borderline, 6-7 weak accept, 8-10 accept). "
+    "Nothing may follow the RATING line."
 )
 
 def _role_variables() -> dict[str, str]:
@@ -165,6 +173,7 @@ class MultiAgentReviewer:
             process=Process.hierarchical,
             manager_agent=self.leader_agent,
             verbose=False,
+            tracing=False,
         )
 
         if trace_logger is None:

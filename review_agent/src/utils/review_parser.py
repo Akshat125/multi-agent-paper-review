@@ -66,7 +66,14 @@ def _parse_sections(text: str) -> dict[str, str]:
         if name not in sections:
             continue
         next_start = headers[i + 1][1] if i + 1 < len(headers) else body_end
-        body = text[end:next_start].strip()
+        body = _clean_section_body(text[end:next_start])
         sections[name] = body
 
     return sections
+
+
+def _clean_section_body(raw: str) -> str:
+    """Strip whitespace and stray markdown horizontal rules from a section body."""
+    lines = raw.strip().splitlines()
+    cleaned = [line for line in lines if line.strip() != "---"]
+    return "\n".join(cleaned).strip()

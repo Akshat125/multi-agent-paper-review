@@ -91,3 +91,26 @@ def test_empty_and_garbage_input():
 def test_rating_case_insensitive():
     text = _SAMPLE.replace("RATING: 7", "rating: 8")
     assert parse_review(text)["rating"] == 8
+
+
+def test_strips_horizontal_rules_from_sections():
+    text = """\
+## Summary
+Intro.
+
+## Strengths
+---
+1. Good idea.
+---
+
+## Weaknesses
+1. Gap.
+
+## Questions
+1. Why?
+
+RATING: 6
+"""
+    result = parse_review(text)
+    assert "---" not in result["strengths"]
+    assert "Good idea." in result["strengths"]
