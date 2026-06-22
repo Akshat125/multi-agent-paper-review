@@ -36,6 +36,23 @@ def test_save_review_writes_file_only(tmp_path):
     assert logger.run_dir.name == "run2"
 
 
+def test_save_review_json_writes_structured_file(tmp_path):
+    logger = TraceLogger(output_dir=tmp_path, run_name="run4")
+    data = {
+        "summary": "s",
+        "strengths": "st",
+        "weaknesses": "w",
+        "questions": "q",
+        "rating": 7,
+    }
+
+    path = logger.save_review_json(data)
+
+    assert path == logger.review_json_path
+    loaded = json.loads(path.read_text())
+    assert loaded == data
+
+
 def test_preview_truncates_and_single_lines():
     assert preview("a\nb  c", limit=100) == "a b c"
     long = "x" * 600

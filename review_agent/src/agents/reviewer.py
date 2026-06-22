@@ -43,9 +43,15 @@ import os
 import time
 from typing import Optional
 
-from crewai import LLM, Agent, Crew, Process, Task
+# We record our own trace.jsonl; disable CrewAI's interactive tracing UX.
+os.environ.setdefault("CREWAI_TRACING_ENABLED", "false")
 
-from ..utils import ReviewTraceListener, TraceLogger
+from crewai import LLM, Agent, Crew, Process, Task
+from crewai.events.listeners.tracing.utils import set_suppress_tracing_messages
+
+set_suppress_tracing_messages(True)
+
+from ..utils import ReviewTraceListener, TraceLogger, parse_review
 from .prompt_loader import PromptLoader
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
@@ -63,9 +69,12 @@ _LEADER_GOAL = (
 )
 
 _EXPECTED_OUTPUT = (
-    "A complete, well-structured peer review containing the sections: Summary, "
-    "Strengths, Weaknesses, Questions for the authors, and an explicit Overall "
-    "recommendation with justification."
+    "A complete peer review with exactly these Markdown headers: "
+    "## Summary, ## Strengths, ## Weaknesses, ## Questions. "
+    "Section bodies should read like natural human review prose (paragraphs or bullets as warranted). "
+    "The final line must be RATING: <integer 1-10> using the rubric "
+    "(1-3 reject, 4-5 borderline, 6-7 weak accept, 8-10 accept). "
+    "Nothing may follow the RATING line."
 )
 
 def _role_variables() -> dict[str, str]:
@@ -164,6 +173,7 @@ class MultiAgentReviewer:
             process=Process.hierarchical,
             manager_agent=self.leader_agent,
             verbose=False,
+            tracing=False,
         )
 
         if trace_logger is None:
@@ -198,5 +208,15 @@ class MultiAgentReviewer:
 
         text = getattr(result, "raw", None) or str(result)
         trace_logger.save_review(text)
+        parsed = parse_review(text)
+        trace_logger.save_review_json(parsed)
+        trace_logger.log(
+            "review_parsed",
+            rating=parsed["rating"],
+            summary_chars=len(parsed["summary"]),
+            strengths_chars=len(parsed["strengths"]),
+            weaknesses_chars=len(parsed["weaknesses"]),
+            questions_chars=len(parsed["questions"]),
+        )
         trace_logger.log("run_footer", duration_ms=duration_ms, **listener.counts)
         return text

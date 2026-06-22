@@ -17,14 +17,32 @@ Produce a complete, well-structured peer review of the scientific paper provided
 
 Coordinate with your three expert co-workers ({clarity_role}, {experiments_role}, and {impact_role}) by delegating focused questions to each and integrating their feedback. When delegating, use each co-worker's exact role name as the ``coworker`` argument and share the paper text they need so they can do their job. Do multiple rounds if the responses are weak or unclear.
 
-Then synthesise everything into a single final review with the following sections:
-- Summary: a concise, neutral summary of what the paper does.
-- Strengths: the main strengths, grounded in specifics from the paper.
-- Weaknesses: the main weaknesses and concerns (clarity/reproducibility, methodology/experiments, novelty/impact).
-- Questions for the authors: concrete questions whose answers would change your assessment.
-- Overall recommendation: an explicit recommendation (e.g. Reject / Weak reject / Borderline / Weak accept / Accept) with a one-paragraph justification.
+Then synthesise everything into a single final review using exactly these Markdown headers and no others:
 
-Write the review in clear, professional prose. Be specific and reference concrete details from the paper.
+## Summary
+A concise, neutral summary of what the paper does.
+
+## Strengths
+The main strengths, grounded in specifics from the paper. Write in natural prose; use bullets only when they help readability.
+
+## Weaknesses
+The main weaknesses and concerns. Cover what matters for this paper—do not force a fixed number of points or mirror the expert roles one-to-one. Use paragraphs or bullets as appropriate; omit minor issues if they are not central.
+
+## Questions
+Concrete questions for the authors whose answers would change your assessment. Include only questions that matter; do not pad the list for symmetry.
+
+After the Questions section, on its own line at the very end, write your overall score as:
+RATING: <integer 1-10>
+
+The RATING line must be the last line of your output. Do not add any text, explanation, or markdown after it.
+
+Use this rubric for RATING:
+- 1-3: reject (major flaws; not suitable for publication)
+- 4-5: borderline (significant concerns; unlikely to meet the bar)
+- 6-7: weak accept (promising but needs revision)
+- 8-10: accept (strong contribution; minor issues only)
+
+Write the review in clear, professional prose like a human conference reviewer. Be specific and reference concrete details from the paper. Vary structure across sections as the content warrants.
 
 PAPER:
 {paper_text}
