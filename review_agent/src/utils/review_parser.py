@@ -6,10 +6,13 @@ import re
 from typing import Any
 
 _SECTION_NAMES = ("summary", "strengths", "weaknesses", "questions")
-_RATING_RE = re.compile(r"RATING:\s*(\d+)", re.IGNORECASE)
-# Matches ## Summary, # Summary, **Summary**, Summary (line-start, case-insensitive)
+# Standalone rating line only (matches leader prompt: final line is RATING: N).
+_RATING_RE = re.compile(r"^RATING:\s*(\d+)\s*$", re.IGNORECASE | re.MULTILINE)
+# Matches ## Summary, # Summary, **Summary**, **Strengths:**, Questions:, etc.
 _HEADER_RE = re.compile(
-    r"^\s*(?:#{1,6}\s*|\*\*)?(summary|strengths|weaknesses|questions)(?:\*\*)?\s*:?\s*$",
+    r"^\s*(?:#{1,6}\s*)?(?:\*\*)?"
+    r"(summary|strengths|weaknesses|questions)"
+    r"(?:\*\*)?\s*:?\s*(?:\*\*)?\s*$",
     re.IGNORECASE | re.MULTILINE,
 )
 

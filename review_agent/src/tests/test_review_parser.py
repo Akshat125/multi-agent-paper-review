@@ -114,3 +114,41 @@ RATING: 6
     result = parse_review(text)
     assert "---" not in result["strengths"]
     assert "Good idea." in result["strengths"]
+
+
+def test_bold_header_with_colon_inside():
+    text = """\
+## Summary
+One-line summary.
+
+**Strengths:**
+- good
+
+RATING: 5
+"""
+    result = parse_review(text)
+    assert result["summary"] == "One-line summary."
+    assert "good" in result["strengths"]
+    assert result["rating"] == 5
+
+
+def test_ignores_incidental_rating_in_body():
+    text = """\
+## Summary
+Use RATING: 9 as an example in the rubric discussion.
+
+## Strengths
+- good
+
+## Weaknesses
+- bad
+
+## Questions
+- q1
+
+RATING: 6
+"""
+    result = parse_review(text)
+    assert "RATING: 9" in result["summary"]
+    assert result["rating"] == 6
+    assert "good" in result["strengths"]
