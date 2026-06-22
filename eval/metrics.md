@@ -3,8 +3,8 @@
 > Working spec for implementing the evaluation suite of the homogeneous-vs-heterogeneous
 > multi-agent review study. **Each `##` metric section is self-contained and independently
 > ownable** — a parallel agent session can pick one section and implement it end-to-end
-> without touching the others. Read §0 first; it defines the shared inputs, conventions,
-> and prerequisites every metric depends on.
+> without touching the others. Read §0 first; it defines shared inputs, conventions, and
+> prerequisites. Batch layout and output paths: `eval/runs/README.md`.
 
 ---
 
@@ -86,7 +86,7 @@ A multi-agent reviewer (`review_agent/src/agents/reviewer.py`): one **leader** +
 }
 ```
 
-Source for metric 4 (`rating` vs `mean(ratings)`) and metric 2 (comment extraction from `weaknesses` + `questions`). Written by `parse_review()` after each traced run.
+Source for metric 4 (`rating` vs `mean(ratings)`). Written by `parse_review()` after each traced run. **Metric 2 extracts generated comments from the full `final_review.md`** (not from this structured parse), so no comment is lost to parsing; `review.json` is used by metric 2 only as a convenience cross-check if needed.
 - `trace.jsonl` — one JSON object per line. Relevant record types:
 
 ```
@@ -98,41 +98,23 @@ review_parsed     {rating, summary_chars, strengths_chars, weaknesses_chars, que
 run_footer        {duration_ms, delegations, delegation_errors}              # duration_ms = total wall-clock
 ```
 
-### 0.5 Run manifest (orchestration contract)
+### 0.5 Output convention
 
-Assume the run orchestrator emits `eval/runs/manifest.json` so metrics can locate inputs without
-guessing paths. If it does not exist yet, the first metric implemented should define and create it:
+Each metric result includes **both** per-`(config[,paper])` detail and a per-config aggregate block.
+Use macro-averaging over papers (mean of per-paper values) unless a section says otherwise.
 
-```json
-{
-  "configs": {
-    "All-A":  {"models": {"leader":"A","clarity":"A","experiments":"A","impact":"A"}, "homogeneous": true},
-    "het_01": {"models": {"leader":"A","clarity":"B","experiments":"C","impact":"A"}, "homogeneous": false}
-  },
-  "runs": [
-    {"config_id": "All-A", "paper_id": "1Qpt43cqhg", "run_dir": "eval/outputs/<ts>"}
-  ]
-}
-```
-
-### 0.6 Output convention
-
-Each metric writes to `eval/metrics/<metric_name>.json` with **both** per-`(config[,paper])` detail
-and a per-config aggregate block, so downstream aggregation is uniform. Use macro-averaging over
-papers (mean of per-paper values) unless a section says otherwise.
-
-### 0.7 Global prerequisites (some block specific metrics)
+### 0.6 Global prerequisites (some block specific metrics)
 
 | ID | Prerequisite | Blocks | Notes |
 |----|--------------|--------|-------|
 | **P1** | Persist **full** per-agent (per-role) output text | **Metric 3** | `ReviewTraceListener` currently stores `preview(output)` (≤500 chars). Either remove the cap for `delegation`/`leader_completion` outputs, or write each agent's full output to `eval/outputs/<ts>/agents/<role>.txt`. Full text is mandatory for embeddings. |
 | **P2** | Emit a **numeric overall score (1–10)** per review | — | **Done.** Leader outputs `RATING: <1-10>`; `parse_review()` extracts it into `review.json`. Metric 4 reads `review.json` → `rating`. |
 | **P3** | `eval/prices.json` — per-model OpenRouter price table | Metric 5 | `{ "<openrouter_model_id>": {"in": <usd_per_1M_in>, "out": <usd_per_1M_out>} }`. |
-| **P4** | Judge model pool: **≥2 models, out-of-suite, none from the candidate families, different families from each other** | Metrics 1, O1 | Self-preference bias guardrail (see §0.8). |
+| **P4** | Judge model pool: **≥2 models, out-of-suite, none from the candidate families, different families from each other** | Metrics 1, O1 | Self-preference bias guardrail (see §0.7). |
 | **P5** | Embedding model choice (fixed across all runs) | Metric 3 | e.g. a SentenceTransformer (`all-MiniLM-L6-v2`/`bge-*`) or a hosted embedding API. Record model id in output. |
 | **P6** | Comment extraction + alignment LLM | Metric 2, O2 | May be one of the judge-class models; fix it and record id. |
 
-### 0.8 Guardrails — read before implementing 1 or O1
+### 0.7 Guardrails — read before implementing 1 or O1
 
 - **Judge self-preference bias is real and directly threatens H1** (a family-heterogeneity claim).
   Always use multiple out-of-suite judges (P4); never let a model judge its own family.
@@ -156,9 +138,10 @@ from the dataset. Judge pool from P4.
 **Method.**
 1. For each unordered config pair and each paper, build a judging prompt: the paper (or its
    abstract+intro if context-limited) and **two anonymized reviews** labelled *Review 1* / *Review 2*.
-2. Ask each judge to pick the better review (`1`, `2`, or `tie`) on each **dimension**:
-   `overall` (primary) + aspect dims `technical_soundness`, `constructiveness`, `clarity`,
-   `significance`. Dimensions are configurable; `overall` is mandatory.
+2. Ask each judge to pick the better review (`1`, `2`, or `tie`) on each **dimension**.
+   Follow ScholarPeer's SxS rubric (the cited source): `overall` (primary) + aspect dims
+   `technical_accuracy`, `constructive_value`, `analytical_depth`, `significance`. Dimensions are
+   configurable; `overall` is mandatory.
 3. **Position-debias:** run the pair in both orders (A=Review 1, then B=Review 1); average outcomes.
 4. **Multiple judges (P4):** repeat for each judge; aggregate by averaging win fractions.
 
@@ -178,8 +161,8 @@ P(A beats B) = exp(β_A) / (exp(β_A) + exp(β_B))
 Report BT strength per config (and/or convert to Elo for presentation). BT is preferred over raw
 win-rate when the pairwise design is unbalanced.
 
-**Output** (`eval/metrics/win_rate.json`): per-pair, per-dimension, per-judge raw outcomes;
-per-config aggregated `WinRate` per dimension; optional BT strengths with bootstrap CIs.
+**Output.** Per-pair, per-dimension, per-judge raw outcomes; per-config aggregated `WinRate` per
+dimension; optional BT strengths with bootstrap CIs.
 
 **Notes.** Keep the rubric text fixed and store it alongside results. Log raw judge responses for
 auditability. Source: MAMORX (Elo arena), ScholarPeer (SxS win-rate across dimensions).
@@ -217,9 +200,8 @@ n_comments = |C_gen|                              # mandatory companion (guards 
 
 Macro-average `Recall` and `n_comments` over papers per config.
 
-**Output** (`eval/metrics/recall.json`): per-paper `recall`, `|C_gen|`, `|C_real|`, matched counts;
-per-config macro-averaged `recall` and `n_comments`. Persist the extracted comment lists and the
-alignment edges for inspection.
+**Output.** Per-paper `recall`, `|C_gen|`, `|C_real|`, matched counts; per-config macro-averaged
+`recall` and `n_comments`. Persist extracted comment lists and alignment edges for inspection.
 
 **Notes.** `n_comments` is a normaliser, **not** its own axis — always report it next to recall so a
 high recall driven purely by verbosity is visible. Source: MARG §6.
@@ -228,17 +210,29 @@ high recall driven purely by verbosity is visible. Source: MARG §6.
 
 ## 3. Per-role cross-model diversity  *(Core · H2 mechanism)*
 
-**Serves.** H2. Measures whether different models, **doing the same job**, produce different content.
-This is the input-side mechanism evidence (pairs with Metric 2's outcome-side evidence).
+**Serves.** H2, in two **descriptive** jobs only: (1) **precondition** — establish that different
+models, **doing the same job**, actually produce different content (if they don't, heterogeneity
+cannot help and H2 is dead on arrival); (2) **localization** — identify *which* role is most
+model-sensitive, feeding DH3 (leader bottleneck) and DH5 (per-role asymmetry). This is the
+input-side mechanism evidence (pairs with Metric 2's outcome-side evidence).
+
+**Not** a diversity→quality regression. Cross-model diversity is a property of the **model pool**
+(A vs B vs C), characterised once per role — a single heterogeneous config runs *one* model per
+role and therefore has no internal cross-model diversity to regress. Attribution of any H1 gain to
+diversity is carried by **DH5 single-role swaps** (which role's model identity moves quality) and
+**Metric 2 recall/complementarity** (do heterogeneous configs cover more distinct human issues),
+**not** by this metric.
 
 **Key design rule.** Diversity is measured over outputs of **different models** on the **same role +
 same paper** — never across different roles (confounded by role), never across re-runs of one config
 (that's RDS = sampling noise). The clean source is the **homogeneous runs**: `All-A`, `All-B`,
 `All-C` each give that role's output under one model.
 
-**Inputs.** **Full** per-role output text from the three homogeneous runs (requires **P1**). For each
-role `r ∈ {leader, clarity, experiments, impact}` and paper `p`, collect `o_r^A, o_r^B, o_r^C`.
-Embedding model from P5.
+**Inputs.** **Full** per-role output text from the three homogeneous runs. For each role
+`r ∈ {leader, clarity, experiments, impact}` and paper `p`, collect `o_r^A, o_r^B, o_r^C`. All four
+roles are included: the leader's full text is `final_review.md` (already persisted, untruncated); the
+three expert outputs require **P1** (currently stored only as a ≤500-char preview). Embedding model
+from P5.
 
 **Method.**
 1. Embed each role output: `E(o_r^m)`.
@@ -259,18 +253,21 @@ Diversity_r    = mean_p Diversity_r(p)
 #   VS = exp( − Σ_k λ_k log λ_k )        # 1 = all identical, up to M = all distinct
 ```
 
-**H2 link (analysis, document but lighter weight).** Regress a config's *embedded* diversity against
-its quality (Metric 1 / Metric 2) across configurations, controlling for proposer quality so the gain
-is attributed to **diversity**, not to a single dominant model. Per-role diversity also localises
-*which* role is most model-sensitive (informs design hypotheses DH3 leader-bottleneck, DH5 per-role
-asymmetry).
+**H2 link (how the number is used).** This metric does **not** itself test diversity→quality; see
+"Not a diversity→quality regression" above. Its outputs are used two ways: (1) report the per-role
+diversity numbers as the **precondition** (models genuinely diverge per role, and by how much);
+(2) **localize** the most model-sensitive role and read it against DH3 (is the leader the most
+consequential role?) and DH5 (which single-role swap moves quality most?). The actual
+diversity→quality attribution lives in the DH5 swap contrasts and Metric 2 recall, which control for
+a single dominant model by design (homogeneous configs = maximal shared blind spots, the built-in
+control).
 
-**Output** (`eval/metrics/diversity.json`): per-`(role, paper)` similarity/diversity; per-role
-aggregate; optional Vendi; embedding model id.
+**Output.** Per-`(role, paper)` similarity/diversity; per-role aggregate; optional Vendi; embedding
+model id.
 
 **Notes.** Embedding cosine conflates style and substance; treat the number as a coarse signal and
-lean on Metric 2 (issue-level coverage) for the substantive claim. Source: ScholarPeer RDS (Eq. 1)
-adapted; Mixture-of-Agents (Li et al. 2025) for the diversity-vs-quality framing.
+lean on Metric 2 (issue-level coverage) for the substantive claim. Source: ScholarPeer RDS (Eq. 1),
+adapted per role across models.
 
 ---
 
@@ -297,8 +294,7 @@ h_p = mean(ratings_p)
 Integer 1–10 scores produce many ties → use the **tie-corrected** form (Pearson correlation on ranks,
 i.e. `scipy.stats.spearmanr`, which also returns the p-value).
 
-**Output** (`eval/metrics/decision_alignment.json`): per-config ρ (overall + per stratum), p-value/CI,
-and the raw `(s_{c,p}, h_p)` pairs.
+**Output.** Per-config ρ (overall + per stratum), p-value/CI, and the raw `(s_{c,p}, h_p)` pairs.
 
 **Notes.** n≈30 with ties → noisy; always report the CI. This measures recommendation **calibration**,
 not feedback quality — keep it framed as an anchor, not a quality metric. Source: ScholarPeer §4.2.
@@ -329,8 +325,8 @@ cost_run = Σ_calls ( tokens_in/1e6 · price_in(model) + tokens_out/1e6 · price
 mean ± SEM  where  SEM = stdev / sqrt(n)
 ```
 
-**Output** (`eval/metrics/cost_time.json`): per-run tokens/cost/time (+ per-role token breakdown from
-`agent_role`); per-config mean ± SEM.
+**Output.** Per-run tokens/cost/time (+ per-role token breakdown from `agent_role`); per-config
+mean ± SEM.
 
 **Notes.** Token-per-role breakdown is free here (the `llm_call` records carry `agent_role`) and is
 useful for the leader-bottleneck analysis. Source: MAMORX §5 (cost analysis).
@@ -363,7 +359,7 @@ that dimension ("Expert Baseline").
 
 **Aggregate.** Per-dimension H-Max + average; macro-average over papers per config.
 
-**Output** (`eval/metrics/hmax.json`): per-paper per-dimension scores; per-config aggregates; judge id.
+**Output.** Per-paper per-dimension scores; per-config aggregates; judge id.
 
 **Notes.** Judge-dependent → inherits self-preference risk; use P4 and report per judge. Source:
 ScholarPeer §4.2 (H-Max), Appendix F.3 rubric.
