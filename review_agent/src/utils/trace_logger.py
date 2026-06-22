@@ -37,6 +37,7 @@ class TraceLogger:
         self.run_dir.mkdir(parents=True, exist_ok=True)
         self.trace_path = self.run_dir / "trace.jsonl"
         self.review_path = self.run_dir / "final_review.md"
+        self.review_json_path = self.run_dir / "review.json"
         self._seq = 0
         self._lock = threading.Lock()
 
@@ -57,3 +58,11 @@ class TraceLogger:
         """Write the full review text; trace record is ``leader_completion``."""
         self.review_path.write_text(text, encoding="utf-8")
         return self.review_path
+
+    def save_review_json(self, data: dict) -> Path:
+        """Write structured review fields to ``review.json``."""
+        self.review_json_path.write_text(
+            json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        return self.review_json_path

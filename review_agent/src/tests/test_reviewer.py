@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from types import SimpleNamespace
 from unittest import mock
 
@@ -9,6 +10,7 @@ import pytest
 from crewai import Process
 
 from src.agents.reviewer import ROLE_LABELS, MultiAgentReviewer
+from src.utils import TraceLogger
 
 _MODELS = dict(
     leader_model="openai/gpt-4o",
@@ -16,6 +18,22 @@ _MODELS = dict(
     experiments_model="meta-llama/llama-3.1-70b-instruct",
     impact_model="openai/gpt-4o",
 )
+
+_STRUCTURED_REVIEW = """\
+## Summary
+Brief summary.
+
+## Strengths
+- Strong idea.
+
+## Weaknesses
+- Missing baseline.
+
+## Questions
+- Why no ablation?
+
+RATING: 6
+"""
 
 
 def _patch_crewai():
@@ -112,3 +130,33 @@ def test_empty_paper_text_raises():
         reviewer = MultiAgentReviewer(**_MODELS, api_key="k")
         with pytest.raises(ValueError):
             reviewer.review("")
+
+
+def test_review_with_trace_writes_review_json(tmp_path):
+    p_llm, p_agent, p_task, p_crew = _patch_crewai()
+    with p_llm, p_agent, p_task, p_crew as mock_crew:
+        reviewer = MultiAgentReviewer(**_MODELS, api_key="k")
+        mock_crew.return_value.kickoff.return_value = SimpleNamespace(
+            raw=_STRUCTURED_REVIEW
+        )
+        trace = TraceLogger(output_dir=tmp_path, run_name="traced")
+
+        out = reviewer.review("paper text", trace_logger=trace, paper_id="p1")
+
+        assert out == _STRUCTURED_REVIEW
+        assert trace.review_path.read_text() == _STRUCTURED_REVIEW
+        parsed = json.loads(trace.review_json_path.read_text())
+        assert parsed["rating"] == 6
+        assert "Brief summary" in parsed["summary"]
+        assert "Missing baseline" in parsed["weaknesses"]
+
+        records = [
+            json.loads(line)
+            for line in trace.trace_path.read_text().splitlines()
+            if line.strip()
+        ]
+        types = [r["type"] for r in records]
+        assert "review_parsed" in types
+        parsed_rec = next(r for r in records if r["type"] == "review_parsed")
+        assert parsed_rec["rating"] == 6
+        assert parsed_rec["summary_chars"] == len(parsed["summary"])
