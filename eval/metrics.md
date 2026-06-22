@@ -1,10 +1,10 @@
-# Evaluation Metrics — Implementation Spec
+# Evaluation Metrics — Spec
 
-> Working spec for implementing the evaluation suite of the homogeneous-vs-heterogeneous
-> multi-agent review study. **Each `##` metric section is self-contained and independently
-> ownable** — a parallel agent session can pick one section and implement it end-to-end
-> without touching the others. Read §0 first; it defines shared inputs, conventions, and
-> prerequisites. Batch layout and output paths: `eval/runs/README.md`.
+> **Scope: metrics session only.** What to compute, from what inputs, and how to aggregate.
+> Each `##` metric section is independently ownable by a parallel agent session.
+>
+> **Not in this doc:** registry schema, directory layout, generation orchestration → `eval/batch.md`.
+> Read §0 first for shared inputs and prerequisites.
 
 ---
 
@@ -39,6 +39,8 @@ A multi-agent reviewer (`review_agent/src/agents/reviewer.py`): one **leader** +
 | O2 | Precision / Jaccard | overlap diagnostics (appendix only) | Partial | **Optional** |
 
 ### 0.4 Data inputs (shared)
+
+Registry layout and how `run_dir` is resolved: `eval/batch.md`. Below: **field semantics** metrics read.
 
 **Papers** — `dataset/eval_sample_30.json`, key `papers[]`, each item:
 
@@ -103,11 +105,13 @@ run_footer        {duration_ms, delegations, delegation_errors}              # d
 Each metric result includes **both** per-`(config[,paper])` detail and a per-config aggregate block.
 Use macro-averaging over papers (mean of per-paper values) unless a section says otherwise.
 
+Written to `eval/runs/<batch>/metrics/<name>.json` (see `eval/batch.md`).
+
 ### 0.6 Global prerequisites (some block specific metrics)
 
 | ID | Prerequisite | Blocks | Notes |
 |----|--------------|--------|-------|
-| **P1** | Persist **full** per-agent (per-role) output text | **Metric 3** | `ReviewTraceListener` currently stores `preview(output)` (≤500 chars). Either remove the cap for `delegation`/`leader_completion` outputs, or write each agent's full output to `eval/outputs/<ts>/agents/<role>.txt`. Full text is mandatory for embeddings. |
+| **P1** | Persist **full** per-agent (per-role) output text | **Metric 3** | Generation-side — see `eval/batch.md`. |
 | **P2** | Emit a **numeric overall score (1–10)** per review | — | **Done.** Leader outputs `RATING: <1-10>`; `parse_review()` extracts it into `review.json`. Metric 4 reads `review.json` → `rating`. |
 | **P3** | `eval/prices.json` — per-model OpenRouter price table | Metric 5 | `{ "<openrouter_model_id>": {"in": <usd_per_1M_in>, "out": <usd_per_1M_out>} }`. |
 | **P4** | Judge model pool: **≥2 models, out-of-suite, none from the candidate families, different families from each other** | Metrics 1, O1 | Self-preference bias guardrail (see §0.7). |
@@ -136,13 +140,12 @@ primary outcome metric and the pruning signal for the Successive-Halving pilot.
 from the dataset. Judge pool from P4.
 
 **Method.**
-1. For each unordered config pair and each paper, build a judging prompt: the paper (or its
-   abstract+intro if context-limited) and **two anonymized reviews** labelled *Review 1* / *Review 2*.
-2. Ask each judge to pick the better review (`1`, `2`, or `tie`) on each **dimension**.
-   Follow ScholarPeer's SxS rubric (the cited source): `overall` (primary) + aspect dims
-   `technical_accuracy`, `constructive_value`, `analytical_depth`, `significance`. Dimensions are
-   configurable; `overall` is mandatory.
-3. **Position-debias:** run the pair in both orders (A=Review 1, then B=Review 1); average outcomes.
+1. For each unordered config pair and each paper, build a judging prompt: full `paper_text` and
+   two anonymized reviews as **Assistant A** / **Assistant B** (ScholarPeer H.2).
+2. Ask each judge to pick the better review per dimension (`A`, `B`, or `Tie`) using the
+   ScholarPeer SxS rubric: `overall` (primary) + `technical_accuracy`, `constructive_value`,
+   `analytical_depth`, `significance`.
+3. **Position-debias:** run the pair in both orders (swap which config is Assistant A); average.
 4. **Multiple judges (P4):** repeat for each judge; aggregate by averaging win fractions.
 
 **Formula.** With ties counted as half:
@@ -152,20 +155,14 @@ score(A vs B) = (wins_A + 0.5 * ties) / n_comparisons          # per dimension, 
 WinRate(A)    = mean over all opponents B of score(A vs B)      # config-level
 ```
 
-Optional global ranking via **Bradley–Terry** (fit strengths β by MLE on pairwise win counts):
-
-```
-P(A beats B) = exp(β_A) / (exp(β_A) + exp(β_B))
-```
-
-Report BT strength per config (and/or convert to Elo for presentation). BT is preferred over raw
-win-rate when the pairwise design is unbalanced.
-
 **Output.** Per-pair, per-dimension, per-judge raw outcomes; per-config aggregated `WinRate` per
-dimension; optional BT strengths with bootstrap CIs.
+dimension.
+
+Optional global ranking via **Bradley–Terry** — not implemented in v1; raw win-rate is sufficient
+for the pilot.
 
 **Notes.** Keep the rubric text fixed and store it alongside results. Log raw judge responses for
-auditability. Source: MAMORX (Elo arena), ScholarPeer (SxS win-rate across dimensions).
+auditability. Source: MAMORX (Elo arena), ScholarPeer Appendix H.2 (SxS).
 
 ---
 

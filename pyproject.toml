@@ -32,5 +32,5 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
-pythonpath = ["review_agent"]
-testpaths = ["review_agent/src/tests"]
+pythonpath = ["review_agent", "eval"]
+testpaths = ["review_agent/src/tests", "eval/tests"]
