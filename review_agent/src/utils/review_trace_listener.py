@@ -95,7 +95,7 @@ class ReviewTraceListener:
             emit_seq=getattr(event, "emission_sequence", None),
             expert_role=expert_role,
             task=preview(task) if task else None,
-            output=preview(output),
+            output=output,
             output_chars=len(output),
             duration_ms=_duration_ms(event),
             status="ok",

@@ -114,12 +114,12 @@ RUBRIC_TEXT = SYSTEM_PROMPT
 
 
 def dimension_labels(dimensions: tuple[str, ...] = DEFAULT_DIMENSIONS) -> list[tuple[str, str]]:
-    """Return (ScholarPeer label, internal key) pairs for the requested dimensions."""
+    """Map internal dimension keys to ScholarPeer JSON field prefixes."""
     wanted = set(dimensions)
     return [(label, key) for label, key in SXS_DIMENSIONS if key in wanted]
 
 
 def build_comparison_prompt(paper_text: str, review_a: str, review_b: str) -> str:
-    """Full judge prompt: Appendix H.2 system instructions + user inputs."""
+    """Assemble the full side-by-side judge prompt for one paper and two reviews."""
     user_block = USER_PROMPT.format(paper_text=paper_text, review_a=review_a, review_b=review_b)
     return f"{SYSTEM_PROMPT}\n\n{user_block}"

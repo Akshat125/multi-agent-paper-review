@@ -1,7 +1,7 @@
 """Load an evaluation batch and resolve per-run artifacts.
 
 Generation writes ``eval/runs/<batch>/{configs.json, runs.jsonl}``; metric scripts
-read them here. See ``eval/batch.md``.
+read them here. See ``eval/README.md`` → ``seminar-paper/paper-context/eval-metrics.md`` (Interface).
 """
 
 from __future__ import annotations
@@ -21,6 +21,8 @@ DEFAULT_DATASET = PROJECT_ROOT / "dataset" / "eval_sample_30.json"
 
 @dataclass(frozen=True)
 class ConfigRecord:
+    """One experimental configuration: which model fills each reviewer role."""
+
     config_id: str
     models: dict[str, str]
     homogeneous: bool
@@ -28,6 +30,8 @@ class ConfigRecord:
 
 @dataclass(frozen=True)
 class RunRecord:
+    """Registry row linking a config and paper to on-disk run artifacts."""
+
     config_id: str
     paper_id: str
     run_dir: Path
@@ -35,18 +39,72 @@ class RunRecord:
 
 
 class RunArtifacts:
-    """Lazy accessors for files inside a single run directory."""
+    """Resolved paths and dataset fields for one completed (config, paper) run."""
 
     def __init__(self, run: RunRecord, paper: dict[str, Any]) -> None:
         self.run = run
         self.paper = paper
 
     def final_review(self) -> str:
+        """Read the leader's full markdown review from the run directory."""
         return (self.run.run_dir / "final_review.md").read_text(encoding="utf-8")
+
+    def review_rating(self) -> float:
+        """Read the parsed 1–10 overall score from ``review.json`` (P2)."""
+        path = self.run.run_dir / "review.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        rating = data.get("rating")
+        if rating is None:
+            raise ValueError(f"missing rating in {path}")
+        return float(rating)
+
+    def role_output(self, role: str) -> str:
+        """Read the full text output of a reviewer role from this run (P1).
+
+        For ``leader`` returns ``final_review.md`` (always persisted untruncated).
+        For expert roles (``clarity``, ``experiments``, ``impact``) parses
+        ``trace.jsonl``: uses ``run_header.roles`` to map the role key to its
+        label, then returns the ``output`` field of the matching
+        ``delegation_finished`` record.
+        """
+        if role == "leader":
+            return self.final_review()
+
+        trace_path = self.run.run_dir / "trace.jsonl"
+        role_labels: dict[str, str] = {}
+        outputs: dict[str, str] = {}
+
+        for line in trace_path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            record = json.loads(line)
+            rtype = record.get("type")
+            if rtype == "run_header":
+                role_labels = record.get("roles", {})
+            elif rtype == "delegation_finished":
+                label = record.get("expert_role", "")
+                output = record.get("output", "")
+                if label:
+                    outputs[label] = output
+
+        label = role_labels.get(role)
+        if label is None:
+            raise KeyError(
+                f"role {role!r} not found in run_header.roles for run {self.run.run_dir}"
+            )
+        if label not in outputs:
+            raise KeyError(
+                f"no delegation_finished record for role {role!r} "
+                f"(label={label!r}) in {trace_path}"
+            )
+        return outputs[label]
 
 
 class Batch:
-    """A named run-set: configs plus completed runs."""
+    """Named evaluation run-set loaded from ``eval/runs/<batch>/``.
+
+    Holds config assignments, completed runs, and the paper dataset metrics join against.
+    """
 
     def __init__(
         self,
@@ -71,6 +129,7 @@ class Batch:
         dataset_path: Path | None = None,
         validate_artifacts: bool = True,
     ) -> Batch:
+        """Load ``configs.json``, ``runs.jsonl``, and the paper dataset for a batch name."""
         project_root = root or PROJECT_ROOT
         batch_dir = project_root / "eval" / "runs" / name
         configs = _load_configs(batch_dir / "configs.json")
@@ -84,11 +143,13 @@ class Batch:
         return batch
 
     def metrics_dir(self) -> Path:
+        """Ensure and return ``eval/runs/<batch>/metrics/``."""
         path = self.batch_dir / "metrics"
         path.mkdir(parents=True, exist_ok=True)
         return path
 
     def runs_by_config_paper(self, replicate: int = 0) -> dict[tuple[str, str], RunRecord]:
+        """Index runs by ``(config_id, paper_id)`` for the given replicate."""
         index: dict[tuple[str, str], RunRecord] = {}
         for run in self.runs:
             if run.replicate != replicate:
@@ -103,6 +164,7 @@ class Batch:
         return index
 
     def open_run(self, run: RunRecord) -> RunArtifacts:
+        """Attach dataset paper metadata to a registry run record."""
         if run.config_id not in self.configs:
             raise KeyError(f"unknown config_id {run.config_id!r}")
         if run.paper_id not in self.papers:
@@ -110,17 +172,23 @@ class Batch:
         return RunArtifacts(run, self.papers[run.paper_id])
 
     def config_ids(self) -> list[str]:
+        """Sorted config ids for stable iteration across metrics."""
         return sorted(self.configs)
+
+    def paper_ids(self) -> list[str]:
+        """Sorted paper ids present in the run index for replicate 0."""
+        run_index = self.runs_by_config_paper()
+        return sorted({paper_id for _, paper_id in run_index})
 
 
 def unordered_pairs(items: list[str]) -> list[tuple[str, str]]:
-    """All unordered pairs (a, b) with a < b (lexicographic)."""
+    """Lexicographic unordered pairs — used for all-vs-all config comparisons."""
     ordered = sorted(items)
     return [(a, b) for i, a in enumerate(ordered) for b in ordered[i + 1 :]]
 
 
 def write_metric(batch: Batch, name: str, payload: dict[str, Any]) -> Path:
-    """Write ``eval/runs/<batch>/metrics/<name>.json`` with a thin envelope."""
+    """Persist one metric result JSON with batch metadata and a timestamp envelope."""
     envelope = {
         "metric": name,
         "batch": batch.name,

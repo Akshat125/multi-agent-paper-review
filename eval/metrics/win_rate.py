@@ -1,26 +1,30 @@
-"""Metric 1 — LLM-as-judge side-by-side win-rate."""
+"""Metric 1 — LLM-as-judge side-by-side win-rate.
+
+Compares configs head-to-head on each paper using out-of-suite judges.
+Position-debiased (both orders) and aggregated into per-config win rates.
+"""
 
 from __future__ import annotations
 
-import json
-import os
+import argparse
 import re
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Callable, Protocol
 
-from crewai import LLM
-
-from .batch import Batch, RunArtifacts, unordered_pairs, write_metric
-from .rubric import (
+from prompts.win_rate import (
     DEFAULT_DIMENSIONS,
     RUBRIC_TEXT,
     RUBRIC_VERSION,
     build_comparison_prompt,
     dimension_labels,
 )
+from metrics.base import Metric
+from utils.batch import Batch, RunArtifacts, unordered_pairs
+from utils.cli import add_common_args, load_batch
+from utils.llm import OpenRouterLLM, extract_json
+from utils.stats import mean
 
-OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-JSON_BLOCK_RE = re.compile(r"```(?:json)?\s*(.*?)```", re.DOTALL | re.IGNORECASE)
 THOUGHT_RE = re.compile(r"THOUGHT:\s*(.*?)\s*REVIEW COMPARISON JSON:", re.DOTALL | re.IGNORECASE)
 BETTER_ASSISTANT_RE = re.compile(
     r'"(?P<label>[^"]+) Better Assistant":\s*"(?P<verdict>A|B|Tie)"',
@@ -29,11 +33,14 @@ BETTER_ASSISTANT_RE = re.compile(
 
 
 class JudgeClient(Protocol):
+    """LLM backend that returns a side-by-side judge verdict string."""
+
     def judge(self, prompt: str) -> str: ...
 
 
 @dataclass(frozen=True)
 class RawComparison:
+    """One debiased judge call: one config pair, paper, judge, and presentation order."""
     config_a: str
     config_b: str
     paper_id: str
@@ -49,7 +56,7 @@ def parse_judge_response(
     text: str,
     dimensions: tuple[str, ...] = DEFAULT_DIMENSIONS,
 ) -> tuple[str, dict[str, str], dict[str, str]]:
-    """Parse ScholarPeer H.2 THOUGHT + REVIEW COMPARISON JSON."""
+    """Parse ScholarPeer H.2 THOUGHT + REVIEW COMPARISON JSON into verdicts."""
     thought_match = THOUGHT_RE.search(text)
     thought = thought_match.group(1).strip() if thought_match else ""
 
@@ -58,7 +65,7 @@ def parse_judge_response(
     reasons: dict[str, str] = {}
 
     try:
-        payload = _extract_json_payload(text)
+        payload = extract_json(text)
     except ValueError:
         payload = {}
 
@@ -94,7 +101,7 @@ def points_for_config(
     config_a: str,
     assistant_a_config: str,
 ) -> float:
-    """Map an A/B/Tie verdict to points for ``favored_config``."""
+    """Convert an A/B/Tie verdict into points for one config, accounting for swap order."""
     normalized = _normalize_verdict(verdict)
     if normalized is None or normalized == "Tie":
         return 0.5
@@ -103,24 +110,8 @@ def points_for_config(
     return 1.0 if assistant_a_won == favored_is_assistant_a else 0.0
 
 
-class OpenRouterJudge:
-    """Thin wrapper around CrewAI's OpenRouter-compatible LLM."""
-
-    def __init__(self, model: str, api_key: str | None = None) -> None:
-        self.model = model
-        self._llm = LLM(
-            model=_openrouter_model(model),
-            base_url=OPENROUTER_BASE_URL,
-            api_key=api_key or os.getenv("OPENROUTER_API_KEY"),
-        )
-
-    def judge(self, prompt: str) -> str:
-        response = self._llm.call(prompt)
-        return response if isinstance(response, str) else str(response)
-
-
 class SideBySideJudge:
-    """Run one debiased comparison (both presentation orders)."""
+    """Run one config-pair comparison in both Assistant A/B presentation orders."""
 
     def __init__(
         self,
@@ -141,6 +132,7 @@ class SideBySideJudge:
         review_a: str,
         review_b: str,
     ) -> list[RawComparison]:
+        """Call the judge twice with swapped review positions."""
         client = self.client_factory(judge_model)
         raw: list[RawComparison] = []
 
@@ -167,7 +159,7 @@ class SideBySideJudge:
 
 
 class WinRateAggregator:
-    """Aggregate raw comparisons into pairwise scores and per-config win rates."""
+    """Collapse raw judge calls into pairwise scores and per-config win rates."""
 
     def __init__(self, dimensions: tuple[str, ...] = DEFAULT_DIMENSIONS) -> None:
         self.dimensions = dimensions
@@ -176,7 +168,7 @@ class WinRateAggregator:
         self,
         comparisons: list[RawComparison],
     ) -> dict[str, dict[str, dict[str, float]]]:
-        """Return ``pair_key -> dimension -> score_for_a``."""
+        """Average debiased points per config pair and rubric dimension."""
         buckets: dict[str, dict[str, list[float]]] = {}
         for row in comparisons:
             pair_key = _pair_key(row.config_a, row.config_b)
@@ -191,7 +183,7 @@ class WinRateAggregator:
                 buckets[pair_key][dim].append(points)
 
         return {
-            pair_key: {dim: _mean(values) for dim, values in dim_map.items()}
+            pair_key: {dim: mean(values) for dim, values in dim_map.items()}
             for pair_key, dim_map in buckets.items()
         }
 
@@ -200,7 +192,7 @@ class WinRateAggregator:
         config_ids: list[str],
         pairwise: dict[str, dict[str, dict[str, float]]],
     ) -> dict[str, dict[str, float]]:
-        """Macro-average ``score(config vs opponent)`` over opponents per dimension."""
+        """Macro-average each config's score over all head-to-head opponents."""
         result = {config_id: {dim: 0.0 for dim in self.dimensions} for config_id in config_ids}
         counts = {config_id: {dim: 0 for dim in self.dimensions} for config_id in config_ids}
 
@@ -219,8 +211,10 @@ class WinRateAggregator:
         return result
 
 
-class WinRateMetric:
-    """Orchestrate side-by-side judging for every config pair and paper in a batch."""
+class WinRateMetric(Metric):
+    """Run side-by-side judging for every config pair, paper, and judge in a batch."""
+
+    metric_name = "win_rate"
 
     def __init__(
         self,
@@ -230,21 +224,22 @@ class WinRateMetric:
         dimensions: tuple[str, ...] = DEFAULT_DIMENSIONS,
         client_factory: Callable[[str], JudgeClient] | None = None,
     ) -> None:
-        self.batch = batch
+        super().__init__(batch)
         self.judge_models = judge_models
         self.dimensions = dimensions
-        self.client_factory = client_factory or (lambda model: OpenRouterJudge(model))
+        self.client_factory = client_factory or (lambda model: OpenRouterLLM(model))
         self.judge = SideBySideJudge(self.client_factory, dimensions)
         self.aggregator = WinRateAggregator(dimensions)
 
     def run(self) -> dict[str, Any]:
+        """Collect all comparisons and aggregate win rates."""
         if len(self.judge_models) < 2:
             raise ValueError("at least two judge models are required (P4)")
 
         run_index = self.batch.runs_by_config_paper()
         config_ids = self.batch.config_ids()
         pairs = unordered_pairs(config_ids)
-        paper_ids = sorted({paper_id for _, paper_id in run_index})
+        paper_ids = self.batch.paper_ids()
 
         comparisons: list[RawComparison] = []
         for config_a, config_b in pairs:
@@ -279,10 +274,6 @@ class WinRateMetric:
             "pairwise": pairwise,
             "per_config": per_config,
         }
-
-    def write(self, payload: dict[str, Any] | None = None) -> Any:
-        data = payload if payload is not None else self.run()
-        return write_metric(self.batch, "win_rate", data)
 
     def _artifacts_for(
         self,
@@ -320,34 +311,49 @@ def _split_pair_key(pair_key: str) -> tuple[str, str]:
     return left, right
 
 
-def _mean(values: list[float]) -> float:
-    return sum(values) / len(values)
-
-
-def _openrouter_model(model_name: str) -> str:
-    return model_name if model_name.startswith("openrouter/") else f"openrouter/{model_name}"
-
-
-def _extract_json_payload(text: str) -> dict[str, Any]:
-    blocks = JSON_BLOCK_RE.findall(text)
-    for block in reversed(blocks):
-        try:
-            payload = json.loads(block.strip())
-        except json.JSONDecodeError:
-            continue
-        if isinstance(payload, dict):
-            return payload
-    try:
-        payload = json.loads(text.strip())
-    except json.JSONDecodeError as exc:
-        raise ValueError("could not parse REVIEW COMPARISON JSON from judge response") from exc
-    if not isinstance(payload, dict):
-        raise ValueError("judge JSON must be an object")
-    return payload
-
 
 def _normalize_verdict(value: str) -> str | None:
     cleaned = value.strip().upper()
     if cleaned in {"A", "B", "TIE"}:
         return "Tie" if cleaned == "TIE" else cleaned
     return None
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Metric 1: LLM-as-judge side-by-side win-rate")
+    add_common_args(parser)
+    parser.add_argument(
+        "--judge",
+        action="append",
+        dest="judges",
+        required=True,
+        help="Judge model id (repeatable; P4 requires >=2 out-of-suite judges)",
+    )
+    parser.add_argument(
+        "--dimension",
+        action="append",
+        dest="dimensions",
+        help="Rubric dimension to score (repeatable; default: all core dimensions)",
+    )
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    """CLI entry point for Metric 1."""
+    args = build_parser().parse_args(argv)
+
+    dimensions = tuple(args.dimensions) if args.dimensions else DEFAULT_DIMENSIONS
+    if "overall" not in dimensions:
+        raise SystemExit("overall dimension is mandatory")
+    if len(args.judges) < 2:
+        raise SystemExit("P4 requires at least two --judge models")
+
+    batch = load_batch(args)
+    metric = WinRateMetric(batch, args.judges, dimensions=dimensions)
+    output_path = metric.write()
+    print(f"wrote {output_path}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
