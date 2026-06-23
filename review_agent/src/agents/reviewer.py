@@ -145,7 +145,16 @@ class MultiAgentReviewer:
             if model_name.startswith("openrouter/")
             else f"openrouter/{model_name}"
         )
-        return LLM(model=model, base_url=OPENROUTER_BASE_URL, api_key=self.api_key)
+        kwargs: dict[str, object] = {
+            "model": model,
+            "base_url": OPENROUTER_BASE_URL,
+            "api_key": self.api_key,
+            "temperature": 0.0,
+        }
+        # Pool model A (Qwen) only — disable thinking mode per experiment-setup.md.
+        if "qwen" in model_name.lower():
+            kwargs["additional_params"] = {"enable_thinking": False}
+        return LLM(**kwargs)
 
     def review(
         self,
