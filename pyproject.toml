@@ -37,4 +37,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
 pythonpath = ["review_agent", "eval"]
-testpaths = ["review_agent/src/tests", "eval/tests"]
+# testpaths omitted — **/tests/ is gitignored (local-only suites)
