@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import statistics
 
 
@@ -25,7 +26,10 @@ def mean_sem(values: list[float]) -> dict[str, float]:
 def derive_seed(base: int, *parts: object) -> int:
     """Deterministically derive a child seed from a base seed and extra identifiers.
 
-    Keeps seeds reproducible across metrics without passing raw seeds everywhere.
-    Uses Python's built-in hash with a mask to stay within numpy's uint32 range.
+    Stable across processes and machines, unlike the builtin ``hash`` (which is
+    salted per-process unless PYTHONHASHSEED is pinned). Stays within numpy's
+    uint32 range.
     """
-    return hash((base, *parts)) & 0xFFFFFFFF
+    key = "|".join(str(part) for part in (base, *parts))
+    digest = hashlib.sha256(key.encode("utf-8")).digest()
+    return int.from_bytes(digest[:4], "big")

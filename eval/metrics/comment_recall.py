@@ -8,11 +8,7 @@ from __future__ import annotations
 
 import argparse
 import random
-import sys
-from pathlib import Path
-from typing import Any, Callable, Protocol
-
-from dotenv import load_dotenv
+from typing import Any, Callable
 
 from prompts.comment_recall import (
     PROMPT_VERSION,
@@ -34,19 +30,14 @@ from prompts.comment_recall import (
 from metrics.base import Metric
 from utils.batch import Batch
 from utils.cli import add_common_args, load_batch
-from utils.llm import OpenRouterLLM
+from utils.llm import LLMClient, OpenRouterLLM
 from utils.stats import derive_seed, mean
 
 DEFAULT_ALIGNMENT_MODEL = "openai/gpt-5-mini"
+DEFAULT_SEED = 42
 
 
-class AlignmentClient(Protocol):
-    """LLM backend for extraction, matching, and pairwise filtering."""
-
-    def call(self, prompt: str) -> str: ...
-
-
-def extract_comments(llm: AlignmentClient, review_text: str, id_prefix: str) -> list[Comment]:
+def extract_comments(llm: LLMClient, review_text: str, id_prefix: str) -> list[Comment]:
     """Run stage 1 extraction on one review body."""
     if not review_text.strip():
         return []
@@ -54,7 +45,7 @@ def extract_comments(llm: AlignmentClient, review_text: str, id_prefix: str) -> 
     return parse_extraction_response(response, id_prefix)
 
 
-def extract_human_comments(llm: AlignmentClient, paper: dict[str, Any]) -> list[Comment]:
+def extract_human_comments(llm: LLMClient, paper: dict[str, Any]) -> list[Comment]:
     """Extract and union human comments for a paper (computed once per paper)."""
     all_comments: list[Comment] = []
     for review in paper.get("human_reviews", []):
@@ -66,13 +57,13 @@ def extract_human_comments(llm: AlignmentClient, paper: dict[str, Any]) -> list[
 
 
 def match_candidates(
-    llm: AlignmentClient,
+    llm: LLMClient,
     c_gen: list[Comment],
     c_real: list[Comment],
     *,
     passes: int = 5,
     threshold: int = 2,
-    seed: int = 42,
+    seed: int = DEFAULT_SEED,
     rng_factory: Callable[[int], random.Random] | None = None,
 ) -> list[Pair]:
     """Run repeated shuffled match passes and keep stable candidate pairs."""
@@ -90,7 +81,7 @@ def match_candidates(
 
 
 def filter_pairs(
-    llm: AlignmentClient,
+    llm: LLMClient,
     c_gen: list[Comment],
     c_real: list[Comment],
     candidates: list[Pair],
@@ -155,8 +146,8 @@ class CommentRecallMetric(Metric):
         *,
         match_passes: int = 5,
         match_threshold: int = 2,
-        seed: int = 42,
-        client_factory: Callable[[str], AlignmentClient] | None = None,
+        seed: int = DEFAULT_SEED,
+        client_factory: Callable[[str], LLMClient] | None = None,
     ) -> None:
         super().__init__(batch)
         self.model = model
@@ -237,7 +228,7 @@ def build_parser() -> argparse.ArgumentParser:
         default=2,
         help="Minimum passes a candidate pair must appear in",
     )
-    parser.add_argument("--seed", type=int, default=42, help="RNG seed for match shuffles")
+    parser.add_argument("--seed", type=int, default=DEFAULT_SEED, help="RNG seed for match shuffles")
     return parser
 
 

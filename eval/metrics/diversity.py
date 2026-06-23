@@ -151,11 +151,11 @@ def compute_diversity(
 
             entry: dict[str, Any] = {
                 "n_models": len(texts),
-                "similarity": round(sim, 6),
-                "diversity": round(diversity, 6),
+                "similarity": sim,
+                "diversity": diversity,
             }
             if compute_vendi:
-                entry["vendi_score"] = round(vendi_score(sim_mat), 6)
+                entry["vendi_score"] = vendi_score(sim_mat)
 
             per_role_per_paper[role][paper_id] = entry
 
@@ -167,14 +167,14 @@ def compute_diversity(
         diversities = [v["diversity"] for v in by_paper.values()]
         similarities = [v["similarity"] for v in by_paper.values()]
         agg: dict[str, Any] = {
-            "diversity": round(mean(diversities), 6),
-            "similarity": round(mean(similarities), 6),
+            "diversity": mean(diversities),
+            "similarity": mean(similarities),
             "n_papers": len(diversities),
         }
         if compute_vendi:
             vendis = [v["vendi_score"] for v in by_paper.values() if "vendi_score" in v]
             if vendis:
-                agg["vendi_score"] = round(mean(vendis), 6)
+                agg["vendi_score"] = mean(vendis)
         per_role[role] = agg
 
     return {

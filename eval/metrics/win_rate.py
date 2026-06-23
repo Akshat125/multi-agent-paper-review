@@ -9,8 +9,7 @@ from __future__ import annotations
 import argparse
 import re
 from dataclasses import dataclass
-from pathlib import Path
-from typing import Any, Callable, Protocol
+from typing import Any, Callable
 
 from prompts.win_rate import (
     DEFAULT_DIMENSIONS,
@@ -22,7 +21,7 @@ from prompts.win_rate import (
 from metrics.base import Metric
 from utils.batch import Batch, RunArtifacts, unordered_pairs
 from utils.cli import add_common_args, load_batch
-from utils.llm import OpenRouterLLM, extract_json
+from utils.llm import LLMClient, OpenRouterLLM, extract_json
 from utils.stats import mean
 
 DEFAULT_JUDGES: tuple[str, ...] = (
@@ -35,12 +34,6 @@ BETTER_ASSISTANT_RE = re.compile(
     r'"(?P<label>[^"]+) Better Assistant":\s*"(?P<verdict>A|B|Tie)"',
     re.IGNORECASE,
 )
-
-
-class JudgeClient(Protocol):
-    """LLM backend that returns a side-by-side judge verdict string."""
-
-    def judge(self, prompt: str) -> str: ...
 
 
 @dataclass(frozen=True)
@@ -120,7 +113,7 @@ class SideBySideJudge:
 
     def __init__(
         self,
-        client_factory: Callable[[str], JudgeClient],
+        client_factory: Callable[[str], LLMClient],
         dimensions: tuple[str, ...] = DEFAULT_DIMENSIONS,
     ) -> None:
         self.client_factory = client_factory
@@ -145,7 +138,7 @@ class SideBySideJudge:
             assistant_a_review = review_a if assistant_a_config == config_a else review_b
             assistant_b_review = review_b if assistant_a_config == config_a else review_a
             prompt = build_comparison_prompt(paper_text, assistant_a_review, assistant_b_review)
-            response = client.judge(prompt)
+            response = client.call(prompt)
             thought, verdicts, reasons = parse_judge_response(response, self.dimensions)
             raw.append(
                 RawComparison(
@@ -172,7 +165,7 @@ class WinRateAggregator:
     def pairwise_scores(
         self,
         comparisons: list[RawComparison],
-    ) -> dict[str, dict[str, dict[str, float]]]:
+    ) -> dict[str, dict[str, float]]:
         """Average debiased points per config pair and rubric dimension."""
         buckets: dict[str, dict[str, list[float]]] = {}
         for row in comparisons:
@@ -195,7 +188,7 @@ class WinRateAggregator:
     def per_config_win_rates(
         self,
         config_ids: list[str],
-        pairwise: dict[str, dict[str, dict[str, float]]],
+        pairwise: dict[str, dict[str, float]],
     ) -> dict[str, dict[str, float]]:
         """Macro-average each config's score over all head-to-head opponents."""
         result = {config_id: {dim: 0.0 for dim in self.dimensions} for config_id in config_ids}
@@ -227,7 +220,7 @@ class WinRateMetric(Metric):
         judge_models: list[str],
         *,
         dimensions: tuple[str, ...] = DEFAULT_DIMENSIONS,
-        client_factory: Callable[[str], JudgeClient] | None = None,
+        client_factory: Callable[[str], LLMClient] | None = None,
     ) -> None:
         super().__init__(batch)
         self.judge_models = judge_models
@@ -270,6 +263,7 @@ class WinRateMetric(Metric):
 
         pairwise = self.aggregator.pairwise_scores(comparisons)
         per_config = self.aggregator.per_config_win_rates(config_ids, pairwise)
+        per_judge = self._per_judge_breakdown(comparisons, config_ids)
         return {
             "dimensions": list(self.dimensions),
             "judges": list(self.judge_models),
@@ -278,7 +272,24 @@ class WinRateMetric(Metric):
             "raw_comparisons": [_comparison_to_dict(row) for row in comparisons],
             "pairwise": pairwise,
             "per_config": per_config,
+            "per_judge": per_judge,
         }
+
+    def _per_judge_breakdown(
+        self,
+        comparisons: list[RawComparison],
+        config_ids: list[str],
+    ) -> dict[str, dict[str, Any]]:
+        """Same pairwise / per-config scores, split out per judge for agreement checks."""
+        per_judge: dict[str, dict[str, Any]] = {}
+        for judge_model in self.judge_models:
+            judge_comparisons = [c for c in comparisons if c.judge_model == judge_model]
+            judge_pairwise = self.aggregator.pairwise_scores(judge_comparisons)
+            per_judge[judge_model] = {
+                "pairwise": judge_pairwise,
+                "per_config": self.aggregator.per_config_win_rates(config_ids, judge_pairwise),
+            }
+        return per_judge
 
     def _artifacts_for(
         self,

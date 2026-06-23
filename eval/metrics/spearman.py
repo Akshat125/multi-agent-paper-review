@@ -19,6 +19,7 @@ from utils.cli import add_common_args, load_batch
 from utils.stats import derive_seed
 
 STRATA = ("normal", "controversial")
+DEFAULT_SEED = 42
 
 
 @dataclass(frozen=True)
@@ -64,7 +65,7 @@ def bootstrap_spearman_ci(
     human_scores: np.ndarray,
     *,
     n_bootstrap: int = 2000,
-    seed: int = 42,
+    seed: int = DEFAULT_SEED,
 ) -> tuple[float, float]:
     """Percentile bootstrap CI for Spearman ρ over paper-level resamples."""
     n = len(config_scores)
@@ -94,7 +95,7 @@ def spearman_alignment(
     pairs: list[ScorePair],
     *,
     bootstrap_n: int = 2000,
-    seed: int = 42,
+    seed: int = DEFAULT_SEED,
 ) -> dict[str, Any]:
     """Compute tie-corrected Spearman ρ, p-value, and bootstrap CI for one slice."""
     n = len(pairs)
@@ -148,7 +149,7 @@ class SpearmanMetric(Metric):
         batch: Batch,
         *,
         bootstrap_n: int = 2000,
-        seed: int = 42,
+        seed: int = DEFAULT_SEED,
     ) -> None:
         super().__init__(batch)
         self.bootstrap_n = bootstrap_n
@@ -194,7 +195,9 @@ def build_parser() -> argparse.ArgumentParser:
         default=2000,
         help="Bootstrap resamples for the Spearman CI",
     )
-    parser.add_argument("--seed", type=int, default=42, help="RNG seed for bootstrap resampling")
+    parser.add_argument(
+        "--seed", type=int, default=DEFAULT_SEED, help="RNG seed for bootstrap resampling"
+    )
     return parser
 
 

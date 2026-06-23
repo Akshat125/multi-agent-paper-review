@@ -32,12 +32,15 @@ class RoleTotals:
     output_tokens: int = 0
     cost_usd: float = 0.0
     llm_calls: int = 0
+    has_all_prices: bool = True
 
     def add_call(self, tokens_in: int, tokens_out: int, call_cost: float | None) -> None:
         self.input_tokens += tokens_in
         self.output_tokens += tokens_out
         self.llm_calls += 1
-        if call_cost is not None:
+        if call_cost is None:
+            self.has_all_prices = False
+        else:
             self.cost_usd += call_cost
 
 
@@ -102,22 +105,10 @@ def parse_trace(run_dir: Path, prices: PriceTable) -> RunCost:
     by_role: dict[str, dict[str, float | int | None]] = {}
     for role in ROLES:
         totals = role_totals[role]
-        role_missing = any(
-            record.get("type") == "llm_call"
-            and role_key(record.get("agent_role")) == role
-            and cost_usd(
-                str(record["model"]),
-                int(record["tokens_in"]),
-                int(record["tokens_out"]),
-                prices,
-            )
-            is None
-            for record in records
-        )
         by_role[role] = {
             "input_tokens": totals.input_tokens,
             "output_tokens": totals.output_tokens,
-            "cost_usd": totals.cost_usd if not role_missing else None,
+            "cost_usd": totals.cost_usd if totals.has_all_prices else None,
             "llm_calls": totals.llm_calls,
         }
 
