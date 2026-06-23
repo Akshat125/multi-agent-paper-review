@@ -419,14 +419,6 @@
     "in": 0.0,
     "out": 0.0
   },
-  "meta-llama/llama-3.3-70b-instruct": {
-    "in": 0.09999999999999999,
-    "out": 0.32
-  },
-  "meta-llama/llama-3.3-70b-instruct:free": {
-    "in": 0.0,
-    "out": 0.0
-  },
   "meta-llama/llama-4-maverick": {
     "in": 0.15,
     "out": 0.6

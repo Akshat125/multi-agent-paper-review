@@ -37,6 +37,8 @@ from utils.cli import add_common_args, load_batch
 from utils.llm import OpenRouterLLM
 from utils.stats import derive_seed, mean
 
+DEFAULT_ALIGNMENT_MODEL = "openai/gpt-5-mini"
+
 
 class AlignmentClient(Protocol):
     """LLM backend for extraction, matching, and pairwise filtering."""
@@ -223,7 +225,11 @@ class CommentRecallMetric(Metric):
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Metric 2: comment recall + comment count")
     add_common_args(parser)
-    parser.add_argument("--model", required=True, help="Alignment/extraction LLM id (P6)")
+    parser.add_argument(
+        "--model",
+        default=DEFAULT_ALIGNMENT_MODEL,
+        help=f"Alignment/extraction LLM id (P6; default: {DEFAULT_ALIGNMENT_MODEL})",
+    )
     parser.add_argument("--match-passes", type=int, default=5, help="Candidate match passes")
     parser.add_argument(
         "--match-threshold",

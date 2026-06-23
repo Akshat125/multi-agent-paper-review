@@ -25,6 +25,11 @@ from utils.cli import add_common_args, load_batch
 from utils.llm import OpenRouterLLM, extract_json
 from utils.stats import mean
 
+DEFAULT_JUDGES: tuple[str, ...] = (
+    "openai/gpt-5-mini",
+    "deepseek/deepseek-v3.2",
+)
+
 THOUGHT_RE = re.compile(r"THOUGHT:\s*(.*?)\s*REVIEW COMPARISON JSON:", re.DOTALL | re.IGNORECASE)
 BETTER_ASSISTANT_RE = re.compile(
     r'"(?P<label>[^"]+) Better Assistant":\s*"(?P<verdict>A|B|Tie)"',
@@ -326,8 +331,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--judge",
         action="append",
         dest="judges",
-        required=True,
-        help="Judge model id (repeatable; P4 requires >=2 out-of-suite judges)",
+        default=None,
+        help=(
+            "Judge model id (repeatable; P4 requires >=2 out-of-suite judges; "
+            f"default: {', '.join(DEFAULT_JUDGES)})"
+        ),
     )
     parser.add_argument(
         "--dimension",
@@ -345,11 +353,13 @@ def main(argv: list[str] | None = None) -> int:
     dimensions = tuple(args.dimensions) if args.dimensions else DEFAULT_DIMENSIONS
     if "overall" not in dimensions:
         raise SystemExit("overall dimension is mandatory")
-    if len(args.judges) < 2:
+
+    judges = list(args.judges) if args.judges else list(DEFAULT_JUDGES)
+    if len(judges) < 2:
         raise SystemExit("P4 requires at least two --judge models")
 
     batch = load_batch(args)
-    metric = WinRateMetric(batch, args.judges, dimensions=dimensions)
+    metric = WinRateMetric(batch, judges, dimensions=dimensions)
     output_path = metric.write()
     print(f"wrote {output_path}")
     return 0

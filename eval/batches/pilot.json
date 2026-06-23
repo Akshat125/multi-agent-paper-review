@@ -3,7 +3,8 @@
   "pool": {
     "A": "qwen/qwen3-32b",
     "B": "mistralai/mistral-small-3.2-24b-instruct",
-    "C": "google/gemma-3-27b-it"
+    "C": "google/gemma-3-27b-it",
+    "D": "meta-llama/llama-4-scout"
   },
   "configs": {
     "All-A": { "leader": "A", "clarity": "A", "experiments": "A", "impact": "A" },
@@ -20,7 +21,9 @@
     "het_rot_3": { "leader": "C", "clarity": "A", "experiments": "B", "impact": "C" },
 
     "het_strong_leader": { "leader": "A", "clarity": "B", "experiments": "C", "impact": "B" },
-    "het_specialist":    { "leader": "A", "clarity": "C", "experiments": "B", "impact": "A" }
+    "het_specialist":    { "leader": "A", "clarity": "C", "experiments": "B", "impact": "A" },
+
+    "het_full": { "leader": "D", "clarity": "A", "experiments": "B", "impact": "C" }
   },
   "papers": [
     "8dzKkeWUUb",
