@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -18,12 +19,11 @@ from utils.cli import add_common_args, load_batch
 from utils.prices import DEFAULT_PRICES_PATH, PriceTable, cost_usd, load_prices
 from utils.stats import mean_sem
 
-AGENT_ROLE_TO_KEY = {
-    "Review Leader": "leader",
-    "Clarity and Reproducibility Reviewer": "clarity",
-    "Experiments and Methodology Reviewer": "experiments",
-    "Impact and Contribution Reviewer": "impact",
-}
+_REVIEW_AGENT_ROOT = Path(__file__).resolve().parents[2] / "review_agent"
+if str(_REVIEW_AGENT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REVIEW_AGENT_ROOT))
+
+from src.utils.role_labels import AGENT_ROLE_TO_KEY  # noqa: E402
 
 
 @dataclass

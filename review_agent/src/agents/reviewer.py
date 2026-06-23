@@ -52,16 +52,10 @@ from crewai.events.listeners.tracing.utils import set_suppress_tracing_messages
 set_suppress_tracing_messages(True)
 
 from ..utils import ReviewTraceListener, TraceLogger, parse_review
+from ..utils.role_labels import ROLE_LABELS
 from .prompt_loader import PromptLoader
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-
-ROLE_LABELS = {
-    "leader": "Review Leader",
-    "clarity": "Clarity and Reproducibility Reviewer",
-    "experiments": "Experiments and Methodology Reviewer",
-    "impact": "Impact and Contribution Reviewer",
-}
 
 _LEADER_GOAL = (
     "Coordinate the three expert reviewers and synthesise their feedback into a "

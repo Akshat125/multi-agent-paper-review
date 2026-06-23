@@ -35,7 +35,7 @@ from src.utils import TraceLogger
 # Config
 # ---------------------------------------------------------------------------
 
-MODEL = "qwen/qwen3-8b"
+MODEL = "qwen/qwen3-32b"
 MAX_CHARS: int | None = None  # None = full paper
 PAPER_INDEX = 0
 

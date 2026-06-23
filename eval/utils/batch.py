@@ -134,7 +134,7 @@ class Batch:
         batch_dir = project_root / "eval" / "runs" / name
         configs = _load_configs(batch_dir / "configs.json")
         runs = _load_runs(batch_dir / "runs.jsonl", project_root, replicate=0)
-        papers = _load_papers(dataset_path or DEFAULT_DATASET)
+        papers = load_papers(dataset_path or DEFAULT_DATASET)
 
         batch = cls(name, batch_dir, configs, runs, papers)
         _validate_registry(batch)
@@ -244,7 +244,7 @@ def _load_runs(path: Path, root: Path, replicate: int) -> list[RunRecord]:
     return runs
 
 
-def _load_papers(path: Path) -> dict[str, dict[str, Any]]:
+def load_papers(path: Path) -> dict[str, dict[str, Any]]:
     if not path.is_file():
         raise FileNotFoundError(f"missing dataset: {path}")
     data = json.loads(path.read_text(encoding="utf-8"))

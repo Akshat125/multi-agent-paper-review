@@ -35,6 +35,7 @@ EVAL_DIR = Path(__file__).resolve().parent
 if str(EVAL_DIR) not in sys.path:
     sys.path.insert(0, str(EVAL_DIR))
 
+from utils.batch import DEFAULT_DATASET, load_papers  # noqa: E402
 from utils.spec import (  # noqa: E402
     BatchSpec,
     RunItem,
@@ -45,10 +46,6 @@ from utils.spec import (  # noqa: E402
     select_papers,
 )
 
-DEFAULT_DATASET = ROOT / "dataset" / "eval_sample_30.json"
-
-# A runner produces the three artifacts under ``output_dir/run_name`` and returns
-# the run directory. Injectable so tests can avoid a live model backend.
 Runner = Callable[[dict, str, str, Path, str], Path]
 
 
@@ -352,19 +349,6 @@ def dry_run_report(
 
 def _homo_count(spec: BatchSpec) -> int:
     return sum(1 for c in spec.configs.values() if c.homogeneous)
-
-
-# --------------------------------------------------------------------------- #
-# Dataset loading
-# --------------------------------------------------------------------------- #
-
-
-def load_papers(path: Path) -> dict[str, dict[str, Any]]:
-    """Load the paper dataset keyed by id (same shape as ``utils.batch``)."""
-    if not path.is_file():
-        raise FileNotFoundError(f"missing dataset: {path}")
-    data = json.loads(path.read_text(encoding="utf-8"))
-    return {paper["id"]: paper for paper in data["papers"]}
 
 
 # --------------------------------------------------------------------------- #
