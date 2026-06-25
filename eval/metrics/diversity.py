@@ -21,8 +21,8 @@ from typing import Any, Protocol
 import numpy as np
 
 from metrics.base import Metric
-from utils.batch import Batch, ROLES
-from utils.cli import add_common_args, load_batch
+from utils.run_set import RunSet, ROLES
+from utils.cli import add_common_args, load_run_set
 from utils.stats import mean
 
 DEFAULT_EMBEDDING_MODEL = "all-MiniLM-L6-v2"
@@ -100,13 +100,13 @@ def vendi_score(sim_matrix: np.ndarray) -> float:
 # ---------------------------------------------------------------------------
 
 
-def collect_homogeneous_configs(batch: Batch) -> list[str]:
+def collect_homogeneous_configs(run_set: RunSet) -> list[str]:
     """Sorted config_ids of homogeneous runs in this batch."""
-    return sorted(cid for cid, cfg in batch.configs.items() if cfg.homogeneous)
+    return sorted(cid for cid, cfg in run_set.configs.items() if cfg.homogeneous)
 
 
 def compute_diversity(
-    batch: Batch,
+    run_set: RunSet,
     embedder: Embedder,
     *,
     compute_vendi: bool = True,
@@ -117,15 +117,15 @@ def compute_diversity(
     them, and computes IRSim-derived diversity (and optionally Vendi Score).
     Aggregates per role via macro-average over papers.
     """
-    homo_ids = collect_homogeneous_configs(batch)
+    homo_ids = collect_homogeneous_configs(run_set)
     if len(homo_ids) < 2:
         raise ValueError(
             f"Metric 3 requires ≥2 homogeneous configs; "
             f"found {len(homo_ids)}: {homo_ids}"
         )
 
-    run_index = batch.runs_by_config_paper()
-    paper_ids = batch.paper_ids()
+    run_index = run_set.runs_by_config_paper()
+    paper_ids = run_set.paper_ids()
 
     per_role_per_paper: dict[str, dict[str, dict[str, Any]]] = {
         role: {} for role in ROLES
@@ -138,7 +138,7 @@ def compute_diversity(
                 key = (config_id, paper_id)
                 if key not in run_index:
                     continue
-                artifacts = batch.open_run(run_index[key])
+                artifacts = run_set.open_run(run_index[key])
                 texts.append(artifacts.role_output(role))
 
             if len(texts) < 2:
@@ -196,13 +196,13 @@ class DiversityMetric(Metric):
 
     def __init__(
         self,
-        batch: Batch,
+        run_set: RunSet,
         embedding_model: str = DEFAULT_EMBEDDING_MODEL,
         *,
         compute_vendi: bool = True,
         embedder: Embedder | None = None,
     ) -> None:
-        super().__init__(batch)
+        super().__init__(run_set)
         self.embedding_model = embedding_model
         self.compute_vendi = compute_vendi
         self._embedder = embedder
@@ -214,7 +214,7 @@ class DiversityMetric(Metric):
 
     def run(self) -> dict[str, Any]:
         embedder = self._get_embedder()
-        result = compute_diversity(self.batch, embedder, compute_vendi=self.compute_vendi)
+        result = compute_diversity(self.run_set, embedder, compute_vendi=self.compute_vendi)
         return {
             "embedding_model": self.embedding_model,
             "compute_vendi": self.compute_vendi,
@@ -246,9 +246,9 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     """CLI entry point for Metric 3."""
     args = build_parser().parse_args(argv)
-    batch = load_batch(args, load_dotenv_file=False)
+    run_set = load_run_set(args, load_dotenv_file=False)
     metric = DiversityMetric(
-        batch,
+        run_set,
         args.embedding_model,
         compute_vendi=not args.no_vendi,
     )

@@ -16,7 +16,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-from utils.batch import PROJECT_ROOT
+from utils.run_set import PROJECT_ROOT
 
 OPENROUTER_MODELS_URL = "https://openrouter.ai/api/v1/models"
 DEFAULT_PRICES_PATH = PROJECT_ROOT / "eval" / "prices.json"

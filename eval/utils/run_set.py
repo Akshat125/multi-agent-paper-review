@@ -1,21 +1,20 @@
-"""Load an evaluation batch by scanning completed reviews on disk.
+"""Load a run-set of completed reviews by scanning ``eval/reviews/<name>/``.
 
-Generation writes artifacts under ``eval/reviews/<batch>/<config__paper>/``.
-Metric scripts discover those runs here and write results to
-``eval/results/<batch>/<metric>.json``.
+Generation writes artifacts under ``eval/reviews/<run-set>/<config__paper>/``.
+Metric scripts discover those runs here; results go to ``eval/results/<run-set>/``.
 """
 
 from __future__ import annotations
 
 import json
 from dataclasses import dataclass
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 from utils.spec import (
     REQUIRED_ARTIFACTS,
     ROLES,
+    Config,
     derive_homogeneous,
     is_run_complete,
     parse_run_dir_name,
@@ -23,15 +22,6 @@ from utils.spec import (
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATASET = PROJECT_ROOT / "dataset" / "eval_sample_30.json"
-
-
-@dataclass(frozen=True)
-class ConfigRecord:
-    """One experimental configuration: which model filled each reviewer role."""
-
-    config_id: str
-    models: dict[str, str]
-    homogeneous: bool
 
 
 @dataclass(frozen=True)
@@ -105,8 +95,8 @@ class RunArtifacts:
         return outputs[label]
 
 
-class Batch:
-    """Named evaluation run-set discovered from ``eval/reviews/<batch>/``.
+class RunSet:
+    """Named set of completed review runs under ``eval/reviews/<name>/``.
 
     Holds config assignments derived from trace headers, completed runs, and the
     paper dataset metrics join against.
@@ -115,13 +105,13 @@ class Batch:
     def __init__(
         self,
         name: str,
-        batch_dir: Path,
-        configs: dict[str, ConfigRecord],
+        results_dir: Path,
+        configs: dict[str, Config],
         runs: list[RunRecord],
         papers: dict[str, dict[str, Any]],
     ) -> None:
         self.name = name
-        self.batch_dir = batch_dir
+        self.results_dir = results_dir
         self.configs = configs
         self.runs = runs
         self.papers = papers
@@ -134,17 +124,17 @@ class Batch:
         root: Path | None = None,
         dataset_path: Path | None = None,
         validate_artifacts: bool = True,
-    ) -> Batch:
-        """Scan ``eval/reviews/<batch>/`` for complete runs and load the dataset."""
+    ) -> RunSet:
+        """Scan ``eval/reviews/<name>/`` for complete runs and load the dataset."""
         project_root = root or PROJECT_ROOT
         reviews_dir = project_root / "eval" / "reviews" / name
-        batch_dir = project_root / "eval" / "results" / name
+        results_dir = project_root / "eval" / "results" / name
         papers = load_papers(dataset_path or DEFAULT_DATASET)
 
         if not reviews_dir.is_dir():
             raise FileNotFoundError(f"missing reviews directory: {reviews_dir}")
 
-        configs: dict[str, ConfigRecord] = {}
+        configs: dict[str, Config] = {}
         runs: list[RunRecord] = []
 
         for entry in sorted(reviews_dir.iterdir()):
@@ -162,7 +152,7 @@ class Batch:
                         f"inconsistent models for config {config_id!r} across runs in {reviews_dir}"
                     )
             else:
-                configs[config_id] = ConfigRecord(
+                configs[config_id] = Config(
                     config_id=config_id,
                     models=models,
                     homogeneous=derive_homogeneous(models),
@@ -179,10 +169,10 @@ class Batch:
         if not runs:
             raise ValueError(f"no complete runs found in {reviews_dir}")
 
-        batch = cls(name, batch_dir, configs, runs, papers)
+        run_set = cls(name, results_dir, configs, runs, papers)
         if validate_artifacts:
-            _validate_artifacts(batch)
-        return batch
+            _validate_artifacts(run_set)
+        return run_set
 
     def runs_by_config_paper(self) -> dict[tuple[str, str], RunRecord]:
         """Index runs by ``(config_id, paper_id)``."""
@@ -220,20 +210,6 @@ def unordered_pairs(items: list[str]) -> list[tuple[str, str]]:
     return [(a, b) for i, a in enumerate(ordered) for b in ordered[i + 1 :]]
 
 
-def write_metric(batch: Batch, name: str, payload: dict[str, Any]) -> Path:
-    """Persist one metric result JSON with batch metadata and a timestamp envelope."""
-    batch.batch_dir.mkdir(parents=True, exist_ok=True)
-    envelope = {
-        "metric": name,
-        "batch": batch.name,
-        "computed_at": datetime.now(timezone.utc).isoformat(),
-        **payload,
-    }
-    path = batch.batch_dir / f"{name}.json"
-    path.write_text(json.dumps(envelope, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    return path
-
-
 def _models_from_trace(run_dir: Path) -> dict[str, str]:
     """Read resolved role models from the first ``run_header`` in a trace."""
     trace_path = run_dir / "trace.jsonl"
@@ -259,8 +235,8 @@ def load_papers(path: Path) -> dict[str, dict[str, Any]]:
     return {paper["id"]: paper for paper in data["papers"]}
 
 
-def _validate_artifacts(batch: Batch) -> None:
-    for run in batch.runs:
+def _validate_artifacts(run_set: RunSet) -> None:
+    for run in run_set.runs:
         for name in REQUIRED_ARTIFACTS:
             path = run.run_dir / name
             if not path.is_file():

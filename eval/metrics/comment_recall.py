@@ -28,8 +28,8 @@ from prompts.comment_recall import (
     strip_rating_line,
 )
 from metrics.base import Metric
-from utils.batch import Batch
-from utils.cli import add_common_args, load_batch
+from utils.run_set import RunSet
+from utils.cli import add_common_args, load_run_set
 from utils.llm import LLMClient, OpenRouterLLM
 from utils.stats import derive_seed, mean
 
@@ -141,7 +141,7 @@ class CommentRecallMetric(Metric):
 
     def __init__(
         self,
-        batch: Batch,
+        run_set: RunSet,
         model: str,
         *,
         match_passes: int = 5,
@@ -149,7 +149,7 @@ class CommentRecallMetric(Metric):
         seed: int = DEFAULT_SEED,
         client_factory: Callable[[str], LLMClient] | None = None,
     ) -> None:
-        super().__init__(batch)
+        super().__init__(run_set)
         self.model = model
         self.match_passes = match_passes
         self.match_threshold = match_threshold
@@ -159,12 +159,12 @@ class CommentRecallMetric(Metric):
     def run(self) -> dict[str, Any]:
         """Extract, align, score, and aggregate recall + n_comments."""
         llm = self.client_factory(self.model)
-        run_index = self.batch.runs_by_config_paper()
-        config_ids = self.batch.config_ids()
-        paper_ids = self.batch.paper_ids()
+        run_index = self.run_set.runs_by_config_paper()
+        config_ids = self.run_set.config_ids()
+        paper_ids = self.run_set.paper_ids()
 
         c_real_by_paper = {
-            paper_id: extract_human_comments(llm, self.batch.papers[paper_id])
+            paper_id: extract_human_comments(llm, self.run_set.papers[paper_id])
             for paper_id in paper_ids
         }
 
@@ -172,7 +172,7 @@ class CommentRecallMetric(Metric):
         for config_id in config_ids:
             per_paper[config_id] = {}
             for paper_id in paper_ids:
-                artifacts = self.batch.open_run(run_index[(config_id, paper_id)])
+                artifacts = self.run_set.open_run(run_index[(config_id, paper_id)])
                 review_text = strip_rating_line(artifacts.final_review())
                 c_gen = extract_comments(llm, review_text, "gen")
                 c_real = c_real_by_paper[paper_id]
@@ -183,7 +183,7 @@ class CommentRecallMetric(Metric):
                     c_real,
                     passes=self.match_passes,
                     threshold=self.match_threshold,
-                    seed=derive_seed(self.seed, self.batch.name, config_id, paper_id),
+                    seed=derive_seed(self.seed, self.run_set.name, config_id, paper_id),
                 )
                 matches = filter_pairs(llm, c_gen, c_real, candidates)
                 stats = compute_recall(c_gen, c_real, matches)
@@ -235,9 +235,9 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     """CLI entry point for Metric 2."""
     args = build_parser().parse_args(argv)
-    batch = load_batch(args)
+    run_set = load_run_set(args)
     metric = CommentRecallMetric(
-        batch,
+        run_set,
         args.model,
         match_passes=args.match_passes,
         match_threshold=args.match_threshold,

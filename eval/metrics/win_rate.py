@@ -19,8 +19,8 @@ from prompts.win_rate import (
     dimension_labels,
 )
 from metrics.base import Metric
-from utils.batch import Batch, RunArtifacts, unordered_pairs
-from utils.cli import add_common_args, load_batch
+from utils.run_set import RunSet, RunArtifacts, unordered_pairs
+from utils.cli import add_common_args, load_run_set
 from utils.llm import LLMClient, OpenRouterLLM, extract_json
 from utils.stats import mean
 
@@ -216,13 +216,13 @@ class WinRateMetric(Metric):
 
     def __init__(
         self,
-        batch: Batch,
+        run_set: RunSet,
         judge_models: list[str],
         *,
         dimensions: tuple[str, ...] = DEFAULT_DIMENSIONS,
         client_factory: Callable[[str], LLMClient] | None = None,
     ) -> None:
-        super().__init__(batch)
+        super().__init__(run_set)
         self.judge_models = judge_models
         self.dimensions = dimensions
         self.client_factory = client_factory or (lambda model: OpenRouterLLM(model))
@@ -234,10 +234,10 @@ class WinRateMetric(Metric):
         if len(self.judge_models) < 2:
             raise ValueError("at least two judge models are required (P4)")
 
-        run_index = self.batch.runs_by_config_paper()
-        config_ids = self.batch.config_ids()
+        run_index = self.run_set.runs_by_config_paper()
+        config_ids = self.run_set.config_ids()
         pairs = unordered_pairs(config_ids)
-        paper_ids = self.batch.paper_ids()
+        paper_ids = self.run_set.paper_ids()
 
         comparisons: list[RawComparison] = []
         for config_a, config_b in pairs:
@@ -300,7 +300,7 @@ class WinRateMetric(Metric):
         key = (config_id, paper_id)
         if key not in run_index:
             raise KeyError(f"missing run for config={config_id!r} paper={paper_id!r}")
-        return self.batch.open_run(run_index[key])
+        return self.run_set.open_run(run_index[key])
 
 
 def _comparison_to_dict(row: RawComparison) -> dict[str, Any]:
@@ -369,8 +369,8 @@ def main(argv: list[str] | None = None) -> int:
     if len(judges) < 2:
         raise SystemExit("P4 requires at least two --judge models")
 
-    batch = load_batch(args)
-    metric = WinRateMetric(batch, judges, dimensions=dimensions)
+    run_set = load_run_set(args)
+    metric = WinRateMetric(run_set, judges, dimensions=dimensions)
     output_path = metric.write()
     print(f"wrote {output_path}")
     return 0

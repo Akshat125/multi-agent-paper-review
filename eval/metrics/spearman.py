@@ -14,8 +14,8 @@ import numpy as np
 from scipy.stats import spearmanr
 
 from metrics.base import Metric
-from utils.batch import Batch
-from utils.cli import add_common_args, load_batch
+from utils.run_set import RunSet
+from utils.cli import add_common_args, load_run_set
 from utils.stats import derive_seed
 
 STRATA = ("normal", "controversial")
@@ -36,13 +36,13 @@ def human_mean_rating(paper: dict[str, Any]) -> float:
     return sum(ratings) / len(ratings)
 
 
-def collect_score_pairs(batch: Batch, config_id: str) -> list[ScorePair]:
+def collect_score_pairs(run_set: RunSet, config_id: str) -> list[ScorePair]:
     """Join config ``review.json`` ratings with dataset human means for one config."""
-    run_index = batch.runs_by_config_paper()
+    run_index = run_set.runs_by_config_paper()
     pairs: list[ScorePair] = []
-    for paper_id, paper in sorted(batch.papers.items()):
+    for paper_id, paper in sorted(run_set.papers.items()):
         run = run_index[(config_id, paper_id)]
-        artifacts = batch.open_run(run)
+        artifacts = run_set.open_run(run)
         pairs.append(
             ScorePair(
                 paper_id=paper_id,
@@ -146,12 +146,12 @@ class SpearmanMetric(Metric):
 
     def __init__(
         self,
-        batch: Batch,
+        run_set: RunSet,
         *,
         bootstrap_n: int = 2000,
         seed: int = DEFAULT_SEED,
     ) -> None:
-        super().__init__(batch)
+        super().__init__(run_set)
         self.bootstrap_n = bootstrap_n
         self.seed = seed
 
@@ -159,8 +159,8 @@ class SpearmanMetric(Metric):
         """Compute overall and per-stratum alignment for every config in the batch."""
         per_config: dict[str, Any] = {}
 
-        for config_id in self.batch.config_ids():
-            pairs = collect_score_pairs(self.batch, config_id)
+        for config_id in self.run_set.config_ids():
+            pairs = collect_score_pairs(self.run_set, config_id)
             overall = spearman_alignment(
                 pairs,
                 bootstrap_n=self.bootstrap_n,
@@ -170,7 +170,7 @@ class SpearmanMetric(Metric):
                 stratum: spearman_alignment(
                     [pair for pair in pairs if pair.stratum == stratum],
                     bootstrap_n=self.bootstrap_n,
-                    seed=derive_seed(self.seed, self.batch.name, stratum),
+                    seed=derive_seed(self.seed, self.run_set.name, stratum),
                 )
                 for stratum in STRATA
             }
@@ -204,8 +204,8 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     """CLI entry point for Metric 4."""
     args = build_parser().parse_args(argv)
-    batch = load_batch(args, load_dotenv_file=False)
-    metric = SpearmanMetric(batch, bootstrap_n=args.bootstrap_n, seed=args.seed)
+    run_set = load_run_set(args, load_dotenv_file=False)
+    metric = SpearmanMetric(run_set, bootstrap_n=args.bootstrap_n, seed=args.seed)
     output_path = metric.write()
     print(f"wrote {output_path}")
     return 0

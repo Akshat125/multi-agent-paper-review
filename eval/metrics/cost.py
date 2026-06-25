@@ -14,8 +14,8 @@ from pathlib import Path
 from typing import Any
 
 from metrics.base import Metric
-from utils.batch import ROLES, Batch
-from utils.cli import add_common_args, load_batch
+from utils.run_set import ROLES, RunSet
+from utils.cli import add_common_args, load_run_set
 from utils.prices import DEFAULT_PRICES_PATH, PriceTable, cost_usd, load_prices
 from utils.stats import mean_sem
 
@@ -124,14 +124,14 @@ def parse_trace(run_dir: Path, prices: PriceTable) -> RunCost:
     )
 
 
-def collect_run_costs(batch: Batch, prices: PriceTable) -> dict[str, dict[str, RunCost]]:
+def collect_run_costs(run_set: RunSet, prices: PriceTable) -> dict[str, dict[str, RunCost]]:
     """Compute per-(config, paper) cost rows for replicate 0."""
-    run_index = batch.runs_by_config_paper()
+    run_index = run_set.runs_by_config_paper()
     per_run: dict[str, dict[str, RunCost]] = {}
 
-    for config_id in batch.config_ids():
+    for config_id in run_set.config_ids():
         per_run[config_id] = {}
-        for paper_id in batch.paper_ids():
+        for paper_id in run_set.paper_ids():
             run = run_index[(config_id, paper_id)]
             parsed = parse_trace(run.run_dir, prices)
             parsed.config_id = config_id
@@ -195,13 +195,13 @@ class CostMetric(Metric):
 
     metric_name = "cost"
 
-    def __init__(self, batch: Batch, *, prices_path: Path | None = None) -> None:
-        super().__init__(batch)
+    def __init__(self, run_set: RunSet, *, prices_path: Path | None = None) -> None:
+        super().__init__(run_set)
         self.prices_path = prices_path or DEFAULT_PRICES_PATH
         self.prices = load_prices(self.prices_path)
 
     def run(self) -> dict[str, Any]:
-        per_run_raw = collect_run_costs(self.batch, self.prices)
+        per_run_raw = collect_run_costs(self.run_set, self.prices)
 
         per_run: dict[str, dict[str, Any]] = {}
         per_config: dict[str, Any] = {}
@@ -248,8 +248,8 @@ def main(argv: list[str] | None = None) -> int:
         refreshed = refresh_prices_file(args.prices)
         print(f"refreshed {refreshed}")
 
-    batch = load_batch(args, load_dotenv_file=False)
-    metric = CostMetric(batch, prices_path=args.prices)
+    run_set = load_run_set(args, load_dotenv_file=False)
+    metric = CostMetric(run_set, prices_path=args.prices)
     output_path = metric.write()
     print(f"wrote {output_path}")
     return 0
