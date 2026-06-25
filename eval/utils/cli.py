@@ -26,7 +26,7 @@ def _ensure_sys_path() -> None:
 
 def add_common_args(parser: argparse.ArgumentParser) -> argparse.ArgumentParser:
     """Register --batch, --dataset, and --no-validate on any metric parser."""
-    parser.add_argument("--batch", required=True, help="Batch name under eval/runs/<batch>/")
+    parser.add_argument("--batch", required=True, help="Batch name under eval/results/<batch>/")
     parser.add_argument(
         "--dataset",
         type=Path,

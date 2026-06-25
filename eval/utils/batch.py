@@ -1,7 +1,8 @@
-"""Load an evaluation batch and resolve per-run artifacts.
+"""Load an evaluation batch by scanning completed reviews on disk.
 
-Generation writes ``eval/runs/<batch>/{configs.json, runs.jsonl}``; metric scripts
-read them here. See ``eval/README.md`` → ``seminar-paper/paper-context/eval-metrics.md`` (Interface).
+Generation writes artifacts under ``eval/reviews/<batch>/<config__paper>/``.
+Metric scripts discover those runs here and write results to
+``eval/results/<batch>/<metric>.json``.
 """
 
 from __future__ import annotations
@@ -12,8 +13,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-ROLES = ("leader", "clarity", "experiments", "impact")
-REQUIRED_ARTIFACTS = ("final_review.md", "review.json", "trace.jsonl")
+from utils.spec import (
+    REQUIRED_ARTIFACTS,
+    ROLES,
+    derive_homogeneous,
+    is_run_complete,
+    parse_run_dir_name,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATASET = PROJECT_ROOT / "dataset" / "eval_sample_30.json"
@@ -21,7 +27,7 @@ DEFAULT_DATASET = PROJECT_ROOT / "dataset" / "eval_sample_30.json"
 
 @dataclass(frozen=True)
 class ConfigRecord:
-    """One experimental configuration: which model fills each reviewer role."""
+    """One experimental configuration: which model filled each reviewer role."""
 
     config_id: str
     models: dict[str, str]
@@ -30,12 +36,11 @@ class ConfigRecord:
 
 @dataclass(frozen=True)
 class RunRecord:
-    """Registry row linking a config and paper to on-disk run artifacts."""
+    """One completed (config, paper) run and its on-disk artifact directory."""
 
     config_id: str
     paper_id: str
     run_dir: Path
-    replicate: int
 
 
 class RunArtifacts:
@@ -101,9 +106,10 @@ class RunArtifacts:
 
 
 class Batch:
-    """Named evaluation run-set loaded from ``eval/runs/<batch>/``.
+    """Named evaluation run-set discovered from ``eval/reviews/<batch>/``.
 
-    Holds config assignments, completed runs, and the paper dataset metrics join against.
+    Holds config assignments derived from trace headers, completed runs, and the
+    paper dataset metrics join against.
     """
 
     def __init__(
@@ -129,42 +135,69 @@ class Batch:
         dataset_path: Path | None = None,
         validate_artifacts: bool = True,
     ) -> Batch:
-        """Load ``configs.json``, ``runs.jsonl``, and the paper dataset for a batch name."""
+        """Scan ``eval/reviews/<batch>/`` for complete runs and load the dataset."""
         project_root = root or PROJECT_ROOT
-        batch_dir = project_root / "eval" / "runs" / name
-        configs = _load_configs(batch_dir / "configs.json")
-        runs = _load_runs(batch_dir / "runs.jsonl", project_root, replicate=0)
+        reviews_dir = project_root / "eval" / "reviews" / name
+        batch_dir = project_root / "eval" / "results" / name
         papers = load_papers(dataset_path or DEFAULT_DATASET)
 
+        if not reviews_dir.is_dir():
+            raise FileNotFoundError(f"missing reviews directory: {reviews_dir}")
+
+        configs: dict[str, ConfigRecord] = {}
+        runs: list[RunRecord] = []
+
+        for entry in sorted(reviews_dir.iterdir()):
+            if not entry.is_dir():
+                continue
+            if not is_run_complete(entry):
+                continue
+
+            config_id, paper_id = parse_run_dir_name(entry.name)
+            models = _models_from_trace(entry)
+
+            if config_id in configs:
+                if configs[config_id].models != models:
+                    raise ValueError(
+                        f"inconsistent models for config {config_id!r} across runs in {reviews_dir}"
+                    )
+            else:
+                configs[config_id] = ConfigRecord(
+                    config_id=config_id,
+                    models=models,
+                    homogeneous=derive_homogeneous(models),
+                )
+
+            runs.append(
+                RunRecord(
+                    config_id=config_id,
+                    paper_id=paper_id,
+                    run_dir=entry.resolve(),
+                )
+            )
+
+        if not runs:
+            raise ValueError(f"no complete runs found in {reviews_dir}")
+
         batch = cls(name, batch_dir, configs, runs, papers)
-        _validate_registry(batch)
         if validate_artifacts:
             _validate_artifacts(batch)
         return batch
 
-    def metrics_dir(self) -> Path:
-        """Ensure and return ``eval/runs/<batch>/metrics/``."""
-        path = self.batch_dir / "metrics"
-        path.mkdir(parents=True, exist_ok=True)
-        return path
-
-    def runs_by_config_paper(self, replicate: int = 0) -> dict[tuple[str, str], RunRecord]:
-        """Index runs by ``(config_id, paper_id)`` for the given replicate."""
+    def runs_by_config_paper(self) -> dict[tuple[str, str], RunRecord]:
+        """Index runs by ``(config_id, paper_id)``."""
         index: dict[tuple[str, str], RunRecord] = {}
         for run in self.runs:
-            if run.replicate != replicate:
-                continue
             key = (run.config_id, run.paper_id)
             if key in index:
                 raise ValueError(
-                    f"duplicate run for config={run.config_id!r} paper={run.paper_id!r} "
-                    f"replicate={replicate}"
+                    f"duplicate run for config={run.config_id!r} paper={run.paper_id!r}"
                 )
             index[key] = run
         return index
 
     def open_run(self, run: RunRecord) -> RunArtifacts:
-        """Attach dataset paper metadata to a registry run record."""
+        """Attach dataset paper metadata to a run record."""
         if run.config_id not in self.configs:
             raise KeyError(f"unknown config_id {run.config_id!r}")
         if run.paper_id not in self.papers:
@@ -176,7 +209,7 @@ class Batch:
         return sorted(self.configs)
 
     def paper_ids(self) -> list[str]:
-        """Sorted paper ids present in the run index for replicate 0."""
+        """Sorted paper ids present in the run index."""
         run_index = self.runs_by_config_paper()
         return sorted({paper_id for _, paper_id in run_index})
 
@@ -189,59 +222,34 @@ def unordered_pairs(items: list[str]) -> list[tuple[str, str]]:
 
 def write_metric(batch: Batch, name: str, payload: dict[str, Any]) -> Path:
     """Persist one metric result JSON with batch metadata and a timestamp envelope."""
+    batch.batch_dir.mkdir(parents=True, exist_ok=True)
     envelope = {
         "metric": name,
         "batch": batch.name,
         "computed_at": datetime.now(timezone.utc).isoformat(),
         **payload,
     }
-    path = batch.metrics_dir() / f"{name}.json"
+    path = batch.batch_dir / f"{name}.json"
     path.write_text(json.dumps(envelope, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return path
 
 
-def _load_configs(path: Path) -> dict[str, ConfigRecord]:
-    if not path.is_file():
-        raise FileNotFoundError(f"missing configs.json: {path}")
-    raw = json.loads(path.read_text(encoding="utf-8"))
-    configs: dict[str, ConfigRecord] = {}
-    for config_id, entry in raw.items():
-        models = entry["models"]
-        for role in ROLES:
-            if role not in models:
-                raise ValueError(f"config {config_id!r} missing role {role!r}")
-        configs[config_id] = ConfigRecord(
-            config_id=config_id,
-            models=dict(models),
-            homogeneous=bool(entry.get("homogeneous", False)),
-        )
-    return configs
-
-
-def _load_runs(path: Path, root: Path, replicate: int) -> list[RunRecord]:
-    if not path.is_file():
-        raise FileNotFoundError(f"missing runs.jsonl: {path}")
-    runs: list[RunRecord] = []
-    for line in path.read_text().splitlines():
+def _models_from_trace(run_dir: Path) -> dict[str, str]:
+    """Read resolved role models from the first ``run_header`` in a trace."""
+    trace_path = run_dir / "trace.jsonl"
+    for line in trace_path.read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
-        row = json.loads(line)
-        run_replicate = int(row.get("replicate", 0))
-        if run_replicate != replicate:
-            continue
-        rel = row["run_dir"]
-        run_dir = (root / rel).resolve() if not Path(rel).is_absolute() else Path(rel)
-        runs.append(
-            RunRecord(
-                config_id=row["config_id"],
-                paper_id=row["paper_id"],
-                run_dir=run_dir,
-                replicate=run_replicate,
-            )
-        )
-    if not runs:
-        raise ValueError(f"no runs with replicate={replicate} in {path}")
-    return runs
+        record = json.loads(line)
+        if record.get("type") == "run_header":
+            models = record.get("models")
+            if not isinstance(models, dict):
+                break
+            for role in ROLES:
+                if role not in models:
+                    raise ValueError(f"missing role {role!r} in run_header.models for {run_dir}")
+            return dict(models)
+    raise ValueError(f"missing run_header with models in {trace_path}")
 
 
 def load_papers(path: Path) -> dict[str, dict[str, Any]]:
@@ -249,20 +257,6 @@ def load_papers(path: Path) -> dict[str, dict[str, Any]]:
         raise FileNotFoundError(f"missing dataset: {path}")
     data = json.loads(path.read_text(encoding="utf-8"))
     return {paper["id"]: paper for paper in data["papers"]}
-
-
-def _validate_registry(batch: Batch) -> None:
-    seen: set[tuple[str, str, int]] = set()
-    for run in batch.runs:
-        if run.config_id not in batch.configs:
-            raise ValueError(f"run references unknown config_id {run.config_id!r}")
-        key = (run.config_id, run.paper_id, run.replicate)
-        if key in seen:
-            raise ValueError(
-                f"duplicate registry entry for config={run.config_id!r} "
-                f"paper={run.paper_id!r} replicate={run.replicate}"
-            )
-        seen.add(key)
 
 
 def _validate_artifacts(batch: Batch) -> None:

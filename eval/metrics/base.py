@@ -13,7 +13,7 @@ class Metric(ABC):
     """Common contract for batch metrics: compute a payload and write JSON output.
 
     Subclasses own all metric-specific logic; this base only wires ``run`` to
-    ``eval/runs/<batch>/metrics/<name>.json`` via ``write_metric``.
+    ``eval/results/<batch>/<name>.json`` via ``write_metric``.
     """
 
     metric_name: str

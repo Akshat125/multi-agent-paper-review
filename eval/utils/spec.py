@@ -1,9 +1,9 @@
 """Batch spec parsing, resolution, and run-matrix planning for the orchestrator.
 
-A **batch spec** (``eval/batches/<name>.json``) is the authored description of one
-generation batch: a model ``pool``, the ``configs`` to run (role -> pool key or raw
-slug), the ``papers`` to run them over, and a ``replicates`` count. ``experiments.py``
-reads it, resolves pool keys to slugs, validates, and turns it into a flat run matrix.
+All batch definitions live in ``eval/batches.json`` — one file, batches keyed by
+name. Each entry has a model ``pool``, ``configs`` (role -> pool key or raw slug),
+and ``papers``. ``experiments.py`` reads a batch by name, resolves pool keys to
+slugs, and turns it into a flat run matrix.
 
 This module is intentionally free of any CrewAI / reviewer import so the planning and
 validation logic stays unit-testable without a model backend.
@@ -16,7 +16,10 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from utils.batch import REQUIRED_ARTIFACTS, ROLES
+ROLES = ("leader", "clarity", "experiments", "impact")
+REQUIRED_ARTIFACTS = ("final_review.md", "review.json", "trace.jsonl")
+
+DEFAULT_BATCHES = Path(__file__).resolve().parents[1] / "batches.json"
 
 # --------------------------------------------------------------------------- #
 # Data model
@@ -31,10 +34,6 @@ class ResolvedConfig:
     models: dict[str, str]
     homogeneous: bool
 
-    def to_registry(self) -> dict[str, Any]:
-        """Shape expected by ``configs.json`` / ``Batch._load_configs``."""
-        return {"models": dict(self.models), "homogeneous": self.homogeneous}
-
 
 @dataclass(frozen=True)
 class BatchSpec:
@@ -44,16 +43,14 @@ class BatchSpec:
     pool: dict[str, str]
     configs: dict[str, ResolvedConfig]
     papers: Any
-    replicates: int
 
 
 @dataclass(frozen=True)
 class RunItem:
-    """A single planned ``(config, paper, replicate)`` unit of work."""
+    """A single planned ``(config, paper)`` unit of work."""
 
     config_id: str
     paper_id: str
-    replicate: int
     run_name: str
 
 
@@ -62,19 +59,25 @@ class RunItem:
 # --------------------------------------------------------------------------- #
 
 
-def load_spec(path: Path, *, replicates_override: int | None = None) -> BatchSpec:
-    """Read and resolve a batch spec JSON file into a :class:`BatchSpec`."""
+def load_spec(name: str, *, batches_path: Path | None = None) -> BatchSpec:
+    """Load and resolve one batch from ``eval/batches.json`` by name."""
+    path = batches_path or DEFAULT_BATCHES
     if not path.is_file():
-        raise FileNotFoundError(f"missing batch spec: {path}")
-    raw = json.loads(path.read_text(encoding="utf-8"))
-    return resolve_spec(raw, replicates_override=replicates_override)
+        raise FileNotFoundError(f"missing batches file: {path}")
+    all_batches = json.loads(path.read_text(encoding="utf-8"))
+    if name not in all_batches:
+        known = ", ".join(sorted(all_batches))
+        raise KeyError(f"unknown batch {name!r}; known batches: {known or '(none)'}")
+    raw = all_batches[name]
+    if not isinstance(raw, dict):
+        raise ValueError(f"batch {name!r} must be an object")
+    return resolve_spec(name, raw)
 
 
-def resolve_spec(raw: dict[str, Any], *, replicates_override: int | None = None) -> BatchSpec:
-    """Resolve a raw spec dict (pool keys -> slugs, derive homogeneous flag)."""
-    name = raw.get("batch")
-    if not name or not isinstance(name, str):
-        raise ValueError("spec must have a non-empty string 'batch' name")
+def resolve_spec(name: str, raw: dict[str, Any]) -> BatchSpec:
+    """Resolve a raw batch entry (pool keys -> slugs, derive homogeneous flag)."""
+    if not name:
+        raise ValueError("batch name must be non-empty")
 
     pool = dict(raw.get("pool", {}))
     raw_configs = raw.get("configs")
@@ -90,16 +93,11 @@ def resolve_spec(raw: dict[str, Any], *, replicates_override: int | None = None)
             homogeneous=derive_homogeneous(models),
         )
 
-    replicates = replicates_override if replicates_override is not None else int(raw.get("replicates", 1))
-    if replicates < 1:
-        raise ValueError(f"replicates must be >= 1, got {replicates}")
-
     return BatchSpec(
         name=name,
         pool=pool,
         configs=configs,
         papers=raw.get("papers", "all"),
-        replicates=replicates,
     )
 
 
@@ -186,26 +184,31 @@ def _validate_ids(ids: list[str], papers: dict[str, dict[str, Any]]) -> list[str
 # --------------------------------------------------------------------------- #
 
 
-def run_name(config_id: str, paper_id: str, replicate: int) -> str:
-    """Deterministic, collision-free run directory name for a combo."""
-    base = f"{config_id}__{paper_id}"
-    return base if replicate == 0 else f"{base}__r{replicate}"
+def run_name(config_id: str, paper_id: str) -> str:
+    """Deterministic run directory name: ``<config_id>__<paper_id>``."""
+    return f"{config_id}__{paper_id}"
+
+
+def parse_run_dir_name(dirname: str) -> tuple[str, str]:
+    """Split a run directory name back into ``(config_id, paper_id)``."""
+    parts = dirname.split("__")
+    if len(parts) != 2 or not parts[0] or not parts[1]:
+        raise ValueError(f"invalid run directory name {dirname!r}; expected config__paper")
+    return parts[0], parts[1]
 
 
 def build_matrix(spec: BatchSpec, paper_ids: list[str]) -> list[RunItem]:
-    """Cartesian product of configs x papers x replicates as a flat, ordered list."""
+    """Cartesian product of configs x papers as a flat, ordered list."""
     items: list[RunItem] = []
     for config_id in spec.configs:
         for paper_id in paper_ids:
-            for replicate in range(spec.replicates):
-                items.append(
-                    RunItem(
-                        config_id=config_id,
-                        paper_id=paper_id,
-                        replicate=replicate,
-                        run_name=run_name(config_id, paper_id, replicate),
-                    )
+            items.append(
+                RunItem(
+                    config_id=config_id,
+                    paper_id=paper_id,
+                    run_name=run_name(config_id, paper_id),
                 )
+            )
     return items
 
 

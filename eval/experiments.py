@@ -1,37 +1,29 @@
-"""Generation orchestrator: run the multi-agent reviewer over a batch spec.
+"""Generation orchestrator: run the multi-agent reviewer over a batch.
 
-Reads a committed batch spec (``eval/batches/<name>.json``), runs
-``MultiAgentReviewer`` once per ``(config, paper, replicate)``, and writes the
-``eval/runs/<batch>/`` registry (``configs.json`` + ``runs.jsonl``) that the metric
-scripts consume. See ``eval/README.md`` → ``seminar-paper/paper-context/eval-metrics.md`` (Interface) for the registry contract and
-``eval/utils/spec.py`` for the batch spec format.
-
-Pure generation: it never computes metrics and never prunes configs. Stage 1 ->
-Stage 2 promotion (Successive Halving) is a manual step performed between two specs.
+Reads a batch from ``eval/batches.json`` by name, runs ``MultiAgentReviewer`` once
+per ``(config, paper)``, and writes reviews under ``eval/reviews/<batch>/``.
+Metric scripts discover those runs directly — no registry files.
 
 Usage (from the project root, poetry venv active)::
 
-    python eval/experiments.py --spec eval/batches/pilot.json --dry-run
-    python eval/experiments.py --spec eval/batches/pilot.json
-    python eval/experiments.py --spec eval/batches/pilot.json --stratum controversial --n 2
+    python eval/experiments.py --batch pilot --dry-run
+    python eval/experiments.py --batch pilot
+    python eval/experiments.py --batch pilot --stratum controversial --n 2
 """
 
 from __future__ import annotations
 
 import argparse
-import json
 import os
 import sys
 import tempfile
 from dataclasses import dataclass
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Optional
 
 ROOT = Path(__file__).resolve().parents[1]
 EVAL_DIR = Path(__file__).resolve().parent
 
-# Make ``utils`` importable when run as a script (pytest sets this via pythonpath).
 if str(EVAL_DIR) not in sys.path:
     sys.path.insert(0, str(EVAL_DIR))
 
@@ -49,11 +41,6 @@ from utils.spec import (  # noqa: E402
 Runner = Callable[[dict, str, str, Path, str], Path]
 
 
-# --------------------------------------------------------------------------- #
-# Batch paths + registry IO
-# --------------------------------------------------------------------------- #
-
-
 @dataclass(frozen=True)
 class BatchPaths:
     """Resolved on-disk locations for one batch."""
@@ -62,109 +49,12 @@ class BatchPaths:
     name: str
 
     @property
-    def batch_dir(self) -> Path:
-        return self.root / "eval" / "runs" / self.name
+    def results_dir(self) -> Path:
+        return self.root / "eval" / "results" / self.name
 
     @property
-    def outputs_dir(self) -> Path:
-        return self.root / "eval" / "outputs" / self.name
-
-    @property
-    def configs_path(self) -> Path:
-        return self.batch_dir / "configs.json"
-
-    @property
-    def runs_path(self) -> Path:
-        return self.batch_dir / "runs.jsonl"
-
-    @property
-    def errors_path(self) -> Path:
-        return self.batch_dir / "errors.jsonl"
-
-
-def write_configs(spec: BatchSpec, paths: BatchPaths) -> Path:
-    """Write ``configs.json`` (once) per eval-metrics.md Interface. Idempotent content."""
-    paths.batch_dir.mkdir(parents=True, exist_ok=True)
-    payload = {cid: cfg.to_registry() for cid, cfg in spec.configs.items()}
-    paths.configs_path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
-    return paths.configs_path
-
-
-def load_done_keys(paths: BatchPaths) -> set[tuple[str, str, int]]:
-    """Read ``runs.jsonl`` into a set of ``(config_id, paper_id, replicate)`` keys."""
-    done: set[tuple[str, str, int]] = set()
-    if not paths.runs_path.is_file():
-        return done
-    for line in paths.runs_path.read_text(encoding="utf-8").splitlines():
-        if not line.strip():
-            continue
-        row = json.loads(line)
-        done.add((row["config_id"], row["paper_id"], int(row.get("replicate", 0))))
-    return done
-
-
-def append_run(paths: BatchPaths, item: RunItem, rel_run_dir: str) -> None:
-    """Append one completed-run line to ``runs.jsonl`` (append-only)."""
-    paths.batch_dir.mkdir(parents=True, exist_ok=True)
-    row = {
-        "config_id": item.config_id,
-        "paper_id": item.paper_id,
-        "run_dir": rel_run_dir,
-        "replicate": item.replicate,
-        "ts": _now(),
-    }
-    with paths.runs_path.open("a", encoding="utf-8") as fh:
-        fh.write(json.dumps(row, ensure_ascii=False) + "\n")
-
-
-def append_error(paths: BatchPaths, item: RunItem, error: str) -> None:
-    """Append one failed-run line to ``errors.jsonl`` (never to ``runs.jsonl``)."""
-    paths.batch_dir.mkdir(parents=True, exist_ok=True)
-    row = {
-        "config_id": item.config_id,
-        "paper_id": item.paper_id,
-        "replicate": item.replicate,
-        "error": error,
-        "ts": _now(),
-    }
-    with paths.errors_path.open("a", encoding="utf-8") as fh:
-        fh.write(json.dumps(row, ensure_ascii=False) + "\n")
-
-
-def _rel_run_dir(paths: BatchPaths, item: RunItem) -> str:
-    return str((paths.outputs_dir / item.run_name).relative_to(paths.root))
-
-
-def _now() -> str:
-    return datetime.now(timezone.utc).isoformat()
-
-
-# --------------------------------------------------------------------------- #
-# Run status (resume / repair)
-# --------------------------------------------------------------------------- #
-
-PENDING, DONE, REPAIRED = "pending", "done", "repaired"
-
-
-def status_of(
-    item: RunItem,
-    paths: BatchPaths,
-    done_keys: set[tuple[str, str, int]],
-) -> str:
-    """Classify a combo: already in registry (``done``), complete on disk but
-    missing its registry line (``repaired``), or not yet run (``pending``)."""
-    if (item.config_id, item.paper_id, item.replicate) in done_keys:
-        return DONE
-    if is_run_complete(paths.outputs_dir / item.run_name):
-        return REPAIRED
-    return PENDING
-
-
-# --------------------------------------------------------------------------- #
-# Default runner (lazy CrewAI import)
-# --------------------------------------------------------------------------- #
+    def reviews_dir(self) -> Path:
+        return self.root / "eval" / "reviews" / self.name
 
 
 def default_runner(
@@ -194,7 +84,7 @@ _REVIEW_ENV_READY = False
 
 
 def _bootstrap_review_env() -> None:
-    """Mirror eval/smoke.py: path, dotenv, isolated CrewAI storage, tracing off."""
+    """Load review_agent on sys.path, .env, and isolated CrewAI storage (tracing off)."""
     global _REVIEW_ENV_READY
     if _REVIEW_ENV_READY:
         return
@@ -212,18 +102,12 @@ def _bootstrap_review_env() -> None:
     _REVIEW_ENV_READY = True
 
 
-# --------------------------------------------------------------------------- #
-# Planning + execution
-# --------------------------------------------------------------------------- #
-
-
 @dataclass
 class Summary:
     """End-of-batch tally."""
 
     done: int = 0
     skipped: int = 0
-    repaired: int = 0
     failed: int = 0
 
 
@@ -257,25 +141,18 @@ def execute(
     runner: Runner = default_runner,
     log: Callable[[str], None] = print,
 ) -> Summary:
-    """Write ``configs.json``, repair/skip completed combos, and run the rest."""
-    write_configs(spec, paths)
-    done_keys = load_done_keys(paths)
+    """Skip completed combos on disk and run the rest."""
+    paths.reviews_dir.mkdir(parents=True, exist_ok=True)
     summary = Summary()
     total = len(items)
 
     for idx, item in enumerate(items, start=1):
-        status = status_of(item, paths, done_keys)
+        run_dir = paths.reviews_dir / item.run_name
         prefix = f"[{idx}/{total}] {item.run_name}"
 
-        if status == DONE:
+        if is_run_complete(run_dir):
             summary.skipped += 1
-            log(f"{prefix} skip (already in registry)")
-            continue
-        if status == REPAIRED:
-            append_run(paths, item, _rel_run_dir(paths, item))
-            done_keys.add((item.config_id, item.paper_id, item.replicate))
-            summary.repaired += 1
-            log(f"{prefix} repaired (artifacts on disk, registry line added)")
+            log(f"{prefix} skip (complete on disk)")
             continue
 
         log(f"{prefix} running...")
@@ -284,32 +161,23 @@ def execute(
                 spec.configs[item.config_id].models,
                 papers[item.paper_id]["paper_text"],
                 item.paper_id,
-                paths.outputs_dir,
+                paths.reviews_dir,
                 item.run_name,
             )
         except Exception as exc:  # noqa: BLE001 - one failure must not kill the batch
-            append_error(paths, item, repr(exc))
             summary.failed += 1
             log(f"{prefix} FAILED: {exc!r}")
             continue
 
         if not is_run_complete(run_dir):
-            append_error(paths, item, "run produced incomplete artifacts")
             summary.failed += 1
             log(f"{prefix} FAILED: incomplete artifacts at {run_dir}")
             continue
 
-        append_run(paths, item, _rel_run_dir(paths, item))
-        done_keys.add((item.config_id, item.paper_id, item.replicate))
         summary.done += 1
         log(f"{prefix} done")
 
     return summary
-
-
-# --------------------------------------------------------------------------- #
-# Dry-run reporting
-# --------------------------------------------------------------------------- #
 
 
 def dry_run_report(
@@ -320,26 +188,26 @@ def dry_run_report(
     warnings: list[str],
 ) -> str:
     """Human-readable preflight: matrix, per-combo status, totals. No side effects."""
-    done_keys = load_done_keys(paths)
     lines: list[str] = []
     lines.append(f"batch     : {spec.name}")
     lines.append(f"configs   : {len(spec.configs)}  ({_homo_count(spec)} homogeneous)")
     lines.append(f"papers    : {len(paper_ids)}")
-    lines.append(f"replicates: {spec.replicates}")
     lines.append(f"runs      : {len(items)}")
     lines.append("")
 
-    counts = {PENDING: 0, DONE: 0, REPAIRED: 0}
+    pending = 0
+    done = 0
     for item in items:
-        status = status_of(item, paths, done_keys)
-        counts[status] += 1
+        if is_run_complete(paths.reviews_dir / item.run_name):
+            done += 1
+            status = "done"
+        else:
+            pending += 1
+            status = "pending"
         lines.append(f"  [{status:8}] {item.run_name}")
 
     lines.append("")
-    lines.append(
-        f"status    : {counts[PENDING]} pending, "
-        f"{counts[DONE]} done, {counts[REPAIRED]} repairable"
-    )
+    lines.append(f"status    : {pending} pending, {done} done")
     if warnings:
         lines.append("")
         lines.append("warnings  :")
@@ -351,20 +219,14 @@ def _homo_count(spec: BatchSpec) -> int:
     return sum(1 for c in spec.configs.values() if c.homogeneous)
 
 
-# --------------------------------------------------------------------------- #
-# CLI
-# --------------------------------------------------------------------------- #
-
-
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Generation orchestrator (one run per combo)")
-    parser.add_argument("--spec", type=Path, required=True, help="Batch spec JSON (eval/batches/<name>.json)")
+    parser.add_argument("--batch", required=True, help="Batch name (key in eval/batches.json)")
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET, help="Paper dataset JSON")
     parser.add_argument("--dry-run", action="store_true", help="Print the run matrix and exit; no spend")
     parser.add_argument("--papers", help="Comma-separated paper ids (overrides spec 'papers')")
     parser.add_argument("--stratum", help="Run only papers in this stratum (overrides spec 'papers')")
     parser.add_argument("--n", type=int, help="Cap the number of selected papers")
-    parser.add_argument("--replicates", type=int, help="Override the spec replicate count")
     parser.add_argument("--limit", type=int, help="Cap the number of runs (after planning)")
     return parser
 
@@ -373,7 +235,7 @@ def main(argv: list[str] | None = None) -> int:
     """CLI entry point."""
     args = build_parser().parse_args(argv)
 
-    spec = load_spec(args.spec, replicates_override=args.replicates)
+    spec = load_spec(args.batch)
     papers = load_papers(args.dataset)
     paths = BatchPaths(root=ROOT, name=spec.name)
 
@@ -399,10 +261,10 @@ def main(argv: list[str] | None = None) -> int:
 
     summary = execute(spec, papers, paths, items)
     print(
-        f"\nbatch {spec.name}: {summary.done} done, {summary.repaired} repaired, "
+        f"\nbatch {spec.name}: {summary.done} done, "
         f"{summary.skipped} skipped, {summary.failed} failed"
     )
-    print(f"registry: {paths.batch_dir}")
+    print(f"reviews: {paths.reviews_dir}")
     return 1 if summary.failed else 0
 
 
