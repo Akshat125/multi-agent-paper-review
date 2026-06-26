@@ -16,14 +16,20 @@ from __future__ import annotations
 
 import argparse
 import math
+import sys
+from pathlib import Path
 from typing import Any, Protocol
 
 import numpy as np
 
-from metrics.base import Metric
-from utils.run_set import RunSet, ROLES
-from utils.cli import add_common_args, load_run_set
-from utils.stats import mean
+_EVAL_DIR = Path(__file__).resolve().parents[1]
+if str(_EVAL_DIR) not in sys.path:
+    sys.path.insert(0, str(_EVAL_DIR))
+
+from metrics.base import Metric  # noqa: E402
+from utils.run_set import RunSet, ROLES  # noqa: E402
+from utils.cli import add_common_args, load_run_set  # noqa: E402
+from utils.stats import mean  # noqa: E402
 
 DEFAULT_EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 

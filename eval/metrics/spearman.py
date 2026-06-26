@@ -7,16 +7,22 @@ way as human mean scores? Reports overall and per-stratum ρ with p-value and bo
 from __future__ import annotations
 
 import argparse
+import sys
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 import numpy as np
 from scipy.stats import spearmanr
 
-from metrics.base import Metric
-from utils.run_set import RunSet
-from utils.cli import add_common_args, load_run_set
-from utils.stats import derive_seed
+_EVAL_DIR = Path(__file__).resolve().parents[1]
+if str(_EVAL_DIR) not in sys.path:
+    sys.path.insert(0, str(_EVAL_DIR))
+
+from metrics.base import Metric  # noqa: E402
+from utils.run_set import RunSet  # noqa: E402
+from utils.cli import add_common_args, load_run_set  # noqa: E402
+from utils.stats import derive_seed  # noqa: E402
 
 STRATA = ("normal", "controversial")
 DEFAULT_SEED = 42

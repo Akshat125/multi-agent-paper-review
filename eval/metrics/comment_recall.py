@@ -8,9 +8,15 @@ from __future__ import annotations
 
 import argparse
 import random
+import sys
+from pathlib import Path
 from typing import Any, Callable
 
-from prompts.comment_recall import (
+_EVAL_DIR = Path(__file__).resolve().parents[1]
+if str(_EVAL_DIR) not in sys.path:
+    sys.path.insert(0, str(_EVAL_DIR))
+
+from prompts.comment_recall import (  # noqa: E402
     PROMPT_VERSION,
     Comment,
     Pair,
@@ -27,11 +33,11 @@ from prompts.comment_recall import (
     shuffle_comments,
     strip_rating_line,
 )
-from metrics.base import Metric
-from utils.run_set import RunSet
-from utils.cli import add_common_args, load_run_set
-from utils.llm import LLMClient, OpenRouterLLM
-from utils.stats import derive_seed, mean
+from metrics.base import Metric  # noqa: E402
+from utils.run_set import RunSet  # noqa: E402
+from utils.cli import add_common_args, load_run_set  # noqa: E402
+from utils.llm import LLMClient, OpenRouterLLM  # noqa: E402
+from utils.stats import derive_seed, mean  # noqa: E402
 
 DEFAULT_ALIGNMENT_MODEL = "openai/gpt-5-mini"
 DEFAULT_SEED = 42

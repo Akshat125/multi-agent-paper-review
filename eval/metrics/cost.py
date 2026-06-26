@@ -13,16 +13,18 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from metrics.base import Metric
-from utils.run_set import ROLES, RunSet
-from utils.cli import add_common_args, load_run_set
-from utils.prices import DEFAULT_PRICES_PATH, PriceTable, cost_usd, load_prices
-from utils.stats import mean_sem
-
+_EVAL_DIR = Path(__file__).resolve().parents[1]
+if str(_EVAL_DIR) not in sys.path:
+    sys.path.insert(0, str(_EVAL_DIR))
 _REVIEW_AGENT_ROOT = Path(__file__).resolve().parents[2] / "review_agent"
 if str(_REVIEW_AGENT_ROOT) not in sys.path:
     sys.path.insert(0, str(_REVIEW_AGENT_ROOT))
 
+from metrics.base import Metric  # noqa: E402
+from utils.run_set import ROLES, RunSet  # noqa: E402
+from utils.cli import add_common_args, load_run_set  # noqa: E402
+from utils.prices import DEFAULT_PRICES_PATH, PriceTable, cost_usd, load_prices  # noqa: E402
+from utils.stats import mean_sem  # noqa: E402
 from src.utils.role_labels import AGENT_ROLE_TO_KEY  # noqa: E402
 
 
@@ -80,8 +82,8 @@ def parse_trace(run_dir: Path, prices: PriceTable) -> RunCost:
     for record in records:
         record_type = record.get("type")
         if record_type == "llm_call":
-            tokens_in = int(record["tokens_in"])
-            tokens_out = int(record["tokens_out"])
+            tokens_in = int(record.get("tokens_in") or 0)
+            tokens_out = int(record.get("tokens_out") or 0)
             model = str(record["model"])
             call_cost = cost_usd(model, tokens_in, tokens_out, prices)
             if call_cost is None:

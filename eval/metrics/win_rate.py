@@ -8,21 +8,27 @@ from __future__ import annotations
 
 import argparse
 import re
+import sys
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Callable
 
-from prompts.win_rate import (
+_EVAL_DIR = Path(__file__).resolve().parents[1]
+if str(_EVAL_DIR) not in sys.path:
+    sys.path.insert(0, str(_EVAL_DIR))
+
+from prompts.win_rate import (  # noqa: E402
     DEFAULT_DIMENSIONS,
     RUBRIC_TEXT,
     RUBRIC_VERSION,
     build_comparison_prompt,
     dimension_labels,
 )
-from metrics.base import Metric
-from utils.run_set import RunSet, RunArtifacts, unordered_pairs
-from utils.cli import add_common_args, load_run_set
-from utils.llm import LLMClient, OpenRouterLLM, extract_json
-from utils.stats import mean
+from metrics.base import Metric  # noqa: E402
+from utils.run_set import RunSet, RunArtifacts, unordered_pairs  # noqa: E402
+from utils.cli import add_common_args, load_run_set  # noqa: E402
+from utils.llm import LLMClient, OpenRouterLLM, extract_json  # noqa: E402
+from utils.stats import mean  # noqa: E402
 
 DEFAULT_JUDGES: tuple[str, ...] = (
     "openai/gpt-5-mini",
