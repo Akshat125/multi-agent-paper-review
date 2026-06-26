@@ -52,16 +52,10 @@ from crewai.events.listeners.tracing.utils import set_suppress_tracing_messages
 set_suppress_tracing_messages(True)
 
 from ..utils import ReviewTraceListener, TraceLogger, parse_review
+from ..utils.role_labels import ROLE_LABELS
 from .prompt_loader import PromptLoader
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-
-ROLE_LABELS = {
-    "leader": "Review Leader",
-    "clarity": "Clarity and Reproducibility Reviewer",
-    "experiments": "Experiments and Methodology Reviewer",
-    "impact": "Impact and Contribution Reviewer",
-}
 
 _LEADER_GOAL = (
     "Coordinate the three expert reviewers and synthesise their feedback into a "
@@ -145,7 +139,17 @@ class MultiAgentReviewer:
             if model_name.startswith("openrouter/")
             else f"openrouter/{model_name}"
         )
-        return LLM(model=model, base_url=OPENROUTER_BASE_URL, api_key=self.api_key)
+        kwargs: dict[str, object] = {
+            "model": model,
+            "base_url": OPENROUTER_BASE_URL,
+            "api_key": self.api_key,
+            "temperature": 0.0,
+        }
+        # Disable thinking mode for any Qwen-family slug (pool A, qwen/qwen3-32b,
+        # is currently the only one) so reviews stay deterministic.
+        if "qwen" in model_name.lower():
+            kwargs["additional_params"] = {"enable_thinking": False}
+        return LLM(**kwargs)
 
     def review(
         self,
