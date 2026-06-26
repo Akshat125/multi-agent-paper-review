@@ -6,9 +6,9 @@ Metric scripts discover those runs directly — no registry files.
 
 Usage (from the project root, poetry venv active)::
 
-    python eval/experiments.py --batch pilot --dry-run
-    python eval/experiments.py --batch pilot
-    python eval/experiments.py --batch pilot --limit 2
+    python eval/experiments.py --run-set pilot --dry-run
+    python eval/experiments.py --run-set pilot
+    python eval/experiments.py --run-set pilot --limit 2
 """
 
 from __future__ import annotations

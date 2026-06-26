@@ -145,7 +145,8 @@ class MultiAgentReviewer:
             "api_key": self.api_key,
             "temperature": 0.0,
         }
-        # Pool model A (Qwen) only — disable thinking mode per experiment-setup.md.
+        # Disable thinking mode for any Qwen-family slug (pool A, qwen/qwen3-32b,
+        # is currently the only one) so reviews stay deterministic.
         if "qwen" in model_name.lower():
             kwargs["additional_params"] = {"enable_thinking": False}
         return LLM(**kwargs)
