@@ -1,0 +1,37 @@
+### Summary
+
+The paper titled "Perm: A Parametric Representation for Multi-Style 3D Hair Modeling" introduces a learned parametric model of human 3D hair designed to facilitate various hair-related applications. The authors propose a PCA-based strand representation in the frequency domain to disentangle global hair shape and local strand details, allowing for more precise editing and output control. The model, \textsc{Perm}, is validated through extensive experiments and deployed as a generic prior for task-agnostic problems, showcasing its flexibility and superiority in tasks such as 3D hair parameterization, hairstyle interpolation, single-view hair reconstruction, and hair-conditioned image generation.
+
+### Strengths
+
+1. **Innovative Approach**: The paper introduces a novel PCA-based strand representation in the frequency domain, which effectively disentangles global hair shape and local strand details. This approach is innovative and addresses a significant limitation in previous methods that jointly model these aspects.
+
+2. **Comprehensive Validation**: The authors conduct extensive experiments to validate the architecture design of \textsc{Perm}. They compare their method with alternative deep learning-based methods and a simpler PCA-based formulation without DFT, demonstrating the superiority of their approach in preserving strand curvatures and overall shape.
+
+3. **Versatile Applications**: The trained model is deployed as a generic prior for various applications, including 3D hair parameterization, hairstyle interpolation, single-view hair reconstruction, and hair-conditioned image generation. The model's flexibility and superiority in these tasks are well-demonstrated through both quantitative metrics and qualitative visualizations.
+
+4. **Clear and Detailed Explanation**: The paper provides a clear and detailed explanation of the methods and model formulation. The use of figures and tables helps to illustrate the concepts and results effectively, making the paper accessible and easy to follow.
+
+### Weaknesses
+
+1. **Limited Diversity in Training Data**: The model struggles with complex hairstyles like buns and braids, indicating a need for more diverse and representative training data. This limitation could affect the model's performance and generalization to real-world applications.
+
+2. **Quantitative Evaluation**: While the paper provides extensive qualitative results, more rigorous quantitative evaluations, especially for applications like hairstyle interpolation and single-view reconstruction, would strengthen the claims of superiority. Additional metrics that capture other aspects of hair quality, such as visual realism or user perception, could provide a more comprehensive evaluation.
+
+3. **Comparison with State-of-the-Art**: Direct comparisons with state-of-the-art methods in each application area, using standardized metrics, would help better contextualize the model's performance and impact. The paper mentions that the GroomGen code is not publicly available, which could limit the reproducibility of the comparisons.
+
+4. **Introduction Clarity**: The introduction could be improved by better defining the "biscale" nature of hair, providing a smoother transition from the problem statement to the proposed solution, and more explicitly tying the contributions to the problem statement. This would help readers better understand the motivation and significance of the work.
+
+### Questions
+
+1. **Dataset Diversity**: How do the authors plan to address the limitation of the model's performance on complex hairstyles like buns and braids? Are there any plans to collect more diverse training data or incorporate additional modules to handle these hairstyles?
+
+2. **Quantitative Metrics**: Are there any plans to include additional quantitative metrics that capture other aspects of hair quality, such as visual realism or user perception? How do the authors plan to ensure that these metrics are objective and reliable?
+
+3. **Reproducibility**: Given that the GroomGen code is not publicly available, how do the authors plan to ensure the reproducibility of the comparisons with GroomGen? Are there any plans to make the implementation details of GroomGen more transparent or to provide additional information that would help other researchers reproduce the results?
+
+4. **Generalization to Real-World Applications**: How do the authors plan to evaluate the model's performance and generalization to real-world applications? Are there any plans to conduct user studies or gather feedback from artists and developers working on digital content creation?
+
+5. **Future Directions**: The paper mentions several potential future directions, such as incorporating multi-modal input signals for controllable 3D hair synthesis and developing systematic frameworks for capturing diverse real-world hairstyles. How do the authors plan to prioritize and pursue these directions? Are there any specific challenges or obstacles that they anticipate facing in these areas?
+
+RATING: 8

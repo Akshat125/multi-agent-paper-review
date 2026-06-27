@@ -1,0 +1,51 @@
+### Summary
+
+The paper "VideoWebArena: Evaluating Long Context Multimodal Agents with Video Understanding Web Tasks" introduces a novel benchmark for evaluating the capabilities of long-context multimodal agents in video understanding. The benchmark, VideoWebArena (VideoWA), consists of 2,021 web agent tasks based on manually crafted video tutorials, totaling almost four hours of content. The paper defines a taxonomy of long-context video-based agent tasks with two main areas of focus: skill retention and factual retention. The benchmark evaluates several state-of-the-art video-capable large language models (LLMs) on these tasks, providing an overview of their current long-context video understanding capabilities. The results highlight the need for improvement in the agentic abilities of long-context multimodal models.
+
+### Strengths
+
+1. **Novel Benchmark:** The introduction of VideoWebArena is a significant contribution to the field. The benchmark addresses a gap in the current research by focusing on long-context video understanding, which is often neglected in existing benchmarks that primarily focus on text or static image inputs.
+
+2. **Comprehensive Task Taxonomy:** The paper defines a well-structured taxonomy of long-context video-based agent tasks, covering skill retention and factual retention. This taxonomy provides a comprehensive framework for evaluating the capabilities of multimodal agents in processing and understanding video content.
+
+3. **Real-World Relevance:** The tasks in VideoWA are designed to mirror real-life scenarios, making the benchmark highly relevant for real-world applications. This can facilitate the development of AI assistants that can understand and process video content to accomplish tasks, learn workflows, and make decisions.
+
+4. **Detailed Evaluation:** The paper provides a detailed evaluation of several state-of-the-art video-capable LLMs, including GPT-4o and Gemini 1.5 Pro. The evaluation covers various aspects of video understanding, such as memory retention, information retrieval, multimodal reasoning, and skill retention.
+
+5. **Insightful Results:** The results highlight the current limitations of long-context multimodal models in video understanding. The paper provides valuable insights into the areas where these models need improvement, such as information retrieval, action grounding, and high-level planning.
+
+### Weaknesses
+
+1. **Lack of Detailed Methodology:** While the paper provides a high-level overview of the benchmark and the evaluation methodology, it lacks detailed descriptions of the methods and experiments. This makes it difficult to assess the reproducibility of the results.
+
+2. **Limited Human Evaluation:** The human performance is based on a small sample size, which may not be representative of general human performance. The paper should acknowledge this limitation and consider expanding the human evaluation to a larger, more diverse group of participants.
+
+3. **Potential Task Design Bias:** The tasks and videos are created by the authors of the paper, which introduces a potential bias in the task design. The tasks may be overly structured or aligned with the authors' own understanding, which could make them easier for models that are trained on similar data.
+
+4. **Insufficient Error Analysis:** The paper briefly mentions that agents can correctly extract information but fail in action execution, but it does not provide a systematic error analysis or case studies of such failures. A detailed breakdown of failure modes would help in identifying the key bottlenecks in agentic reasoning.
+
+5. **No Cross-Domain Generalization Test:** The paper does not test whether the models can generalize across domains. This is a critical question for agentic models, as they are expected to operate in diverse environments. A cross-domain performance analysis would strengthen the evaluation.
+
+### Questions
+
+1. **Methodology Clarification:** How is the video input processed by the Video In-Context Agent? Is a video-specific encoder used, or is the video processed as a sequence of frames and audio? Clarification on this would help in understanding the model's actual capabilities and limitations.
+
+2. **Frame Sampling Strategy:** How are the frames sampled for the Video Frames In-Context Agent? Are the frames presented in a specific order (e.g., chronological, random, or keyframe-based)? Is the model given a summary of the video content alongside the frames?
+
+3. **Human Evaluation Protocol:** How were the humans tested in the human performance evaluation? Were they given the same interface as the agents? Were they allowed to rewatch the video as many times as needed, or was there a time limit? A more detailed description of the human evaluation protocol would help in assessing the fairness and realism of the human baseline.
+
+4. **Task Difficulty Analysis:** How does the task difficulty correlate with model performance? A more detailed breakdown of performance across difficulty levels (e.g., success rate vs. video length, number of steps) would help in understanding the model's limitations in more complex scenarios.
+
+5. **Model-Specific Differences:** Are there any model-specific differences in processing video input? For example, does Gemini perform better in audio perception tasks because it has a more robust audio encoder? Does GPT-4o perform better in visual perception due to its training on more image data? A model-specific breakdown would provide more actionable insights for future research.
+
+6. **Video Input Length Impact:** How does the length of the video input affect model performance? Do models perform worse on longer videos due to context window limitations or information decay? A length-based performance analysis would provide a clearer picture of the long-context capabilities of the models.
+
+7. **Control Experiments:** Were any control experiments conducted to isolate the effect of the video input? For example, was the performance of the agent with and without video input compared on the same task to determine whether the video is actually contributing to the agent's success?
+
+8. **Qualitative Failure Analysis:** Can the authors provide a qualitative analysis of the failure cases, particularly in skill retention tasks where adding tutorials hurt performance? Understanding the root cause of these failures would be valuable for future research.
+
+9. **Independent Task Creation:** Were any tasks or videos created independently or cross-validated with external annotators to reduce potential task design bias? If not, how do the authors plan to address this in future work?
+
+10. **Cross-Domain Generalization:** Are there plans to test the models' ability to generalize across domains in future work? This would be crucial for assessing the models' adaptability to diverse environments.
+
+RATING: 7

@@ -1,0 +1,27 @@
+## Summary  
+The paper introduces HOPE, a novel parameterization scheme for linear time-invariant (LTI) systems in state-space models (SSMs), grounded in Hankel operator theory. It addresses the challenges of initialization and training instability in SSMs by proposing a method that leverages Markov parameters of the Hankel matrix. The authors demonstrate that HOPE-SSM maintains high numerical rank and long memory, leading to improved performance on the sCIFAR-10 and Long-Range Arena (LRA) tasks. The approach is theoretically justified and empirically validated, offering a fresh perspective on SSM design.
+
+## Strengths  
+- **Theoretical Insight**: The paper provides a unified theoretical framework using Hankel singular value decomposition (HSVD) to explain the success of HiPPO-based initializations and the challenges in training SSMs. This insight is novel and connects well with the broader literature on reduced-order modeling and numerical stability.  
+- **Empirical Validation**: The experiments on sCIFAR-10 and LRA tasks show that HOPE-SSM outperforms existing models like S4 and S4D, particularly in tasks requiring long-range memory. The noise-padded sCIFAR-10 experiment is especially compelling, as it highlights the non-decaying memory of HOPE-SSM.  
+- **Parameter Efficiency**: HOPE-SSM requires only 1/3 the number of parameters compared to S4D, which is a significant practical advantage. The authors also show that this reduction does not compromise performance.  
+- **Numerical Stability**: The paper proves that HOPE-SSM is more robust to parameter perturbations than traditional SSMs, which is a critical contribution for improving training reliability. This is supported by both theoretical analysis and empirical results.  
+- **Clear Motivation and Structure**: The introduction effectively motivates the problem and the proposed solution. The paper is well-structured, with a logical flow from problem identification to theoretical analysis and empirical evaluation.
+
+## Weaknesses  
+- **Lack of Implementation Details**: The paper does not provide sufficient detail on the implementation of HOPE-SSM, particularly the exact method for nonuniform sampling of the transfer function and the integration of the Hankel matrix into the model architecture. This hinders reproducibility.  
+- **Limited Ablation Studies**: The ablation studies are minimal. For example, the paper does not explore the sensitivity of the model to the sampling period $\Delta t$ or the number of Markov parameters $n$. A more thorough analysis of these hyperparameters would strengthen the claims of robustness.  
+- **Insufficient Statistical Rigor**: The reported results (e.g., test accuracies) are based on medians and standard deviations over 5 random seeds, but the paper lacks formal statistical tests (e.g., t-tests) to confirm that the improvements are significant.  
+- **Missing Comparative Analysis with Other Methods**: The paper does not compare HOPE-SSM with other parameterization approaches like the spectral SSM or stable SSM, which are also designed to improve training stability. A direct comparison would better position the work in the literature.  
+- **Ambiguity in Theoretical Claims**: Some theoretical claims, such as the non-decaying memory of HOPE-SSM, are presented as empirical observations rather than formal guarantees. The paper should clarify whether these properties are theoretically derived or observed in practice.  
+- **Limited Discussion of Limitations**: The authors do not fully address the limitations of their approach. For instance, HOPE-SSM has no memory for $t > n$, which could be a practical issue for very long sequences. The paper should discuss whether this is a concern for real-world applications.
+
+## Questions  
+- The paper claims that HOPE-SSM is more robust to parameter perturbations than S4D. Could the authors provide a quantitative comparison of the perturbation sensitivity of HOPE-SSM and S4D by measuring the change in test accuracy or loss under controlled perturbations of the model parameters?  
+- The authors mention that the nonuniform sampling of the transfer function is implemented efficiently, but the exact method is not described. Could they clarify whether they use a fast Fourier transform (FFT) with interpolation or a nonuniform FFT (NUFFT), and how this affects computational efficiency?  
+- The paper states that HOPE-SSM has non-decaying memory for $t \in [0, n]$. Is this a theoretical guarantee, or is it an empirical observation? Could the authors provide a more detailed explanation of the conditions under which this property holds?  
+- The authors do not compare HOPE-SSM with the spectral SSM or stable SSM in terms of parameter count, training stability, and performance. Could they provide such a comparison to better highlight the advantages of their approach?  
+- The paper reports test accuracies on the LRA tasks but does not include training and validation curves. Could the authors provide these to assess whether the improvements are due to better generalization or faster convergence?  
+- The authors claim that HOPE-SSM is robust to initialization and training. Could they provide an ablation study where the $\mathbf{h}$ parameters are frozen or trained with a different learning rate to confirm that the robustness is not due to a specific learning rate schedule?
+
+RATING: 8

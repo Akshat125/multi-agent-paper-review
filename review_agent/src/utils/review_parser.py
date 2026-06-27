@@ -6,8 +6,15 @@ import re
 from typing import Any
 
 _SECTION_NAMES = ("summary", "strengths", "weaknesses", "questions")
-# Standalone rating line only (matches leader prompt: final line is RATING: N).
-_RATING_RE = re.compile(r"^RATING:\s*(\d+)\s*$", re.IGNORECASE | re.MULTILINE)
+# Rating line: leader prompt asks for a final ``RATING: N`` line, but models
+# sometimes decorate it with a markdown header or bold (e.g. ``### RATING: 8``
+# or ``**RATING:** 8``). Tolerate those prefixes/wrappers so the score is still
+# recovered; the literal placeholder ``RATING: <integer 1-10>`` stays unmatched
+# (no digit), so a degenerate review correctly yields ``None``.
+_RATING_RE = re.compile(
+    r"^\s*(?:#{1,6}\s*)?(?:\*\*)?RATING(?:\*\*)?\s*:\s*\**\s*(\d+)\s*\**\s*$",
+    re.IGNORECASE | re.MULTILINE,
+)
 # Matches ## Summary, # Summary, **Summary**, **Strengths:**, Questions:, etc.
 _HEADER_RE = re.compile(
     r"^\s*(?:#{1,6}\s*)?(?:\*\*)?"

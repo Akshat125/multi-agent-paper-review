@@ -7,12 +7,13 @@ QWEN_NO_THINK_SUFFIX = " /no_think"
 
 # Pin each pool model to a controlled, ordered set of OpenRouter providers with
 # open-ended fallback disabled. Without this, OpenRouter picks the cheapest
-# provider per call, which silently (a) varies quantization (fp8 vs bf16),
-# (b) drops qwen to a 40k-context backend (DeepInfra/Nebius) that can truncate a
-# long paper, and (c) routes gemma to DeepInfra's shared tier, which 429s. Every
-# provider listed below is fp8 and >=110k context, so quant and context stay
-# fixed across runs while still surviving a single provider outage. Keys are bare
-# OpenRouter model slugs; values are provider-routing blocks sent as ``provider``.
+# provider per call, which silently (a) varies quantization (fp8 vs bf16) and
+# (b) drops qwen to a 40k-context backend that can truncate a long paper. Every
+# provider listed below is fp8 and >=131k context AND advertises ``tools``
+# support (required so the leader can delegate via function calls), so quant,
+# context, and tool-calling stay fixed across runs while still surviving a
+# single provider outage. Keys are bare OpenRouter model slugs; values are
+# provider-routing blocks sent as ``provider``.
 PROVIDER_ROUTING: dict[str, dict] = {
     "qwen/qwen3-32b": {
         "order": ["SiliconFlow", "Alibaba"],
@@ -22,8 +23,8 @@ PROVIDER_ROUTING: dict[str, dict] = {
         "order": ["Venice", "DeepInfra"],
         "allow_fallbacks": False,
     },
-    "google/gemma-3-27b-it": {
-        "order": ["Parasail", "Nebius", "DeepInfra"],
+    "meta-llama/llama-3.3-70b-instruct": {
+        "order": ["DeepInfra", "Nebius", "AkashML"],
         "allow_fallbacks": False,
     },
 }

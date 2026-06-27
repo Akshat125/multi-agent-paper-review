@@ -1,0 +1,51 @@
+## Summary
+
+The paper "Efficient Fine-Tuning of Single-Cell Foundation Models Enables Zero-Shot Molecular Perturbation Prediction" introduces a novel method for predicting transcriptional responses to molecular perturbations using single-cell foundation models (FMs). The authors propose a drug-conditional adapter (scDCA) that allows efficient fine-tuning by training less than 1% of the original foundation model, enabling molecular conditioning while preserving the rich biological representations learned during pretraining. The method demonstrates state-of-the-art results across various generalization tasks, including unseen drug, unseen drug-cell-line, and unseen cell line (few-shot and zero-shot) tasks. The paper addresses the challenge of data scarcity in molecular perturbation prediction and highlights the potential of foundation models in advancing drug discovery efforts.
+
+## Strengths
+
+1. **Novel Methodology**: The introduction of the drug-conditional adapter (scDCA) is a significant contribution to the field. This adapter allows for efficient fine-tuning of single-cell foundation models, enabling the incorporation of molecular information while preserving the biological representations learned during pretraining.
+
+2. **State-of-the-Art Performance**: The proposed method achieves state-of-the-art results across various generalization tasks, including unseen drug, unseen drug-cell-line, and unseen cell line (few-shot and zero-shot) tasks. This demonstrates the effectiveness of the scDCA approach in predicting molecular perturbation responses.
+
+3. **Parameter Efficiency**: The scDCA approach fine-tunes less than 1% of the original foundation model's parameters, making it highly efficient in terms of computational resources and memory usage. This efficiency reduces the risk of overfitting and makes the method more practical for real-world applications.
+
+4. **Zero-Shot and Few-Shot Generalization**: The method's ability to generalize to unseen cell types and drugs in both zero-shot and few-shot settings is a significant advancement over existing methods. This capability is crucial for applications such as virtual screening, mechanism of action (MOA) identification, and target identification.
+
+5. **Comprehensive Evaluation**: The paper provides a robust evaluation framework to assess model performance across different generalization tasks. The use of multiple baselines and the inclusion of ablation studies provide valuable insights into the contributions of different components of the scDCA method.
+
+## Weaknesses
+
+1. **Limited Dataset**: The use of a single dataset, sciplex3, may limit the generalizability of the results to other datasets or experimental settings. Including additional datasets or conducting cross-dataset validation could strengthen the findings.
+
+2. **Hyperparameter Sensitivity**: The paper could provide more information on the hyperparameter tuning process and the sensitivity of the results to different hyperparameter settings. This would help readers understand the robustness of the method and its potential limitations.
+
+3. **Comparison to Other Fine-Tuning Strategies**: The paper could benefit from a more detailed comparison to other fine-tuning strategies, such as prefix tuning or adapters-based approaches. This would provide additional insights into the benefits and limitations of the scDCA approach.
+
+4. **Clarity and Reproducibility**: While the paper is generally well-written, there are areas where clarity and reproducibility could be improved. For example, the methodology section could provide more details on the adapter architecture, molecular embedding model, and data preprocessing steps. Additionally, the figures and tables could benefit from more descriptive captions and complete formatting.
+
+5. **Statistical Analysis**: The results section could include more detailed statistical analysis, such as p-values or t-tests, to support claims of performance improvement. This would make the results more transparent and robust.
+
+## Questions
+
+1. **Generalizability to Other Datasets**: How would the performance of scDCA compare if evaluated on additional datasets beyond sciplex3? Are there plans to conduct cross-dataset validation or include other datasets in future work?
+
+2. **Hyperparameter Sensitivity**: What is the sensitivity of the results to different hyperparameter settings? Have the authors conducted any studies to assess the robustness of the method to variations in hyperparameters such as learning rate, batch size, and adapter layer dimensions?
+
+3. **Comparison to Other Fine-Tuning Strategies**: How does scDCA compare to other fine-tuning strategies, such as prefix tuning or adapters-based approaches? Are there any plans to include these comparisons in future work?
+
+4. **Adapter Architecture Details**: Could the authors provide more details on the adapter architecture, including the number of hidden units, activation functions, and the exact structure of the two-layer neural network used in the molecular projection layer?
+
+5. **Molecular Embedding Model**: What is the exact version or configuration of ChemBERTa used for molecular embeddings? Are there any plans to explore other molecular embedding models or configurations in future work?
+
+6. **Data Preprocessing**: Could the authors provide a more detailed description of the data preprocessing steps, including the log1p normalization procedure and the architecture of the feed-forward network $ \mathrm{emb}_X $?
+
+7. **Loss Function**: Is the loss function used during fine-tuning the same as the pre-training loss (MSE), or has it been modified in any way? Could the authors provide the exact form of the loss function used?
+
+8. **Implementation Details**: What software framework and hardware were used for the implementation? Are there any plans to make the code publicly available to facilitate reproducibility?
+
+9. **Statistical Support for Results**: Could the authors include more detailed statistical analysis, such as p-values or t-tests, to support claims of performance improvement? This would make the results more transparent and robust.
+
+10. **Biases and Limitations**: Are there any potential biases or limitations in the performance of scDCA on different cell lines and drugs? Could the authors provide a more detailed analysis of the model's performance across different cell lines and molecular targets?
+
+RATING: 8

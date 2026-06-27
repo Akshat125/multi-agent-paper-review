@@ -1,0 +1,26 @@
+## Summary
+The paper introduces scDCA, a drug-conditional adapter for efficient fine-tuning of single-cell foundation models (FMs) to predict molecular perturbation responses. The method leverages pre-trained molecular embeddings (from ChemBERTa) and integrates them into a frozen scGPT model via adapter modules, enabling parameter-efficient adaptation to new tasks. The authors evaluate scDCA on the sciplex3 dataset, demonstrating its ability to generalize to unseen drugs and, more notably, to unseen cell lines in both few-shot and zero-shot settings. The results show that scDCA outperforms existing baselines, particularly in the more challenging zero-shot generalization to new cell lines.
+
+## Strengths
+- **Novel application of parameter-efficient fine-tuning (PEFT)**: The paper presents a novel approach to adapting single-cell FMs for molecular perturbation prediction using a drug-conditional adapter. This is a significant departure from traditional fine-tuning methods, which are prone to overfitting in data-scarce settings.
+- **Robust evaluation framework**: The authors evaluate scDCA across four distinct generalization tasks (unseen drugs, unseen drug-cell-line combinations, unseen cell lines in few-shot and zero-shot settings), which is a comprehensive and well-justified approach. The results show that scDCA performs well in all settings, with the most notable improvements in the zero-shot and few-shot tasks.
+- **State-of-the-art performance**: The paper claims that scDCA achieves state-of-the-art results compared to existing methods like ChemCPA, BioLORD, and SAMS-VAE. The results in Table 1 and Figure 3 support this claim, particularly in the zero-shot setting where other methods struggle.
+- **Use of pre-trained models**: The integration of pre-trained models (scGPT and ChemBERTa) is a strong point, as it allows the model to leverage the rich biological and molecular representations learned from large-scale pre-training. This is especially important in the zero-shot setting, where the model must generalize to new cell lines without explicit training on them.
+- **Clear articulation of contributions**: The authors clearly outline their contributions, including the introduction of scDCA, the extension of evaluation to unseen cell lines, and the demonstration of superior performance in these settings.
+
+## Weaknesses
+- **Limited experimental scope**: The experiments are conducted on only three cell lines (A549, MCF7, and K562), which is a small sample size for assessing generalization. The paper should acknowledge this limitation and suggest future work on a more diverse set of cell lines.
+- **Insufficient ablation studies**: The ablation studies are limited to a comparison with naive fine-tuning. The paper should include ablations on the adapter components (e.g., molecular projection, down/up-projection layers) and test the impact of different adapter sizes or placements to better understand the contribution of each part of the model.
+- **Lack of detailed methodology description**: The drug-conditional adapter is described in a high-level manner, but the paper lacks detailed information on the architecture of the adapter (e.g., number of layers, activation functions, initialization strategy). This makes it difficult to fully understand the implementation and reproduce the results.
+- **No statistical significance testing**: The paper does not provide statistical significance tests (e.g., t-tests or Wilcoxon signed-rank tests) to confirm that the performance improvements of scDCA over the baselines are not due to random variation. This is a critical oversight, as it weakens the confidence in the results.
+- **Missing code and model availability**: The paper does not mention whether the code or model weights are publicly available, which is a major issue for reproducibility. Without access to the implementation, it is not possible to validate the results or build upon the work.
+- **Underdeveloped discussion of biological relevance**: While the paper includes a target-based analysis, it lacks a deeper discussion of the biological relevance of the model’s predictions. For example, the paper does not analyze whether the predicted gene expression changes align with known drug mechanisms or pathways.
+
+## Questions
+1. How does the drug-conditional adapter differ from other PEFT methods like LoRA or prefix tuning in terms of implementation and effectiveness for this specific task?
+2. Can the authors provide a more detailed comparison of input distributions before and after the introduction of the drug-conditional adapter to support the claim that it avoids input distribution shifts?
+3. What is the magnitude of the performance improvement of scDCA over existing baselines in terms of absolute $R^2$ values, and is this improvement statistically significant?
+4. How does the ability to generalize to new cell lines in a zero-shot setting impact drug discovery pipelines, and can the authors provide more concrete examples of these applications?
+5. What are the specific limitations of applying scDCA to non-transformer-based models, and what adaptations would be required to extend its use to other architectures?
+
+RATING: 8

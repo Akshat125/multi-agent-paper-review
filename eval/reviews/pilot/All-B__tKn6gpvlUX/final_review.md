@@ -1,0 +1,22 @@
+## Summary
+The paper introduces a novel approach for predicting transcriptional cellular responses to novel molecular perturbations using a drug-conditional adapter for efficient fine-tuning of single-cell foundation models. The proposed method, scDCA, demonstrates state-of-the-art performance on various challenging tasks, including few-shot and zero-shot generalization to unseen cell lines. The paper addresses a critical gap in the field by leveraging the power of foundation models to handle the complexity and high dimensionality of cellular responses, despite the limited available experimental data.
+
+## Strengths
+1. **Novel Approach:** The paper presents a novel and innovative method for fine-tuning single-cell foundation models, which has significant implications for drug discovery and personalized medicine.
+2. **Robust Experimental Design:** The experimental design, methodology, and ablations are well-justified and appropriate for assessing the model's performance. The choice of baselines is appropriate, and the statistical significance of the results is well-documented.
+3. **State-of-the-Art Performance:** The results demonstrate state-of-the-art performance and robustness across various tasks, including the challenging few-shot and zero-shot generalization to unseen cell lines.
+4. **Potential Impact:** The proposed method has the potential to advance the field by accelerating drug discovery, enhancing personalized medicine, and inspiring future research in efficient fine-tuning strategies for foundation models.
+
+## Weaknesses
+1. **Clarity and Writing Quality:** Some sentences are too long and complex, and technical terms are introduced without sufficient explanation. The paper could benefit from more concise and clear writing.
+2. **Reproducibility:** The paper lacks some details necessary for full reproducibility, such as hyperparameters and exact data splits. Links to code and data are not provided, which would facilitate reproducibility and further research.
+3. **Figure and Table Labels:** The figures and tables are generally clear but could benefit from more detailed labels and captions to enhance understanding.
+4. **Technical Explanations:** Some technical terms and concepts are introduced without sufficient explanation, which could be challenging for readers who are not experts in the field.
+
+## Questions
+1. **Hyperparameters and Data Splits:** Could you provide more detailed information on the hyperparameters used in your experiments and the exact data splits for each task? This would help ensure reproducibility.
+2. **Code and Data Availability:** Are there plans to make the code and data used in this study publicly available? This would facilitate further research and validation of your findings.
+3. **Technical Explanations:** Could you provide more detailed explanations for some of the technical terms and concepts introduced in the paper, particularly for readers who may not be experts in the field?
+4. **Future Work:** What are the next steps for this research? Are there any specific challenges or limitations you plan to address in future work?
+
+RATING: 8

@@ -46,7 +46,8 @@ def collect_score_pairs(run_set: RunSet, config_id: str) -> list[ScorePair]:
     """Join config ``review.json`` ratings with dataset human means for one config."""
     run_index = run_set.runs_by_config_paper()
     pairs: list[ScorePair] = []
-    for paper_id, paper in sorted(run_set.papers.items()):
+    for paper_id in run_set.paper_ids():
+        paper = run_set.papers[paper_id]
         run = run_index[(config_id, paper_id)]
         artifacts = run_set.open_run(run)
         pairs.append(

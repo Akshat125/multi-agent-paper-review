@@ -1,0 +1,29 @@
+## Summary  
+This paper introduces scDCA, a drug-conditional adapter for fine-tuning single-cell foundation models (FMs) to predict transcriptional responses to molecular perturbations. The method addresses two key challenges: data scarcity in drug-cell-line experiments and the modality shift between pre-training (gene expression) and the target task (molecular structures). By freezing the pre-trained FM and training only small adapter layers conditioned on molecular embeddings, scDCA achieves parameter efficiency (training less than 1% of the original model) while demonstrating strong performance across generalization tasks, particularly in zero-shot and few-shot settings. The authors evaluate scDCA on the sciplex3 dataset, comparing it to existing baselines and showing improvements in generalization to unseen cell lines and drugs. The paper concludes by acknowledging limitations, such as dependency on control gene expression data and applicability only to transformer-based FMs, and suggests future work to address these.  
+
+## Strengths  
+The paper makes a compelling case for the importance of molecular perturbation prediction in drug discovery and biomedical research. The proposed scDCA method is well-motivated, leveraging the efficiency of adapter-based fine-tuning to reduce overfitting in data-scarce settings. The design of the drug-conditional adapter is particularly innovative, as it bridges the modality gap between molecular structures and gene expression by dynamically adjusting biases in the FM’s transformer layers using pre-trained molecular embeddings. This approach preserves the rich biological representations learned during pre-training while enabling adaptation to new drugs and cell lines.  
+
+The experimental evaluation is thorough and well-structured, covering four generalization tasks: unseen drugs, unseen drug-cell-line combinations, few-shot unseen cell lines, and zero-shot unseen cell lines. The results show that scDCA outperforms existing baselines, especially in the more challenging zero-shot and few-shot settings. The use of R-squared as the primary metric, along with standard error across five runs, ensures robustness in the evaluation. Additionally, the analysis of performance across molecular targets (Figure 5) demonstrates that scDCA is not biased toward specific drug mechanisms, further supporting its generalizability.  
+
+The paper also highlights the practical benefits of scDCA, such as reduced computational cost and faster training, which are critical for real-world applications. The focus on parameter efficiency aligns with recent trends in machine learning, making the method appealing for deployment in resource-constrained settings. The extension of the evaluation framework to include zero-shot generalization to cell lines is a meaningful contribution, as it reflects a more realistic and challenging scenario than previously studied tasks.  
+
+## Weaknesses  
+While the paper presents a novel and effective method, there are several areas where it could be improved. First, the contribution section is somewhat vague and does not clearly distinguish scDCA from prior adapter-based methods in NLP or vision. The authors should explicitly state how their design differs from existing techniques and whether it is inspired by or extends them. This would strengthen the novelty claim and provide a clearer context for the method’s innovation.  
+
+Second, the paper lacks a detailed theoretical justification for why the drug-conditional adapter is effective in bridging the modality gap. While the authors describe the architecture, they do not delve into the underlying principles that enable the model to generalize to unseen drugs or cell lines. A more in-depth analysis of the adapter’s role in integrating molecular and cellular information would enhance the paper’s scientific rigor.  
+
+Third, the evaluation is limited to a single dataset (sciplex3), which raises concerns about the generalizability of the results. Testing scDCA on additional datasets, such as those from the LINCS project, would provide stronger evidence of its effectiveness across diverse experimental conditions. Furthermore, the paper does not include a comparison with other parameter-efficient fine-tuning methods like LoRA or prefix tuning, which could help contextualize the performance of scDCA.  
+
+The paper also lacks a discussion of the model’s biological interpretability. While the focus is on quantitative performance, including qualitative analysis of predicted gene expression changes (e.g., alignment with known pathways or drug mechanisms) would validate the model’s biological relevance and utility in real-world applications.  
+
+Finally, the limitations of the current evaluation framework are not fully explored. The authors note that publicly available data is small, but they do not discuss how this might affect the robustness of their results or the potential for overfitting. A more thorough analysis of these limitations would improve the credibility of the claims.  
+
+## Questions  
+1. How does the drug-conditional adapter differ from prior adapter-based methods in NLP or vision, and what specific design choices make it suitable for the single-cell domain?  
+2. What is the theoretical basis for the effectiveness of the adapter in bridging the modality gap between molecular structures and gene expression?  
+3. Are the results on the sciplex3 dataset sufficient to claim state-of-the-art performance, or would testing on additional datasets strengthen this claim?  
+4. How does the model handle the noise inherent in single-cell RNA-seq data, and is there a comparison to other methods in this regard?  
+5. What are the real-world applications of scDCA in drug discovery or biomedical research, and could a case study or application example be provided to illustrate its impact?  
+
+RATING: 8

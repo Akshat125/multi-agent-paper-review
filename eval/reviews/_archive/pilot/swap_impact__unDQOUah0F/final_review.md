@@ -1,0 +1,25 @@
+## Summary  
+The paper introduces VideoWebArena (VideoWA), a benchmark for evaluating the agentic capabilities of long-context multimodal models in video understanding tasks. It addresses a critical gap in existing benchmarks, which often focus on text or static images and lack comprehensive testing of long-term memory retention and multimodal integration in agent workflows. VideoWA includes 2,021 tasks across six domains (Reddit, Classifieds, Shopping, Shopping Admin, GitLab, and Map), with 74 manually crafted video tutorials totaling nearly four hours. The benchmark is structured around two main task types: skill retention (learning from video demonstrations to perform tasks efficiently) and factual retention (extracting specific information from videos to complete tasks). The paper evaluates state-of-the-art models like GPT-4o and Gemini 1.5 Pro, finding that they perform significantly worse than humans, with the best model achieving 13.3% success on factual retention tasks and 45.8% on intermediate QA pairs. The results highlight the limitations of current models in video-based agentic reasoning and suggest that tutorials can introduce noise, reducing performance. The paper contributes a novel, open-source benchmark and emphasizes the need for improved long-context multimodal agents.
+
+## Strengths  
+- The paper presents a **novel and comprehensive benchmark** for evaluating long-context multimodal agents, which is a timely and important contribution given the growing interest in agentic AI systems.  
+- The **task taxonomy** (skill and factual retention) is well-motivated and reflects real-world use cases, such as learning from tutorials or retrieving specific details from long videos. This structure allows for a nuanced evaluation of different aspects of video understanding.  
+- The **results are impactful**, showing a clear and significant performance gap between current models and human performance. For example, the best model achieves only 13.3% success on factual retention tasks, compared to 73.9% for humans. This highlights the limitations of existing models and motivates further research.  
+- The paper includes **detailed breakdowns of performance** by task category and difficulty, which helps identify where models struggle most (e.g., visual perception, temporal reasoning). This level of analysis is valuable for understanding failure modes and guiding future improvements.  
+- The **open-source nature** of the benchmark (available at videowebarena.io) is a strong point, as it encourages reproducibility and future research in this area.  
+
+## Weaknesses  
+- The **task creation process is not sufficiently detailed**, making it difficult to assess the quality and diversity of the tasks. For example, the paper does not explain how the 74 videos were annotated or how the intent templates were selected. This lack of detail could raise concerns about the benchmark's robustness and generalizability.  
+- The **experimental setup lacks reproducibility details**, such as the exact prompt structure used for the agents, the criteria for selecting in-context examples, and the maximum context length for each model. Without this information, it is challenging to reproduce the experiments or understand the full scope of the model's capabilities.  
+- The **results section is somewhat under-justified**, particularly in the comparison between models and the impact of different video input methods. For instance, the paper does not provide statistical significance tests or error bars, which are essential for interpreting the results.  
+- The **distinction between skill and factual retention tasks is not clearly defined** in terms of the agent's internal reasoning or expected model behavior. This ambiguity could lead to confusion about the nature of the tasks and the evaluation criteria.  
+- The **lack of a control experiment** (e.g., a model with no video input) makes it difficult to assess the true impact of video information on task performance. Including such a baseline would strengthen the experimental analysis.  
+
+## Questions  
+- How were the 74 videos and 2,021 tasks selected and validated to ensure they represent a diverse and realistic set of video-based agent tasks?  
+- What is the exact prompt structure used for the agents at each step, and how are the in-context examples selected?  
+- How does the performance of the models change when the number of video frames is increased beyond 100, and what is the trade-off between video fidelity and model performance?  
+- What are the specific failure modes of the models on skill retention tasks, and how do tutorials introduce "negative noise" that reduces performance?  
+- How do the authors ensure that the Set-of-Marks observation space is effectively integrated with the video input, and what is the mechanism for mapping model outputs to actions?  
+
+RATING: 7

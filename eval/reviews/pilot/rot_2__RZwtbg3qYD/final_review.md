@@ -1,0 +1,49 @@
+### Summary
+
+The paper titled "HOPE for a Robust Parameterization of Long-memory State Space Models" introduces a novel parameterization scheme called HOPE for Linear Time-Invariant (LTI) systems within State-Space Models (SSMs). The authors aim to address the challenges of initialization and training stability in SSMs by leveraging Hankel operator theory. The paper presents a theoretical framework that explains the difficulties in initializing and training SSMs and proposes the HOPE parameterization as a solution. The effectiveness of the proposed method is demonstrated through experiments on Long-Range Arena (LRA) tasks and a noise-padded sCIFAR-10 task, showing improved performance and non-decaying memory compared to existing models like S4 and S4D.
+
+### Strengths
+
+1. **Theoretical Contributions**: The paper provides a novel theoretical framework based on Hankel operator theory to understand the challenges in initializing and training SSMs. This theoretical foundation is used to explain the difficulties in SSMs and to propose the HOPE parameterization.
+
+2. **HOPE Parameterization**: The introduction of the HOPE parameterization is a significant contribution. By utilizing Markov parameters within Hankel operators, the authors address the issues of initialization and training stability, leading to a more robust parameterization of SSMs.
+
+3. **Empirical Validation**: The paper empirically demonstrates the effectiveness of the HOPE parameterization. The experiments on LRA tasks and the noise-padded sCIFAR-10 task show that HOPE-SSMs outperform existing models like S4 and S4D. The results are well-supported by the data and clearly presented.
+
+4. **Clear and Well-Structured Writing**: The paper is well-written and easy to follow. The introduction is clear and well-structured, providing a concise overview of the background, motivation, and contributions. The methods and experiments are described in sufficient detail for reproducibility.
+
+### Weaknesses
+
+1. **Mathematical Derivations**: Some of the mathematical derivations and proofs are not fully explained in the main text and are instead relegated to the appendix. While this is a common practice, it may make it more difficult for readers to follow the paper without consulting the appendix.
+
+2. **Experimental Details**: Some experimental details, such as hyperparameter settings and training procedures, are not fully specified. More details would be helpful for reproducibility. For example, the paper could provide a more detailed breakdown of the performance across different layers or channels in the model.
+
+3. **Comparison with Latest Models**: The paper could include a comparison with the latest SSM variants, such as Mamba, to ensure that the results are up-to-date and relevant to the current state of the art.
+
+4. **Statistical Significance**: The paper could include a statistical test (e.g., t-test or ANOVA) to show that the difference in performance between HOPE-SSM and S4D is statistically significant. This would strengthen the claims made in the paper.
+
+5. **Ablation Studies**: The paper could benefit from more detailed ablation studies. A more in-depth analysis of the effect of the sampling period Δt and the number of Markov parameters n on the performance of HOPE-SSM would strengthen the claims made in the paper.
+
+### Questions
+
+1. **Hyperparameter Settings**: What are the specific hyperparameter settings used in the experiments, such as the learning rate, batch size, and optimization algorithm? How do these settings compare to those used in the S4 and S4D models?
+
+2. **Training Procedures**: Can the authors provide more details about the training procedures, such as the number of epochs, the training and validation splits, and any data augmentation techniques used?
+
+3. **Comparison with Other Models**: How does the performance of HOPE-SSM compare with other recent SSM variants, such as Mamba or Spectral SSM? Including a comparison with these models would provide a more comprehensive evaluation of the proposed method.
+
+4. **Statistical Significance**: Have the authors conducted any statistical tests to determine the significance of the performance differences between HOPE-SSM and the baseline models? If so, what are the results of these tests?
+
+5. **Ablation Studies**: Can the authors provide more detailed ablation studies on the effect of the sampling period Δt and the number of Markov parameters n on the performance of HOPE-SSM? For example, how does the performance change with different Δt values, and what is the optimal number of Markov parameters for the best performance?
+
+6. **Theoretical Analysis**: Can the authors provide a more intuitive explanation of the theoretical analysis, such as a visual or numerical illustration of the ε-rank and how it relates to the model's ability to capture long-range dependencies? Additionally, can the authors discuss the limitations of the theoretical analysis, such as assumptions about the distribution of the Markov parameters or the asymptotic behavior of the singular values?
+
+7. **Bilinear Transform**: Can the authors provide a more detailed explanation of how the bilinear transform is used to connect the continuous and discrete systems? This would improve the clarity of the paper and help readers understand the theoretical foundations of the proposed method.
+
+8. **Memory Retention**: Can the authors provide more quantitative analysis of the memory retention in HOPE-SSM? For example, measuring the signal-to-noise ratio of the retrieved information at different time steps or using a more controlled synthetic dataset to isolate the memory effect would strengthen the claim of non-decaying memory.
+
+9. **Performance Breakdown**: Can the authors provide a more detailed breakdown of the performance across different layers or channels in the model? This would provide more insight into the robustness of the parameterization and help identify any potential bottlenecks in the model.
+
+10. **Noise Levels**: Can the authors explore the effect of different noise levels on the performance of the models? A more detailed analysis of the effect of different noise levels on the performance of the models would provide more insight into the robustness of the memory.
+
+RATING: 8

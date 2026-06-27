@@ -1,0 +1,41 @@
+### Summary
+
+The paper "VideoWebArena: Evaluating Long Context Multimodal Agents with Video Understanding Web Tasks" introduces a new benchmark, VideoWebArena (VideoWA), designed to evaluate the capabilities of long-context multimodal agents in video understanding. The benchmark consists of 2,021 web agent tasks based on 74 manually crafted video tutorials, totaling almost four hours of content. The tasks are categorized into skill retention and factual retention, focusing on the agents' ability to use demonstrations to complete tasks and retrieve relevant information from videos, respectively. The paper evaluates state-of-the-art models like GPT-4o and Gemini 1.5 Pro on this benchmark and compares their performance with human performance, highlighting significant gaps in current model capabilities.
+
+### Strengths
+
+1. **Novel Benchmark:** The introduction of VideoWebArena is a significant contribution to the field, addressing a gap in existing benchmarks that often neglect long-context video understanding. The benchmark provides a comprehensive testbed for evaluating the capabilities of long-context multimodal agents.
+
+2. **Comprehensive Task Design:** The paper presents a well-structured taxonomy of tasks, including skill retention and factual retention, which are inspired by real-world use cases. This taxonomy provides a clear framework for evaluating agents' abilities in these specific areas.
+
+3. **Detailed Methodology:** The methodology is robust and well-detailed, with clear descriptions of the environment, observation space, action space, and task design. The use of a POMDP framework to define the agent's trajectory is appropriate and aligns with standard practices in agent evaluation.
+
+4. **Comprehensive Evaluation:** The paper evaluates several state-of-the-art models and provides a detailed breakdown of their performance across different task domains and categories. The results are presented clearly and are supported by the data, highlighting the strengths and weaknesses of the evaluated models.
+
+5. **Significant Findings:** The findings highlight the current limitations of state-of-the-art models, showing that they are far from human levels of performance. This is a crucial insight that can guide future research and development in this area.
+
+### Weaknesses
+
+1. **Limited Model Evaluation:** The evaluation is limited to two models, GPT-4o and Gemini 1.5 Pro. Including a broader range of models, especially those with different architectures or training methodologies, could provide a more comprehensive evaluation.
+
+2. **Potential Bias in Task Creation:** The paper mentions that three authors created videos and corresponding tasks, with cross-validation by a fourth author. While this is a good practice, it could introduce bias if the authors have a particular understanding or expectation of the tasks. Including a more diverse group of task creators and evaluators could mitigate this.
+
+3. **Human Performance Evaluation:** The human performance evaluation is conducted by three authors, which might not fully represent the broader human performance spectrum. Including a more diverse set of human participants could provide a more accurate baseline for comparison.
+
+4. **Task Difficulty Metrics:** The distribution of task difficulties is based on the number of steps required to complete the task. While this is a reasonable metric, it might not fully capture the complexity of the tasks. Including additional metrics, such as the cognitive load or the diversity of actions required, could provide a more nuanced understanding of task difficulty.
+
+5. **Brief Discussion Section:** The discussion section is somewhat brief and could be expanded to provide more insights into the results and their implications. It would be helpful to discuss the limitations of the study and potential future directions in more detail.
+
+### Questions
+
+1. **Model Selection:** Why were only GPT-4o and Gemini 1.5 Pro selected for evaluation? Including a broader range of models could provide a more comprehensive understanding of the current state of long-context multimodal agents.
+
+2. **Task Creation and Validation:** What criteria or guidelines were used for task creation and validation? Providing more detailed guidelines could enhance the reproducibility of the study.
+
+3. **Human Performance Evaluation:** How were the human evaluators selected, and what were the criteria for assessing their performance? Including a more diverse set of human participants could provide a more accurate baseline for comparison.
+
+4. **Task Difficulty Metrics:** Are there any plans to include additional metrics for task difficulty to capture the complexity of tasks more accurately? This could provide a more nuanced understanding of the tasks' challenges.
+
+5. **Future Directions:** What are the potential future directions for improving the capabilities of long-context multimodal agents? Expanding the discussion section to include more insights into the results and their implications could be beneficial.
+
+RATING: 7

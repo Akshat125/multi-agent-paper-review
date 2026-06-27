@@ -1,0 +1,28 @@
+## Summary
+
+The paper "VideoWebArena: Evaluating Long Context Multimodal Agents with Video Understanding Web Tasks" introduces VideoWebArena (VideoWA), a benchmark for evaluating the capabilities of long-context multimodal agents in video understanding. The benchmark consists of 2,021 web agent tasks based on manually crafted video tutorials, totaling almost four hours of content. The paper defines a taxonomy of long-context video-based agent tasks with two main areas of focus: skill retention and factual retention. The best model achieves 13.3% success on factual retention tasks and 45.8% on factual retention QA pairs, far below human performance at 73.9% and 79.3%, respectively. On skill retention tasks, long-context models perform worse with tutorials than without, exhibiting a 5% performance decrease in WebArena tasks and a 10.3% decrease in VisualWebArena tasks.
+
+## Strengths
+
+- **Comprehensive Benchmark**: The introduction of VideoWebArena is a significant contribution to the field, providing a comprehensive and diverse set of tasks for evaluating long-context multimodal agents.
+- **Novel Task Taxonomy**: The paper defines a novel taxonomy of long-context video-based agent tasks, categorizing them into skill retention and factual retention, which is a systematic approach to assessing agent capabilities.
+- **Realistic and Reproducible**: The benchmark is realistic, leveraging data and code from real and popular websites, and is designed to be reproducible, with detailed documentation and publicly available resources.
+- **Clear Results Presentation**: The results are presented clearly, with specific success rates and detailed tables that provide a comprehensive overview of model performance across different task domains and categories.
+- **Human Performance Baseline**: The inclusion of human performance data provides a valuable baseline for understanding the effectiveness of current long-context multimodal agents and highlights areas for improvement.
+
+## Weaknesses
+
+- **Reproducibility Concerns**: While the paper is well-structured, there are areas where more detail is needed to ensure full reproducibility, particularly in the methods and experiments sections. Specific details on video creation, task evaluation criteria, baseline agent implementation, and human performance evaluation are lacking.
+- **Ambiguous Definitions**: Some statements could be clarified to avoid ambiguity, such as the definitions of skill retention and factual retention, task difficulty, and video difficulty ratings.
+- **Limited Novelty in Agent Framework**: The agent framework and models used are not novel, as they build on existing benchmarks and models. The paper is more of a benchmarking and evaluation contribution than a methodological one.
+- **Potential Limitations in Experimental Design**: The reliance on manually crafted video tutorials might not fully capture the diversity of real-world scenarios, and the observed decrease in model performance with tutorials on skill retention tasks requires further exploration.
+
+## Questions
+
+- How were the videos created, and what criteria were used for selecting the tasks and mapping videos to tasks? Providing more detailed information on the video creation process and task design would enhance reproducibility.
+- What specific criteria or algorithms were used for task evaluation, and how were the tasks scored? Detailed information on the evaluation process is crucial for understanding and replicating the results.
+- What are the specific prompts, number of frames sampled, and methods for summarizing the videos used in the baseline agent implementation? This information is necessary for replicating the experiments.
+- How was human performance evaluated, and what were the criteria for selecting participants? Detailed information on the human performance evaluation process is important for understanding the baseline human performance and for replicating the evaluation.
+- Why do long-context models perform worse with tutorials than without on skill retention tasks? Further analysis of the specific challenges introduced by the tutorials or the limitations of current models in effectively utilizing tutorial information would be valuable.
+
+RATING: 7

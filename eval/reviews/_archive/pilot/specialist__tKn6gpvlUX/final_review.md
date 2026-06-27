@@ -1,0 +1,20 @@
+## Summary
+The paper introduces a novel approach for predicting transcriptional cellular responses to novel molecular perturbations using a single-cell drug-conditional adapter (scDCA). scDCA efficiently fine-tunes a pre-trained single-cell foundation model (scGPT) by incorporating molecular information through a drug-conditional adapter, enabling the model to generalize to unseen cell lines and drugs. The approach achieves state-of-the-art performance across various generalization tasks, including unseen drugs, unseen drug-cell-line combinations, and unseen cell lines in both few-shot and zero-shot settings.
+
+## Strengths
+- **Novel Approach**: The introduction of scDCA represents a novel and impactful contribution to the field of molecular perturbation prediction, addressing the critical challenge of generalizing to unseen cell types and drugs.
+- **Efficient Fine-Tuning**: The method allows for parameter-efficient fine-tuning, training less than 1% of the original model's parameters, which is particularly valuable in the context of limited data.
+- **State-of-the-Art Performance**: scDCA demonstrates superior performance compared to existing baselines across all evaluated tasks, showcasing its effectiveness and generalizability.
+- **Biological Relevance**: The approach preserves pre-trained biological representations while integrating molecular information, suggesting that the predictions are both biologically meaningful and chemically informed.
+
+## Weaknesses
+- **Limited Cell Line and Drug Diversity**: The evaluation is primarily based on a dataset with three human cancer cell lines and 188 drugs, which may not fully capture the complexity and diversity of real-world applications.
+- **Lack of Interpretability Analysis**: The paper does not provide an analysis of the model's interpretability, making it challenging to understand the biological mechanisms underlying the predicted gene expression changes.
+- **Comparison with Other Fine-Tuning Methods**: The paper could benefit from a more detailed comparison with other parameter-efficient fine-tuning methods to establish the uniqueness and advantages of scDCA.
+
+## Questions
+- How does scDCA perform when applied to a more diverse set of cell lines and drugs, and are there any specific types of molecular perturbations for which the model performs better or worse?
+- Can the authors provide a more detailed analysis of the model's interpretability, such as identifying key genes or pathways influenced by specific molecular perturbations?
+- How does scDCA compare to other parameter-efficient fine-tuning methods in terms of performance, efficiency, and scalability?
+
+RATING: 9

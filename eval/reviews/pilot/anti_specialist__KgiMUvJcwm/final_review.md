@@ -1,0 +1,31 @@
+## Summary
+
+The paper "IgSeek: Fast and Accurate Antibody Design via Structure Retrieval" introduces a novel framework for antibody design that leverages structure retrieval to infer Complementarity-Determining Region (CDR) sequences. The method employs a multi-channel equivariant graph neural network (MEGNN) to generate geometric representations of CDR backbone structures and retrieves similar structures from a natural antibody database to enhance sequence inference accuracy. The paper demonstrates that IgSeek outperforms state-of-the-art approaches in sequence recovery and inference speed for both antibodies and T-Cell Receptors, offering a new retrieval-based perspective for therapeutic protein design.
+
+## Strengths
+
+- **Novel Approach**: IgSeek introduces a unique structure-retrieval framework that addresses the challenge of hallucinations in sequence inference, a significant issue in current antibody design methods.
+- **High Accuracy**: The framework demonstrates substantial improvements in sequence recovery rates, outperforming state-of-the-art competitors by a large margin.
+- **Efficiency**: IgSeek achieves a 20x speed-up in inference time compared to baseline methods, making it highly efficient for high-throughput antibody design.
+- **Comprehensive Evaluation**: The paper includes a thorough experimental evaluation, comparing IgSeek with multiple baseline models on various datasets, including both solved and predicted antibody structures.
+- **Clear Motivation**: The introduction effectively highlights the importance of antibodies in therapeutic applications and the limitations of current AI-based design methods, providing a strong motivation for the proposed approach.
+
+## Weaknesses
+
+- **Reproducibility Issues**: The paper lacks detailed information on key hyperparameters, training procedures, and baseline implementation details, making it difficult to reproduce the results.
+- **Technical Density**: Some sections, particularly those involving mathematical formulations and technical details, are overly dense and may be difficult for readers unfamiliar with equivariant neural networks to follow.
+- **Inconsistent Notation**: The notation used in the paper is sometimes inconsistent and unclear, which can confuse readers and hinder understanding.
+- **Missing Ablations**: While the experimental evaluation is comprehensive, the paper could benefit from additional ablations or experiments to further validate the robustness and generalizability of the proposed method.
+- **Grammatical and Typographical Errors**: There are several grammatical and typographical errors throughout the paper that affect readability and professionalism.
+
+## Questions
+
+- What are the specific values of key hyperparameters such as the number of layers \( L \), the hidden dimension \( d \), and the channel size \( c \) in the MEGNN architecture?
+- Can the authors provide more details on the training procedure, including the optimizer, learning rate, batch size, and training duration?
+- How was the RMSD threshold of 1 Å determined for identifying positive retrieval instances, and what is the rationale behind this choice?
+- What is the value of \( K \) (number of nearest neighbors) used in the sequence generation process, and how does it impact the performance of IgSeek?
+- Can the authors provide more detailed analysis of the errors made by IgSeek, such as the types of sequences that are most challenging to predict or the common mistakes made by the model?
+- How does the performance of IgSeek vary with different types of antibody sequences, such as those with high or low sequence identity to the training data?
+- What are the potential limitations of the IgSeek framework, and how might these limitations impact its practical applications in therapeutic protein design?
+
+RATING: 7

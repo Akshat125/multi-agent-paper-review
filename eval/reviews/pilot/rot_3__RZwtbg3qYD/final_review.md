@@ -1,0 +1,87 @@
+### Summary
+
+The paper "HOPE for a Robust Parameterization of Long-memory State Space Models" introduces a novel parameterization scheme called HOPE for linear, time-invariant (LTI) systems within state-space models (SSMs). The method leverages Markov parameters within Hankel operators to improve the initialization and training stability of SSMs, demonstrating enhanced performance on Long-Range Arena (LRA) tasks. The paper provides a theoretical framework based on Hankel operator theory to analyze and address the challenges of SSM initialization and training, offering a practical solution that requires fewer parameters and exhibits non-decaying memory within a fixed time window.
+
+### Strengths
+
+1. **Innovative Approach**: The paper introduces a novel parameterization scheme called HOPE that utilizes Markov parameters within Hankel operators, offering a fresh perspective on LTI systems in SSMs.
+
+2. **Theoretical Rigor**: The paper provides a solid theoretical foundation for its approach, using Hankel operator theory to analyze and improve the initialization and training stability of SSMs. The theoretical insights are well-articulated and supported by mathematical proofs.
+
+3. **Practical Benefits**: The HOPE parameterization leads to improved initialization and training stability, which are practical benefits that can significantly impact the usability and effectiveness of SSMs in real-world applications.
+
+4. **Empirical Validation**: The paper includes empirical results that validate the theoretical claims. The experiments on the Long-Range Arena (LRA) tasks show that the HOPE-SSM outperforms other models, including HiPPO-initialized models like S4 and S4D.
+
+5. **Clear Explanation of Concepts**: The paper does a good job of explaining complex concepts in a clear and accessible manner, making it easier for readers to understand the underlying principles.
+
+6. **Comprehensive Evaluation**: The paper provides a comprehensive evaluation of the HOPE-SSM, including experiments on various tasks and comparisons with other state-of-the-art models. This thorough evaluation helps to establish the robustness and effectiveness of the proposed method.
+
+7. **Contribution to the Field**: The paper makes a significant contribution to the field of state-space models and sequence modeling by addressing the challenges of initialization and training stability, opening up new possibilities for improving the performance and applicability of SSMs.
+
+8. **Well-Organized Structure**: The paper is well-organized, with a clear structure that guides the reader through the theoretical foundations, methodological innovations, empirical results, and conclusions.
+
+9. **Significance of Results**: The results presented in the paper are significant, with improved performance on LRA tasks and the demonstration of non-decaying memory within a fixed time window, which are important advancements with practical implications.
+
+10. **Addressing Real-World Issues**: The paper addresses real-world issues in the initialization and training of SSMs, providing a robust parameterization scheme that offers a practical solution to problems often encountered by researchers and practitioners.
+
+### Weaknesses
+
+1. **Unclear Explanations**: The paper assumes a high level of background knowledge in control theory and signal processing, which might hinder the understanding and adoption of the HOPE scheme by a broader audience. Providing more detailed explanations, examples, or a brief introductory section on the necessary background could make the paper more accessible.
+
+2. **Methodological Flaws**: The methodology section could benefit from more detailed descriptions of how the experiments were conducted, including the specific hyperparameters used for the HOPE-SSM and the baseline models. Additionally, the choice of baseline models and the rationale behind this choice could be more explicitly stated.
+
+3. **Lack of Theoretical Analysis**: While the paper presents empirical evidence supporting the effectiveness of the HOPE scheme, a more in-depth theoretical analysis of why this scheme improves initialization and training stability would strengthen the paper. This could involve a deeper examination of the properties of Hankel operators and their relation to the stability and expressiveness of LTI systems within SSMs.
+
+4. **Limited Comparison with Other Methods**: The comparison with other state-of-the-art models, such as S4 and S4D, is a significant aspect of the paper. However, the inclusion of more models or methods, especially those recently proposed for similar tasks, could provide a more comprehensive understanding of the HOPE scheme's advantages and limitations.
+
+5. **Need for More Ablation Studies**: To further understand the contributions of different components of the HOPE scheme, more ablation studies could be beneficial. For example, examining the impact of using Markov parameters versus other parameterization methods, or the effect of varying the size of the Hankel matrix, could provide valuable insights into what makes the HOPE scheme effective.
+
+6. **Real-World Applications**: While the paper demonstrates the HOPE scheme's performance on LRA tasks, exploring its application in real-world scenarios could enhance the paper's practical relevance. This might involve applying the HOPE-SSM to tasks such as speech recognition, time-series forecasting, or natural language processing, where long-range dependencies are crucial.
+
+7. **Robustness to Hyperparameters**: The paper mentions that the HOPE-SSM requires fewer parameters and can be trained without the need for careful tuning of hyperparameters, such as learning rates. However, a more detailed analysis of the model's robustness to different hyperparameters and initialization conditions could further support the claim of improved stability and ease of training.
+
+8. **Comparison with Non-SSM Models**: Finally, comparing the performance of the HOPE-SSM not just with other SSMs but also with models from different architectures that are known for handling long-range dependencies (such as Transformers or their variants) could provide a more holistic view of the HOPE scheme's effectiveness and potential areas for future improvement.
+
+### Questions
+
+1. **Clarification of the Theoretical Connection to Reduced-Order Modeling**: The paper uses the concept of Hankel singular values and their decay to argue for the importance of high-rank LTI systems. However, the theoretical justification relies on reduced-order modeling (ROM) principles. The authors should clarify how their theoretical framework is distinct from or extends existing ROM literature. Specifically, how does the decay of singular values relate to the expressiveness of the LTI system in a way that is novel or more insightful than prior work?
+
+2. **Comparison of HOPE with Existing Parameterizations**: While the paper claims that HOPE-SSM requires only 1/3 of the parameters of S4D, it is essential to understand whether the comparison is fair and apples-to-apples. The authors should provide a more detailed comparison with other SSM parameterizations, such as the ones proposed in ~\cite{wang2023stablessm} and ~\cite{fu2023simple}. For example, what is the trade-off between parameter count and model performance? How does HOPE handle the discretization and sampling process in a way that differs from or improves upon these existing methods?
+
+3. **Practical Implications of the Hankel Parameterization**: The paper states that HOPE-SSM has non-decaying memory within a fixed time window. However, the practical implications of this feature are not fully explored. The authors should elaborate on how this non-decaying memory translates into improved performance on specific tasks, such as the noise-padded sCIFAR-10 task. For example, how does the model maintain memory without decaying, and what is the effect of this on training and inference?
+
+4. **Empirical Validation of Numerical Stability Claims**: The authors assert that their HOPE-SSM is numerically stable under perturbations due to its parameterization by Markov parameters. However, the empirical validation in ~\Cref{fig:svdHSSM} is limited. The authors should provide more concrete evidence of this numerical stability, such as how their model performs under different perturbation scenarios or how it compares to S4D in terms of gradient stability and convergence speed.
+
+5. **Scalability and Generalization**: The experiments on sCIFAR-10 and LRA tasks are promising, but the paper should address the scalability of the HOPE-SSM to larger and more diverse datasets. For example, how does the model perform on datasets with extremely long sequences or when the state size $n$ is increased beyond $64$? What is the impact of the sampling period $\Delta t$ on the model's performance in different settings?
+
+6. **Impact of Sampling Period $\Delta t$**: The authors mention that the sampling period $\Delta t$ can be tuned to handle sequences of varying lengths. However, the paper should provide a more comprehensive analysis of how the choice of $\Delta t$ affects the model's performance. For example, is there a specific range of $\Delta t$ values that is optimal for different tasks? How sensitive is the model to the choice of $\Delta t$?
+
+7. **Motivation for Using Hankel Operators**: While the paper presents a new parameterization using Hankel operators, it should provide a clearer motivation for why this approach is fundamentally different or better than using the standard state matrices $(\mathbf{A}, \mathbf{B}, \mathbf{C}, \mathbf{D})$. What are the theoretical advantages of this parameterization in the context of long-memory modeling?
+
+8. **Implementation Details and Efficiency**: The paper states that their HOPE-SSM has the same computational complexity as S4D. However, the implementation details are not fully provided. The authors should clarify the exact computational steps and how the nonuniform sampling is implemented efficiently. How does the use of nonuniform sampling affect the model's inference time and memory usage in practice?
+
+9. **Generalization to Multi-input Multi-output (MIMO) Systems**: The paper focuses on single-input single-output (SISO) systems. The authors should discuss how their parameterization generalizes to MIMO systems, which are more common in real-world applications. What modifications are needed for multi-input and multi-output scenarios?
+
+10. **Theoretical Justification for the Sampling Period $\Delta t$**: The paper mentions that the sampling period $\Delta t$ can be used to tune the model's memory. The authors should provide a more detailed theoretical justification for this claim. For example, how does the choice of $\Delta t$ affect the memory decay in the continuous-time system? What is the relationship between $\Delta t$ and the model's ability to handle long-range dependencies?
+
+11. **Effect of Initialization on Model Performance**: The paper discusses the importance of initialization in the context of Hankel singular values. However, the authors should provide a more detailed analysis of how different initialization strategies affect the performance of HOPE-SSM. For example, is the random initialization of the Markov parameters sufficient, or are there specific initialization schemes that further improve performance?
+
+12. **Comparison with Recurrent Neural Networks (RNNs)**: The paper focuses on SSMs and their limitations in terms of memory decay. The authors should compare their HOPE-SSM with traditional RNNs and their variants (e.g., LSTMs, GRUs) to better understand the broader impact of their work. How does the memory capacity and training stability of HOPE-SSM compare to these models?
+
+13. **Robustness to Hyperparameter Choices**: The paper mentions that HOPE-SSM reduces the need for hyperparameter tuning. The authors should provide empirical evidence to support this claim. For example, how does the model perform when trained with different learning rates, optimizer settings, or regularization techniques?
+
+14. **Impact of Noise on Model Performance**: The paper uses a noise-padded sCIFAR-10 dataset to demonstrate the long-term memory of HOPE-SSM. The authors should provide a more detailed analysis of how the model handles different levels of noise. For example, is the model's performance robust to varying noise intensities? What is the effect of noise on the memory decay?
+
+15. **Theoretical Guarantees for Long Memory**: The paper claims that HOPE-SSM has non-decaying memory within a fixed time window. However, the theoretical guarantees for this claim are not fully developed. The authors should provide a more rigorous analysis of how the Markov parameters in the Hankel matrix lead to non-decaying memory. What are the conditions under which this non-decay is preserved?
+
+16. **Application to Other Tasks and Domains**: The experiments are mainly focused on image classification and LRA tasks. The authors should explore the application of HOPE-SSM to other types of tasks and domains (e.g., language modeling, time-series forecasting) to better assess the generality and impact of their approach.
+
+17. **Reproducibility and Implementation Details**: The paper should provide more detailed implementation instructions, hyperparameters, and code to ensure reproducibility. For example, what are the exact training settings used in the experiments? Are there any specific preprocessing steps or data augmentation techniques that are important for the results?
+
+18. **Limitations and Potential Drawbacks**: The authors should acknowledge any limitations or potential drawbacks of their method. For example, what are the trade-offs of using a Hankel operator-based parameterization? Are there scenarios where HOPE-SSM might not be the best choice?
+
+19. **Statistical Significance of Results**: The paper reports test accuracies for different models. However, the statistical significance of these results is not discussed. The authors should provide p-values or confidence intervals to better support the claim that HOPE-SSM outperforms other models.
+
+20. **Theoretical Justification for the Transfer Function Sampling**: The paper describes how the transfer functions are sampled using the bilinear transform with a trainable $\Delta t$. The authors should provide a theoretical justification for why this method is effective and how it compares to other sampling approaches in terms of stability and expressiveness.
+
+RATING: 8

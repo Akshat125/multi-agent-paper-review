@@ -1,0 +1,15 @@
+## Summary
+The paper introduces HOPE, a novel parameterization scheme for long-memory state space models (SSMs) based on the Markov parameters of a discrete Hankel operator. It addresses the challenges of initialization and training stability in existing SSMs by analyzing the numerical rank of the system through the decay of Hankel singular values. The authors propose that HOPE-SSM, by parameterizing the system using Markov parameters, leads to improved robustness, expressiveness, and non-decaying memory. The method is validated through experiments on the sCIFAR-10 task and the Long-Range Arena (LRA) benchmark, where it outperforms existing models like S4D and S5.
+
+## Strengths
+The paper's strengths lie in its theoretical depth and the practical benefits of the proposed method. The authors provide a clear and well-motivated analysis of the limitations of current SSMs, particularly the sensitivity of the state matrices to perturbations and the need for careful initialization. The introduction of HOPE as a parameterization based on the Hankel operator is a significant theoretical contribution, as it offers a new perspective on the design of SSMs. The empirical results on the sCIFAR-10 task and the LRA benchmark are compelling, showing that HOPE-SSM outperforms existing models on most tasks. The method's reduced parameter count and improved training stability are also notable advantages. The theoretical proofs supporting the high numerical rank and stability of HOPE-SSM are rigorous and well-presented.
+
+## Weaknesses
+Despite its strengths, the paper has several weaknesses. The clarity and organization of the paper could be improved, particularly in the "Unravel a Mystery" section, which blends motivation and results in a way that is confusing. The paper lacks detailed definitions for some key terms, such as "numerical rank," which may hinder understanding for readers unfamiliar with the field. Additionally, the reproducibility of the experiments is compromised by the absence of crucial details like hyperparameters, hardware, and software specifications. The paper also does not provide a detailed comparison with other recent approaches to improving the memory of SSMs, such as the spectral filter method. The assumption that the Markov parameters are sampled i.i.d. from a distribution with mean 0 and variance 1 is not thoroughly discussed, and its practical implications are unclear. Finally, the paper could benefit from a more detailed analysis of the computational efficiency of the proposed method, including inference speed and memory usage.
+
+## Questions
+1. How does the performance of HOPE-SSM compare to the spectral filter approach in~\cite{agarwal2023spectral} in terms of both accuracy and parameter count?
+2. What are the practical implications of the i.i.d. assumption for the Markov parameters in real-world applications, and how might the method perform when this assumption is violated?
+3. Can the authors provide a more detailed analysis of the computational efficiency of HOPE-SSM, including a comparison of inference speed and memory usage with other SSMs?
+
+RATING: 8

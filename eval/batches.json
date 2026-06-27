@@ -3,23 +3,23 @@
     "pool": {
       "A": "qwen/qwen3-32b",
       "B": "mistralai/mistral-small-3.2-24b-instruct",
-      "C": "google/gemma-3-27b-it"
+      "C": "meta-llama/llama-3.3-70b-instruct"
     },
     "configs": {
       "All-A": { "leader": "A", "clarity": "A", "experiments": "A", "impact": "A" },
       "All-B": { "leader": "B", "clarity": "B", "experiments": "B", "impact": "B" },
       "All-C": { "leader": "C", "clarity": "C", "experiments": "C", "impact": "C" },
 
-      "swap_leader":      { "leader": "C", "clarity": "A", "experiments": "A", "impact": "A" },
-      "swap_clarity":     { "leader": "A", "clarity": "C", "experiments": "A", "impact": "A" },
-      "swap_experiments": { "leader": "A", "clarity": "A", "experiments": "C", "impact": "A" },
-      "swap_impact":      { "leader": "A", "clarity": "A", "experiments": "A", "impact": "C" },
+      "swap_leader":      { "leader": "A", "clarity": "B", "experiments": "B", "impact": "B" },
+      "swap_clarity":     { "leader": "B", "clarity": "A", "experiments": "B", "impact": "B" },
+      "swap_experiments": { "leader": "B", "clarity": "B", "experiments": "A", "impact": "B" },
+      "swap_impact":      { "leader": "B", "clarity": "B", "experiments": "B", "impact": "A" },
 
-      "rot_1": { "leader": "A", "clarity": "B", "experiments": "C", "impact": "A" },
+      "rot_1": { "leader": "B", "clarity": "A", "experiments": "B", "impact": "C" },
       "rot_2": { "leader": "B", "clarity": "C", "experiments": "A", "impact": "B" },
-      "rot_3": { "leader": "C", "clarity": "A", "experiments": "B", "impact": "C" },
+      "rot_3": { "leader": "B", "clarity": "B", "experiments": "C", "impact": "A" },
 
-      "specialist":     { "leader": "C", "clarity": "B", "experiments": "A", "impact": "A" },
+      "specialist":      { "leader": "A", "clarity": "B", "experiments": "A", "impact": "C" },
       "anti_specialist": { "leader": "B", "clarity": "A", "experiments": "C", "impact": "B" }
     },
     "papers": [
