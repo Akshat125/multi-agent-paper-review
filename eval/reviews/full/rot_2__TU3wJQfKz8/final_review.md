@@ -1,0 +1,51 @@
+### Summary
+
+This paper introduces a novel proof paradigm to establish the last-iterate convergence of smooth Regret Matching$^+$ (RM$^+$) variants in learning Nash equilibria (NE) for games satisfying monotonicity or the weak Minty variation inequality (MVI). The authors leverage the equivalence between RM$^+$ and Online Mirror Descent (OMD) to recover key properties such as monotonicity or weak MVI, and use the tangent residual to measure the distance to NE. They apply this paradigm to prove the last-iterate convergence of existing smooth RM$^+$ variants, Smooth Extra-gradient RM$^+$ (SExRM$^+$) and Smooth Predictive RM$^+$ (SPRM$^+$), in games satisfying monotonicity. Additionally, they propose a new algorithm, Smooth Optimistic Gradient RM$^+$ (SOGRM$^+$), which achieves last-iterate convergence in games satisfying the weak MVI. Experimental results demonstrate that SOGRM$^+$ outperforms other algorithms in terms of convergence speed and robustness to parameter changes.
+
+### Strengths
+
+1. **Novel Proof Paradigm**: The paper introduces a remarkably succinct yet powerful proof paradigm that combines the equivalence between RM$^+$ and OMD with the tangent residual. This approach is novel and addresses a significant gap in the literature by proving last-iterate convergence for RM$^+$ variants in a broader class of games.
+
+2. **General Applicability**: The proof paradigm is not limited to specific game types but applies to all games satisfying monotonicity or the weak MVI. This broadens the scope of RM$^+$ variants and makes the results highly relevant to practical applications.
+
+3. **New Algorithm (SOGRM$^+$)**: The proposal of SOGRM$^+$ is a significant contribution. The algorithm achieves last-iterate convergence under weaker conditions (weak MVI) than existing algorithms, making it applicable to a wider range of real-world problems, including Generative Adversarial Networks (GANs) and Large Language Models (LLMs).
+
+4. **Comprehensive Experimental Validation**: The experiments are well-designed and comprehensive, covering a range of different scenarios and comparing the performance of different algorithms. The results demonstrate that SOGRM$^+$ significantly outperforms other algorithms, including traditional OMD-based algorithms like OGDA, EG, and OG.
+
+5. **Clear and Concise Writing**: The paper is well-written, with clear and concise language used throughout. The organization of the paper is logical and easy to follow, with each section building on the previous one to provide a cohesive narrative.
+
+### Weaknesses
+
+1. **Lack of Detailed Proofs in the Main Text**: The paper refers to theorems and lemmas but does not provide full proofs in the main body. While this is common in conference-style papers, it may hinder the reader's ability to fully assess the validity of the convergence claims without referring to the supplementary material. A more self-contained proof sketch in the main text would improve clarity and accessibility.
+
+2. **Limited Game Types in Experiments**: The experiments are restricted to two-player zero-sum matrix games. While this is a natural starting point, the theoretical results are claimed to hold for a broader class of games (monotone and weak MVI). The paper should include experiments on non-zero-sum or non-matrix games to validate the broader applicability of the theoretical claims.
+
+3. **No Statistical Significance Testing**: The paper reports the average duality gap over 20 instances but does not provide statistical significance tests (e.g., t-tests or confidence intervals) to confirm that the differences in performance are not due to random variation. This is a major shortcoming in the analysis, as it makes it difficult to assess the reliability of the results.
+
+4. **No Detailed Convergence Rate Analysis**: The paper claims a convergence rate of $O(1/\sqrt{t})$ for the best iterate, but the experiments do not include log-log plots or regression-based rate estimation to confirm this rate. A more rigorous empirical analysis of the convergence rate would strengthen the results.
+
+5. **No Comparison to Real-World Applications**: The paper notes that RM$^+$ variants are widely used in superhuman Poker AIs, but the experiments do not include any results from such real-world applications. Including a small-scale experiment on a Poker-like game (e.g., a simplified version of Leduc Poker or Kuhn Poker) would help demonstrate the practical relevance of the theoretical results.
+
+### Questions
+
+1. **Proof Validity**: The paper refers to several theorems and lemmas (e.g., Theorem 4.2, Lemma 4.4, Theorem 5.2, Lemma 5.3) but does not provide full proofs in the main text. Could the authors provide a more self-contained proof sketch or additional details in the main text to help readers assess the validity of the convergence claims?
+
+2. **Game Types**: The experiments are limited to two-player zero-sum matrix games. Do the authors plan to extend their experiments to non-zero-sum or non-matrix games to validate the broader applicability of their theoretical results?
+
+3. **Statistical Significance**: The paper reports the average duality gap over 20 instances but does not provide statistical significance tests. Could the authors include statistical significance tests (e.g., t-tests or confidence intervals) to confirm that the differences in performance are not due to random variation?
+
+4. **Convergence Rate Analysis**: The paper claims a convergence rate of $O(1/\sqrt{t})$ for the best iterate. Could the authors provide a more rigorous empirical analysis of the convergence rate, such as log-log plots or regression-based rate estimation, to confirm this rate?
+
+5. **Real-World Applications**: The paper notes the practical relevance of RM$^+$ variants in superhuman Poker AIs. Could the authors include a small-scale experiment on a Poker-like game to demonstrate the practical relevance of their theoretical results?
+
+6. **Smoothness Parameter Ablation**: The smoothness of the RM$^+$ variants is achieved by allowing the decision vector $\theta_i^t$ to lie in $\mathbb{R}_{\geq1}^d$ rather than $\mathbb{R}_{\geq0}^d$. Could the authors perform an ablation study on the smoothness parameter to assess how it affects performance?
+
+7. **Function Approximation**: The paper mentions that strategy averaging is problematic in large-scale games with function approximation. Could the authors include an experiment using function approximation (e.g., neural networks to represent strategies) to test the practicality of their proposed algorithms in real-world applications?
+
+8. **Accumulated Regret Distance**: The methodology relies on the distance between accumulated regrets. Could the authors include plots of $\|\theta^t - \theta^{t+1}\|_2$ and $\|\theta^t - \theta^{t+1/2}\|_2$ to show that these distances indeed converge to zero, as required for the tangent residual to vanish?
+
+9. **Tangent Residual vs. Duality Gap**: The paper uses the duality gap as a proxy for the tangent residual. Could the authors clarify the relationship between the tangent residual and the duality gap, and perhaps include a plot of the tangent residual if it is computationally feasible?
+
+10. **Theoretical Bounds vs. Empirical Results**: The paper does not compare the empirical convergence rates to the theoretical bounds (e.g., $O(1/\sqrt{t})$) in a quantitative way. Could the authors include a plot of the theoretical bound alongside the empirical results to validate the tightness of the analysis?
+
+RATING: 8

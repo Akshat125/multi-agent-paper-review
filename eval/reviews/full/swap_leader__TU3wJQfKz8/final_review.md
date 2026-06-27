@@ -1,0 +1,24 @@
+## Summary
+The paper introduces a novel proof paradigm for establishing the last-iterate convergence of smooth Regret Matching$^+$ (RM$^+$) variants in learning Nash equilibria (NE). This paradigm leverages the equivalence between RM$^+$ and Online Mirror Descent (OMD) to recover key properties like monotonicity and the weak Minty variation inequality (MVI), which are essential for convergence proofs. The authors apply this approach to two existing smooth RM$^+$ variants, SExRM$^+$ and SPRM$^+$, and demonstrate their last-iterate convergence in games satisfying monotonicity. They also propose a new algorithm, SOGRM$^+$, which achieves last-iterate convergence in games satisfying the weak MVI, a broader and weaker condition than monotonicity. Experimental results show that SOGRM$^+$ significantly outperforms other algorithms in terms of convergence speed and robustness to parameter changes.
+
+## Strengths
+The paper's primary strength lies in its novel and succinct proof paradigm, which effectively addresses a long-standing challenge in the field: the lack of last-iterate convergence guarantees for RM$^+$ variants in broader game classes. By leveraging the equivalence between RM$^+$ and OMD, the authors recover essential properties like monotonicity and weak MVI, which are otherwise absent in RM$^+$ feedback. This approach is both theoretically elegant and practically impactful, as it is used to prove convergence for existing algorithms and to design a new one, SOGRM$^+$, that achieves convergence under the weakest known conditions.
+
+The experimental section is well-designed and provides strong empirical validation of the proposed methods. The comparison with both smooth and non-smooth RM$^+$ variants, as well as traditional OMD-based algorithms, demonstrates the practical advantages of the smooth variants, particularly the robustness of SOGRM$^+$ to parameter settings. The use of the duality gap as a metric is well-justified and aligns with the theoretical analysis, adding credibility to the results.
+
+The paper also makes a significant contribution by extending the theoretical understanding of RM$^+$ variants. It shows that the convergence results of OMD-based algorithms can be applied to RM$^+$ variants through the proposed paradigm, which is a novel insight. The comparative analysis with existing literature is thorough and highlights the limitations of prior approaches, such as the need for strong monotonicity or strict NE assumptions, which the authors' method avoids.
+
+## Weaknesses
+While the paper is theoretically sound and empirically compelling, there are a few areas that could be improved. First, the paper's dense mathematical exposition, particularly in the proof sections, may be challenging for readers unfamiliar with the technical details of OMD and MVI. The proofs are correct but could benefit from more intuitive explanations and clearer step-by-step breakdowns to enhance readability and accessibility.
+
+Second, the experimental section lacks some critical details that would improve reproducibility. For example, the specific hyperparameters used for each algorithm (e.g., learning rates, step sizes) are not clearly stated, making it difficult for others to replicate the results. Additionally, the paper refers to figures and tables that are not included in the provided text, which limits the ability to fully assess the experimental outcomes.
+
+Third, the paper could have more explicitly discussed the limitations of the proposed methods. While the authors highlight the advantages of their approach, a clearer acknowledgment of potential constraints or scenarios where the method might not perform as well would strengthen the paper's contribution and provide a more balanced perspective.
+
+## Questions
+1. Could the authors provide a more detailed explanation of the intuition behind the equivalence between RM$^+$ and OMD, particularly how this equivalence allows for the recovery of monotonicity and weak MVI in the context of RM$^+$ variants?
+2. What are the specific hyperparameters used for each algorithm in the experiments, and how were they chosen? This information is crucial for reproducibility and for understanding the robustness of the results.
+3. The paper mentions that the duality gap is a lower bound of the tangent residual. Could the authors provide a more concrete derivation or reference to support this claim, or clarify the relationship between these two metrics in the context of the experiments?
+4. The authors suggest that their proof paradigm could be extended to other RM$^+$ variants. What are the key challenges in applying this paradigm to non-smooth RM$^+$ variants, and are there any preliminary results or insights on this potential extension?
+
+RATING: 9

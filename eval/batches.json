@@ -29,5 +29,29 @@
       "KgiMUvJcwm",
       "unDQOUah0F"
     ]
+  },
+  "full": {
+    "pool": {
+      "A": "qwen/qwen3-32b",
+      "B": "mistralai/mistral-small-3.2-24b-instruct",
+      "C": "meta-llama/llama-3.3-70b-instruct"
+    },
+    "configs": {
+      "All-A": { "leader": "A", "clarity": "A", "experiments": "A", "impact": "A" },
+      "All-B": { "leader": "B", "clarity": "B", "experiments": "B", "impact": "B" },
+      "All-C": { "leader": "C", "clarity": "C", "experiments": "C", "impact": "C" },
+
+      "specialist":      { "leader": "A", "clarity": "B", "experiments": "A", "impact": "C" },
+      "swap_experiments": { "leader": "B", "clarity": "B", "experiments": "A", "impact": "B" },
+      "rot_2":           { "leader": "B", "clarity": "C", "experiments": "A", "impact": "B" },
+      "swap_leader":     { "leader": "A", "clarity": "B", "experiments": "B", "impact": "B" }
+    },
+    "papers": [
+      "1Qpt43cqhg", "6jxUsDAdAu", "7EhS3YBxjY", "85WHuB5CUK", "8dzKkeWUUb",
+      "FXJm5r17Q7", "GjM61KRiTG", "Gx04TnVjee", "KlN00vQEY2", "LFn7s8yRUF",
+      "MKpiaqh7R0", "RwCxxaHvyp", "ScVnYBaSEw", "TU3wJQfKz8", "WoGnnggVCZ",
+      "XYRPm8rAGM", "aisfb733DW", "bgcdO9lmug", "hvLBTpiDt3", "ju4EwaLeoI",
+      "l2zFn6TIQi", "pNxD5dpu1M", "r0opxuq8T8", "wMj6PgKVuJ", "zmHqlXGTTl"
+    ]
   }
 }

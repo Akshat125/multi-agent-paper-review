@@ -1,0 +1,34 @@
+## Summary
+
+The paper "3DTrajMaster: Mastering 3D Trajectory for Multi-Entity Motion in Video Generation" introduces a novel approach to manipulating multi-entity 3D motions in video generation. The authors address the limitations of 2D control signals by proposing a robust controller that regulates multi-entity dynamics in 3D space using 6DoF pose sequences. The core of their approach is a plug-and-play 3D-motion grounded object injector that fuses multiple input entities with their respective 3D trajectories through a gated self-attention mechanism. Additionally, the paper introduces a domain adaptor during training and an annealed sampling strategy during inference to mitigate video quality degradation. To address the lack of suitable training data, the authors construct a 360°-Motion Dataset, which correlates collected 3D human and animal assets with GPT-generated trajectories and captures their motion with 12 evenly-surround cameras on diverse 3D UE platforms. Extensive experiments show that 3DTrajMaster sets a new state-of-the-art in both accuracy and generalization for controlling multi-entity 3D motions.
+
+## Strengths
+
+1. **Novel Approach**: The paper introduces a novel approach to controlling multi-entity 3D motions in video generation, addressing a significant limitation of previous 2D control signal methods.
+2. **Comprehensive Methodology**: The methodology is well-structured and includes a detailed description of the 3D-motion grounded object injector, domain adaptor, and annealed sampling strategy.
+3. **Dataset Construction**: The construction of the 360°-Motion Dataset is a notable contribution, addressing the lack of suitable training data for this task.
+4. **State-of-the-Art Performance**: The paper demonstrates that 3DTrajMaster achieves state-of-the-art accuracy in controlling 3D entity motions and allows fine-grained entity input customization.
+5. **Clear Contributions**: The paper clearly outlines its contributions, including the first customization of 6DoF multi-entity motion in 3D space, a novel 3D-motion grounded video diffusion model, and a scalable 4D motion dataset construction mechanism.
+
+## Weaknesses
+
+1. **Clarity and Reproducibility**: While the paper is generally well-structured, some areas could benefit from more detailed explanations. For instance, the description of the 3D-motion grounded object injector could be more specific, and the experimental settings could be better documented to ensure reproducibility.
+2. **Evaluation on Non-Human Entities**: The trajectory accuracy metric is only applied to human entities due to the lack of a pose estimator for open-world 4D objects. This limits the evaluation of the model's performance on non-human entities.
+3. **Statistical Significance**: The paper does not report statistical significance for the quantitative results, making it difficult to assess the true impact of the proposed method.
+4. **Real-World Benchmarking**: The paper does not include a real-world benchmark, which is crucial for demonstrating the model's generalization to real-world data.
+5. **Complex Motion Evaluation**: The paper does not evaluate the model on complex or interactive motions, which are more challenging and would better test the model's ability to handle 3D interactions.
+
+## Questions
+
+1. **Pose Encoder Details**: Could the authors provide more details about the pose encoder's architecture and training process? This would help in understanding how the 3D pose sequences are mapped into latent representations.
+2. **Entity Prompt Sensitivity**: How does the model handle longer or more complex entity descriptions? A systematic study of the model's sensitivity to input description length and complexity would be valuable.
+3. **Domain Adaptor Comparison**: Have the authors compared the use of LoRA for domain adaptation with other domain adaptation techniques? This would help assess the effectiveness of LoRA in this context.
+4. **Annealed Sampling Sensitivity**: Could the authors provide a detailed analysis of the optimal annealing schedule and its impact on the trade-off between motion accuracy and video quality?
+5. **Real-World Data**: Have the authors considered testing the model on real-world video datasets? This would be crucial for demonstrating the model's generalization to real-world data.
+6. **Complex Motion Scenarios**: Could the authors include interactive or complex motion scenarios in their evaluation? This would better test the model's 3D motion control capabilities.
+7. **GPT-Generated Content Validation**: How was the GPT-generated entity descriptions and trajectories validated to ensure they are semantically and syntactically diverse?
+8. **Pose Estimation Comparison**: Have the authors compared the pose estimation accuracy of 3DTrajMaster with other 3D motion estimation methods? This would validate the effectiveness of the motion modeling in the video generation process.
+9. **Reproducibility of Training**: Could the authors provide training curves, hyperparameters, and ablation studies for the base model to assess its impact on the final performance?
+10. **Blinded or Randomized Comparison**: Could the authors present the qualitative results in a blinded or randomized manner to avoid confirmation bias in the evaluation?
+
+RATING: 7

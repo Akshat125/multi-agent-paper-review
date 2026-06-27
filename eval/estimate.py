@@ -77,7 +77,10 @@ RECALL_OUT = 2_750
 RECALL_HUMAN_EXTRA_IN = 1_500   # human-comment extraction prompt, once per paper
 RECALL_HUMAN_OUT = 2_500
 
-WINRATE_JUDGES = ("openai/gpt-5-mini", "deepseek/deepseek-v3.2")
+# Pilot actually ran a single judge (gpt-5-mini); the full stage uses the
+# out-of-suite panel. Override the full panel from the CLI with repeated --judge.
+PILOT_JUDGES = ("openai/gpt-5-mini",)
+FULL_JUDGES = ("openai/gpt-5-mini", "google/gemini-2.5-flash", "deepseek/deepseek-v3.2")
 RECALL_JUDGE = "openai/gpt-5-mini"
 
 
@@ -169,31 +172,36 @@ def recall_total(n_configs: int, chars_by_paper: list[int], judge: str) -> float
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--eur-per-usd", type=float, default=0.92)
-    ap.add_argument("--full-survivors", type=int, default=3,
-                    help="heterogeneous configs promoted to the full stage (default 3)")
+    ap.add_argument("--judge", action="append", dest="judges", metavar="MODEL",
+                    help="full-stage win-rate judge (repeatable; default: the FULL_JUDGES panel)")
     args = ap.parse_args()
     rate = args.eur_per_usd
+    full_judges = tuple(args.judges) if args.judges else FULL_JUDGES
 
+    # Read the real matrices straight from batches.json so the estimate tracks
+    # whatever configs/papers are actually defined (no hardcoded survivor count).
+    raw_batches = json.loads(BATCHES_PATH.read_text(encoding="utf-8"))
     pool, pilot_configs = load_batch("pilot")
+    _, full_configs = load_batch("full")
     chars = load_paper_chars()
-    pilot_ids = ["RZwtbg3qYD", "tKn6gpvlUX", "WKfb1xGXGx", "KgiMUvJcwm", "unDQOUah0F"]
-    pilot_chars = [chars[p] for p in pilot_ids]
-    full_chars = [chars[p] for p in chars if p not in pilot_ids]
 
-    # Full stage = 3 homogeneous references + N promoted heterogeneous configs.
-    homog = {c: m for c, m in pilot_configs.items() if len(set(m.values())) == 1}
-    heterog = [c for c in pilot_configs if c not in homog]
-    full_config_ids = list(homog) + heterog[: args.full_survivors]
-    full_configs = {c: pilot_configs[c] for c in full_config_ids}
+    def chars_for(run_set: str) -> list[int]:
+        papers = raw_batches[run_set]["papers"]
+        ids = sorted(chars) if papers == "all" else papers
+        return [chars[p] for p in ids]
+
+    pilot_chars = chars_for("pilot")
+    full_chars = chars_for("full")
     n_full = len(full_configs)
+    n_reviews = len(pilot_configs) * len(pilot_chars) + n_full * len(full_chars)
 
     # ---- stage costs ----
     gen_pilot = generation_total(pilot_configs, pilot_chars)
     gen_full = generation_total(full_configs, full_chars)
     gen = gen_pilot + gen_full
 
-    wr_pilot, calls_pilot = winrate_total(len(pilot_configs), pilot_chars, WINRATE_JUDGES)
-    wr_full, calls_full = winrate_total(n_full, full_chars, WINRATE_JUDGES)
+    wr_pilot, calls_pilot = winrate_total(len(pilot_configs), pilot_chars, PILOT_JUDGES)
+    wr_full, calls_full = winrate_total(n_full, full_chars, full_judges)
     winrate = wr_pilot + wr_full
 
     recall = recall_total(n_full, full_chars, RECALL_JUDGE)  # full stage only
@@ -212,13 +220,14 @@ def main() -> int:
     print(f"Pinned : qwen->SiliconFlow  mistral->Venice  llama->DeepInfra (fp8, >=131k ctx)")
     print(f"Design : pilot {len(pilot_configs)} cfg x {len(pilot_chars)} papers"
           f"  ->  full {n_full} cfg x {len(full_chars)} papers")
-    print(f"Judges : win-rate {list(WINRATE_JUDGES)}  | recall {RECALL_JUDGE}")
+    print(f"Judges : pilot {list(PILOT_JUDGES)}  | full {list(full_judges)}  | recall {RECALL_JUDGE}")
     print("-" * 78)
-    print(line("generation (210 reviews)", gen))
+    print(line(f"generation ({n_reviews} reviews)", gen))
     print(f"      pilot {gen_pilot:.2f} + full {gen_full:.2f} "
-          f"(per-review avg {gen / (len(pilot_configs)*len(pilot_chars) + n_full*len(full_chars)):.4f})")
+          f"(per-review avg {gen / n_reviews:.4f})")
     print(line("win-rate judging", winrate))
-    print(f"      pilot {wr_pilot:.2f} ({calls_pilot} calls) + full {wr_full:.2f} ({calls_full} calls)")
+    print(f"      pilot {wr_pilot:.2f} ({calls_pilot} calls, {len(PILOT_JUDGES)}J) "
+          f"+ full {wr_full:.2f} ({calls_full} calls, {len(full_judges)}J)")
     print(line("comment recall (full only)", recall))
     print(line("diversity (local)", diversity))
     print(line("spearman (free)", spearman))
@@ -233,7 +242,7 @@ def main() -> int:
     print("- Win-rate '--dimension overall' does NOT cut cost: one judge call always")
     print("  returns all dimensions; the flag only filters aggregation.")
     print("- Latency: one qwen homogeneous review took ~7 min (4 sequential LLM calls).")
-    print("  210 reviews at concurrency 4 is a multi-hour generation stage.")
+    print(f"  {n_reviews} reviews at concurrency 4 is a multi-hour generation stage.")
     return 0
 
 

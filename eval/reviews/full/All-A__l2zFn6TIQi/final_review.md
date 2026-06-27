@@ -1,0 +1,25 @@
+## Summary  
+The paper introduces **Activation Transport (AT)**, a general framework for steering activations in generative models using **optimal transport (OT) theory**. AT unifies and generalizes prior methods by framing them as special cases of OT, and proposes a **linear transport map** that preserves activation distributions while enabling fine-grained control via a bounded strength parameter $\lambda$. The method is applied to **large language models (LLMs)** and **text-to-image (T2I) diffusion models**, achieving strong results in tasks like **toxicity mitigation, concept induction, truthfulness improvement, style control, and concept negation**. The paper emphasizes the **modality-agnostic nature** of AT, its **computational efficiency**, and its **interpretability** compared to existing approaches.
+
+## Strengths  
+- **Theoretical unification**: The paper provides a principled interpretation of existing activation steering methods (e.g., ACT, CAA, ITI) as special cases of OT, offering a **coherent theoretical framework** that justifies the proposed method. This unification is both novel and valuable for understanding the broader space of activation-based control.
+- **Bounded and interpretable $\lambda$**: The introduction of a **strength parameter $\lambda$** that interpolates between the original and transported activations is a **key innovation**. Unlike prior methods where $\lambda$ is an unbounded bias multiplier, AT’s $\lambda$ is **interpretable and consistent** across models and tasks, enabling **fine-grained control** without extensive hyperparameter tuning.
+- **Strong empirical results**: The experiments on **LLMs (Gemma-2B, Llama-8B)** and **T2I models (SDXL, FLUX)** demonstrate that AT **outperforms or matches existing methods** in tasks like **toxicity mitigation (up to 7.5x reduction)**, **truthfulness improvement (up to 8% increase in MC1 accuracy)**, and **style control (95% style presence with 80% semantic preservation)**. The results are **robust across models and tasks**, with minimal impact on model utility (e.g., PPL, MMLU, CLIPScore).
+- **Modality-agnostic design**: AT is the **first method to apply OT-based activation steering to both LLMs and T2I models**, showcasing its **broad applicability**. This is a **significant contribution**, as prior methods are often modality-specific.
+- **Transport support mechanism**: The paper introduces a **transport support** to avoid out-of-distribution (OOD) activation transport, which is **pragmatic and effective** in preserving model performance while achieving the desired behavior change.
+
+## Weaknesses  
+- **Limited exploration of non-linear transport**: The paper focuses on **linear transport maps**, which are a simplification of the full OT problem. While the authors acknowledge that **multimodal distributions require non-linear maps**, they do not explore this in detail. This limits the **applicability of AT to more complex activation distributions**.
+- **Insufficient detail on implementation and reproducibility**: The paper lacks **detailed implementation instructions**, such as the **exact steps for applying transport maps**, the **specific layers intervened upon**, and the **code availability**. This makes it **difficult to reproduce the results** and verify the claims.
+- **Limited analysis of failure cases**: The paper does not provide a **comprehensive analysis of when and why AT fails**, which is important for understanding its **limitations and setting realistic expectations** for its use in real-world applications.
+- **Narrow model and dataset coverage**: The experiments are conducted on a **limited set of models (Gemma, Llama, SDXL, FLUX)** and datasets (e.g., RealToxicityPrompts, COCO Captions). A **broader evaluation** would strengthen the **generalizability of the method**.
+- **Ambiguity in the main contribution**: The paper claims to introduce a **general framework (AT)** but focuses on a **specific instance (linear transport map)**. It is **unclear whether the framework or the linear map is the primary contribution**, which could confuse readers and reviewers.
+
+## Questions  
+1. Could the authors clarify whether the **linear transport map** is the main contribution or whether the **OT-based framework** is the primary novelty?  
+2. How does the **bounded $\lambda$** compare to **other strength parameters** in the literature in terms of **interpretability and robustness**?  
+3. The paper claims to be the **first to apply OT-based activation steering to both LLMs and T2I models**. Could the authors provide a **more detailed comparison** with prior work to support this claim?  
+4. The **transport support** is introduced to avoid OOD activations. Could the authors **quantify the impact of this choice** on model performance and robustness?  
+5. The paper does not explore **non-linear transport maps**. Could the authors **discuss the potential benefits and challenges** of extending AT to non-linear cases, and provide **preliminary results or analysis**?
+
+RATING: 8

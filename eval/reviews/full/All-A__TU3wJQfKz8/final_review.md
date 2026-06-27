@@ -1,0 +1,26 @@
+## Summary
+The paper introduces a novel proof paradigm for analyzing the last-iterate convergence of Regret Matching+ (RM$^+$) variants in learning Nash equilibria (NE) in smooth games. It applies this paradigm to two existing smooth RM$^+$ algorithms (SExRM$^+$ and SPRM$^+$) and proposes a new algorithm, SOGRM$^+$, which achieves convergence under the weakest known condition, the weak Minty variation inequality (weak MVI). The paper also includes experimental results comparing the performance of these algorithms in two-player zero-sum matrix games.
+
+## Strengths
+- The paper presents a **novel and succinct proof paradigm** that leverages the **equivalence between RM$^+$ and Online Mirror Descent (OMD)** and the **tangent residual** to analyze last-iterate convergence. This is a significant theoretical contribution, as it allows for the application of OMD-based convergence analysis to RM$^+$ variants.
+- The **theoretical guarantees** for the last-iterate convergence of **SExRM$^+$ and SPRM$^+$** in games satisfying monotonicity are **stronger than previous results**, which were limited to specific game types or required additional assumptions.
+- The proposed **SOGRM$^+$** algorithm is the **first RM$^+$ variant to achieve last-iterate convergence under the weak MVI condition**, which is a **weaker and more general assumption** than monotonicity. This is a major contribution to the field of game-theoretic learning.
+- The **experimental results** show that **SOGRM$^+$ significantly outperforms other algorithms** in terms of convergence speed and robustness to parameter changes. The comparison with both non-smooth RM$^+$ variants and OMD-based algorithms is comprehensive and well-motivated.
+- The paper provides **best-iterate convergence rates** for all three algorithms **without requiring strategy averaging**, which is a **practical benefit** in large-scale games where function approximation is used.
+
+## Weaknesses
+- The **proof of Theorem 5.1 is incomplete**, with the final part of the derivation missing. This is a **major issue** that undermines the **completeness of the theoretical contribution** and must be addressed before publication.
+- The **explanations of key concepts** such as the **weak MVI condition** and the **tangent residual** are **not sufficiently detailed**. A **more intuitive explanation** of these concepts and their implications would improve the **clarity and accessibility** of the paper.
+- The **experimental validation is limited to two-player zero-sum matrix games**, and the paper does **not test the proposed algorithm in more complex or real-world settings** (e.g., poker, GANs, or LLM training). While the theoretical results are general, the **empirical validation is not as broad**, which limits the **practical impact** of the work.
+- The **connection between the theoretical bounds and the empirical results** is not made explicit. A **direct comparison** between the theoretical convergence rates and the observed performance in the experiments would **enhance the credibility** of the claims.
+- The **notation and definitions** in the paper are **dense and could benefit from a summary table or diagram** to clarify the relationships between variables and concepts. This would improve the **readability and reproducibility** of the work.
+- The **lack of pseudocode** for the proposed algorithms (SExRM$^+$, SPRM$^+$, and SOGRM$^+$) makes it **difficult to reproduce the algorithms in practice**. Providing a **step-by-step implementation guide** would improve the **practical utility** of the paper.
+
+## Questions
+- Is the missing proof in Theorem 5.1 a critical flaw that would prevent publication?
+- Should the paper be required to provide a **more detailed explanation of the weak MVI condition** and its implications?
+- Would the paper benefit from **additional experiments** in more complex or real-world game settings (e.g., poker, GANs, or LLM training)?
+- How does the **choice of the quadratic regularizer $\psi(\cdot)$** affect the convergence behavior of the proposed algorithms?
+- What is the **exact value of the constant $C_0$** in the inequality $r^{d g}(\pmb{x}) \leq C_0 r^{t a n}(\pmb{x})$? Is this constant **game-dependent or algorithm-dependent**?
+
+RATING: 7

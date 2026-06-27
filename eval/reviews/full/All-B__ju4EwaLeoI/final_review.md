@@ -1,0 +1,27 @@
+### Current Step: Writing the Final Review
+
+## Summary
+The paper "Ref-EMGBench: Benchmarking Reference Normalization for Electromyography Data" systematically evaluates five amplitude-based normalization techniques (Z-score, Min-Max, RMS, MAV, and Peak) to mitigate domain shift in EMG data for hand gesture recognition. Using a leave-one-subject-out approach and three diverse datasets (CapgMyo, NinaPro DB3, and NinaPro DB5), the study benchmarks these methods to assess their effectiveness in reducing intersubject variability and improving classification accuracy. The paper also provides detailed visualizations, including t-SNE plots and Wasserstein distance matrices, to analyze the impact of normalization on feature space and distribution alignment. Key findings highlight the superior performance of Min-Max and Peak normalization, as well as the benefits of inter-subject normalization over intra-subject normalization.
+
+## Strengths
+- **Comprehensive Benchmarking**: The paper provides a thorough evaluation of five popular normalization methods, offering a clear comparison of their effectiveness in mitigating domain shift in EMG data.
+- **Diverse Datasets**: The use of three diverse datasets (CapgMyo, NinaPro DB3, and NinaPro DB5) ensures that the findings are generalizable across different subjects, gestures, and recording conditions.
+- **Detailed Visualizations**: The inclusion of t-SNE plots and Wasserstein distance matrices provides valuable qualitative insights into the impact of normalization on feature space and distribution alignment.
+- **Superior Performance of Min-Max and Peak Normalization**: The paper demonstrates that Min-Max and Peak normalization methods consistently outperform other techniques, yielding higher classification accuracy and lower domain shift metrics.
+- **Inter-Subject Normalization**: The finding that inter-subject normalization generally produces better results than intra-subject normalization highlights the potential benefits of leveraging inter-subject variability for improved model generalization.
+
+## Weaknesses
+- **Limited Discussion on Hyperparameter Tuning**: The paper does not provide detailed information on the hyperparameter tuning process for the ResNet18 model, which could affect the reproducibility and generalizability of the results.
+- **Lack of Baseline Comparison**: The paper does not include a baseline comparison with a model trained without any normalization, making it difficult to assess the absolute improvement offered by the normalization methods.
+- **Insufficient Details on Data Preprocessing**: The paper lacks detailed information on the preprocessing steps applied to the EMG data before normalization, which could impact the results and their interpretation.
+- **Limited Exploration of Other Normalization Methods**: The paper focuses solely on amplitude-based normalization methods, potentially overlooking other types of normalization techniques that could be explored in future research.
+- **Real-World Applicability**: While the paper discusses the practical implications of the findings, it could benefit from a more detailed discussion on how these results translate to real-world applications in prosthetics, rehabilitation, and human-robot interaction.
+
+## Questions
+- **Hyperparameter Tuning**: Were the hyperparameters for the ResNet18 model optimized for each normalization method, or was a single set of hyperparameters used across all methods? How might different hyperparameter settings affect the results?
+- **Baseline Comparison**: Why was a baseline comparison with a model trained without any normalization not included? How would such a comparison provide additional insights into the effectiveness of the normalization methods?
+- **Data Preprocessing**: What preprocessing steps were applied to the EMG data before normalization? How might different preprocessing techniques affect the results and their interpretation?
+- **Other Normalization Methods**: Why were other types of normalization methods, such as time-domain or frequency-domain normalization, not explored in this study? How might these methods compare to the amplitude-based techniques evaluated?
+- **Real-World Applicability**: How do the findings translate to practical applications in prosthetics, rehabilitation, and human-robot interaction? What are the potential challenges and limitations in implementing these normalization methods in real-world scenarios?
+
+RATING: 7

@@ -1,0 +1,34 @@
+## Summary
+
+The paper titled 'Gradient-Free Analytical Fisher Information of Diffused Distributions' introduces an analytical formulation of the Fisher information (AFI) for diffusion models (DMs), which is gradient-free and leverages the inherent structure of diffused distributions. The main objective is to address the limitations of current methods that rely on auto-differentiation of the score network, which are time-consuming and lack theoretical insights. The paper proposes two algorithmic variants of AFI: AFI Trace Matching (AFI-TM) for evaluating the trace of the Fisher information and AFI Endpoint Approximation (AFI-EA) for scenarios where Fisher information is applied as a linear operator. The paper also provides theoretical guarantees for both algorithms and establishes a general theorem for the optimal transport property of the diffusion ODE deduced map. The main applications of the work include likelihood evaluation, adjoint optimization, and providing novel theoretical insights into the Fisher information of diffused distributions.
+
+## Strengths
+
+- **Analytical Formulation**: The paper develops the first analytical formulation of the Fisher Information (AFI) of diffused distributions, which is gradient-free. This formulation is initially derived for a simplified setting where the initial distribution is a sum of Dirac distributions and then extended to a more general setting.
+- **Algorithmic Variants**: The paper proposes two algorithmic variants tailored to different types of Fisher Information access: AFI Trace Matching (AFI-TM) and AFI Endpoint Approximation (AFI-EA). These methods are novel and address specific practical challenges in likelihood evaluation and adjoint optimization.
+- **Theoretical Guarantees**: The paper provides theoretical guarantees for both algorithms, including convergence analysis and approximation error bounds. This theoretical foundation is crucial for the reliability and applicability of the proposed methods.
+- **Optimal Transport Property**: The paper establishes the first theorem that allows the general diffusion ODE deduced mapping to possess the optimal transport property, eliminating the need for stringent assumptions. This is a significant theoretical contribution.
+- **Efficiency and Practicality**: The gradient-free nature of AFI makes it more efficient and practical for high-dimensional models. The reduction in time complexity for trace evaluation and the elimination of gradient operations in adjoint optimization are significant advancements.
+- **Empirical Validation**: The paper includes experiments in likelihood evaluation and adjoint optimization tasks, demonstrating the enhanced accuracy and reduced time-cost of the proposed algorithms.
+
+## Weaknesses
+
+- **Lack of Training Details for AFI-TM**: The training procedure for the trace-matching network is not described in sufficient detail. The paper should include more details about the network architecture, training procedure, and hyperparameters used in the experiments.
+- **Heuristic Justification for AFI-EA**: The endpoint approximation in AFI-EA is justified heuristically and lacks a formal analysis of its validity. The paper should provide a more rigorous analysis of when this approximation is valid and under what conditions it may fail.
+- **Insufficient Baseline Comparisons**: The paper does not compare AFI-TM and AFI-EA with other relevant methods in the literature. Including a comparison with other trace estimation and adjoint methods would strengthen the claims of the paper.
+- **Limited Empirical Validation of Theoretical Claims**: The AFI-OT theorem is not empirically validated, and its practical implications are not discussed. The paper should provide empirical evidence or examples to support the theorem.
+- **Subjective Metrics in Adjoint Optimization**: The aesthetic score used in the adjoint optimization experiments is a subjective metric. The paper should complement this with more objective metrics to support the claim of "better scores."
+- **Missing Error Analysis**: The paper should provide a more detailed analysis of the approximation errors in both AFI-TM and AFI-EA, including how the errors scale with the dimension and the noise schedule.
+- **Clarity in Definitions and Terminology**: Some terms and concepts, such as "Dirac setting" and "general setting," are used without clear definitions or explanations. The paper should provide more context and explanation for these terms to ensure that readers understand their meaning and significance.
+
+## Questions
+
+1. **Training Procedure for AFI-TM**: What is the exact training procedure for the trace-matching network? What is the network architecture, loss function, and hyperparameters used? How is the training data generated?
+2. **Formal Justification for AFI-EA**: Can the authors provide a more rigorous analysis of the endpoint approximation in AFI-EA? Under what conditions is this approximation valid, and how does it perform when the endpoint estimate is noisy?
+3. **Baseline Comparisons**: How do AFI-TM and AFI-EA compare to other trace estimation and adjoint methods in the literature? Are there any specific methods that the authors consider as the main baselines for comparison?
+4. **Empirical Validation of AFI-OT Theorem**: Can the authors provide empirical evidence or examples to support the AFI-OT theorem? How does the theorem apply in practical scenarios or specific diffusion models?
+5. **Objective Metrics in Adjoint Optimization**: What objective metrics can be used to complement the aesthetic score in the adjoint optimization experiments? How do the results change when using these objective metrics?
+6. **Error Analysis**: How do the approximation errors in AFI-TM and AFI-EA scale with the dimension and the noise schedule? What is the impact of these errors on the overall performance of the methods?
+7. **Clarity in Definitions**: Can the authors provide clearer definitions and explanations for terms like "Dirac setting" and "general setting"? How do these settings differ, and why are they important for the derivation of AFI?
+
+RATING: 7

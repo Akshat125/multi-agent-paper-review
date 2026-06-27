@@ -1,0 +1,17 @@
+## Summary
+The paper introduces the fully-inductive setup for node classification, where the model must generalize to arbitrary graphs with different structures, feature spaces, and label spaces. It proposes GraphAny, a model that combines LinearGNNs and an inductive attention module to achieve this. LinearGNNs provide non-parametric predictions, while the attention module adaptively fuses these predictions using entropy-normalized distance features. The experiments show that GraphAny trained on a single dataset can generalize to 30 new graphs, outperforming both inductive and transductive baselines in terms of accuracy and efficiency.
+
+## Strengths
+The paper makes a significant contribution by introducing a novel and challenging setup for node classification, which is more general and practical than the conventional inductive setup. The proposed model, GraphAny, is innovative in its approach to inductive inference without requiring gradient descent on new graphs. The use of LinearGNNs and an inductive attention module is a clever design that enables efficient and effective generalization. The experiments are conducted on a diverse set of 31 datasets, which is impressive and helps to validate the generalizability of the model. The ablation studies provide insights into the contributions of different components, such as the entropy normalization and the attention parameterization. The paper also highlights the efficiency of GraphAny, showing a 2.95× speedup compared to conventional GNNs, which is a valuable contribution for real-world applications.
+
+## Weaknesses
+While the paper introduces a novel setup and an innovative model, there are several areas that could be improved. The transition from the problem statement to the proposed solution in the introduction could be smoother, and the motivation for the fully-inductive setup could be better integrated with the discussion of existing methods. The entropy normalization technique, which is crucial for the inductive attention module, is not sufficiently detailed in its implementation and rationale. The paper could benefit from a more comprehensive discussion of the experimental results, particularly in the context of the fully-inductive setup. For instance, it would be helpful to understand why GraphAny performs better on some datasets than others and how the inductive attention module contributes to this performance. Additionally, the paper lacks a detailed error analysis, which would provide insights into the model's limitations and potential areas for improvement. The baseline selection could also be expanded to include more recent and advanced inductive methods for a more rigorous comparison.
+
+## Questions
+1. Could the authors provide a more detailed explanation of how the entropy normalization technique is implemented and why it is necessary for the inductive attention module?
+2. How does the performance of GraphAny vary across different types of graphs (e.g., homophilic vs. heterophilic), and what specific factors contribute to these variations?
+3. What is the impact of different graph convolution operations on the performance of LinearGNNs, and how do they contribute to the overall effectiveness of GraphAny?
+4. Could the authors include an error analysis to understand the types of nodes or graphs where the model performs poorly and the reasons for these failures?
+5. How were the hyperparameters for the baselines tuned, and what steps were taken to ensure a fair comparison with GraphAny?
+
+RATING: 8

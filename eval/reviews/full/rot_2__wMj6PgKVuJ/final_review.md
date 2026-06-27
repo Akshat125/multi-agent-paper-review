@@ -1,0 +1,39 @@
+### Summary
+
+The paper titled "softmax is not enough (for sharp out-of-distribution)" explores the limitations of the softmax function in achieving sharp decisions in out-of-distribution scenarios. The authors argue that the softmax function, widely used in contemporary AI systems, is fundamentally unable to sustain robust reasoning behaviors across all possible inputs due to the dispersion of its attention coefficients as the number of input items increases. The paper provides theoretical proofs, empirical evidence, and proposes an adaptive temperature technique to mitigate this dispersion effect.
+
+### Strengths
+
+1. **Rigorous Theoretical Analysis**: The paper presents a strong theoretical foundation for its claims. The proofs of Lemma 1 and Theorem 1 are mathematically sound and provide a clear explanation of why the softmax function disperses its attention coefficients as the number of items increases. This theoretical analysis is a significant strength of the paper.
+
+2. **Empirical Validation**: The paper includes empirical evidence supporting the theoretical findings. The visualizations of attention coefficients in the max retrieval task and the Gemma 2B model effectively demonstrate the dispersion effect. The experimental results on the max retrieval task and the CLRS-Text benchmark show the effectiveness of the proposed adaptive temperature technique.
+
+3. **Clear and Concise Writing**: The paper is generally well-written and easy to understand. The authors provide sufficient explanations and examples to facilitate understanding, even in sections that require a high level of mathematical expertise. The structure of the paper is logical and well-organized, making it easy to follow the authors' arguments.
+
+4. **Practical Implications**: The paper discusses the practical implications of its findings, including the potential impact on the design and training of AI systems. The authors propose alternative approaches to address the limitations of the softmax function, providing a roadmap for future research in this area.
+
+### Weaknesses
+
+1. **Lack of Detailed Implementation Details**: While the methods described in the paper are sufficient for reproducibility, some details could be further clarified. For instance, the specific hyperparameters used in the experiments and the exact implementation details of the adaptive temperature module are not explicitly stated. Additionally, more information on the computational resources and equipment used to perform the experiments would facilitate reproducibility.
+
+2. **Limited Analysis of CLRS-Text Results**: The paper could benefit from a more detailed analysis of the CLRS-Text results. While the resampling plot provides a visual representation of the performance metrics, a summary of the average performance across all thirty algorithmic tasks would provide a clearer picture of the overall effectiveness of the technique.
+
+3. **Arbitrary Choice of Polynomial Degree and Entropy Threshold**: The paper does not provide a clear rationale for the choice of a degree-4 polynomial to fit the temperature values or the threshold for entropy (0.5). These choices are crucial for the adaptive temperature technique, and their justification should be more explicitly stated.
+
+4. **Limited Discussion of Alternative Approaches**: While the paper discusses potential alternative approaches to address the limitations of the softmax function, the discussion is relatively brief. A more detailed exploration of these alternatives, including their advantages and disadvantages, would provide valuable insights for future research.
+
+### Questions
+
+1. **Hyperparameters and Implementation Details**: Could the authors provide more detailed information on the hyperparameters used in the experiments and the exact implementation details of the adaptive temperature module? This would facilitate reproducibility and verification of the results.
+
+2. **Computational Resources**: What computational resources and equipment were used to perform the experiments? Providing this information would help other researchers replicate the results.
+
+3. **Rationale for Polynomial Degree and Entropy Threshold**: Could the authors provide a clear rationale for the choice of a degree-4 polynomial to fit the temperature values and the threshold for entropy (0.5)? Understanding the reasoning behind these choices is crucial for the adaptive temperature technique.
+
+4. **Detailed Analysis of CLRS-Text Results**: Could the authors provide a more detailed analysis of the CLRS-Text results, including the average performance across all thirty algorithmic tasks? This would provide a clearer picture of the overall effectiveness of the technique.
+
+5. **Sensitivity Analysis**: Have the authors conducted any sensitivity analyses to test the robustness of the adaptive temperature technique to different polynomial degrees, entropy thresholds, or temperature ranges? Understanding the sensitivity of the technique to these parameters would provide valuable insights into its design choices.
+
+6. **Alternative Approaches**: Could the authors provide a more detailed discussion of the alternative approaches mentioned in the paper, including their advantages and disadvantages? This would help guide future research in this area.
+
+RATING: 7

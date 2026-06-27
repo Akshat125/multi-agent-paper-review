@@ -1,0 +1,17 @@
+## Summary  
+The paper introduces DPaI (Differentiable Pruning at Initialization), a novel method for pruning neural networks at initialization by extending the Node-Path Balancing (NPB) principle into a differentiable formulation. DPaI aims to optimize the pruning mask in a continuous and learnable manner, enabling the use of gradient-based optimization techniques to identify sparse, trainable subnetworks. The method is evaluated on various architectures, including ResNet and VGG, and sparsity levels, showing consistent improvements in accuracy over existing PaI methods. The paper also discusses the limitations of prior approaches, such as suboptimal layer-wise sparsity allocation and the challenges of discrete optimization, and positions DPaI as a solution that avoids these issues.  
+
+## Strengths  
+The paper makes a clear and impactful contribution to the field of neural network pruning. DPaI is the first method to make the NPB principle differentiable, which allows for the application of gradient-based optimization and addresses the scalability and suboptimality of discrete approaches. The experimental results are compelling, showing significant accuracy improvements over state-of-the-art PaI methods, particularly at high sparsity levels. The ablation study on hyperparameters $\alpha$ and $\beta$ provides insights into the trade-offs between effective paths and nodes, and the paper highlights the data-agnostic nature of DPaI, which could enable reuse of pruned subnetworks across datasets. The methodology is well-motivated, with a detailed explanation of how the differentiable formulation is derived and how it avoids layer collapse. The paper also connects DPaI to broader trends in sparse training and neural architecture search, suggesting potential for future work.  
+
+## Weaknesses  
+While the paper presents a promising approach, there are several weaknesses and concerns. First, the reproducibility of the results is limited due to the lack of detailed experimental setup information, such as data preprocessing, hyperparameter ranges, and training specifics. The paper also does not provide code or pseudocode, which is essential for replication. Second, the ablation study is relatively narrow, focusing only on $\alpha$ and $\beta$, and does not include statistical significance tests or a broader range of architectures. Third, the comparison with prior work is not fully comprehensive; for example, the paper does not compare DPaI with recent data-agnostic PaI methods or provide metrics like training time or memory usage. Finally, the convergence analysis is mathematically dense and could benefit from a more intuitive explanation to ensure clarity for a broader audience.  
+
+## Questions  
+- What specific steps were taken to ensure the fairness of the comparison with NPB and PHEW, especially given that these methods may have inherent biases toward weight magnitudes?  
+- How sensitive is DPaI to the choice of the ERK method for layer-wise sparsity allocation, and would alternative sparsity allocation strategies yield better results?  
+- Could the authors provide a more detailed explanation of the convergence criteria, particularly what is meant by "the objective does not change significantly"?  
+- Are there any theoretical guarantees for the differentiable relaxation of the NPB principle, or is the method purely empirical?  
+- How does the performance of DPaI change when applied to deeper or more complex architectures beyond ResNet and VGG?  
+
+RATING: 8

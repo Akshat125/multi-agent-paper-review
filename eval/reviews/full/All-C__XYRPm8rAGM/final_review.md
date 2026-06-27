@@ -1,0 +1,13 @@
+## Summary
+The paper "Agree to Disagree: Demystifying Homogeneous Deep Ensembles through Distributional Equivalence" provides a comprehensive analysis of the effectiveness of deep ensembles. The authors argue that the traditional understanding of deep ensembles, which attributes their success to Jensen's inequality, is insufficient. Instead, they propose a new perspective based on the distributional equivalence property of trained models. This property states that the predictions of different models form identical distributions over the entire data distribution. The authors provide theoretical analysis and empirical results to demonstrate the guarantee of deep ensembles' effectiveness and propose a scheme to accurately estimate the asymptotic performance of infinitely many models using only two models.
+
+## Strengths
+The paper has several strengths. Firstly, it provides a clear and concise introduction to the problem of deep ensembles and the limitations of existing approaches. The authors then present a well-structured and easy-to-follow analysis of the distributional equivalence property, which is supported by comprehensive empirical results. The paper also provides a thorough discussion of the implications of the distributional equivalence property, including the guarantee of deep ensembles' effectiveness and the estimation of asymptotic performance. Additionally, the authors provide a clear and concise conclusion that summarizes the main findings and contributions of the paper.
+
+## Weaknesses
+One potential weakness of the paper is that it relies heavily on the assumption of neural collapse, which may not always hold in practice. The authors acknowledge this limitation and note that the distributional equivalence property is an observational conclusion that requires further exploration. Another potential weakness is that the paper focuses primarily on the theoretical analysis of deep ensembles, with less emphasis on practical applications and potential uses of the proposed approach.
+
+## Questions
+Some questions that arise from the paper include: (1) How can the distributional equivalence property be used to improve the performance of deep ensembles in practice? (2) Can the proposed approach be extended to other types of ensembles, such as heterogeneous ensembles? (3) How does the distributional equivalence property relate to other concepts in deep learning, such as regularization and generalization? (4) Can the authors provide more insight into why the probability measure of the testing data mastered by any single model retains an identical level across different models?
+
+RATING: 9

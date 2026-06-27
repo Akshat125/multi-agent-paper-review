@@ -1,0 +1,51 @@
+## Summary
+
+The paper "3DTrajMaster: Mastering 3D Trajectory for Multi-Entity Motion in Video Generation" introduces a novel approach for manipulating multi-entity 3D motions in video generation. The authors address the limitations of previous methods that rely on 2D control signals by introducing a robust controller that regulates multi-entity dynamics in 3D space. The core of their approach is a plug-and-play 3D-motion grounded object injector that fuses multiple input entities with their respective 3D trajectories through a gated self-attention mechanism. Additionally, the paper introduces a domain adaptor during training and an annealed sampling strategy during inference to mitigate video quality degradation. To address the lack of suitable training data, the authors construct a 360°-Motion Dataset, which correlates collected 3D human and animal assets with GPT-generated trajectories and captures their motion with 12 evenly-surround cameras on diverse 3D UE platforms. Extensive experiments demonstrate that 3DTrajMaster sets a new state-of-the-art in both accuracy and generalization for controlling multi-entity 3D motions.
+
+## Strengths
+
+1. **Novel Approach**: The introduction of 3DTrajMaster represents a significant advancement in the field of controllable video generation. The use of 3D control signals to manipulate object motions in 3D space is a novel and important contribution.
+
+2. **Comprehensive Methodology**: The paper presents a comprehensive methodology that addresses the core challenges of controlling multi-entity 3D motions. The 3D-motion grounded object injector, domain adaptor, and annealed sampling strategy are all well-designed and effectively address the limitations of previous methods.
+
+3. **Extensive Experiments**: The paper includes extensive experiments that demonstrate the effectiveness of 3DTrajMaster. The comparison with state-of-the-art methods and the use of diverse evaluation metrics provide a robust assessment of the model's capabilities.
+
+4. **Dataset Construction**: The construction of the 360°-Motion Dataset is a significant contribution. This dataset addresses the limitations of existing datasets and provides a valuable resource for researchers in the field.
+
+5. **Clear Writing**: The paper is generally well-written and easy to understand. The figures and diagrams are helpful in visualizing the concepts and the overall framework.
+
+## Weaknesses
+
+1. **Clarity and Writing Quality**: While the paper is generally well-written, there are areas that could be improved for clarity. Some sentences are complex and could be simplified for better readability. Additionally, some sections could be better integrated into the text to avoid disrupting the flow.
+
+2. **Reproducibility**: The paper lacks detailed information about the dataset's composition, collection process, and availability. More information about the dataset, such as the number of videos, the diversity of entities and trajectories, and how the dataset can be accessed, would be helpful. Additionally, the implementation details section lacks details about the hyperparameters, the hardware used, and the software dependencies.
+
+3. **Unclear Sections**: Some sections, such as the description of the gated self-attention mechanism, the video domain adaptor, and the inference procedure, could be better explained. The equation and the variables are not clearly defined, and the process could be described in more intuitive terms.
+
+4. **Limited Entity Granularity**: The paper mentions that generalizable entities, like animals, cannot be edited with the same level of granularity as humans. This limitation could be addressed by constructing more diverse and detailed 3D assets of the same category.
+
+5. **Entity Limitations**: The model is currently constrained to global motion patterns and can only generate a limited number of entities at a time. This could be improved with more powerful video foundation models and paired datasets.
+
+## Questions
+
+1. **Dataset Availability**: When and where will the 360°-Motion Dataset be made available for other researchers to use?
+
+2. **Code Availability**: When and where will the code for 3DTrajMaster be made available? Will there be any restrictions on its use?
+
+3. **Hyperparameters**: Could the authors provide more details about the hyperparameters used in the training process, such as the learning rate schedule, the batch size, and the number of epochs?
+
+4. **Hardware and Software Dependencies**: Could the authors provide more information about the hardware used for training and inference, as well as the software dependencies required to run the model?
+
+5. **Entity Granularity**: Are there any plans to address the limitation of entity granularity for generalizable entities like animals? What steps are being taken to construct more diverse and detailed 3D assets?
+
+6. **Entity Limitations**: Are there any plans to address the limitation of the model being constrained to global motion patterns and generating a limited number of entities at a time? What steps are being taken to improve the model's capabilities in these areas?
+
+7. **Gated Self-Attention Mechanism**: Could the authors provide a more detailed explanation of the gated self-attention mechanism? Specifically, could they clarify the variables and the process described in the equation?
+
+8. **Video Domain Adaptor**: Could the authors provide a more detailed explanation of the video domain adaptor? Specifically, could they clarify the role of the adaptor and how it mitigates video domain shifts?
+
+9. **Inference Procedure**: Could the authors provide a more detailed explanation of the inference procedure? Specifically, could they clarify the annealed sampling strategy and how it enhances video quality?
+
+10. **Future Work**: What are the plans for future work? Are there any specific areas the authors plan to focus on to further improve the model's capabilities?
+
+RATING: 8

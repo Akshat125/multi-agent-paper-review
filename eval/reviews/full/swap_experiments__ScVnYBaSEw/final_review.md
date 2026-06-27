@@ -1,0 +1,29 @@
+### Summary
+
+The paper "UNSURE: Unknown Noise level Stein's Unbiased Risk Estimator" introduces a novel self-supervised learning method that extends Stein's Unbiased Risk Estimator (SURE) to scenarios where the noise level is unknown. The proposed method, UNSURE, addresses a significant limitation of traditional SURE-based methods by providing a theoretical framework that characterizes the robustness-expressivity trade-off. The paper demonstrates the effectiveness of UNSURE through a series of experiments in various imaging inverse problems, showing state-of-the-art performance in settings where the noise level is unknown.
+
+### Strengths
+
+- **Theoretical Framework**: The paper provides a rigorous theoretical framework that explains the robustness-expressivity trade-off, justifying the proposed method and providing a basis for future research.
+- **Broad Applicability**: UNSURE is demonstrated to work across various types of noise distributions and imaging problems, enhancing its significance and potential impact.
+- **State-of-the-Art Performance**: The experimental results show that UNSURE achieves performance close to supervised learning methods, often outperforming other self-supervised baselines.
+- **Comprehensive Experiments**: The paper includes a variety of experiments with detailed comparisons to state-of-the-art methods, providing a clear picture of UNSURE's performance.
+- **Clear Methodology**: The description of the UNSURE method and its variants is clear and detailed, with helpful pseudocode for computing the loss.
+
+### Weaknesses
+
+- **Introduction and Related Work**: The introduction and related work sections could be expanded to provide a more detailed discussion of the limitations of existing methods and a comprehensive review of related work.
+- **Limitations Section**: The limitations section is brief and could be expanded to discuss potential challenges and limitations of the proposed method in more detail.
+- **Implementation Details**: The paper lacks detailed implementation information, which is important for reproducibility and assessing the fairness of the comparison.
+- **Statistical Analysis**: The lack of formal statistical significance testing weakens the conclusions, as it is unclear whether the performance differences are statistically significant.
+- **Theoretical-Practical Connection**: The connection between the theoretical analysis and the empirical results could be made more explicit, especially in experiments beyond the MNIST case.
+
+### Questions
+
+- **Implementation Details**: What specific hyperparameters were used for the baselines, and how were they chosen? Are there any additional implementation details that were not included in the paper but are crucial for reproducibility?
+- **Statistical Significance**: Were any statistical significance tests (e.g., t-test or bootstrap confidence intervals) performed to confirm that the performance differences between UNSURE and the baselines are statistically significant?
+- **Theoretical-Practical Alignment**: How well does the theoretical analysis align with the empirical results in the colored noise and tomography experiments? Could the authors provide a comparison of the theoretical and empirical PSNR in these settings, similar to the MNIST case?
+- **Computational Overhead**: What is the computational overhead of UNSURE compared to supervised learning methods? How does this overhead scale with the size of the dataset and the complexity of the noise model?
+- **Generalization to Other Noise Models**: The paper focuses on Gaussian, Poisson-Gaussian, and spatially correlated noise. How well does UNSURE generalize to other noise models, such as non-Gaussian or heavy-tailed distributions?
+
+RATING: 8
