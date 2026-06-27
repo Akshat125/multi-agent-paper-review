@@ -52,10 +52,9 @@ from crewai.events.listeners.tracing.utils import set_suppress_tracing_messages
 set_suppress_tracing_messages(True)
 
 from ..utils import ReviewTraceListener, TraceLogger, parse_review
+from ..utils.openrouter import append_qwen_no_think, build_openrouter_llm_kwargs
 from ..utils.role_labels import ROLE_LABELS
 from .prompt_loader import PromptLoader
-
-OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 _LEADER_GOAL = (
     "Coordinate the three expert reviewers and synthesise their feedback into a "
@@ -69,6 +68,15 @@ _EXPECTED_OUTPUT = (
     "The final line must be RATING: <integer 1-10> using the rubric "
     "(1-3 reject, 4-5 borderline, 6-7 weak accept, 8-10 accept). "
     "Nothing may follow the RATING line."
+)
+
+# Inject the paper into every expert's own context so grounding is identical
+# across configs, instead of depending on how much the leader forwards (which
+# varies by model and would confound the role-model variable).
+_EXPERT_PAPER_BLOCK = (
+    "\n\n---\nPAPER UNDER REVIEW\n"
+    "Base your review solely on the full paper text below.\n\n"
+    "{paper_text}"
 )
 
 def _role_variables() -> dict[str, str]:
@@ -111,45 +119,51 @@ class MultiAgentReviewer:
 
         self.leader_agent = Agent(
             role=ROLE_LABELS["leader"],
-            goal=_LEADER_GOAL,
-            backstory=self._render_prompt(self.prompts.system("leader")),
+            goal=append_qwen_no_think(_LEADER_GOAL, self.models["leader"]),
+            backstory=append_qwen_no_think(
+                self._render_prompt(self.prompts.system("leader")),
+                self.models["leader"],
+            ),
             llm=self.llms["leader"],
             allow_delegation=True,
             verbose=False,
         )
-        self.expert_agents = {
-            role: Agent(
-                role=ROLE_LABELS[role],
-                goal=self._render_prompt(self.prompts.task(role)),
-                backstory=self._render_prompt(self.prompts.system(role)),
-                llm=self.llms[role],
-                allow_delegation=False,
-                verbose=False,
-            )
-            for role in ("clarity", "experiments", "impact")
-        }
+        # Built per-paper in ``review`` to inject the paper into expert context.
+        self.expert_agents: dict[str, Agent] = {}
 
     def _render_prompt(self, template: str, **extra: str) -> str:
         """Substitute role and other placeholders in a prompt template."""
         return PromptLoader.render(template, {**self._role_vars, **extra})
 
+    def _build_expert_agents(self, paper_text: str) -> dict[str, Agent]:
+        """Build the three expert agents with the full paper in their backstory."""
+        agents: dict[str, Agent] = {}
+        for role in ("clarity", "experiments", "impact"):
+            backstory = self._render_prompt(
+                self.prompts.system(role) + _EXPERT_PAPER_BLOCK,
+                paper_text=paper_text,
+            )
+            agents[role] = Agent(
+                role=ROLE_LABELS[role],
+                goal=append_qwen_no_think(
+                    self._render_prompt(self.prompts.task(role)),
+                    self.models[role],
+                ),
+                backstory=append_qwen_no_think(backstory, self.models[role]),
+                llm=self.llms[role],
+                allow_delegation=False,
+                verbose=False,
+            )
+        return agents
+
     def _make_llm(self, model_name: str) -> LLM:
-        model = (
-            model_name
-            if model_name.startswith("openrouter/")
-            else f"openrouter/{model_name}"
+        return LLM(
+            **build_openrouter_llm_kwargs(
+                model_name,
+                api_key=self.api_key,
+                temperature=0.0,
+            )
         )
-        kwargs: dict[str, object] = {
-            "model": model,
-            "base_url": OPENROUTER_BASE_URL,
-            "api_key": self.api_key,
-            "temperature": 0.0,
-        }
-        # Disable thinking mode for any Qwen-family slug (pool A, qwen/qwen3-32b,
-        # is currently the only one) so reviews stay deterministic.
-        if "qwen" in model_name.lower():
-            kwargs["additional_params"] = {"enable_thinking": False}
-        return LLM(**kwargs)
 
     def review(
         self,
@@ -161,9 +175,14 @@ class MultiAgentReviewer:
         if not paper_text or not isinstance(paper_text, str):
             raise ValueError("paper_text must be a non-empty string")
 
-        description = self._render_prompt(
-            self.prompts.task("leader"),
-            paper_text=paper_text,
+        self.expert_agents = self._build_expert_agents(paper_text)
+
+        description = append_qwen_no_think(
+            self._render_prompt(
+                self.prompts.task("leader"),
+                paper_text=paper_text,
+            ),
+            self.models["leader"],
         )
 
         review_task = Task(

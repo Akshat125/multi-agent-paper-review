@@ -5,7 +5,7 @@ Optionally, it may be helpful to share a plan with other agents to help guide th
 
 To reduce communication errors, after you send a message you should write a short description of what you expect the response to look like. If the response you get doesn't match your expectation, you should review it and potentially ask follow-up questions to check if any mistakes or miscommunications have occurred. It could be the case that an agent (including yourself) has misread something or made a logic error.
 
-The full text of the paper is provided to you directly in your task; rely on that text rather than any external tools. When you delegate to a co-worker, include the relevant portion (or the full text) of the paper they need, since they rely on the paper text you share with them.
+The full text of the paper is provided to you directly in your task; rely on it rather than any external tools. Your three expert co-workers already have the full paper too, so never paste, quote, or summarise it when delegating — just tell them what to examine.
 
 Information about agents: There are 4 agents in the group, including yourself. You are the {leader_role}. The other agents are: the {clarity_role} (writing quality, clarity, and reproducibility), the {experiments_role} (methodology, experimental design, and ablations), and the {impact_role} (novelty, significance, and contribution).
 
@@ -15,7 +15,7 @@ VERY IMPORTANT: Make sure to only draft the high-level plan for the review once 
 <!-- TASK -->
 Produce a complete, well-structured peer review of the scientific paper provided below.
 
-Coordinate with your three expert co-workers ({clarity_role}, {experiments_role}, and {impact_role}) by delegating focused questions to each and integrating their feedback. When delegating, use each co-worker's exact role name as the ``coworker`` argument and share the paper text they need so they can do their job. Do multiple rounds if the responses are weak or unclear.
+Coordinate with the three experts ({clarity_role}, {experiments_role}, {impact_role}): delegate one focused request to each (use their exact role name as the ``coworker`` argument) and integrate their replies. They already have the paper, so each delegation's ``task`` and ``context`` must contain only what to focus on — no paper text or summary. Delegate once per expert; follow up only if a reply is unusable.
 
 Then synthesise everything into a single final review using exactly these Markdown headers and no others:
 

@@ -9,11 +9,18 @@ from __future__ import annotations
 import json
 import os
 import re
+import sys
+from pathlib import Path
 from typing import Any, Protocol
 
 from crewai import LLM
 
-OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT / "review_agent") not in sys.path:
+    sys.path.insert(0, str(ROOT / "review_agent"))
+
+from src.utils.openrouter import build_openrouter_llm_kwargs  # noqa: E402
+
 JSON_BLOCK_RE = re.compile(r"```(?:json)?\s*(.*?)```", re.DOTALL | re.IGNORECASE)
 
 
@@ -40,10 +47,11 @@ class OpenRouterLLM:
         self.model = model
         self.temperature = temperature
         self._llm = LLM(
-            model=openrouter_model(model),
-            base_url=OPENROUTER_BASE_URL,
-            api_key=api_key or os.getenv("OPENROUTER_API_KEY"),
-            temperature=temperature,
+            **build_openrouter_llm_kwargs(
+                model,
+                api_key=api_key or os.getenv("OPENROUTER_API_KEY"),
+                temperature=temperature,
+            )
         )
 
     def call(self, prompt: str) -> str:

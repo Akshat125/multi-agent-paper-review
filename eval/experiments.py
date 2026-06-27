@@ -17,7 +17,8 @@ import argparse
 import os
 import sys
 import tempfile
-from dataclasses import dataclass
+from concurrent.futures import ProcessPoolExecutor, as_completed
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Optional
 
@@ -175,6 +176,106 @@ def execute(
     return summary
 
 
+@dataclass
+class _RunTask:
+    """Self-contained unit of work shipped to a worker process (must be picklable)."""
+
+    run_name: str
+    paper_id: str
+    paper_text: str
+    models: dict = field(default_factory=dict)
+    reviews_dir: Path = Path(".")
+
+
+@dataclass
+class _RunResult:
+    run_name: str
+    status: str  # "done" | "incomplete" | "failed"
+    error: Optional[str] = None
+
+
+def _run_one_item(task: _RunTask) -> _RunResult:
+    """Worker entry point: run one review in this process and report status.
+
+    Runs in a *separate process* (see :func:`execute_parallel`) so each review gets
+    its own CrewAI ``crewai_event_bus`` singleton — in-process threads would let
+    concurrent runs cross-contaminate each other's trace/token records.
+    """
+    try:
+        run_dir = default_runner(
+            task.models, task.paper_text, task.paper_id, task.reviews_dir, task.run_name
+        )
+        return _RunResult(task.run_name, "done" if is_run_complete(run_dir) else "incomplete")
+    except Exception as exc:  # noqa: BLE001 - one failure must not kill the batch
+        return _RunResult(task.run_name, "failed", repr(exc))
+
+
+def execute_parallel(
+    spec: EvalPlan,
+    papers: dict[str, dict[str, Any]],
+    paths: EvalPaths,
+    items: list[RunItem],
+    *,
+    concurrency: int,
+    log: Callable[[str], None] = print,
+) -> Summary:
+    """Like :func:`execute`, but runs pending combos across ``concurrency`` processes.
+
+    Completed combos are skipped up front (resumable, never re-billed). Each in-flight
+    review issues at most one OpenRouter call at a time, so peak concurrent API calls
+    is bounded by ``concurrency`` — kept modest on purpose to avoid upstream 429s
+    (which can still incur prompt-processing cost).
+    """
+    paths.reviews_dir.mkdir(parents=True, exist_ok=True)
+    summary = Summary()
+
+    pending: list[RunItem] = []
+    for item in items:
+        if is_run_complete(paths.reviews_dir / item.run_name):
+            summary.skipped += 1
+            log(f"skip (complete on disk): {item.run_name}")
+        else:
+            pending.append(item)
+
+    total = len(pending)
+    if total == 0:
+        return summary
+
+    tasks = [
+        _RunTask(
+            run_name=item.run_name,
+            paper_id=item.paper_id,
+            paper_text=papers[item.paper_id]["paper_text"],
+            models=spec.configs[item.config_id].models,
+            reviews_dir=paths.reviews_dir,
+        )
+        for item in pending
+    ]
+
+    log(f"running {total} pending runs at concurrency {concurrency}...")
+    done = 0
+    with ProcessPoolExecutor(max_workers=concurrency) as pool:
+        futures = {pool.submit(_run_one_item, task): task.run_name for task in tasks}
+        for future in as_completed(futures):
+            name = futures[future]
+            done += 1
+            prefix = f"[{done}/{total}] {name}"
+            try:
+                result = future.result()
+            except Exception as exc:  # noqa: BLE001 - worker died (e.g. crash)
+                summary.failed += 1
+                log(f"{prefix} FAILED: {exc!r}")
+                continue
+            if result.status == "done":
+                summary.done += 1
+                log(f"{prefix} done")
+            else:
+                summary.failed += 1
+                log(f"{prefix} FAILED: {result.error or result.status}")
+
+    return summary
+
+
 def dry_run_report(
     spec: EvalPlan,
     paths: EvalPaths,
@@ -220,6 +321,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--dataset", type=Path, default=DEFAULT_DATASET, help="Paper dataset JSON")
     parser.add_argument("--dry-run", action="store_true", help="Print the run matrix and exit; no spend")
     parser.add_argument("--limit", type=int, help="Cap the number of runs (after planning)")
+    parser.add_argument(
+        "--concurrency",
+        type=int,
+        default=4,
+        help="Parallel reviews, each in its own process (default 4; use 1 for sequential). "
+        "Peak concurrent OpenRouter calls = this value; raise cautiously to avoid upstream 429s.",
+    )
     return parser
 
 
@@ -243,7 +351,11 @@ def main(argv: list[str] | None = None) -> int:
     for w in warnings:
         print(f"warning: {w}")
 
-    summary = execute(spec, papers, paths, items)
+    concurrency = max(1, args.concurrency)
+    if concurrency == 1:
+        summary = execute(spec, papers, paths, items)
+    else:
+        summary = execute_parallel(spec, papers, paths, items, concurrency=concurrency)
     print(
         f"\nbatch {spec.name}: {summary.done} done, "
         f"{summary.skipped} skipped, {summary.failed} failed"
