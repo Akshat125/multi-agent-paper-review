@@ -1,0 +1,594 @@
+[1/175] All-A__1Qpt43cqhg skip (complete on disk)
+[2/175] All-A__6jxUsDAdAu skip (complete on disk)
+[3/175] All-A__7EhS3YBxjY skip (complete on disk)
+[4/175] All-A__85WHuB5CUK skip (complete on disk)
+[5/175] All-A__8dzKkeWUUb skip (complete on disk)
+[6/175] All-A__FXJm5r17Q7 skip (complete on disk)
+[7/175] All-A__GjM61KRiTG skip (complete on disk)
+[8/175] All-A__Gx04TnVjee skip (complete on disk)
+[9/175] All-A__KlN00vQEY2 skip (complete on disk)
+[10/175] All-A__LFn7s8yRUF skip (complete on disk)
+[11/175] All-A__MKpiaqh7R0 skip (complete on disk)
+[12/175] All-A__RwCxxaHvyp skip (complete on disk)
+[13/175] All-A__ScVnYBaSEw skip (complete on disk)
+[14/175] All-A__TU3wJQfKz8 skip (complete on disk)
+[15/175] All-A__WoGnnggVCZ skip (complete on disk)
+[16/175] All-A__XYRPm8rAGM skip (complete on disk)
+[17/175] All-A__aisfb733DW skip (complete on disk)
+[18/175] All-A__bgcdO9lmug skip (complete on disk)
+[19/175] All-A__hvLBTpiDt3 skip (complete on disk)
+[20/175] All-A__ju4EwaLeoI skip (complete on disk)
+[21/175] All-A__l2zFn6TIQi skip (complete on disk)
+[22/175] All-A__pNxD5dpu1M skip (complete on disk)
+[23/175] All-A__r0opxuq8T8 skip (complete on disk)
+[24/175] All-A__wMj6PgKVuJ skip (complete on disk)
+[25/175] All-A__zmHqlXGTTl skip (complete on disk)
+[26/175] All-B__1Qpt43cqhg skip (complete on disk)
+[27/175] All-B__6jxUsDAdAu skip (complete on disk)
+[28/175] All-B__7EhS3YBxjY skip (complete on disk)
+[29/175] All-B__85WHuB5CUK skip (complete on disk)
+[30/175] All-B__8dzKkeWUUb skip (complete on disk)
+[31/175] All-B__FXJm5r17Q7 skip (complete on disk)
+[32/175] All-B__GjM61KRiTG skip (complete on disk)
+[33/175] All-B__Gx04TnVjee skip (complete on disk)
+[34/175] All-B__KlN00vQEY2 running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[34/175] All-B__KlN00vQEY2 FAILED: incomplete artifacts at /Users/akshat/Desktop/seminar/multi-agent-peer-review/eval/reviews/full/All-B__KlN00vQEY2
+[35/175] All-B__LFn7s8yRUF skip (complete on disk)
+[36/175] All-B__MKpiaqh7R0 skip (complete on disk)
+[37/175] All-B__RwCxxaHvyp running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 6, 'retry_after_seconds_raw': 5.127, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 6, 'retry_after_seconds_raw': 5.127, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[37/175] All-B__RwCxxaHvyp done
+[38/175] All-B__ScVnYBaSEw skip (complete on disk)
+[39/175] All-B__TU3wJQfKz8 running...
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'llm_call_failed' closed 
+'agent_execution_started' (expected 'llm_call_started')
+ERROR:crewai.flow.flow:Error executing listener call_llm_and_parse: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 6, 'retry_after_seconds_raw': 5.127, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 5, 'retry_after_seconds_raw': 4.601, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 5, 'retry_after_seconds_raw': 4.601, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'llm_call_failed' closed 
+'agent_execution_started' (expected 'llm_call_started')
+ERROR:crewai.flow.flow:Error executing listener call_llm_and_parse: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 5, 'retry_after_seconds_raw': 4.601, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[39/175] All-B__TU3wJQfKz8 done
+[40/175] All-B__WoGnnggVCZ running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[40/175] All-B__WoGnnggVCZ done
+[41/175] All-B__XYRPm8rAGM skip (complete on disk)
+[42/175] All-B__aisfb733DW skip (complete on disk)
+[43/175] All-B__bgcdO9lmug skip (complete on disk)
+[44/175] All-B__hvLBTpiDt3 skip (complete on disk)
+[45/175] All-B__ju4EwaLeoI skip (complete on disk)
+[46/175] All-B__l2zFn6TIQi running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[46/175] All-B__l2zFn6TIQi done
+[47/175] All-B__pNxD5dpu1M skip (complete on disk)
+[48/175] All-B__r0opxuq8T8 skip (complete on disk)
+[49/175] All-B__wMj6PgKVuJ skip (complete on disk)
+[50/175] All-B__zmHqlXGTTl running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[50/175] All-B__zmHqlXGTTl done
+[51/175] All-C__1Qpt43cqhg skip (complete on disk)
+[52/175] All-C__6jxUsDAdAu skip (complete on disk)
+[53/175] All-C__7EhS3YBxjY skip (complete on disk)
+[54/175] All-C__85WHuB5CUK skip (complete on disk)
+[55/175] All-C__8dzKkeWUUb skip (complete on disk)
+[56/175] All-C__FXJm5r17Q7 skip (complete on disk)
+[57/175] All-C__GjM61KRiTG skip (complete on disk)
+[58/175] All-C__Gx04TnVjee skip (complete on disk)
+[59/175] All-C__KlN00vQEY2 skip (complete on disk)
+[60/175] All-C__LFn7s8yRUF skip (complete on disk)
+[61/175] All-C__MKpiaqh7R0 skip (complete on disk)
+[62/175] All-C__RwCxxaHvyp skip (complete on disk)
+[63/175] All-C__ScVnYBaSEw skip (complete on disk)
+[64/175] All-C__TU3wJQfKz8 skip (complete on disk)
+[65/175] All-C__WoGnnggVCZ skip (complete on disk)
+[66/175] All-C__XYRPm8rAGM skip (complete on disk)
+[67/175] All-C__aisfb733DW skip (complete on disk)
+[68/175] All-C__bgcdO9lmug running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 4, 'retry_after_seconds_raw': 3.955, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 4, 'retry_after_seconds_raw': 3.955, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[68/175] All-C__bgcdO9lmug done
+[69/175] All-C__hvLBTpiDt3 skip (complete on disk)
+[70/175] All-C__ju4EwaLeoI skip (complete on disk)
+[71/175] All-C__l2zFn6TIQi skip (complete on disk)
+[72/175] All-C__pNxD5dpu1M skip (complete on disk)
+[73/175] All-C__r0opxuq8T8 skip (complete on disk)
+[74/175] All-C__wMj6PgKVuJ skip (complete on disk)
+[75/175] All-C__zmHqlXGTTl skip (complete on disk)
+[76/175] specialist__1Qpt43cqhg skip (complete on disk)
+[77/175] specialist__6jxUsDAdAu skip (complete on disk)
+[78/175] specialist__7EhS3YBxjY skip (complete on disk)
+[79/175] specialist__85WHuB5CUK skip (complete on disk)
+[80/175] specialist__8dzKkeWUUb skip (complete on disk)
+[81/175] specialist__FXJm5r17Q7 skip (complete on disk)
+[82/175] specialist__GjM61KRiTG skip (complete on disk)
+[83/175] specialist__Gx04TnVjee skip (complete on disk)
+[84/175] specialist__KlN00vQEY2 skip (complete on disk)
+[85/175] specialist__LFn7s8yRUF skip (complete on disk)
+[86/175] specialist__MKpiaqh7R0 skip (complete on disk)
+[87/175] specialist__RwCxxaHvyp skip (complete on disk)
+[88/175] specialist__ScVnYBaSEw skip (complete on disk)
+[89/175] specialist__TU3wJQfKz8 skip (complete on disk)
+[90/175] specialist__WoGnnggVCZ skip (complete on disk)
+[91/175] specialist__XYRPm8rAGM skip (complete on disk)
+[92/175] specialist__aisfb733DW skip (complete on disk)
+[93/175] specialist__bgcdO9lmug skip (complete on disk)
+[94/175] specialist__hvLBTpiDt3 skip (complete on disk)
+[95/175] specialist__ju4EwaLeoI skip (complete on disk)
+[96/175] specialist__l2zFn6TIQi skip (complete on disk)
+[97/175] specialist__pNxD5dpu1M skip (complete on disk)
+[98/175] specialist__r0opxuq8T8 skip (complete on disk)
+[99/175] specialist__wMj6PgKVuJ skip (complete on disk)
+[100/175] specialist__zmHqlXGTTl skip (complete on disk)
+[101/175] swap_experiments__1Qpt43cqhg running...
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'llm_call_failed' closed 
+'agent_execution_started' (expected 'llm_call_started')
+ERROR:crewai.flow.flow:Error executing listener call_llm_native_tools: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 4, 'retry_after_seconds_raw': 3.955, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 1, 'retry_after_seconds_raw': 0.981, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 1, 'retry_after_seconds_raw': 0.981, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'llm_call_failed' closed 
+'agent_execution_started' (expected 'llm_call_started')
+ERROR:crewai.flow.flow:Error executing listener call_llm_native_tools: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 1, 'retry_after_seconds_raw': 0.981, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[101/175] swap_experiments__1Qpt43cqhg FAILED: incomplete artifacts at /Users/akshat/Desktop/seminar/multi-agent-peer-review/eval/reviews/full/swap_experiments__1Qpt43cqhg
+[102/175] swap_experiments__6jxUsDAdAu running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 11, 'retry_after_seconds_raw': 10.874, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 11, 'retry_after_seconds_raw': 10.874, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[102/175] swap_experiments__6jxUsDAdAu done
+[103/175] swap_experiments__7EhS3YBxjY skip (complete on disk)
+[104/175] swap_experiments__85WHuB5CUK skip (complete on disk)
+[105/175] swap_experiments__8dzKkeWUUb skip (complete on disk)
+[106/175] swap_experiments__FXJm5r17Q7 running...
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'llm_call_failed' closed 
+'agent_execution_started' (expected 'llm_call_started')
+ERROR:crewai.flow.flow:Error executing listener call_llm_native_tools: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 11, 'retry_after_seconds_raw': 10.874, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 17, 'retry_after_seconds_raw': 16.86, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 17, 'retry_after_seconds_raw': 16.86, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'llm_call_failed' closed 
+'agent_execution_started' (expected 'llm_call_started')
+ERROR:crewai.flow.flow:Error executing listener call_llm_and_parse: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 17, 'retry_after_seconds_raw': 16.86, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 15, 'retry_after_seconds_raw': 14.065, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 15, 'retry_after_seconds_raw': 14.065, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'llm_call_failed' closed 
+'agent_execution_started' (expected 'llm_call_started')
+ERROR:crewai.flow.flow:Error executing listener call_llm_and_parse: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 15, 'retry_after_seconds_raw': 14.065, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[106/175] swap_experiments__FXJm5r17Q7 done
+[107/175] swap_experiments__GjM61KRiTG skip (complete on disk)
+[108/175] swap_experiments__Gx04TnVjee skip (complete on disk)
+[109/175] swap_experiments__KlN00vQEY2 skip (complete on disk)
+[110/175] swap_experiments__LFn7s8yRUF running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[110/175] swap_experiments__LFn7s8yRUF done
+[111/175] swap_experiments__MKpiaqh7R0 skip (complete on disk)
+[112/175] swap_experiments__RwCxxaHvyp skip (complete on disk)
+[113/175] swap_experiments__ScVnYBaSEw skip (complete on disk)
+[114/175] swap_experiments__TU3wJQfKz8 skip (complete on disk)
+[115/175] swap_experiments__WoGnnggVCZ running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 10, 'retry_after_seconds_raw': 9.639, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 10, 'retry_after_seconds_raw': 9.639, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[115/175] swap_experiments__WoGnnggVCZ done
+[116/175] swap_experiments__XYRPm8rAGM skip (complete on disk)
+[117/175] swap_experiments__aisfb733DW skip (complete on disk)
+[118/175] swap_experiments__bgcdO9lmug skip (complete on disk)
+[119/175] swap_experiments__hvLBTpiDt3 skip (complete on disk)
+[120/175] swap_experiments__ju4EwaLeoI skip (complete on disk)
+[121/175] swap_experiments__l2zFn6TIQi skip (complete on disk)
+[122/175] swap_experiments__pNxD5dpu1M skip (complete on disk)
+[123/175] swap_experiments__r0opxuq8T8 skip (complete on disk)
+[124/175] swap_experiments__wMj6PgKVuJ skip (complete on disk)
+[125/175] swap_experiments__zmHqlXGTTl skip (complete on disk)
+[126/175] rot_2__1Qpt43cqhg running...
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'llm_call_failed' closed 
+'agent_execution_started' (expected 'llm_call_started')
+ERROR:crewai.flow.flow:Error executing listener call_llm_and_parse: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 10, 'retry_after_seconds_raw': 9.639, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[126/175] rot_2__1Qpt43cqhg done
+[127/175] rot_2__6jxUsDAdAu running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[127/175] rot_2__6jxUsDAdAu done
+[128/175] rot_2__7EhS3YBxjY skip (complete on disk)
+[129/175] rot_2__85WHuB5CUK running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[129/175] rot_2__85WHuB5CUK done
+[130/175] rot_2__8dzKkeWUUb skip (complete on disk)
+[131/175] rot_2__FXJm5r17Q7 skip (complete on disk)
+[132/175] rot_2__GjM61KRiTG skip (complete on disk)
+[133/175] rot_2__Gx04TnVjee running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[133/175] rot_2__Gx04TnVjee done
+[134/175] rot_2__KlN00vQEY2 running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[134/175] rot_2__KlN00vQEY2 done
+[135/175] rot_2__LFn7s8yRUF running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[135/175] rot_2__LFn7s8yRUF done
+[136/175] rot_2__MKpiaqh7R0 skip (complete on disk)
+[137/175] rot_2__RwCxxaHvyp skip (complete on disk)
+[138/175] rot_2__ScVnYBaSEw skip (complete on disk)
+[139/175] rot_2__TU3wJQfKz8 skip (complete on disk)
+[140/175] rot_2__WoGnnggVCZ running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[140/175] rot_2__WoGnnggVCZ done
+[141/175] rot_2__XYRPm8rAGM skip (complete on disk)
+[142/175] rot_2__aisfb733DW skip (complete on disk)
+[143/175] rot_2__bgcdO9lmug skip (complete on disk)
+[144/175] rot_2__hvLBTpiDt3 running...
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 9, 'retry_after_seconds_raw': 8.243, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 9, 'retry_after_seconds_raw': 8.243, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[144/175] rot_2__hvLBTpiDt3 FAILED: incomplete artifacts at /Users/akshat/Desktop/seminar/multi-agent-peer-review/eval/reviews/full/rot_2__hvLBTpiDt3
+[145/175] rot_2__ju4EwaLeoI skip (complete on disk)
+[146/175] rot_2__l2zFn6TIQi skip (complete on disk)
+[147/175] rot_2__pNxD5dpu1M running...
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'llm_call_failed' closed 
+'agent_execution_started' (expected 'llm_call_started')
+ERROR:crewai.flow.flow:Error executing listener call_llm_native_tools: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 9, 'retry_after_seconds_raw': 8.243, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 6, 'retry_after_seconds_raw': 5.553, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 6, 'retry_after_seconds_raw': 5.553, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'llm_call_failed' closed 
+'agent_execution_started' (expected 'llm_call_started')
+ERROR:crewai.flow.flow:Error executing listener call_llm_native_tools: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 6, 'retry_after_seconds_raw': 5.553, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 3, 'retry_after_seconds_raw': 2.863, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+ERROR:root:OpenAI API call failed: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 3, 'retry_after_seconds_raw': 2.863, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'llm_call_failed' closed 
+'agent_execution_started' (expected 'llm_call_started')
+ERROR:crewai.flow.flow:Error executing listener call_llm_native_tools: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 3, 'retry_after_seconds_raw': 2.863, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'task_failed' closed 
+'agent_execution_started' (expected 'task_started')
+[CrewAIEventsBus] Warning: Event pairing mismatch. 'crew_kickoff_failed' closed 
+'agent_execution_started' (expected 'crew_kickoff_started')
+
+
+╭────────────────────────── Tracing Preference Saved ──────────────────────────╮
+│                                                                              │
+│  Info: Tracing has been disabled.                                            │
+│                                                                              │
+│  Your preference has been saved. Future Crew/Flow executions will not        │
+│  collect traces.                                                             │
+│                                                                              │
+│  To enable tracing later, do any one of these:                               │
+│  • Set tracing=True in your Crew/Flow code                                   │
+│  • Set CREWAI_TRACING_ENABLED=true in your project's .env file               │
+│  • Run: crewai traces enable                                                 │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[147/175] rot_2__pNxD5dpu1M FAILED: RateLimitError("Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False, 'retry_after_seconds': 3, 'retry_after_seconds_raw': 2.863, 'previous_errors': [{'code': 429, 'message': 'Provider returned error', 'provider_name': 'DeepInfra', 'raw': 'mistralai/mistral-small-3.2-24b-instruct is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations'}]}}, 'user_id': 'user_3DwtnsssTXV8dGX0AYjdWk8NoS8'}")
+[148/175] rot_2__r0opxuq8T8 skip (complete on disk)
+[149/175] rot_2__wMj6PgKVuJ skip (complete on disk)
+[150/175] rot_2__zmHqlXGTTl skip (complete on disk)
+[151/175] swap_leader__1Qpt43cqhg skip (complete on disk)
+[152/175] swap_leader__6jxUsDAdAu skip (complete on disk)
+[153/175] swap_leader__7EhS3YBxjY skip (complete on disk)
+[154/175] swap_leader__85WHuB5CUK skip (complete on disk)
+[155/175] swap_leader__8dzKkeWUUb skip (complete on disk)
+[156/175] swap_leader__FXJm5r17Q7 skip (complete on disk)
+[157/175] swap_leader__GjM61KRiTG skip (complete on disk)
+[158/175] swap_leader__Gx04TnVjee skip (complete on disk)
+[159/175] swap_leader__KlN00vQEY2 skip (complete on disk)
+[160/175] swap_leader__LFn7s8yRUF skip (complete on disk)
+[161/175] swap_leader__MKpiaqh7R0 skip (complete on disk)
+[162/175] swap_leader__RwCxxaHvyp skip (complete on disk)
+[163/175] swap_leader__ScVnYBaSEw skip (complete on disk)
+[164/175] swap_leader__TU3wJQfKz8 skip (complete on disk)
+[165/175] swap_leader__WoGnnggVCZ skip (complete on disk)
+[166/175] swap_leader__XYRPm8rAGM skip (complete on disk)
+[167/175] swap_leader__aisfb733DW skip (complete on disk)
+[168/175] swap_leader__bgcdO9lmug skip (complete on disk)
+[169/175] swap_leader__hvLBTpiDt3 skip (complete on disk)
+[170/175] swap_leader__ju4EwaLeoI skip (complete on disk)
+[171/175] swap_leader__l2zFn6TIQi skip (complete on disk)
+[172/175] swap_leader__pNxD5dpu1M skip (complete on disk)
+[173/175] swap_leader__r0opxuq8T8 skip (complete on disk)
+[174/175] swap_leader__wMj6PgKVuJ skip (complete on disk)
+[175/175] swap_leader__zmHqlXGTTl skip (complete on disk)
+
+batch full: 17 done, 154 skipped, 4 failed
+reviews: /Users/akshat/Desktop/seminar/multi-agent-peer-review/eval/reviews/full

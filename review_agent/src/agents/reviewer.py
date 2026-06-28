@@ -51,7 +51,12 @@ from crewai.events.listeners.tracing.utils import set_suppress_tracing_messages
 
 set_suppress_tracing_messages(True)
 
-from ..utils import ReviewTraceListener, TraceLogger, parse_review
+from ..utils import (
+    ReviewTraceListener,
+    TraceLogger,
+    normalize_final_review,
+    parse_review,
+)
 from ..utils.openrouter import append_qwen_no_think, build_openrouter_llm_kwargs
 from ..utils.role_labels import ROLE_LABELS
 from .prompt_loader import PromptLoader
@@ -229,7 +234,10 @@ class MultiAgentReviewer:
             listener.flush()
         duration_ms = round((time.monotonic() - started) * 1000, 1)
 
-        text = getattr(result, "raw", None) or str(result)
+        raw = getattr(result, "raw", None) or str(result)
+        # Drop any leader planning/preamble so the judge and comment extractor
+        # (which read final_review.md verbatim) only see the review itself.
+        text = normalize_final_review(raw)
         trace_logger.save_review(text)
         parsed = parse_review(text)
         trace_logger.save_review_json(parsed)

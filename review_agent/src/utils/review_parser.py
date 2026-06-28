@@ -24,6 +24,39 @@ _HEADER_RE = re.compile(
 )
 
 
+def normalize_final_review(text: str) -> str:
+    """Return the review text trimmed to ``[first section header … RATING line]``.
+
+    The leader prompt asks the model to "draft a high-level plan" and "write the
+    current step you are working on", which some models (notably Mistral) dump
+    into their *final* task output as a preamble (e.g. ``### Current Step: …`` or
+    ``**Step 1** …``) before the actual ``## Summary``. The judge and comment
+    extractor read ``final_review.md`` verbatim, so that scaffolding leaks into
+    the metrics. This strips any leading preamble before the first recognised
+    section header and any trailing text after the ``RATING:`` line, preserving
+    the model's own review prose in between.
+
+    Falls back to the original text when no section header is found (so a
+    genuinely degenerate output is never silently blanked).
+    """
+    if not text or not isinstance(text, str):
+        return text
+
+    first_header = _HEADER_RE.search(text)
+    if first_header is None:
+        return text
+
+    start = first_header.start()
+    end = len(text)
+    last_rating = None
+    for m in _RATING_RE.finditer(text):
+        last_rating = m
+    if last_rating is not None:
+        end = last_rating.end()
+
+    return text[start:end].strip() + "\n"
+
+
 def parse_review(text: str) -> dict[str, Any]:
     """Return ``summary``, ``strengths``, ``weaknesses``, ``questions``, ``rating``.
 

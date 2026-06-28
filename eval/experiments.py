@@ -58,6 +58,18 @@ class EvalPaths:
         return self.root / "eval" / "reviews" / self.name
 
 
+def _attempt_rating_ok(run_dir: Path) -> bool:
+    """True iff the attempt produced a substantive review (rating + all sections).
+
+    Shares :func:`utils.spec.review_is_substantive` with ``is_run_complete`` so
+    the retry loop and the completeness gate agree on what counts as a usable
+    review.
+    """
+    from utils.spec import review_is_substantive
+
+    return review_is_substantive(run_dir / "review.json")
+
+
 def default_runner(
     models: dict[str, str],
     paper_text: str,
@@ -65,20 +77,63 @@ def default_runner(
     output_dir: Path,
     run_name_: str,
 ) -> Path:
-    """Run the real reviewer for one combo and return its run directory."""
+    """Run the real reviewer for one combo and return its run directory.
+
+    Retries up to ``REVIEW_MAX_ATTEMPTS`` (default 3) when an attempt fails to
+    yield a parseable review (``rating is None``) or raises (e.g. a transient
+    upstream ``429``). Each attempt runs in an isolated ``_attempts/`` directory
+    so traces never interleave; the first attempt that produces a valid rating
+    (else the last attempt) is committed to ``output_dir/run_name_``. This makes
+    a single batch invocation self-healing against the deterministic
+    Mistral-leader formatting failures and sporadic rate limits seen on the full
+    run, without changing prompts, temperature, or topology.
+    """
     _bootstrap_review_env()
+    import shutil
+    import time as _time
+
     from src.agents.reviewer import MultiAgentReviewer  # type: ignore[import]
     from src.utils import TraceLogger  # type: ignore[import]
 
-    trace = TraceLogger(output_dir=output_dir, run_name=run_name_)
-    reviewer = MultiAgentReviewer(
-        leader_model=models["leader"],
-        clarity_model=models["clarity"],
-        experiments_model=models["experiments"],
-        impact_model=models["impact"],
-    )
-    reviewer.review(paper_text, trace_logger=trace, paper_id=paper_id)
-    return trace.run_dir
+    max_attempts = max(1, int(os.getenv("REVIEW_MAX_ATTEMPTS", "3")))
+    attempts_root = Path(output_dir) / "_attempts"
+    final_dir = Path(output_dir) / run_name_
+
+    last_dir: Path | None = None
+    for attempt in range(1, max_attempts + 1):
+        attempt_dir = attempts_root / f"{run_name_}__a{attempt}"
+        if attempt_dir.exists():
+            shutil.rmtree(attempt_dir)
+        trace = TraceLogger(output_dir=attempts_root, run_name=f"{run_name_}__a{attempt}")
+        # Fresh reviewer per attempt so no leader/agent state carries over.
+        reviewer = MultiAgentReviewer(
+            leader_model=models["leader"],
+            clarity_model=models["clarity"],
+            experiments_model=models["experiments"],
+            impact_model=models["impact"],
+        )
+        try:
+            reviewer.review(paper_text, trace_logger=trace, paper_id=paper_id)
+        except Exception:  # noqa: BLE001 - retry transient failures (e.g. 429)
+            last_dir = trace.run_dir
+            if attempt < max_attempts:
+                _time.sleep(min(30, 5 * attempt))
+                continue
+            break
+        last_dir = trace.run_dir
+        if _attempt_rating_ok(trace.run_dir):
+            break
+        if attempt < max_attempts:
+            _time.sleep(min(30, 5 * attempt))
+
+    # Commit the winning (or last) attempt to the canonical run directory.
+    if last_dir is not None:
+        if final_dir.exists():
+            shutil.rmtree(final_dir)
+        shutil.move(str(last_dir), str(final_dir))
+    for stale in attempts_root.glob(f"{run_name_}__a*"):
+        shutil.rmtree(stale, ignore_errors=True)
+    return final_dir
 
 
 _REVIEW_ENV_READY = False

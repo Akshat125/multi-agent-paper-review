@@ -1,9 +1,3 @@
-### Current Step: Synthesize Feedback
-
-I have received feedback from all three expert reviewers. Now, I will synthesize their feedback into a single, high-quality final review of the paper. I will organize the feedback according to the required Markdown headers: ## Summary, ## Strengths, ## Weaknesses, and ## Questions. Finally, I will provide an overall rating based on the rubric.
-
----
-
 ## Summary
 
 The paper introduces MIA-Bench, a new benchmark designed to evaluate multimodal large language models (MLLMs) on their ability to strictly adhere to complex instructions. The benchmark comprises 400 image-prompt pairs, each crafted to challenge the models' compliance with layered instructions. The paper also explores supervised fine-tuning (SFT) to enhance the models' ability to follow instructions without compromising performance on other tasks. The evaluation results from a wide array of state-of-the-art MLLMs reveal significant variations in performance, highlighting areas for improvement in instruction fidelity.

@@ -1,5 +1,3 @@
-### Current Step: Writing the Final Review
-
 ## Summary
 The paper "Ref-EMGBench: Benchmarking Reference Normalization for Electromyography Data" systematically evaluates five amplitude-based normalization techniques (Z-score, Min-Max, RMS, MAV, and Peak) to mitigate domain shift in EMG data for hand gesture recognition. Using a leave-one-subject-out approach and three diverse datasets (CapgMyo, NinaPro DB3, and NinaPro DB5), the study benchmarks these methods to assess their effectiveness in reducing intersubject variability and improving classification accuracy. The paper also provides detailed visualizations, including t-SNE plots and Wasserstein distance matrices, to analyze the impact of normalization on feature space and distribution alignment. Key findings highlight the superior performance of Min-Max and Peak normalization, as well as the benefits of inter-subject normalization over intra-subject normalization.
 

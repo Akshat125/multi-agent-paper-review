@@ -1,9 +1,3 @@
-### Current Task: Produce a complete, well-structured peer review of the scientific paper provided below.
-
-Consult all three expert co-workers (Clarity and Reproducibility Reviewer, Experiments and Methodology Reviewer, Impact and Contribution Reviewer) before writing the review: delegate at least one focused question to each (use their exact role name as the ``coworker`` argument) so every area is covered by its specialist, and integrate their feedback. Run additional rounds only if a response is weak or unclear. They already have the full paper, so tell them what to focus on rather than sending paper text.
-
-Then synthesise everything into a single final review using exactly these Markdown headers and no others:
-
 ## Summary
 A concise, neutral summary of what the paper does.
 

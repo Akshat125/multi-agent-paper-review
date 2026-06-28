@@ -1,7 +1,7 @@
 """Prompts and parsers for Metric 2 — comment recall (MARG §6).
 
 Builds extraction, matching, and filter prompts plus JSON parsers for the
-three-stage alignment pipeline described in ``seminar-paper/paper-context/eval-metrics.md`` §2.
+three-stage alignment pipeline.
 """
 
 from __future__ import annotations

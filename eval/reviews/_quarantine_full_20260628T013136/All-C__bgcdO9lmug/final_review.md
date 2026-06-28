@@ -1,0 +1,17 @@
+## Summary
+The paper proposes a novel method, RePrompt, which optimizes the step-by-step instructions in the prompts given to LLM agents based on the chat history obtained from interactions and reflections with LLM agents. The method is based on a "gradient descent"-like approach, which uses the dialogue history from interactions between LLM agents and feedback providers to optimize the prompts. The paper demonstrates the effectiveness of RePrompt in improving the performance of LLM agents in two tasks: PDDL generation and travel planning.
+
+## Strengths
+The paper has several strengths. Firstly, the proposed RePrompt method is novel and addresses a significant limitation in the current state of LLMs, which is the need for a solution checker to evaluate the performance of prompts. The method is also based on a "gradient descent"-like approach, which is a well-established optimization technique. The paper provides some significant results, demonstrating the effectiveness of RePrompt in improving the performance of LLM agents in two different tasks. The results show that RePrompt can achieve a higher first-round success rate and improve the overall performance of the LLM agents.
+
+## Weaknesses
+The paper has some weaknesses. Firstly, the evaluation is limited to two specific tasks, and it is unclear whether the results can be generalized to other tasks or domains. The paper builds upon existing work in prompt engineering and LLMs, and the proposed RePrompt method may not be entirely new or groundbreaking. The paper's discussion on potential limitations and challenges is limited, and further exploration of these issues is needed.
+
+## Questions
+Some questions that arise from the paper include:
+* Can the RePrompt method be applied to other tasks and domains beyond PDDL generation and travel planning?
+* How does the quality of the feedback provided by the feedback generators affect the performance of the RePrompt method?
+* What are the computational resources required to train and deploy the RePrompt model, and how does this affect its scalability and practicality?
+* How does the RePrompt method handle potential errors or inconsistencies in the chat history, and what are the implications of these errors on the optimized prompts?
+
+RATING: 8

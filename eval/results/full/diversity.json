@@ -1,0 +1,366 @@
+{
+  "metric": "diversity",
+  "run_set": "full",
+  "computed_at": "2026-06-28T08:02:37.133881+00:00",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "compute_vendi": true,
+  "homogeneous_configs": [
+    "All-A",
+    "All-B",
+    "All-C"
+  ],
+  "papers": [
+    "7EhS3YBxjY",
+    "LFn7s8yRUF",
+    "MKpiaqh7R0",
+    "RwCxxaHvyp",
+    "aisfb733DW",
+    "bgcdO9lmug",
+    "pNxD5dpu1M"
+  ],
+  "n_papers": 7,
+  "per_role_per_paper": {
+    "leader": {
+      "7EhS3YBxjY": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.8917474746704102,
+        "diversity": 0.10825252532958984,
+        "vendi_score": 1.3556905393529883
+      },
+      "LFn7s8yRUF": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.8772010207176208,
+        "diversity": 0.12279897928237915,
+        "vendi_score": 1.3980968459648597
+      },
+      "MKpiaqh7R0": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.8757784962654114,
+        "diversity": 0.12422150373458862,
+        "vendi_score": 1.3987043926492322
+      },
+      "RwCxxaHvyp": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.8604300618171692,
+        "diversity": 0.1395699381828308,
+        "vendi_score": 1.4482482346058085
+      },
+      "aisfb733DW": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.4300730228424072,
+        "diversity": 0.5699269771575928,
+        "vendi_score": 2.116567253045574
+      },
+      "bgcdO9lmug": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.8066251277923584,
+        "diversity": 0.1933748722076416,
+        "vendi_score": 1.59265830560675
+      },
+      "pNxD5dpu1M": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.856395959854126,
+        "diversity": 0.14360404014587402,
+        "vendi_score": 1.460963414132687
+      }
+    },
+    "clarity": {
+      "7EhS3YBxjY": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.8099097609519958,
+        "diversity": 0.19009023904800415,
+        "vendi_score": 1.580629455580134
+      },
+      "LFn7s8yRUF": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.6255394816398621,
+        "diversity": 0.37446051836013794,
+        "vendi_score": 1.9892103738434241
+      },
+      "MKpiaqh7R0": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.45978936553001404,
+        "diversity": 0.540210634469986,
+        "vendi_score": 2.4070280580545838
+      },
+      "RwCxxaHvyp": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.7949402928352356,
+        "diversity": 0.2050597071647644,
+        "vendi_score": 1.6232396969552705
+      },
+      "aisfb733DW": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.589949905872345,
+        "diversity": 0.41005009412765503,
+        "vendi_score": 1.9989212123706475
+      },
+      "bgcdO9lmug": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.702953040599823,
+        "diversity": 0.297046959400177,
+        "vendi_score": 1.8630407527570712
+      },
+      "pNxD5dpu1M": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.799100935459137,
+        "diversity": 0.20089906454086304,
+        "vendi_score": 1.6223257871425223
+      }
+    },
+    "experiments": {
+      "7EhS3YBxjY": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.7388722896575928,
+        "diversity": 0.2611277103424072,
+        "vendi_score": 1.773276153119046
+      },
+      "LFn7s8yRUF": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.8544783592224121,
+        "diversity": 0.1455216407775879,
+        "vendi_score": 1.468670590206787
+      },
+      "MKpiaqh7R0": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.489547461271286,
+        "diversity": 0.510452538728714,
+        "vendi_score": 2.361817630945799
+      },
+      "RwCxxaHvyp": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.5055870413780212,
+        "diversity": 0.49441295862197876,
+        "vendi_score": 2.325467155891301
+      },
+      "aisfb733DW": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.6561216711997986,
+        "diversity": 0.3438783288002014,
+        "vendi_score": 1.9989426585836771
+      },
+      "bgcdO9lmug": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.5565223097801208,
+        "diversity": 0.44347769021987915,
+        "vendi_score": 2.231437465821444
+      },
+      "pNxD5dpu1M": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.7811062335968018,
+        "diversity": 0.21889376640319824,
+        "vendi_score": 1.655152676420063
+      }
+    },
+    "impact": {
+      "7EhS3YBxjY": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.8743384480476379,
+        "diversity": 0.12566155195236206,
+        "vendi_score": 1.4085464198515938
+      },
+      "LFn7s8yRUF": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.8783509135246277,
+        "diversity": 0.12164908647537231,
+        "vendi_score": 1.400455909767423
+      },
+      "MKpiaqh7R0": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.5627423524856567,
+        "diversity": 0.43725764751434326,
+        "vendi_score": 2.020179548348564
+      },
+      "RwCxxaHvyp": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.8303017616271973,
+        "diversity": 0.16969823837280273,
+        "vendi_score": 1.5037470065588459
+      },
+      "aisfb733DW": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.816676139831543,
+        "diversity": 0.18332386016845703,
+        "vendi_score": 1.5776841885111106
+      },
+      "bgcdO9lmug": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.7833191752433777,
+        "diversity": 0.21668082475662231,
+        "vendi_score": 1.6669957338482726
+      },
+      "pNxD5dpu1M": {
+        "n_models": 3,
+        "configs": [
+          "All-A",
+          "All-B",
+          "All-C"
+        ],
+        "similarity": 0.8471546173095703,
+        "diversity": 0.1528453826904297,
+        "vendi_score": 1.4900668228203184
+      }
+    }
+  },
+  "per_role": {
+    "leader": {
+      "diversity": 0.20024983372007096,
+      "similarity": 0.799750166279929,
+      "n_papers": 7,
+      "vendi_score": 1.5387041407654143
+    },
+    "clarity": {
+      "diversity": 0.31683103101594107,
+      "similarity": 0.6831689689840589,
+      "n_papers": 7,
+      "vendi_score": 1.8691993338148076
+    },
+    "experiments": {
+      "diversity": 0.3453949476991381,
+      "similarity": 0.6546050523008619,
+      "n_papers": 7,
+      "vendi_score": 1.973537761569731
+    },
+    "impact": {
+      "diversity": 0.20101665599005564,
+      "similarity": 0.7989833440099444,
+      "n_papers": 7,
+      "vendi_score": 1.581096518529447
+    }
+  }
+}

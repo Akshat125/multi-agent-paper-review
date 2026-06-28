@@ -1,8 +1,13 @@
 """Metric 3 — per-role cross-model diversity (H2 mechanism).
 
 Measures how much different models diverge in their per-role outputs using
-embedding cosine similarity, restricted to the homogeneous-config runs
-(All-A / All-B / All-C) where each config runs one model in all roles.
+embedding cosine similarity. Restricted to the homogeneous-config runs
+(All-A / All-B / All-C, each running one model in all roles) and, within those,
+to the *common papers* where every homogeneous config supplies every role. That
+common-paper restriction keeps the comparison balanced (same configs, same
+papers, same model count per cell) and lets an otherwise single-agent config
+(e.g. All-C/llama, which only delegates on some papers) join on exactly the
+papers where it produced expert outputs.
 
 Two descriptive jobs only:
   (1) Precondition — models genuinely produce different content per role.
@@ -73,7 +78,6 @@ def cosine_sim_matrix(embeddings: np.ndarray) -> np.ndarray:
 def irsim(sim_matrix: np.ndarray) -> float:
     """Mean pairwise cosine similarity (off-diagonal) for M models.
 
-    Formula from eval-metrics.md §3:
         IRSim_r(p) = 1/(M(M-1)) * Σ_{i≠j} cos(E(o_r^i), E(o_r^j))
     """
     m = sim_matrix.shape[0]
@@ -86,7 +90,6 @@ def irsim(sim_matrix: np.ndarray) -> float:
 def vendi_score(sim_matrix: np.ndarray) -> float:
     """Effective number of distinct outputs via matrix-entropy (Von Neumann).
 
-    Formula from eval-metrics.md §3:
         K = sim_matrix / M  (normalized so trace = 1)
         VS = exp(-Σ λ_k log λ_k)     where λ_k are eigenvalues of K
     Result in [1, M]: 1 = all identical, M = all orthogonal.
@@ -111,28 +114,51 @@ def collect_homogeneous_configs(run_set: RunSet) -> list[str]:
     return sorted(cid for cid, cfg in run_set.configs.items() if cfg.homogeneous)
 
 
-def compute_diversity(
+def common_papers(
+    run_set: RunSet,
+    config_ids: list[str],
+    run_index: dict[tuple[str, str], Any],
+    paper_ids: list[str],
+) -> list[str]:
+    """Papers where *every* given config has *every* role's output.
+
+    This is the balanced comparison set: on these papers each config supplies a
+    full set of per-role texts, so a single-agent config (e.g. All-C/llama) can
+    join the cross-model comparison on exactly the papers where it did delegate.
+    """
+    selected: list[str] = []
+    for paper_id in paper_ids:
+        ok = True
+        for config_id in config_ids:
+            key = (config_id, paper_id)
+            if key not in run_index:
+                ok = False
+                break
+            artifacts = run_set.open_run(run_index[key])
+            if not all(artifacts.has_role_output(role) for role in ROLES):
+                ok = False
+                break
+        if ok:
+            selected.append(paper_id)
+    return selected
+
+
+def _diversity_for_configs(
     run_set: RunSet,
     embedder: Embedder,
+    config_ids: list[str],
+    run_index: dict[tuple[str, str], Any],
+    paper_ids: list[str],
     *,
-    compute_vendi: bool = True,
+    compute_vendi: bool,
 ) -> dict[str, Any]:
-    """Per-role diversity over the homogeneous configs of a batch.
+    """Per-role IRSim diversity over ``config_ids`` × ``paper_ids``.
 
-    For each role × paper, collects one output per homogeneous config, embeds
-    them, and computes IRSim-derived diversity (and optionally Vendi Score).
-    Aggregates per role via macro-average over papers.
+    A (role, paper) cell is included only when ≥2 of the configs have that
+    role's output; configs missing the output for that cell are skipped. Each
+    cell records which configs contributed. Aggregates per role by
+    macro-averaging over the included papers.
     """
-    homo_ids = collect_homogeneous_configs(run_set)
-    if len(homo_ids) < 2:
-        raise ValueError(
-            f"Metric 3 requires ≥2 homogeneous configs; "
-            f"found {len(homo_ids)}: {homo_ids}"
-        )
-
-    run_index = run_set.runs_by_config_paper()
-    paper_ids = run_set.paper_ids()
-
     per_role_per_paper: dict[str, dict[str, dict[str, Any]]] = {
         role: {} for role in ROLES
     }
@@ -140,12 +166,16 @@ def compute_diversity(
     for role in ROLES:
         for paper_id in paper_ids:
             texts: list[str] = []
-            for config_id in homo_ids:
+            contributing: list[str] = []
+            for config_id in config_ids:
                 key = (config_id, paper_id)
                 if key not in run_index:
                     continue
                 artifacts = run_set.open_run(run_index[key])
+                if not artifacts.has_role_output(role):
+                    continue
                 texts.append(artifacts.role_output(role))
+                contributing.append(config_id)
 
             if len(texts) < 2:
                 continue
@@ -153,12 +183,12 @@ def compute_diversity(
             embeddings = embedder.encode(texts)
             sim_mat = cosine_sim_matrix(embeddings)
             sim = irsim(sim_mat)
-            diversity = 1.0 - sim
 
             entry: dict[str, Any] = {
                 "n_models": len(texts),
+                "configs": contributing,
                 "similarity": sim,
-                "diversity": diversity,
+                "diversity": 1.0 - sim,
             }
             if compute_vendi:
                 entry["vendi_score"] = vendi_score(sim_mat)
@@ -183,10 +213,54 @@ def compute_diversity(
                 agg["vendi_score"] = mean(vendis)
         per_role[role] = agg
 
+    return {"per_role_per_paper": per_role_per_paper, "per_role": per_role}
+
+
+def compute_diversity(
+    run_set: RunSet,
+    embedder: Embedder,
+    *,
+    compute_vendi: bool = True,
+) -> dict[str, Any]:
+    """Balanced per-role cross-model diversity over the homogeneous configs.
+
+    Restricts to ``common_papers`` — the papers where every homogeneous config
+    supplies every role — so all configs are compared on the same papers with
+    the same model count per cell. This naturally includes an otherwise
+    single-agent config (e.g. All-C/llama) on exactly the papers where it
+    delegated, rather than dropping it entirely or mixing model counts.
+
+    For each role × common paper, embeds one output per config and computes
+    IRSim-derived diversity (and optionally Vendi Score), then macro-averages
+    per role over papers.
+    """
+    homo_ids = collect_homogeneous_configs(run_set)
+    if len(homo_ids) < 2:
+        raise ValueError(
+            f"Metric 3 requires ≥2 homogeneous configs; "
+            f"found {len(homo_ids)}: {homo_ids}"
+        )
+
+    run_index = run_set.runs_by_config_paper()
+    paper_ids = run_set.paper_ids()
+
+    papers = common_papers(run_set, homo_ids, run_index, paper_ids)
+    if not papers:
+        raise ValueError(
+            "Metric 3 found no papers where every homogeneous config "
+            f"({homo_ids}) supplies all roles; cannot compute diversity."
+        )
+
+    result = _diversity_for_configs(
+        run_set, embedder, homo_ids, run_index, papers,
+        compute_vendi=compute_vendi,
+    )
+
     return {
         "homogeneous_configs": homo_ids,
-        "per_role_per_paper": per_role_per_paper,
-        "per_role": per_role,
+        "papers": papers,
+        "n_papers": len(papers),
+        **result,
     }
 
 

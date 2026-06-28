@@ -1,0 +1,6444 @@
+{
+  "metric": "cost",
+  "run_set": "full",
+  "computed_at": "2026-06-28T07:39:48.322188+00:00",
+  "prices_path": "/Users/akshat/Desktop/seminar/multi-agent-peer-review/eval/prices.json",
+  "missing_price_models": [],
+  "per_run": {
+    "All-A": {
+      "1Qpt43cqhg": {
+        "input_tokens": 85905,
+        "output_tokens": 8510,
+        "cost_usd": 0.0168774,
+        "time_s": 419.3366,
+        "by_role": {
+          "leader": {
+            "input_tokens": 58358,
+            "output_tokens": 1537,
+            "cost_usd": 0.00904621,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9241,
+            "output_tokens": 3217,
+            "cost_usd": 0.0031274299999999996,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9206,
+            "output_tokens": 3032,
+            "cost_usd": 0.00301708,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9100,
+            "output_tokens": 724,
+            "cost_usd": 0.00168668,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "6jxUsDAdAu": {
+        "input_tokens": 208123,
+        "output_tokens": 6104,
+        "cost_usd": 0.0326165,
+        "time_s": 430.7875,
+        "by_role": {
+          "leader": {
+            "input_tokens": 125794,
+            "output_tokens": 1430,
+            "cost_usd": 0.01842626,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 27484,
+            "output_tokens": 2381,
+            "cost_usd": 0.00520493,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 27462,
+            "output_tokens": 1420,
+            "cost_usd": 0.0046540800000000005,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 27383,
+            "output_tokens": 873,
+            "cost_usd": 0.00433123,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "7EhS3YBxjY": {
+        "input_tokens": 70709,
+        "output_tokens": 8590,
+        "cost_usd": 0.01479556,
+        "time_s": 412.31059999999997,
+        "by_role": {
+          "leader": {
+            "input_tokens": 48189,
+            "output_tokens": 1805,
+            "cost_usd": 0.0077753100000000006,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 7563,
+            "output_tokens": 1670,
+            "cost_usd": 0.00201072,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 7540,
+            "output_tokens": 2814,
+            "cost_usd": 0.00265958,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7417,
+            "output_tokens": 2301,
+            "cost_usd": 0.00234995,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "85WHuB5CUK": {
+        "input_tokens": 105397,
+        "output_tokens": 10113,
+        "cost_usd": 0.02051999,
+        "time_s": 532.652,
+        "by_role": {
+          "leader": {
+            "input_tokens": 70221,
+            "output_tokens": 1399,
+            "cost_usd": 0.010628370000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 11785,
+            "output_tokens": 3181,
+            "cost_usd": 0.00346307,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 11751,
+            "output_tokens": 3076,
+            "cost_usd": 0.00339846,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11640,
+            "output_tokens": 2457,
+            "cost_usd": 0.00303009,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "8dzKkeWUUb": {
+        "input_tokens": 106065,
+        "output_tokens": 9314,
+        "cost_usd": 0.020158080000000002,
+        "time_s": 692.5225,
+        "by_role": {
+          "leader": {
+            "input_tokens": 70007,
+            "output_tokens": 1264,
+            "cost_usd": 0.010521460000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 12073,
+            "output_tokens": 2766,
+            "cost_usd": 0.00326684,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 12045,
+            "output_tokens": 3096,
+            "cost_usd": 0.00345102,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11940,
+            "output_tokens": 2188,
+            "cost_usd": 0.00291876,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "FXJm5r17Q7": {
+        "input_tokens": 78855,
+        "output_tokens": 9237,
+        "cost_usd": 0.01630479,
+        "time_s": 422.3635,
+        "by_role": {
+          "leader": {
+            "input_tokens": 54184,
+            "output_tokens": 1669,
+            "cost_usd": 0.00853709,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 8255,
+            "output_tokens": 2919,
+            "cost_usd": 0.00281953,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8253,
+            "output_tokens": 2688,
+            "cost_usd": 0.00268758,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8163,
+            "output_tokens": 1961,
+            "cost_usd": 0.00226059,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "GjM61KRiTG": {
+        "input_tokens": 118841,
+        "output_tokens": 9535,
+        "cost_usd": 0.022072690000000002,
+        "time_s": 403.2902,
+        "by_role": {
+          "leader": {
+            "input_tokens": 77635,
+            "output_tokens": 2045,
+            "cost_usd": 0.012034550000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 13790,
+            "output_tokens": 3498,
+            "cost_usd": 0.003924459999999999,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 13771,
+            "output_tokens": 2860,
+            "cost_usd": 0.00355814,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 13645,
+            "output_tokens": 1132,
+            "cost_usd": 0.00255554,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "Gx04TnVjee": {
+        "input_tokens": 98421,
+        "output_tokens": 12135,
+        "cost_usd": 0.020695889999999998,
+        "time_s": 515.8421,
+        "by_role": {
+          "leader": {
+            "input_tokens": 67142,
+            "output_tokens": 1592,
+            "cost_usd": 0.01030732,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 10468,
+            "output_tokens": 3183,
+            "cost_usd": 0.00327983,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10461,
+            "output_tokens": 3328,
+            "cost_usd": 0.0033615,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10350,
+            "output_tokens": 4032,
+            "cost_usd": 0.00374724,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "KlN00vQEY2": {
+        "input_tokens": 107718,
+        "output_tokens": 7423,
+        "cost_usd": 0.01931163,
+        "time_s": 238.44070000000002,
+        "by_role": {
+          "leader": {
+            "input_tokens": 69745,
+            "output_tokens": 1348,
+            "cost_usd": 0.01053266,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 12702,
+            "output_tokens": 2415,
+            "cost_usd": 0.00315483,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 12690,
+            "output_tokens": 2947,
+            "cost_usd": 0.00345639,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 12581,
+            "output_tokens": 713,
+            "cost_usd": 0.00216775,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "LFn7s8yRUF": {
+        "input_tokens": 18703,
+        "output_tokens": 4961,
+        "cost_usd": 0.005446190000000001,
+        "time_s": 187.5121,
+        "by_role": {
+          "leader": {
+            "input_tokens": 16140,
+            "output_tokens": 1331,
+            "cost_usd": 0.0030182700000000004,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 895,
+            "output_tokens": 1188,
+            "cost_usd": 0.0008024600000000001,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 889,
+            "output_tokens": 1546,
+            "cost_usd": 0.00100568,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 779,
+            "output_tokens": 896,
+            "cost_usd": 0.00061978,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "MKpiaqh7R0": {
+        "input_tokens": 276787,
+        "output_tokens": 18443,
+        "cost_usd": 0.04926269,
+        "time_s": 903.5449,
+        "by_role": {
+          "leader": {
+            "input_tokens": 189218,
+            "output_tokens": 2779,
+            "cost_usd": 0.02807455,
+            "llm_calls": 9
+          },
+          "clarity": {
+            "input_tokens": 22017,
+            "output_tokens": 4963,
+            "cost_usd": 0.00591129,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 32947,
+            "output_tokens": 7766,
+            "cost_usd": 0.0090392,
+            "llm_calls": 3
+          },
+          "impact": {
+            "input_tokens": 32605,
+            "output_tokens": 2935,
+            "cost_usd": 0.006237650000000001,
+            "llm_calls": 3
+          }
+        },
+        "missing_price_models": []
+      },
+      "RwCxxaHvyp": {
+        "input_tokens": 128220,
+        "output_tokens": 8790,
+        "cost_usd": 0.022961099999999998,
+        "time_s": 485.6045,
+        "by_role": {
+          "leader": {
+            "input_tokens": 82683,
+            "output_tokens": 1459,
+            "cost_usd": 0.012407250000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 15239,
+            "output_tokens": 3242,
+            "cost_usd": 0.0039814,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 15204,
+            "output_tokens": 2901,
+            "cost_usd": 0.00378213,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 15094,
+            "output_tokens": 1188,
+            "cost_usd": 0.00279032,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ScVnYBaSEw": {
+        "input_tokens": 118300,
+        "output_tokens": 7037,
+        "cost_usd": 0.020573090000000002,
+        "time_s": 306.3677,
+        "by_role": {
+          "leader": {
+            "input_tokens": 75203,
+            "output_tokens": 1462,
+            "cost_usd": 0.011361760000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 14424,
+            "output_tokens": 2310,
+            "cost_usd": 0.00333606,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14396,
+            "output_tokens": 2343,
+            "cost_usd": 0.00335095,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14277,
+            "output_tokens": 922,
+            "cost_usd": 0.00252432,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "TU3wJQfKz8": {
+        "input_tokens": 159367,
+        "output_tokens": 10067,
+        "cost_usd": 0.028049570000000003,
+        "time_s": 495.771,
+        "by_role": {
+          "leader": {
+            "input_tokens": 100753,
+            "output_tokens": 1459,
+            "cost_usd": 0.01493705,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 19588,
+            "output_tokens": 3118,
+            "cost_usd": 0.0045195800000000005,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 19567,
+            "output_tokens": 2552,
+            "cost_usd": 0.0041940200000000006,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 19459,
+            "output_tokens": 2938,
+            "cost_usd": 0.004398920000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "WoGnnggVCZ": {
+        "input_tokens": 94259,
+        "output_tokens": 7897,
+        "cost_usd": 0.017697550000000003,
+        "time_s": 337.9237,
+        "by_role": {
+          "leader": {
+            "input_tokens": 62401,
+            "output_tokens": 1332,
+            "cost_usd": 0.009495380000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 10680,
+            "output_tokens": 2477,
+            "cost_usd": 0.00290709,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10642,
+            "output_tokens": 3214,
+            "cost_usd": 0.0033218600000000003,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10536,
+            "output_tokens": 874,
+            "cost_usd": 0.0019732200000000004,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "XYRPm8rAGM": {
+        "input_tokens": 107410,
+        "output_tokens": 9374,
+        "cost_usd": 0.02038058,
+        "time_s": 498.54879999999997,
+        "by_role": {
+          "leader": {
+            "input_tokens": 70603,
+            "output_tokens": 1695,
+            "cost_usd": 0.01085057,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 12317,
+            "output_tokens": 2801,
+            "cost_usd": 0.00332095,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 12305,
+            "output_tokens": 3030,
+            "cost_usd": 0.0034498000000000003,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 12185,
+            "output_tokens": 1848,
+            "cost_usd": 0.0027592600000000004,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "aisfb733DW": {
+        "input_tokens": 94488,
+        "output_tokens": 10480,
+        "cost_usd": 0.019201919999999997,
+        "time_s": 440.3104,
+        "by_role": {
+          "leader": {
+            "input_tokens": 64034,
+            "output_tokens": 1488,
+            "cost_usd": 0.00981292,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 10208,
+            "output_tokens": 2611,
+            "cost_usd": 0.0029173899999999997,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10185,
+            "output_tokens": 3967,
+            "cost_usd": 0.0036870899999999996,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10061,
+            "output_tokens": 2414,
+            "cost_usd": 0.00278452,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "bgcdO9lmug": {
+        "input_tokens": 78269,
+        "output_tokens": 7618,
+        "cost_usd": 0.015299919999999998,
+        "time_s": 319.52090000000004,
+        "by_role": {
+          "leader": {
+            "input_tokens": 52980,
+            "output_tokens": 1327,
+            "cost_usd": 0.008173590000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 8478,
+            "output_tokens": 2842,
+            "cost_usd": 0.0028068599999999996,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8478,
+            "output_tokens": 2042,
+            "cost_usd": 0.0023508599999999998,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8333,
+            "output_tokens": 1407,
+            "cost_usd": 0.00196861,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "hvLBTpiDt3": {
+        "input_tokens": 253402,
+        "output_tokens": 12508,
+        "cost_usd": 0.04260584,
+        "time_s": 609.7106,
+        "by_role": {
+          "leader": {
+            "input_tokens": 162289,
+            "output_tokens": 2198,
+            "cost_usd": 0.023973320000000006,
+            "llm_calls": 7
+          },
+          "clarity": {
+            "input_tokens": 15279,
+            "output_tokens": 3569,
+            "cost_usd": 0.00417339,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 30457,
+            "output_tokens": 4904,
+            "cost_usd": 0.00705926,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 45377,
+            "output_tokens": 1837,
+            "cost_usd": 0.007399870000000001,
+            "llm_calls": 3
+          }
+        },
+        "missing_price_models": []
+      },
+      "ju4EwaLeoI": {
+        "input_tokens": 102109,
+        "output_tokens": 10381,
+        "cost_usd": 0.020212430000000003,
+        "time_s": 503.03340000000003,
+        "by_role": {
+          "leader": {
+            "input_tokens": 67793,
+            "output_tokens": 1903,
+            "cost_usd": 0.010575730000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 11487,
+            "output_tokens": 2768,
+            "cost_usd": 0.00318594,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 11470,
+            "output_tokens": 2793,
+            "cost_usd": 0.0031978099999999997,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11359,
+            "output_tokens": 2917,
+            "cost_usd": 0.00325295,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "l2zFn6TIQi": {
+        "input_tokens": 133286,
+        "output_tokens": 5715,
+        "cost_usd": 0.02191759,
+        "time_s": 319.2239,
+        "by_role": {
+          "leader": {
+            "input_tokens": 81584,
+            "output_tokens": 1542,
+            "cost_usd": 0.012300700000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 17292,
+            "output_tokens": 1172,
+            "cost_usd": 0.0030889199999999998,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 17262,
+            "output_tokens": 939,
+            "cost_usd": 0.00295191,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 17148,
+            "output_tokens": 2062,
+            "cost_usd": 0.0035760600000000003,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "pNxD5dpu1M": {
+        "input_tokens": 82321,
+        "output_tokens": 9446,
+        "cost_usd": 0.01690916,
+        "time_s": 274.7269,
+        "by_role": {
+          "leader": {
+            "input_tokens": 55809,
+            "output_tokens": 1566,
+            "cost_usd": 0.008705880000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 8889,
+            "output_tokens": 2542,
+            "cost_usd": 0.0026934,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8867,
+            "output_tokens": 2332,
+            "cost_usd": 0.00257062,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8756,
+            "output_tokens": 3006,
+            "cost_usd": 0.00293926,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "r0opxuq8T8": {
+        "input_tokens": 123813,
+        "output_tokens": 9520,
+        "cost_usd": 0.02276022,
+        "time_s": 414.511,
+        "by_role": {
+          "leader": {
+            "input_tokens": 80398,
+            "output_tokens": 1362,
+            "cost_usd": 0.01203206,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 14524,
+            "output_tokens": 3265,
+            "cost_usd": 0.00389441,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14505,
+            "output_tokens": 2626,
+            "cost_usd": 0.00352752,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14386,
+            "output_tokens": 2267,
+            "cost_usd": 0.00330623,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "wMj6PgKVuJ": {
+        "input_tokens": 86427,
+        "output_tokens": 7278,
+        "cost_usd": 0.01624824,
+        "time_s": 351.8505,
+        "by_role": {
+          "leader": {
+            "input_tokens": 57444,
+            "output_tokens": 1258,
+            "cost_usd": 0.008759220000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9712,
+            "output_tokens": 2341,
+            "cost_usd": 0.00269405,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9690,
+            "output_tokens": 2923,
+            "cost_usd": 0.0030227099999999996,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9581,
+            "output_tokens": 756,
+            "cost_usd": 0.0017722600000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "zmHqlXGTTl": {
+        "input_tokens": 89245,
+        "output_tokens": 10393,
+        "cost_usd": 0.018418310000000004,
+        "time_s": 489.5514,
+        "by_role": {
+          "leader": {
+            "input_tokens": 60887,
+            "output_tokens": 1760,
+            "cost_usd": 0.009527380000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9512,
+            "output_tokens": 3128,
+            "cost_usd": 0.00311464,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9477,
+            "output_tokens": 2937,
+            "cost_usd": 0.00300087,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9369,
+            "output_tokens": 2568,
+            "cost_usd": 0.0027754200000000002,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      }
+    },
+    "All-B": {
+      "1Qpt43cqhg": {
+        "input_tokens": 50492,
+        "output_tokens": 5505,
+        "cost_usd": 0.0061224980000000005,
+        "time_s": 55.720099999999995,
+        "by_role": {
+          "leader": {
+            "input_tokens": 23517,
+            "output_tokens": 2493,
+            "cost_usd": 0.002833848,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 9049,
+            "output_tokens": 1066,
+            "cost_usd": 0.001117106,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9015,
+            "output_tokens": 1319,
+            "cost_usd": 0.00117716,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8911,
+            "output_tokens": 627,
+            "cost_usd": 0.000994384,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "6jxUsDAdAu": {
+        "input_tokens": 26800,
+        "output_tokens": 834,
+        "cost_usd": 0.0027277,
+        "time_s": 17.8905,
+        "by_role": {
+          "leader": {
+            "input_tokens": 26800,
+            "output_tokens": 834,
+            "cost_usd": 0.0027277,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "7EhS3YBxjY": {
+        "input_tokens": 42181,
+        "output_tokens": 5527,
+        "cost_usd": 0.005346764,
+        "time_s": 63.1714,
+        "by_role": {
+          "leader": {
+            "input_tokens": 20242,
+            "output_tokens": 1726,
+            "cost_usd": 0.002334248,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 7368,
+            "output_tokens": 1435,
+            "cost_usd": 0.001051342,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 7336,
+            "output_tokens": 1715,
+            "cost_usd": 0.001118334,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7235,
+            "output_tokens": 651,
+            "cost_usd": 0.0008428400000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "85WHuB5CUK": {
+        "input_tokens": 75259,
+        "output_tokens": 5011,
+        "cost_usd": 0.008327096,
+        "time_s": 65.7627,
+        "by_role": {
+          "leader": {
+            "input_tokens": 43288,
+            "output_tokens": 2069,
+            "cost_usd": 0.0045863219999999994,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 10706,
+            "output_tokens": 795,
+            "cost_usd": 0.001205114,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10688,
+            "output_tokens": 1111,
+            "cost_usd": 0.0012824219999999999,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10577,
+            "output_tokens": 1036,
+            "cost_usd": 0.0012532379999999998,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "8dzKkeWUUb": {
+        "input_tokens": 63649,
+        "output_tokens": 4517,
+        "cost_usd": 0.007112256000000001,
+        "time_s": 56.3729,
+        "by_role": {
+          "leader": {
+            "input_tokens": 28576,
+            "output_tokens": 1803,
+            "cost_usd": 0.003136894,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 11745,
+            "output_tokens": 903,
+            "cost_usd": 0.00132978,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 11720,
+            "output_tokens": 977,
+            "cost_usd": 0.00134593,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11608,
+            "output_tokens": 834,
+            "cost_usd": 0.0012996519999999999,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "FXJm5r17Q7": {
+        "input_tokens": 45229,
+        "output_tokens": 4519,
+        "cost_usd": 0.005381276000000001,
+        "time_s": 62.1105,
+        "by_role": {
+          "leader": {
+            "input_tokens": 21294,
+            "output_tokens": 1657,
+            "cost_usd": 0.002415886,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 8035,
+            "output_tokens": 876,
+            "cost_usd": 0.00097429,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8005,
+            "output_tokens": 1011,
+            "cost_usd": 0.00100522,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7895,
+            "output_tokens": 975,
+            "cost_usd": 0.00098588,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "GjM61KRiTG": {
+        "input_tokens": 71965,
+        "output_tokens": 5214,
+        "cost_usd": 0.00806821,
+        "time_s": 90.7272,
+        "by_role": {
+          "leader": {
+            "input_tokens": 32170,
+            "output_tokens": 2076,
+            "cost_usd": 0.00354298,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 13334,
+            "output_tokens": 1118,
+            "cost_usd": 0.001532896,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 13288,
+            "output_tokens": 1156,
+            "cost_usd": 0.001538072,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 13173,
+            "output_tokens": 864,
+            "cost_usd": 0.0014542620000000002,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "Gx04TnVjee": {
+        "input_tokens": 53500,
+        "output_tokens": 4956,
+        "cost_usd": 0.006268,
+        "time_s": 109.2165,
+        "by_role": {
+          "leader": {
+            "input_tokens": 24333,
+            "output_tokens": 2578,
+            "cost_usd": 0.002931802,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 9780,
+            "output_tokens": 808,
+            "cost_usd": 0.00112132,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9747,
+            "output_tokens": 974,
+            "cost_usd": 0.0011597180000000001,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9640,
+            "output_tokens": 596,
+            "cost_usd": 0.0010551599999999999,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "KlN00vQEY2": {
+        "input_tokens": 93270,
+        "output_tokens": 5772,
+        "cost_usd": 0.01021038,
+        "time_s": 56.4865,
+        "by_role": {
+          "leader": {
+            "input_tokens": 45262,
+            "output_tokens": 1864,
+            "cost_usd": 0.004720627999999999,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 12060,
+            "output_tokens": 1076,
+            "cost_usd": 0.00140264,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 24023,
+            "output_tokens": 2205,
+            "cost_usd": 0.002809412,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 11925,
+            "output_tokens": 627,
+            "cost_usd": 0.0012776999999999999,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "LFn7s8yRUF": {
+        "input_tokens": 16170,
+        "output_tokens": 5409,
+        "cost_usd": 0.00287223,
+        "time_s": 128.36610000000002,
+        "by_role": {
+          "leader": {
+            "input_tokens": 12567,
+            "output_tokens": 2193,
+            "cost_usd": 0.001729548,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 1888,
+            "output_tokens": 1608,
+            "cost_usd": 0.000579472,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 907,
+            "output_tokens": 1018,
+            "cost_usd": 0.000339758,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 808,
+            "output_tokens": 590,
+            "cost_usd": 0.00022345200000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "MKpiaqh7R0": {
+        "input_tokens": 58130,
+        "output_tokens": 5183,
+        "cost_usd": 0.0067599700000000006,
+        "time_s": 107.7335,
+        "by_role": {
+          "leader": {
+            "input_tokens": 26594,
+            "output_tokens": 1333,
+            "cost_usd": 0.0028330860000000003,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 10566,
+            "output_tokens": 1519,
+            "cost_usd": 0.001372954,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10539,
+            "output_tokens": 1641,
+            "cost_usd": 0.001400916,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10431,
+            "output_tokens": 690,
+            "cost_usd": 0.001153014,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "RwCxxaHvyp": {
+        "input_tokens": 80221,
+        "output_tokens": 4614,
+        "cost_usd": 0.008694274,
+        "time_s": 124.07589999999999,
+        "by_role": {
+          "leader": {
+            "input_tokens": 35344,
+            "output_tokens": 1777,
+            "cost_usd": 0.003766586,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 15018,
+            "output_tokens": 1260,
+            "cost_usd": 0.001726692,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14982,
+            "output_tokens": 914,
+            "cost_usd": 0.001636808,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14877,
+            "output_tokens": 663,
+            "cost_usd": 0.0015641879999999998,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ScVnYBaSEw": {
+        "input_tokens": 72479,
+        "output_tokens": 4828,
+        "cost_usd": 0.008020026,
+        "time_s": 97.3931,
+        "by_role": {
+          "leader": {
+            "input_tokens": 32610,
+            "output_tokens": 1277,
+            "cost_usd": 0.00338459,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 13355,
+            "output_tokens": 1699,
+            "cost_usd": 0.00168012,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 13312,
+            "output_tokens": 1051,
+            "cost_usd": 0.0015140779999999999,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 13202,
+            "output_tokens": 801,
+            "cost_usd": 0.0014412379999999999,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "TU3wJQfKz8": {
+        "input_tokens": 92573,
+        "output_tokens": 4846,
+        "cost_usd": 0.009913362,
+        "time_s": 89.49860000000001,
+        "by_role": {
+          "leader": {
+            "input_tokens": 40599,
+            "output_tokens": 1444,
+            "cost_usd": 0.0041773059999999996,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 17389,
+            "output_tokens": 1289,
+            "cost_usd": 0.001956816,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 17344,
+            "output_tokens": 1135,
+            "cost_usd": 0.0019140859999999997,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 17241,
+            "output_tokens": 978,
+            "cost_usd": 0.001865154,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "WoGnnggVCZ": {
+        "input_tokens": 58718,
+        "output_tokens": 4799,
+        "cost_usd": 0.006719241999999999,
+        "time_s": 55.5721,
+        "by_role": {
+          "leader": {
+            "input_tokens": 26870,
+            "output_tokens": 1676,
+            "cost_usd": 0.00294478,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 10669,
+            "output_tokens": 1039,
+            "cost_usd": 0.001262636,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10649,
+            "output_tokens": 1434,
+            "cost_usd": 0.001359506,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10530,
+            "output_tokens": 650,
+            "cost_usd": 0.00115232,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "XYRPm8rAGM": {
+        "input_tokens": 116068,
+        "output_tokens": 8445,
+        "cost_usd": 0.013021642,
+        "time_s": 149.2602,
+        "by_role": {
+          "leader": {
+            "input_tokens": 46680,
+            "output_tokens": 3157,
+            "cost_usd": 0.00517717,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 23255,
+            "output_tokens": 2217,
+            "cost_usd": 0.00274022,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 23194,
+            "output_tokens": 1918,
+            "cost_usd": 0.0026597360000000002,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 22939,
+            "output_tokens": 1153,
+            "cost_usd": 0.002444516,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "aisfb733DW": {
+        "input_tokens": 51819,
+        "output_tokens": 12491,
+        "cost_usd": 0.007993736,
+        "time_s": 184.7285,
+        "by_role": {
+          "leader": {
+            "input_tokens": 23812,
+            "output_tokens": 9816,
+            "cost_usd": 0.004692328,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 9395,
+            "output_tokens": 858,
+            "cost_usd": 0.00109763,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9361,
+            "output_tokens": 944,
+            "cost_usd": 0.0011159339999999998,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9251,
+            "output_tokens": 873,
+            "cost_usd": 0.001087844,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "bgcdO9lmug": {
+        "input_tokens": 47662,
+        "output_tokens": 5737,
+        "cost_usd": 0.005914478,
+        "time_s": 102.28869999999999,
+        "by_role": {
+          "leader": {
+            "input_tokens": 22195,
+            "output_tokens": 3010,
+            "cost_usd": 0.00283883,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 8552,
+            "output_tokens": 1126,
+            "cost_usd": 0.001085388,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8508,
+            "output_tokens": 1028,
+            "cost_usd": 0.001056752,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8407,
+            "output_tokens": 573,
+            "cost_usd": 0.000933508,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "hvLBTpiDt3": {
+        "input_tokens": 77538,
+        "output_tokens": 4481,
+        "cost_usd": 0.008408822,
+        "time_s": 92.687,
+        "by_role": {
+          "leader": {
+            "input_tokens": 34125,
+            "output_tokens": 1840,
+            "cost_usd": 0.00366775,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 14533,
+            "output_tokens": 652,
+            "cost_usd": 0.001529102,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14494,
+            "output_tokens": 1115,
+            "cost_usd": 0.0016411860000000002,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14386,
+            "output_tokens": 874,
+            "cost_usd": 0.001570784,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ju4EwaLeoI": {
+        "input_tokens": 61804,
+        "output_tokens": 4077,
+        "cost_usd": 0.006828826,
+        "time_s": 78.99680000000001,
+        "by_role": {
+          "leader": {
+            "input_tokens": 27777,
+            "output_tokens": 1458,
+            "cost_usd": 0.0029755380000000002,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 11400,
+            "output_tokens": 790,
+            "cost_usd": 0.0012691,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 11366,
+            "output_tokens": 1046,
+            "cost_usd": 0.001329904,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11261,
+            "output_tokens": 783,
+            "cost_usd": 0.001254284,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "l2zFn6TIQi": {
+        "input_tokens": 90618,
+        "output_tokens": 4985,
+        "cost_usd": 0.009764342,
+        "time_s": 47.3371,
+        "by_role": {
+          "leader": {
+            "input_tokens": 39803,
+            "output_tokens": 1568,
+            "cost_usd": 0.004133482,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 16987,
+            "output_tokens": 1322,
+            "cost_usd": 0.001927278,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 16963,
+            "output_tokens": 923,
+            "cost_usd": 0.001825272,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 16865,
+            "output_tokens": 1172,
+            "cost_usd": 0.0018783100000000002,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "pNxD5dpu1M": {
+        "input_tokens": 45241,
+        "output_tokens": 5420,
+        "cost_usd": 0.005607654,
+        "time_s": 62.986599999999996,
+        "by_role": {
+          "leader": {
+            "input_tokens": 21242,
+            "output_tokens": 2652,
+            "cost_usd": 0.002659748,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 8066,
+            "output_tokens": 811,
+            "cost_usd": 0.0009609540000000001,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8014,
+            "output_tokens": 950,
+            "cost_usd": 0.000990816,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7919,
+            "output_tokens": 1007,
+            "cost_usd": 0.0009961360000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "r0opxuq8T8": {
+        "input_tokens": 71562,
+        "output_tokens": 5095,
+        "cost_usd": 0.008000578,
+        "time_s": 50.5688,
+        "by_role": {
+          "leader": {
+            "input_tokens": 32238,
+            "output_tokens": 1592,
+            "cost_usd": 0.003428372,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 13167,
+            "output_tokens": 1362,
+            "cost_usd": 0.0015781979999999998,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 13134,
+            "output_tokens": 1280,
+            "cost_usd": 0.0015545959999999999,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 13023,
+            "output_tokens": 861,
+            "cost_usd": 0.001439412,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "wMj6PgKVuJ": {
+        "input_tokens": 50746,
+        "output_tokens": 4591,
+        "cost_usd": 0.005917874000000001,
+        "time_s": 50.3605,
+        "by_role": {
+          "leader": {
+            "input_tokens": 23425,
+            "output_tokens": 1864,
+            "cost_usd": 0.00266795,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 9160,
+            "output_tokens": 882,
+            "cost_usd": 0.00108154,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9131,
+            "output_tokens": 1252,
+            "cost_usd": 0.0011713140000000001,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9030,
+            "output_tokens": 593,
+            "cost_usd": 0.00099707,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "zmHqlXGTTl": {
+        "input_tokens": 53022,
+        "output_tokens": 5484,
+        "cost_usd": 0.006355068,
+        "time_s": 59.4529,
+        "by_role": {
+          "leader": {
+            "input_tokens": 24624,
+            "output_tokens": 2298,
+            "cost_usd": 0.0028891560000000004,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 9524,
+            "output_tokens": 1406,
+            "cost_usd": 0.001246756,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9489,
+            "output_tokens": 1306,
+            "cost_usd": 0.0012184659999999999,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9385,
+            "output_tokens": 474,
+            "cost_usd": 0.0010006899999999998,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      }
+    },
+    "All-C": {
+      "1Qpt43cqhg": {
+        "input_tokens": 10140,
+        "output_tokens": 451,
+        "cost_usd": 0.00115832,
+        "time_s": 55.838300000000004,
+        "by_role": {
+          "leader": {
+            "input_tokens": 10140,
+            "output_tokens": 451,
+            "cost_usd": 0.00115832,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "6jxUsDAdAu": {
+        "input_tokens": 27225,
+        "output_tokens": 407,
+        "cost_usd": 0.0028527400000000003,
+        "time_s": 43.549,
+        "by_role": {
+          "leader": {
+            "input_tokens": 27225,
+            "output_tokens": 407,
+            "cost_usd": 0.0028527400000000003,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "7EhS3YBxjY": {
+        "input_tokens": 41233,
+        "output_tokens": 3908,
+        "cost_usd": 0.005373860000000001,
+        "time_s": 232.2739,
+        "by_role": {
+          "leader": {
+            "input_tokens": 19859,
+            "output_tokens": 1254,
+            "cost_usd": 0.00238718,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 7191,
+            "output_tokens": 620,
+            "cost_usd": 0.0009175000000000001,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 7148,
+            "output_tokens": 1147,
+            "cost_usd": 0.0010818400000000001,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7035,
+            "output_tokens": 887,
+            "cost_usd": 0.00098734,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "85WHuB5CUK": {
+        "input_tokens": 12692,
+        "output_tokens": 398,
+        "cost_usd": 0.00139656,
+        "time_s": 79.7297,
+        "by_role": {
+          "leader": {
+            "input_tokens": 12692,
+            "output_tokens": 398,
+            "cost_usd": 0.00139656,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "8dzKkeWUUb": {
+        "input_tokens": 12898,
+        "output_tokens": 440,
+        "cost_usd": 0.0014306,
+        "time_s": 80.8156,
+        "by_role": {
+          "leader": {
+            "input_tokens": 12898,
+            "output_tokens": 440,
+            "cost_usd": 0.0014306,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "FXJm5r17Q7": {
+        "input_tokens": 9207,
+        "output_tokens": 477,
+        "cost_usd": 0.0010733399999999999,
+        "time_s": 80.8527,
+        "by_role": {
+          "leader": {
+            "input_tokens": 9207,
+            "output_tokens": 477,
+            "cost_usd": 0.0010733399999999999,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "GjM61KRiTG": {
+        "input_tokens": 14587,
+        "output_tokens": 432,
+        "cost_usd": 0.00159694,
+        "time_s": 64.73830000000001,
+        "by_role": {
+          "leader": {
+            "input_tokens": 14587,
+            "output_tokens": 432,
+            "cost_usd": 0.00159694,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "Gx04TnVjee": {
+        "input_tokens": 11468,
+        "output_tokens": 480,
+        "cost_usd": 0.0013004000000000002,
+        "time_s": 80.9794,
+        "by_role": {
+          "leader": {
+            "input_tokens": 11468,
+            "output_tokens": 480,
+            "cost_usd": 0.0013004000000000002,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "KlN00vQEY2": {
+        "input_tokens": 13538,
+        "output_tokens": 444,
+        "cost_usd": 0.00149588,
+        "time_s": 53.248599999999996,
+        "by_role": {
+          "leader": {
+            "input_tokens": 13538,
+            "output_tokens": 444,
+            "cost_usd": 0.00149588,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "LFn7s8yRUF": {
+        "input_tokens": 15885,
+        "output_tokens": 2975,
+        "cost_usd": 0.0025405000000000002,
+        "time_s": 264.1344,
+        "by_role": {
+          "leader": {
+            "input_tokens": 13542,
+            "output_tokens": 681,
+            "cost_usd": 0.0015721200000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 858,
+            "output_tokens": 752,
+            "cost_usd": 0.00032644,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 793,
+            "output_tokens": 777,
+            "cost_usd": 0.00032794,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 692,
+            "output_tokens": 765,
+            "cost_usd": 0.000314,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "MKpiaqh7R0": {
+        "input_tokens": 54706,
+        "output_tokens": 3361,
+        "cost_usd": 0.006546120000000001,
+        "time_s": 180.7392,
+        "by_role": {
+          "leader": {
+            "input_tokens": 24799,
+            "output_tokens": 1472,
+            "cost_usd": 0.00295094,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 10041,
+            "output_tokens": 636,
+            "cost_usd": 0.00120762,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9985,
+            "output_tokens": 721,
+            "cost_usd": 0.00122922,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9881,
+            "output_tokens": 532,
+            "cost_usd": 0.00115834,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "RwCxxaHvyp": {
+        "input_tokens": 77769,
+        "output_tokens": 3652,
+        "cost_usd": 0.00894554,
+        "time_s": 202.7331,
+        "by_role": {
+          "leader": {
+            "input_tokens": 34214,
+            "output_tokens": 1473,
+            "cost_usd": 0.0038927600000000003,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 14580,
+            "output_tokens": 662,
+            "cost_usd": 0.0016698400000000001,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14548,
+            "output_tokens": 854,
+            "cost_usd": 0.0017280800000000001,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14427,
+            "output_tokens": 663,
+            "cost_usd": 0.0016548600000000002,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ScVnYBaSEw": {
+        "input_tokens": 15383,
+        "output_tokens": 442,
+        "cost_usd": 0.0016797400000000003,
+        "time_s": 52.434,
+        "by_role": {
+          "leader": {
+            "input_tokens": 15383,
+            "output_tokens": 442,
+            "cost_usd": 0.0016797400000000003,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "TU3wJQfKz8": {
+        "input_tokens": 20424,
+        "output_tokens": 580,
+        "cost_usd": 0.0022280000000000004,
+        "time_s": 59.3441,
+        "by_role": {
+          "leader": {
+            "input_tokens": 20424,
+            "output_tokens": 580,
+            "cost_usd": 0.0022280000000000004,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "WoGnnggVCZ": {
+        "input_tokens": 11101,
+        "output_tokens": 417,
+        "cost_usd": 0.00124354,
+        "time_s": 47.2661,
+        "by_role": {
+          "leader": {
+            "input_tokens": 11101,
+            "output_tokens": 417,
+            "cost_usd": 0.00124354,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "XYRPm8rAGM": {
+        "input_tokens": 13115,
+        "output_tokens": 456,
+        "cost_usd": 0.00145742,
+        "time_s": 37.9869,
+        "by_role": {
+          "leader": {
+            "input_tokens": 13115,
+            "output_tokens": 456,
+            "cost_usd": 0.00145742,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "aisfb733DW": {
+        "input_tokens": 55005,
+        "output_tokens": 4135,
+        "cost_usd": 0.006823699999999999,
+        "time_s": 234.6531,
+        "by_role": {
+          "leader": {
+            "input_tokens": 25300,
+            "output_tokens": 1656,
+            "cost_usd": 0.00305992,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 9961,
+            "output_tokens": 719,
+            "cost_usd": 0.0012261799999999999,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9928,
+            "output_tokens": 949,
+            "cost_usd": 0.00129648,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9816,
+            "output_tokens": 811,
+            "cost_usd": 0.00124112,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "bgcdO9lmug": {
+        "input_tokens": 45525,
+        "output_tokens": 3332,
+        "cost_usd": 0.0056187400000000005,
+        "time_s": 109.2833,
+        "by_role": {
+          "leader": {
+            "input_tokens": 21307,
+            "output_tokens": 1130,
+            "cost_usd": 0.0024923000000000002,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 8144,
+            "output_tokens": 682,
+            "cost_usd": 0.00103264,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8085,
+            "output_tokens": 871,
+            "cost_usd": 0.00108722,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7989,
+            "output_tokens": 649,
+            "cost_usd": 0.00100658,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "hvLBTpiDt3": {
+        "input_tokens": 15882,
+        "output_tokens": 496,
+        "cost_usd": 0.0017469200000000001,
+        "time_s": 40.4179,
+        "by_role": {
+          "leader": {
+            "input_tokens": 15882,
+            "output_tokens": 496,
+            "cost_usd": 0.0017469200000000001,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "ju4EwaLeoI": {
+        "input_tokens": 12027,
+        "output_tokens": 511,
+        "cost_usd": 0.00136622,
+        "time_s": 48.7408,
+        "by_role": {
+          "leader": {
+            "input_tokens": 12027,
+            "output_tokens": 511,
+            "cost_usd": 0.00136622,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "l2zFn6TIQi": {
+        "input_tokens": 17974,
+        "output_tokens": 425,
+        "cost_usd": 0.0019334000000000003,
+        "time_s": 52.8755,
+        "by_role": {
+          "leader": {
+            "input_tokens": 17974,
+            "output_tokens": 425,
+            "cost_usd": 0.0019334000000000003,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "pNxD5dpu1M": {
+        "input_tokens": 48434,
+        "output_tokens": 3900,
+        "cost_usd": 0.0060914,
+        "time_s": 217.8007,
+        "by_role": {
+          "leader": {
+            "input_tokens": 22550,
+            "output_tokens": 1586,
+            "cost_usd": 0.00276252,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 8692,
+            "output_tokens": 610,
+            "cost_usd": 0.0010644,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8648,
+            "output_tokens": 873,
+            "cost_usd": 0.00114416,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8544,
+            "output_tokens": 831,
+            "cost_usd": 0.00112032,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "r0opxuq8T8": {
+        "input_tokens": 15710,
+        "output_tokens": 535,
+        "cost_usd": 0.0017422,
+        "time_s": 53.9415,
+        "by_role": {
+          "leader": {
+            "input_tokens": 15710,
+            "output_tokens": 535,
+            "cost_usd": 0.0017422,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "wMj6PgKVuJ": {
+        "input_tokens": 10755,
+        "output_tokens": 456,
+        "cost_usd": 0.00122142,
+        "time_s": 37.6434,
+        "by_role": {
+          "leader": {
+            "input_tokens": 10755,
+            "output_tokens": 456,
+            "cost_usd": 0.00122142,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "zmHqlXGTTl": {
+        "input_tokens": 10188,
+        "output_tokens": 514,
+        "cost_usd": 0.00118328,
+        "time_s": 90.6186,
+        "by_role": {
+          "leader": {
+            "input_tokens": 10188,
+            "output_tokens": 514,
+            "cost_usd": 0.00118328,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      }
+    },
+    "rot_2": {
+      "1Qpt43cqhg": {
+        "input_tokens": 100502,
+        "output_tokens": 13400,
+        "cost_usd": 0.015433888,
+        "time_s": 368.0862,
+        "by_role": {
+          "leader": {
+            "input_tokens": 45922,
+            "output_tokens": 3091,
+            "cost_usd": 0.005089418,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 18010,
+            "output_tokens": 1973,
+            "cost_usd": 0.00243236,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 18695,
+            "output_tokens": 4783,
+            "cost_usd": 0.00534361,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 17875,
+            "output_tokens": 3553,
+            "cost_usd": 0.0025684999999999996,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "6jxUsDAdAu": {
+        "input_tokens": 26800,
+        "output_tokens": 778,
+        "cost_usd": 0.0027137000000000003,
+        "time_s": 17.653299999999998,
+        "by_role": {
+          "leader": {
+            "input_tokens": 26800,
+            "output_tokens": 778,
+            "cost_usd": 0.0027137000000000003,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "7EhS3YBxjY": {
+        "input_tokens": 106996,
+        "output_tokens": 11715,
+        "cost_usd": 0.015562066000000003,
+        "time_s": 310.9182,
+        "by_role": {
+          "leader": {
+            "input_tokens": 62697,
+            "output_tokens": 3123,
+            "cost_usd": 0.0066742680000000006,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 14605,
+            "output_tokens": 2145,
+            "cost_usd": 0.0021469,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 15172,
+            "output_tokens": 5125,
+            "cost_usd": 0.00504533,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 14522,
+            "output_tokens": 1322,
+            "cost_usd": 0.0016955680000000002,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "85WHuB5CUK": {
+        "input_tokens": 91497,
+        "output_tokens": 7102,
+        "cost_usd": 0.011922822000000001,
+        "time_s": 258.0025,
+        "by_role": {
+          "leader": {
+            "input_tokens": 45510,
+            "output_tokens": 2293,
+            "cost_usd": 0.00485119,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 23618,
+            "output_tokens": 1640,
+            "cost_usd": 0.0028866000000000005,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 11816,
+            "output_tokens": 2333,
+            "cost_usd": 0.0029840500000000002,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10553,
+            "output_tokens": 836,
+            "cost_usd": 0.001200982,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "8dzKkeWUUb": {
+        "input_tokens": 97971,
+        "output_tokens": 7723,
+        "cost_usd": 0.012912208,
+        "time_s": 226.4367,
+        "by_role": {
+          "leader": {
+            "input_tokens": 50449,
+            "output_tokens": 2031,
+            "cost_usd": 0.005249956,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 23942,
+            "output_tokens": 1636,
+            "cost_usd": 0.0029177200000000004,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 12002,
+            "output_tokens": 3006,
+            "cost_usd": 0.0033937,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11578,
+            "output_tokens": 1050,
+            "cost_usd": 0.001350832,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "FXJm5r17Q7": {
+        "input_tokens": 91125,
+        "output_tokens": 11892,
+        "cost_usd": 0.014284574000000001,
+        "time_s": 248.8349,
+        "by_role": {
+          "leader": {
+            "input_tokens": 42546,
+            "output_tokens": 2809,
+            "cost_usd": 0.004701574,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 16105,
+            "output_tokens": 1599,
+            "cost_usd": 0.00212218,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 16584,
+            "output_tokens": 5545,
+            "cost_usd": 0.00548241,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 15890,
+            "output_tokens": 1939,
+            "cost_usd": 0.00197841,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "GjM61KRiTG": {
+        "input_tokens": 135737,
+        "output_tokens": 8741,
+        "cost_usd": 0.017710542,
+        "time_s": 254.0062,
+        "by_role": {
+          "leader": {
+            "input_tokens": 55261,
+            "output_tokens": 1849,
+            "cost_usd": 0.005656784,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 26776,
+            "output_tokens": 1536,
+            "cost_usd": 0.00316912,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 27393,
+            "output_tokens": 3868,
+            "cost_usd": 0.00603978,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 26307,
+            "output_tokens": 1488,
+            "cost_usd": 0.002844858,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "Gx04TnVjee": {
+        "input_tokens": 108059,
+        "output_tokens": 12541,
+        "cost_usd": 0.016141540000000003,
+        "time_s": 267.2778,
+        "by_role": {
+          "leader": {
+            "input_tokens": 46824,
+            "output_tokens": 4042,
+            "cost_usd": 0.005411956,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 20645,
+            "output_tokens": 1624,
+            "cost_usd": 0.00258418,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 21259,
+            "output_tokens": 5104,
+            "cost_usd": 0.00588554,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 19331,
+            "output_tokens": 1771,
+            "cost_usd": 0.002259864,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "KlN00vQEY2": {
+        "input_tokens": 67584,
+        "output_tokens": 6369,
+        "cost_usd": 0.009565508,
+        "time_s": 189.239,
+        "by_role": {
+          "leader": {
+            "input_tokens": 30609,
+            "output_tokens": 2236,
+            "cost_usd": 0.003436246,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 12366,
+            "output_tokens": 708,
+            "cost_usd": 0.00146316,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 12681,
+            "output_tokens": 2854,
+            "cost_usd": 0.00340212,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11928,
+            "output_tokens": 571,
+            "cost_usd": 0.001263982,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "LFn7s8yRUF": {
+        "input_tokens": 17219,
+        "output_tokens": 6593,
+        "cost_usd": 0.003949421999999999,
+        "time_s": 185.61,
+        "by_role": {
+          "leader": {
+            "input_tokens": 13621,
+            "output_tokens": 2637,
+            "cost_usd": 0.001939624,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 1923,
+            "output_tokens": 1844,
+            "cost_usd": 0.0007823800000000001,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 888,
+            "output_tokens": 1566,
+            "cost_usd": 0.0010169399999999998,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 787,
+            "output_tokens": 546,
+            "cost_usd": 0.000210478,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "MKpiaqh7R0": {
+        "input_tokens": 58372,
+        "output_tokens": 4900,
+        "cost_usd": 0.008058196,
+        "time_s": 105.69439999999999,
+        "by_role": {
+          "leader": {
+            "input_tokens": 26871,
+            "output_tokens": 1509,
+            "cost_usd": 0.002903124,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 10098,
+            "output_tokens": 666,
+            "cost_usd": 0.00122292,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10970,
+            "output_tokens": 2295,
+            "cost_usd": 0.00284395,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10433,
+            "output_tokens": 430,
+            "cost_usd": 0.001088202,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "RwCxxaHvyp": {
+        "input_tokens": 81165,
+        "output_tokens": 5965,
+        "cost_usd": 0.010862338000000001,
+        "time_s": 125.7912,
+        "by_role": {
+          "leader": {
+            "input_tokens": 36536,
+            "output_tokens": 1611,
+            "cost_usd": 0.0038371340000000003,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 14642,
+            "output_tokens": 806,
+            "cost_usd": 0.0017221200000000002,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 15211,
+            "output_tokens": 2805,
+            "cost_usd": 0.00372839,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14776,
+            "output_tokens": 743,
+            "cost_usd": 0.001574694,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ScVnYBaSEw": {
+        "input_tokens": 1517167,
+        "output_tokens": 26833,
+        "cost_usd": 0.15539784999999995,
+        "time_s": 746.4196,
+        "by_role": {
+          "leader": {
+            "input_tokens": 1281522,
+            "output_tokens": 12237,
+            "cost_usd": 0.12352231800000002,
+            "llm_calls": 25
+          },
+          "clarity": {
+            "input_tokens": 57224,
+            "output_tokens": 2768,
+            "cost_usd": 0.00660816,
+            "llm_calls": 4
+          },
+          "experiments": {
+            "input_tokens": 58113,
+            "output_tokens": 8955,
+            "cost_usd": 0.013240169999999999,
+            "llm_calls": 4
+          },
+          "impact": {
+            "input_tokens": 39794,
+            "output_tokens": 1784,
+            "cost_usd": 0.004186636,
+            "llm_calls": 3
+          }
+        },
+        "missing_price_models": []
+      },
+      "TU3wJQfKz8": {
+        "input_tokens": 98016,
+        "output_tokens": 7084,
+        "cost_usd": 0.012967562,
+        "time_s": 175.3942,
+        "by_role": {
+          "leader": {
+            "input_tokens": 41961,
+            "output_tokens": 2211,
+            "cost_usd": 0.004497084,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 19254,
+            "output_tokens": 762,
+            "cost_usd": 0.0021692400000000002,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 19599,
+            "output_tokens": 2852,
+            "cost_usd": 0.0043695,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 17202,
+            "output_tokens": 1259,
+            "cost_usd": 0.0019317379999999997,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "WoGnnggVCZ": {
+        "input_tokens": 135307,
+        "output_tokens": 11061,
+        "cost_usd": 0.018326919999999997,
+        "time_s": 202.3591,
+        "by_role": {
+          "leader": {
+            "input_tokens": 72460,
+            "output_tokens": 2895,
+            "cost_usd": 0.007534989999999999,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 20009,
+            "output_tokens": 1595,
+            "cost_usd": 0.0025113,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 21598,
+            "output_tokens": 5055,
+            "cost_usd": 0.00590507,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 21240,
+            "output_tokens": 1516,
+            "cost_usd": 0.0023755599999999997,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "XYRPm8rAGM": {
+        "input_tokens": 67077,
+        "output_tokens": 7828,
+        "cost_usd": 0.010170266,
+        "time_s": 187.1015,
+        "by_role": {
+          "leader": {
+            "input_tokens": 31282,
+            "output_tokens": 2238,
+            "cost_usd": 0.0035000079999999998,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 11936,
+            "output_tokens": 607,
+            "cost_usd": 0.0013878400000000002,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 12327,
+            "output_tokens": 3834,
+            "cost_usd": 0.00391116,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11532,
+            "output_tokens": 1149,
+            "cost_usd": 0.001371258,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "aisfb733DW": {
+        "input_tokens": 55261,
+        "output_tokens": 6987,
+        "cost_usd": 0.008367044,
+        "time_s": 118.9994,
+        "by_role": {
+          "leader": {
+            "input_tokens": 25836,
+            "output_tokens": 2320,
+            "cost_usd": 0.003008584,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 9992,
+            "output_tokens": 895,
+            "cost_usd": 0.0012856,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10173,
+            "output_tokens": 2610,
+            "cost_usd": 0.00291192,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9260,
+            "output_tokens": 1162,
+            "cost_usd": 0.0011609399999999998,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "bgcdO9lmug": {
+        "input_tokens": 93205,
+        "output_tokens": 11421,
+        "cost_usd": 0.014549434,
+        "time_s": 253.8198,
+        "by_role": {
+          "leader": {
+            "input_tokens": 43319,
+            "output_tokens": 2370,
+            "cost_usd": 0.004664486,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 16379,
+            "output_tokens": 1400,
+            "cost_usd": 0.0020859,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 16800,
+            "output_tokens": 6137,
+            "cost_usd": 0.0058500900000000005,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 16707,
+            "output_tokens": 1514,
+            "cost_usd": 0.0019489580000000002,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "hvLBTpiDt3": {
+        "input_tokens": 80909,
+        "output_tokens": 6880,
+        "cost_usd": 0.011223206,
+        "time_s": 174.7234,
+        "by_role": {
+          "leader": {
+            "input_tokens": 36514,
+            "output_tokens": 1824,
+            "cost_usd": 0.003888316,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 14737,
+            "output_tokens": 922,
+            "cost_usd": 0.00176874,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 15273,
+            "output_tokens": 3257,
+            "cost_usd": 0.00399471,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14385,
+            "output_tokens": 877,
+            "cost_usd": 0.0015714400000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ju4EwaLeoI": {
+        "input_tokens": 105869,
+        "output_tokens": 9331,
+        "cost_usd": 0.015074204,
+        "time_s": 234.3325,
+        "by_role": {
+          "leader": {
+            "input_tokens": 49922,
+            "output_tokens": 2074,
+            "cost_usd": 0.0052111679999999995,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 21703,
+            "output_tokens": 1653,
+            "cost_usd": 0.00269926,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 22960,
+            "output_tokens": 4649,
+            "cost_usd": 0.00586433,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 11284,
+            "output_tokens": 955,
+            "cost_usd": 0.001299446,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "l2zFn6TIQi": {
+        "input_tokens": 91979,
+        "output_tokens": 6205,
+        "cost_usd": 0.011887292,
+        "time_s": 78.1036,
+        "by_role": {
+          "leader": {
+            "input_tokens": 40673,
+            "output_tokens": 2226,
+            "cost_usd": 0.004379762,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 16845,
+            "output_tokens": 405,
+            "cost_usd": 0.0018141,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 17446,
+            "output_tokens": 2369,
+            "cost_usd": 0.00379277,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 17015,
+            "output_tokens": 1205,
+            "cost_usd": 0.0019006599999999998,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "pNxD5dpu1M": {
+        "input_tokens": 73386,
+        "output_tokens": 9475,
+        "cost_usd": 0.011864338,
+        "time_s": 194.065,
+        "by_role": {
+          "leader": {
+            "input_tokens": 39017,
+            "output_tokens": 2335,
+            "cost_usd": 0.004251348,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 8730,
+            "output_tokens": 633,
+            "cost_usd": 0.0010755600000000001,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 17749,
+            "output_tokens": 5263,
+            "cost_usd": 0.00548477,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 7890,
+            "output_tokens": 1244,
+            "cost_usd": 0.00105266,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "r0opxuq8T8": {
+        "input_tokens": 75022,
+        "output_tokens": 6604,
+        "cost_usd": 0.010376816,
+        "time_s": 186.0696,
+        "by_role": {
+          "leader": {
+            "input_tokens": 32929,
+            "output_tokens": 2309,
+            "cost_usd": 0.0036725760000000003,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 14537,
+            "output_tokens": 989,
+            "cost_usd": 0.00177018,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14536,
+            "output_tokens": 2652,
+            "cost_usd": 0.00354668,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 13020,
+            "output_tokens": 654,
+            "cost_usd": 0.0013873800000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "wMj6PgKVuJ": {
+        "input_tokens": 51934,
+        "output_tokens": 4716,
+        "cost_usd": 0.007203476,
+        "time_s": 68.925,
+        "by_role": {
+          "leader": {
+            "input_tokens": 23663,
+            "output_tokens": 1671,
+            "cost_usd": 0.0026420719999999996,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 9548,
+            "output_tokens": 633,
+            "cost_usd": 0.00115736,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9707,
+            "output_tokens": 1858,
+            "cost_usd": 0.0024180399999999998,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9016,
+            "output_tokens": 554,
+            "cost_usd": 0.000986004,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "zmHqlXGTTl": {
+        "input_tokens": 91893,
+        "output_tokens": 12272,
+        "cost_usd": 0.014636776,
+        "time_s": 306.1117,
+        "by_role": {
+          "leader": {
+            "input_tokens": 36241,
+            "output_tokens": 3945,
+            "cost_usd": 0.0043929039999999996,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 17972,
+            "output_tokens": 1432,
+            "cost_usd": 0.00225544,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 18947,
+            "output_tokens": 5785,
+            "cost_usd": 0.00595003,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 18733,
+            "output_tokens": 1110,
+            "cost_usd": 0.002038402,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      }
+    },
+    "specialist": {
+      "1Qpt43cqhg": {
+        "input_tokens": 78429,
+        "output_tokens": 6028,
+        "cost_usd": 0.013146474000000002,
+        "time_s": 312.3958,
+        "by_role": {
+          "leader": {
+            "input_tokens": 51373,
+            "output_tokens": 1624,
+            "cost_usd": 0.0081179,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9016,
+            "output_tokens": 1063,
+            "cost_usd": 0.001113254,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9230,
+            "output_tokens": 2692,
+            "cost_usd": 0.00282664,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8810,
+            "output_tokens": 649,
+            "cost_usd": 0.00108868,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "6jxUsDAdAu": {
+        "input_tokens": 201963,
+        "output_tokens": 5400,
+        "cost_usd": 0.028600048,
+        "time_s": 315.5646,
+        "by_role": {
+          "leader": {
+            "input_tokens": 122853,
+            "output_tokens": 1510,
+            "cost_usd": 0.018060120000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 25852,
+            "output_tokens": 1025,
+            "cost_usd": 0.002686338,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 27431,
+            "output_tokens": 2055,
+            "cost_usd": 0.00501169,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 25827,
+            "output_tokens": 810,
+            "cost_usd": 0.0028419000000000005,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "7EhS3YBxjY": {
+        "input_tokens": 66830,
+        "output_tokens": 6078,
+        "cost_usd": 0.011687936,
+        "time_s": 315.16409999999996,
+        "by_role": {
+          "leader": {
+            "input_tokens": 44796,
+            "output_tokens": 1409,
+            "cost_usd": 0.0070745700000000005,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 7339,
+            "output_tokens": 948,
+            "cost_usd": 0.000926866,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 7557,
+            "output_tokens": 2896,
+            "cost_usd": 0.0027087,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7138,
+            "output_tokens": 825,
+            "cost_usd": 0.0009778,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "85WHuB5CUK": {
+        "input_tokens": 96373,
+        "output_tokens": 6359,
+        "cost_usd": 0.015667226,
+        "time_s": 247.658,
+        "by_role": {
+          "leader": {
+            "input_tokens": 62604,
+            "output_tokens": 1352,
+            "cost_usd": 0.0095352,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 10644,
+            "output_tokens": 1016,
+            "cost_usd": 0.001254536,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 11778,
+            "output_tokens": 3267,
+            "cost_usd": 0.00351111,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11347,
+            "output_tokens": 724,
+            "cost_usd": 0.00136638,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "8dzKkeWUUb": {
+        "input_tokens": 100475,
+        "output_tokens": 7265,
+        "cost_usd": 0.016583557999999998,
+        "time_s": 384.1801,
+        "by_role": {
+          "leader": {
+            "input_tokens": 65215,
+            "output_tokens": 1581,
+            "cost_usd": 0.01003127,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 11717,
+            "output_tokens": 1376,
+            "cost_usd": 0.001445398,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 12007,
+            "output_tokens": 3575,
+            "cost_usd": 0.00371873,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11536,
+            "output_tokens": 733,
+            "cost_usd": 0.00138816,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "FXJm5r17Q7": {
+        "input_tokens": 71094,
+        "output_tokens": 5702,
+        "cost_usd": 0.012028538,
+        "time_s": 228.25,
+        "by_role": {
+          "leader": {
+            "input_tokens": 46971,
+            "output_tokens": 1374,
+            "cost_usd": 0.007359120000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 8027,
+            "output_tokens": 953,
+            "cost_usd": 0.0009927879999999999,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8232,
+            "output_tokens": 2631,
+            "cost_usd": 0.00265215,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7864,
+            "output_tokens": 744,
+            "cost_usd": 0.00102448,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "GjM61KRiTG": {
+        "input_tokens": 111484,
+        "output_tokens": 6576,
+        "cost_usd": 0.017563562,
+        "time_s": 351.014,
+        "by_role": {
+          "leader": {
+            "input_tokens": 71177,
+            "output_tokens": 1402,
+            "cost_usd": 0.010763920000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 13323,
+            "output_tokens": 1443,
+            "cost_usd": 0.0016131119999999999,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 13724,
+            "output_tokens": 2981,
+            "cost_usd": 0.0036205300000000003,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 13260,
+            "output_tokens": 750,
+            "cost_usd": 0.001566,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "Gx04TnVjee": {
+        "input_tokens": 87002,
+        "output_tokens": 6242,
+        "cost_usd": 0.014346554000000001,
+        "time_s": 305.1233,
+        "by_role": {
+          "leader": {
+            "input_tokens": 56720,
+            "output_tokens": 1470,
+            "cost_usd": 0.0087787,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9736,
+            "output_tokens": 1054,
+            "cost_usd": 0.001178684,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10439,
+            "output_tokens": 2909,
+            "cost_usd": 0.00311959,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10107,
+            "output_tokens": 809,
+            "cost_usd": 0.00126958,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "KlN00vQEY2": {
+        "input_tokens": 101763,
+        "output_tokens": 5514,
+        "cost_usd": 0.015741352,
+        "time_s": 268.5261,
+        "by_role": {
+          "leader": {
+            "input_tokens": 64867,
+            "output_tokens": 1196,
+            "cost_usd": 0.0097631,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 12043,
+            "output_tokens": 1212,
+            "cost_usd": 0.001435042,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 12656,
+            "output_tokens": 2231,
+            "cost_usd": 0.00304351,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 12197,
+            "output_tokens": 875,
+            "cost_usd": 0.0014997,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "LFn7s8yRUF": {
+        "input_tokens": 17437,
+        "output_tokens": 4490,
+        "cost_usd": 0.004404902,
+        "time_s": 256.3062,
+        "by_role": {
+          "leader": {
+            "input_tokens": 14912,
+            "output_tokens": 1122,
+            "cost_usd": 0.0027272200000000003,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 898,
+            "output_tokens": 734,
+            "cost_usd": 0.000267912,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 861,
+            "output_tokens": 1479,
+            "cost_usd": 0.00096357,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 766,
+            "output_tokens": 1155,
+            "cost_usd": 0.0004462,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "MKpiaqh7R0": {
+        "input_tokens": 90289,
+        "output_tokens": 6254,
+        "cost_usd": 0.014850126000000002,
+        "time_s": 228.4211,
+        "by_role": {
+          "leader": {
+            "input_tokens": 58789,
+            "output_tokens": 1442,
+            "cost_usd": 0.0090524,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 10559,
+            "output_tokens": 875,
+            "cost_usd": 0.001211296,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10981,
+            "output_tokens": 3173,
+            "cost_usd": 0.00334595,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9960,
+            "output_tokens": 764,
+            "cost_usd": 0.0012404800000000002,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "RwCxxaHvyp": {
+        "input_tokens": 119109,
+        "output_tokens": 5607,
+        "cost_usd": 0.018105828,
+        "time_s": 280.423,
+        "by_role": {
+          "leader": {
+            "input_tokens": 74500,
+            "output_tokens": 1377,
+            "cost_usd": 0.011214890000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 14912,
+            "output_tokens": 912,
+            "cost_usd": 0.001629728,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 15200,
+            "output_tokens": 2487,
+            "cost_usd": 0.00354559,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14497,
+            "output_tokens": 831,
+            "cost_usd": 0.00171562,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ScVnYBaSEw": {
+        "input_tokens": 110699,
+        "output_tokens": 4164,
+        "cost_usd": 0.01613953,
+        "time_s": 243.213,
+        "by_role": {
+          "leader": {
+            "input_tokens": 68985,
+            "output_tokens": 1267,
+            "cost_usd": 0.01038009,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 13325,
+            "output_tokens": 1194,
+            "cost_usd": 0.00155105,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14382,
+            "output_tokens": 997,
+            "cost_usd": 0.00258177,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14007,
+            "output_tokens": 706,
+            "cost_usd": 0.00162662,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "TU3wJQfKz8": {
+        "input_tokens": 149550,
+        "output_tokens": 6410,
+        "cost_usd": 0.022479878000000002,
+        "time_s": 381.5351,
+        "by_role": {
+          "leader": {
+            "input_tokens": 93623,
+            "output_tokens": 1409,
+            "cost_usd": 0.013910350000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 17302,
+            "output_tokens": 1072,
+            "cost_usd": 0.001894388,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 19559,
+            "output_tokens": 3092,
+            "cost_usd": 0.0045007,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 19066,
+            "output_tokens": 837,
+            "cost_usd": 0.00217444,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "WoGnnggVCZ": {
+        "input_tokens": 88139,
+        "output_tokens": 5950,
+        "cost_usd": 0.014313271999999998,
+        "time_s": 307.3973,
+        "by_role": {
+          "leader": {
+            "input_tokens": 57123,
+            "output_tokens": 1496,
+            "cost_usd": 0.00884994,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 10618,
+            "output_tokens": 1150,
+            "cost_usd": 0.0012855920000000001,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10654,
+            "output_tokens": 2618,
+            "cost_usd": 0.0029838200000000003,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9744,
+            "output_tokens": 686,
+            "cost_usd": 0.00119392,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "XYRPm8rAGM": {
+        "input_tokens": 98046,
+        "output_tokens": 5575,
+        "cost_usd": 0.015421266000000003,
+        "time_s": 290.7069,
+        "by_role": {
+          "leader": {
+            "input_tokens": 62356,
+            "output_tokens": 1572,
+            "cost_usd": 0.009625880000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 11634,
+            "output_tokens": 866,
+            "cost_usd": 0.0013100960000000002,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 12290,
+            "output_tokens": 2337,
+            "cost_usd": 0.0030526900000000003,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11766,
+            "output_tokens": 800,
+            "cost_usd": 0.0014326,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "aisfb733DW": {
+        "input_tokens": 84866,
+        "output_tokens": 6056,
+        "cost_usd": 0.014056298,
+        "time_s": 314.201,
+        "by_role": {
+          "leader": {
+            "input_tokens": 55447,
+            "output_tokens": 1406,
+            "cost_usd": 0.008564,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9397,
+            "output_tokens": 925,
+            "cost_usd": 0.0011145680000000002,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10182,
+            "output_tokens": 3105,
+            "cost_usd": 0.00319533,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9840,
+            "output_tokens": 620,
+            "cost_usd": 0.0011824000000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "bgcdO9lmug": {
+        "input_tokens": 73108,
+        "output_tokens": 5624,
+        "cost_usd": 0.012155478,
+        "time_s": 214.8802,
+        "by_role": {
+          "leader": {
+            "input_tokens": 48090,
+            "output_tokens": 1236,
+            "cost_usd": 0.00743712,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 8517,
+            "output_tokens": 1179,
+            "cost_usd": 0.001095348,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8432,
+            "output_tokens": 2435,
+            "cost_usd": 0.00256843,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8069,
+            "output_tokens": 774,
+            "cost_usd": 0.00105458,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "hvLBTpiDt3": {
+        "input_tokens": 155574,
+        "output_tokens": 6753,
+        "cost_usd": 0.022909766000000005,
+        "time_s": 312.1007,
+        "by_role": {
+          "leader": {
+            "input_tokens": 96937,
+            "output_tokens": 1783,
+            "cost_usd": 0.01458749,
+            "llm_calls": 5
+          },
+          "clarity": {
+            "input_tokens": 28894,
+            "output_tokens": 1886,
+            "cost_usd": 0.003187536,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 15214,
+            "output_tokens": 2260,
+            "cost_usd": 0.00341816,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14529,
+            "output_tokens": 824,
+            "cost_usd": 0.00171658,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ju4EwaLeoI": {
+        "input_tokens": 92456,
+        "output_tokens": 5224,
+        "cost_usd": 0.014499571999999999,
+        "time_s": 307.8506,
+        "by_role": {
+          "leader": {
+            "input_tokens": 58979,
+            "output_tokens": 1375,
+            "cost_usd": 0.00904081,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 11378,
+            "output_tokens": 976,
+            "cost_usd": 0.001313532,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 11443,
+            "output_tokens": 2233,
+            "cost_usd": 0.00287483,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10656,
+            "output_tokens": 640,
+            "cost_usd": 0.0012704,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "l2zFn6TIQi": {
+        "input_tokens": 134269,
+        "output_tokens": 5387,
+        "cost_usd": 0.019883666,
+        "time_s": 230.79420000000002,
+        "by_role": {
+          "leader": {
+            "input_tokens": 83371,
+            "output_tokens": 1200,
+            "cost_usd": 0.012355940000000003,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 16979,
+            "output_tokens": 1220,
+            "cost_usd": 0.001901026,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 17284,
+            "output_tokens": 2376,
+            "cost_usd": 0.0037740800000000004,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 16635,
+            "output_tokens": 591,
+            "cost_usd": 0.0018526200000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "pNxD5dpu1M": {
+        "input_tokens": 74546,
+        "output_tokens": 5342,
+        "cost_usd": 0.012363266000000001,
+        "time_s": 282.9636,
+        "by_role": {
+          "leader": {
+            "input_tokens": 49054,
+            "output_tokens": 1189,
+            "cost_usd": 0.00754529,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 8034,
+            "output_tokens": 763,
+            "cost_usd": 0.000945946,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8867,
+            "output_tokens": 2747,
+            "cost_usd": 0.00280717,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8591,
+            "output_tokens": 643,
+            "cost_usd": 0.00106486,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "r0opxuq8T8": {
+        "input_tokens": 111747,
+        "output_tokens": 4734,
+        "cost_usd": 0.016727338,
+        "time_s": 275.2497,
+        "by_role": {
+          "leader": {
+            "input_tokens": 69820,
+            "output_tokens": 1382,
+            "cost_usd": 0.010562540000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 13102,
+            "output_tokens": 770,
+            "cost_usd": 0.001424088,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14493,
+            "output_tokens": 1809,
+            "cost_usd": 0.00306015,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14332,
+            "output_tokens": 773,
+            "cost_usd": 0.00168056,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "wMj6PgKVuJ": {
+        "input_tokens": 80910,
+        "output_tokens": 5498,
+        "cost_usd": 0.013202990000000001,
+        "time_s": 239.6502,
+        "by_role": {
+          "leader": {
+            "input_tokens": 52680,
+            "output_tokens": 1336,
+            "cost_usd": 0.00813672,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9150,
+            "output_tokens": 1017,
+            "cost_usd": 0.00111435,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9688,
+            "output_tokens": 2600,
+            "cost_usd": 0.00283832,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9392,
+            "output_tokens": 545,
+            "cost_usd": 0.0011136,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "zmHqlXGTTl": {
+        "input_tokens": 80470,
+        "output_tokens": 6190,
+        "cost_usd": 0.013523984,
+        "time_s": 253.7777,
+        "by_role": {
+          "leader": {
+            "input_tokens": 52624,
+            "output_tokens": 1509,
+            "cost_usd": 0.00822749,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9506,
+            "output_tokens": 909,
+            "cost_usd": 0.001120814,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9491,
+            "output_tokens": 3020,
+            "cost_usd": 0.00305014,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8849,
+            "output_tokens": 752,
+            "cost_usd": 0.00112554,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      }
+    },
+    "swap_experiments": {
+      "1Qpt43cqhg": {
+        "input_tokens": 76496,
+        "output_tokens": 7197,
+        "cost_usd": 0.01010054,
+        "time_s": 88.5214,
+        "by_role": {
+          "leader": {
+            "input_tokens": 40411,
+            "output_tokens": 2064,
+            "cost_usd": 0.0043146339999999995,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 9037,
+            "output_tokens": 1263,
+            "cost_usd": 0.001165228,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9251,
+            "output_tokens": 2141,
+            "cost_usd": 0.0025155100000000003,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 17797,
+            "output_tokens": 1729,
+            "cost_usd": 0.002105168,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "6jxUsDAdAu": {
+        "input_tokens": 26800,
+        "output_tokens": 839,
+        "cost_usd": 0.00272895,
+        "time_s": 15.2309,
+        "by_role": {
+          "leader": {
+            "input_tokens": 26800,
+            "output_tokens": 839,
+            "cost_usd": 0.00272895,
+            "llm_calls": 1
+          },
+          "clarity": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "experiments": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          },
+          "impact": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cost_usd": 0.0,
+            "llm_calls": 0
+          }
+        },
+        "missing_price_models": []
+      },
+      "7EhS3YBxjY": {
+        "input_tokens": 42936,
+        "output_tokens": 6879,
+        "cost_usd": 0.006998034,
+        "time_s": 134.09539999999998,
+        "by_role": {
+          "leader": {
+            "input_tokens": 20758,
+            "output_tokens": 2645,
+            "cost_usd": 0.002612502,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 7365,
+            "output_tokens": 633,
+            "cost_usd": 0.00085056,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 7570,
+            "output_tokens": 2794,
+            "cost_usd": 0.00265238,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7243,
+            "output_tokens": 807,
+            "cost_usd": 0.0008825920000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "85WHuB5CUK": {
+        "input_tokens": 90089,
+        "output_tokens": 8002,
+        "cost_usd": 0.011634536000000001,
+        "time_s": 189.6545,
+        "by_role": {
+          "leader": {
+            "input_tokens": 46145,
+            "output_tokens": 2375,
+            "cost_usd": 0.00493138,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 21513,
+            "output_tokens": 2711,
+            "cost_usd": 0.002699972,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 11845,
+            "output_tokens": 1940,
+            "cost_usd": 0.0027641000000000002,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10586,
+            "output_tokens": 976,
+            "cost_usd": 0.001239084,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "8dzKkeWUUb": {
+        "input_tokens": 66686,
+        "output_tokens": 7636,
+        "cost_usd": 0.009943517999999998,
+        "time_s": 192.594,
+        "by_role": {
+          "leader": {
+            "input_tokens": 31413,
+            "output_tokens": 1934,
+            "cost_usd": 0.003436322,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 11705,
+            "output_tokens": 769,
+            "cost_usd": 0.00129252,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 11999,
+            "output_tokens": 3794,
+            "cost_usd": 0.00384244,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11569,
+            "output_tokens": 1139,
+            "cost_usd": 0.001372236,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "FXJm5r17Q7": {
+        "input_tokens": 102877,
+        "output_tokens": 13071,
+        "cost_usd": 0.015611214,
+        "time_s": 308.8039,
+        "by_role": {
+          "leader": {
+            "input_tokens": 46218,
+            "output_tokens": 3694,
+            "cost_usd": 0.005267992000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 24237,
+            "output_tokens": 1897,
+            "cost_usd": 0.0027525279999999997,
+            "llm_calls": 3
+          },
+          "experiments": {
+            "input_tokens": 16551,
+            "output_tokens": 5974,
+            "cost_usd": 0.0057223199999999995,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 15871,
+            "output_tokens": 1506,
+            "cost_usd": 0.0018683740000000001,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "GjM61KRiTG": {
+        "input_tokens": 138893,
+        "output_tokens": 12534,
+        "cost_usd": 0.019366172,
+        "time_s": 278.37890000000004,
+        "by_role": {
+          "leader": {
+            "input_tokens": 58246,
+            "output_tokens": 2128,
+            "cost_usd": 0.006007124000000001,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 26703,
+            "output_tokens": 2688,
+            "cost_usd": 0.003182082,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 27515,
+            "output_tokens": 5972,
+            "cost_usd": 0.0072561399999999995,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 26429,
+            "output_tokens": 1746,
+            "cost_usd": 0.0029208259999999996,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "Gx04TnVjee": {
+        "input_tokens": 56085,
+        "output_tokens": 6409,
+        "cost_usd": 0.008296896,
+        "time_s": 133.0549,
+        "by_role": {
+          "leader": {
+            "input_tokens": 26138,
+            "output_tokens": 2264,
+            "cost_usd": 0.0030229719999999996,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 9790,
+            "output_tokens": 476,
+            "cost_usd": 0.00103926,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10496,
+            "output_tokens": 2937,
+            "cost_usd": 0.0031435300000000003,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9661,
+            "output_tokens": 732,
+            "cost_usd": 0.0010911340000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "KlN00vQEY2": {
+        "input_tokens": 67109,
+        "output_tokens": 6209,
+        "cost_usd": 0.009206243999999999,
+        "time_s": 138.1359,
+        "by_role": {
+          "leader": {
+            "input_tokens": 30446,
+            "output_tokens": 2245,
+            "cost_usd": 0.003423174,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 12060,
+            "output_tokens": 983,
+            "cost_usd": 0.0013793899999999999,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 12678,
+            "output_tokens": 2383,
+            "cost_usd": 0.00313323,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11925,
+            "output_tokens": 598,
+            "cost_usd": 0.0012704499999999998,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "LFn7s8yRUF": {
+        "input_tokens": 22601,
+        "output_tokens": 10056,
+        "cost_usd": 0.006005848,
+        "time_s": 188.7209,
+        "by_role": {
+          "leader": {
+            "input_tokens": 17514,
+            "output_tokens": 2483,
+            "cost_usd": 0.002267066,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 1804,
+            "output_tokens": 2066,
+            "cost_usd": 0.000686076,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 1739,
+            "output_tokens": 4023,
+            "cost_usd": 0.00253657,
+            "llm_calls": 2
+          },
+          "impact": {
+            "input_tokens": 1544,
+            "output_tokens": 1484,
+            "cost_usd": 0.000516136,
+            "llm_calls": 2
+          }
+        },
+        "missing_price_models": []
+      },
+      "MKpiaqh7R0": {
+        "input_tokens": 86388,
+        "output_tokens": 6587,
+        "cost_usd": 0.011082634,
+        "time_s": 121.0081,
+        "by_role": {
+          "leader": {
+            "input_tokens": 43839,
+            "output_tokens": 2324,
+            "cost_usd": 0.004701866,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 21128,
+            "output_tokens": 1050,
+            "cost_usd": 0.002248532,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 10982,
+            "output_tokens": 2532,
+            "cost_usd": 0.00298072,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10439,
+            "output_tokens": 681,
+            "cost_usd": 0.001151516,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "RwCxxaHvyp": {
+        "input_tokens": 81751,
+        "output_tokens": 6240,
+        "cost_usd": 0.010818998,
+        "time_s": 143.5039,
+        "by_role": {
+          "leader": {
+            "input_tokens": 36831,
+            "output_tokens": 1626,
+            "cost_usd": 0.0038686140000000003,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 14920,
+            "output_tokens": 1105,
+            "cost_usd": 0.00167873,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 15214,
+            "output_tokens": 2733,
+            "cost_usd": 0.00368777,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14786,
+            "output_tokens": 776,
+            "cost_usd": 0.001583884,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ScVnYBaSEw": {
+        "input_tokens": 75216,
+        "output_tokens": 6371,
+        "cost_usd": 0.010088476,
+        "time_s": 132.1997,
+        "by_role": {
+          "leader": {
+            "input_tokens": 34226,
+            "output_tokens": 1217,
+            "cost_usd": 0.003521494,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 13357,
+            "output_tokens": 1574,
+            "cost_usd": 0.0016490580000000001,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14417,
+            "output_tokens": 2382,
+            "cost_usd": 0.00337612,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 13216,
+            "output_tokens": 1198,
+            "cost_usd": 0.0015418040000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "TU3wJQfKz8": {
+        "input_tokens": 96433,
+        "output_tokens": 6803,
+        "cost_usd": 0.012493526000000001,
+        "time_s": 152.6643,
+        "by_role": {
+          "leader": {
+            "input_tokens": 42228,
+            "output_tokens": 1744,
+            "cost_usd": 0.004405432,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 17369,
+            "output_tokens": 1389,
+            "cost_usd": 0.001979936,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 19619,
+            "output_tokens": 2580,
+            "cost_usd": 0.0042172600000000005,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 17217,
+            "output_tokens": 1090,
+            "cost_usd": 0.001890898,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "WoGnnggVCZ": {
+        "input_tokens": 60557,
+        "output_tokens": 6906,
+        "cost_usd": 0.008807869999999999,
+        "time_s": 124.06160000000001,
+        "by_role": {
+          "leader": {
+            "input_tokens": 28757,
+            "output_tokens": 1790,
+            "cost_usd": 0.0031506579999999998,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 10639,
+            "output_tokens": 1385,
+            "cost_usd": 0.001346316,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10662,
+            "output_tokens": 2808,
+            "cost_usd": 0.00309324,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10499,
+            "output_tokens": 923,
+            "cost_usd": 0.0012176560000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "XYRPm8rAGM": {
+        "input_tokens": 66004,
+        "output_tokens": 7541,
+        "cost_usd": 0.009826294,
+        "time_s": 184.9029,
+        "by_role": {
+          "leader": {
+            "input_tokens": 30648,
+            "output_tokens": 2414,
+            "cost_usd": 0.003484412,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 11628,
+            "output_tokens": 922,
+            "cost_usd": 0.0013235319999999999,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 12258,
+            "output_tokens": 3665,
+            "cost_usd": 0.00380517,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11470,
+            "output_tokens": 540,
+            "cost_usd": 0.00121318,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "aisfb733DW": {
+        "input_tokens": 80580,
+        "output_tokens": 7868,
+        "cost_usd": 0.011032974,
+        "time_s": 192.4207,
+        "by_role": {
+          "leader": {
+            "input_tokens": 42337,
+            "output_tokens": 2547,
+            "cost_usd": 0.004616428,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 18809,
+            "output_tokens": 1274,
+            "cost_usd": 0.002086546,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 10169,
+            "output_tokens": 3199,
+            "cost_usd": 0.00324709,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9265,
+            "output_tokens": 848,
+            "cost_usd": 0.00108291,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "bgcdO9lmug": {
+        "input_tokens": 50473,
+        "output_tokens": 12381,
+        "cost_usd": 0.00943526,
+        "time_s": 374.1191,
+        "by_role": {
+          "leader": {
+            "input_tokens": 25194,
+            "output_tokens": 5217,
+            "cost_usd": 0.0036724859999999995,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 8501,
+            "output_tokens": 1927,
+            "cost_usd": 0.001280844,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8418,
+            "output_tokens": 3776,
+            "cost_usd": 0.00333084,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8360,
+            "output_tokens": 1461,
+            "cost_usd": 0.00115109,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "hvLBTpiDt3": {
+        "input_tokens": 80431,
+        "output_tokens": 7220,
+        "cost_usd": 0.010930548,
+        "time_s": 147.6382,
+        "by_role": {
+          "leader": {
+            "input_tokens": 36402,
+            "output_tokens": 2128,
+            "cost_usd": 0.003953788,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 14472,
+            "output_tokens": 1308,
+            "cost_usd": 0.001687368,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 15219,
+            "output_tokens": 2703,
+            "cost_usd": 0.00367137,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14338,
+            "output_tokens": 1081,
+            "cost_usd": 0.0016180219999999998,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ju4EwaLeoI": {
+        "input_tokens": 64357,
+        "output_tokens": 7000,
+        "cost_usd": 0.009205124,
+        "time_s": 122.41380000000001,
+        "by_role": {
+          "leader": {
+            "input_tokens": 30160,
+            "output_tokens": 2105,
+            "cost_usd": 0.0033612900000000003,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 11429,
+            "output_tokens": 1253,
+            "cost_usd": 0.001387576,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 11481,
+            "output_tokens": 2742,
+            "cost_usd": 0.00317028,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11287,
+            "output_tokens": 900,
+            "cost_usd": 0.001285978,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "l2zFn6TIQi": {
+        "input_tokens": 92776,
+        "output_tokens": 6585,
+        "cost_usd": 0.012116418,
+        "time_s": 150.06810000000002,
+        "by_role": {
+          "leader": {
+            "input_tokens": 41559,
+            "output_tokens": 1425,
+            "cost_usd": 0.004262796,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 17021,
+            "output_tokens": 1162,
+            "cost_usd": 0.001890474,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 17324,
+            "output_tokens": 2976,
+            "cost_usd": 0.00412168,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 16872,
+            "output_tokens": 1022,
+            "cost_usd": 0.0018414680000000002,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "pNxD5dpu1M": {
+        "input_tokens": 69072,
+        "output_tokens": 6405,
+        "cost_usd": 0.009336184,
+        "time_s": 142.28889999999998,
+        "by_role": {
+          "leader": {
+            "input_tokens": 36286,
+            "output_tokens": 2059,
+            "cost_usd": 0.003925634,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 16038,
+            "output_tokens": 886,
+            "cost_usd": 0.001729072,
+            "llm_calls": 2
+          },
+          "experiments": {
+            "input_tokens": 8861,
+            "output_tokens": 2608,
+            "cost_usd": 0.0027271,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7887,
+            "output_tokens": 852,
+            "cost_usd": 0.000954378,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "r0opxuq8T8": {
+        "input_tokens": 74271,
+        "output_tokens": 6465,
+        "cost_usd": 0.010170106,
+        "time_s": 136.6716,
+        "by_role": {
+          "leader": {
+            "input_tokens": 33562,
+            "output_tokens": 1521,
+            "cost_usd": 0.0035350779999999997,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 13155,
+            "output_tokens": 1139,
+            "cost_usd": 0.00152132,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14537,
+            "output_tokens": 2824,
+            "cost_usd": 0.0036448599999999998,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 13017,
+            "output_tokens": 981,
+            "cost_usd": 0.001468848,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "wMj6PgKVuJ": {
+        "input_tokens": 53136,
+        "output_tokens": 6698,
+        "cost_usd": 0.008003482,
+        "time_s": 230.85410000000002,
+        "by_role": {
+          "leader": {
+            "input_tokens": 25292,
+            "output_tokens": 2052,
+            "cost_usd": 0.002890448,
+            "llm_calls": 2
+          },
+          "clarity": {
+            "input_tokens": 9149,
+            "output_tokens": 888,
+            "cost_usd": 0.001082006,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9693,
+            "output_tokens": 2776,
+            "cost_usd": 0.00293934,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9002,
+            "output_tokens": 982,
+            "cost_usd": 0.001091688,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "zmHqlXGTTl": {
+        "input_tokens": 73754,
+        "output_tokens": 8318,
+        "cost_usd": 0.010267302,
+        "time_s": 186.8014,
+        "by_role": {
+          "leader": {
+            "input_tokens": 45278,
+            "output_tokens": 3535,
+            "cost_usd": 0.005139882,
+            "llm_calls": 3
+          },
+          "clarity": {
+            "input_tokens": 9542,
+            "output_tokens": 1396,
+            "cost_usd": 0.0012459480000000002,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9521,
+            "output_tokens": 2553,
+            "cost_usd": 0.00278815,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9413,
+            "output_tokens": 834,
+            "cost_usd": 0.0010933219999999999,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      }
+    },
+    "swap_leader": {
+      "1Qpt43cqhg": {
+        "input_tokens": 74414,
+        "output_tokens": 3768,
+        "cost_usd": 0.010494292,
+        "time_s": 183.2719,
+        "by_role": {
+          "leader": {
+            "input_tokens": 47616,
+            "output_tokens": 1147,
+            "cost_usd": 0.00732003,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 8987,
+            "output_tokens": 972,
+            "cost_usd": 0.001087778,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8960,
+            "output_tokens": 968,
+            "cost_usd": 0.00108424,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8851,
+            "output_tokens": 681,
+            "cost_usd": 0.001002244,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "6jxUsDAdAu": {
+        "input_tokens": 199026,
+        "output_tokens": 4664,
+        "cost_usd": 0.025938225999999995,
+        "time_s": 191.50220000000002,
+        "by_role": {
+          "leader": {
+            "input_tokens": 121637,
+            "output_tokens": 1464,
+            "cost_usd": 0.017863660000000003,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 25854,
+            "output_tokens": 1270,
+            "cost_usd": 0.002747776,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 25823,
+            "output_tokens": 1000,
+            "cost_usd": 0.002677362,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 25712,
+            "output_tokens": 930,
+            "cost_usd": 0.002649428,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "7EhS3YBxjY": {
+        "input_tokens": 63379,
+        "output_tokens": 4159,
+        "cost_usd": 0.009304053999999999,
+        "time_s": 208.27679999999998,
+        "by_role": {
+          "leader": {
+            "input_tokens": 41533,
+            "output_tokens": 1238,
+            "cost_usd": 0.006520280000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 7330,
+            "output_tokens": 1042,
+            "cost_usd": 0.0009495199999999999,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 7319,
+            "output_tokens": 1262,
+            "cost_usd": 0.001003486,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7197,
+            "output_tokens": 617,
+            "cost_usd": 0.000830768,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "85WHuB5CUK": {
+        "input_tokens": 90935,
+        "output_tokens": 4540,
+        "cost_usd": 0.012795902,
+        "time_s": 346.1781,
+        "by_role": {
+          "leader": {
+            "input_tokens": 59222,
+            "output_tokens": 1215,
+            "cost_usd": 0.008983630000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 10617,
+            "output_tokens": 1206,
+            "cost_usd": 0.001299498,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10611,
+            "output_tokens": 1275,
+            "cost_usd": 0.0013161840000000002,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10485,
+            "output_tokens": 844,
+            "cost_usd": 0.00119659,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "8dzKkeWUUb": {
+        "input_tokens": 96013,
+        "output_tokens": 5317,
+        "cost_usd": 0.013666426,
+        "time_s": 254.5987,
+        "by_role": {
+          "leader": {
+            "input_tokens": 60959,
+            "output_tokens": 1587,
+            "cost_usd": 0.00943885,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 11738,
+            "output_tokens": 1032,
+            "cost_usd": 0.001361372,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 11712,
+            "output_tokens": 1877,
+            "cost_usd": 0.001570178,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11604,
+            "output_tokens": 821,
+            "cost_usd": 0.0012960259999999998,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "FXJm5r17Q7": {
+        "input_tokens": 69584,
+        "output_tokens": 4818,
+        "cost_usd": 0.010309624,
+        "time_s": 261.996,
+        "by_role": {
+          "leader": {
+            "input_tokens": 45678,
+            "output_tokens": 1447,
+            "cost_usd": 0.007219710000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 8024,
+            "output_tokens": 1508,
+            "cost_usd": 0.001131256,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 7992,
+            "output_tokens": 1109,
+            "cost_usd": 0.001028498,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7890,
+            "output_tokens": 754,
+            "cost_usd": 0.00093016,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "GjM61KRiTG": {
+        "input_tokens": 106029,
+        "output_tokens": 4886,
+        "cost_usd": 0.014775700000000001,
+        "time_s": 245.81820000000002,
+        "by_role": {
+          "leader": {
+            "input_tokens": 66239,
+            "output_tokens": 1689,
+            "cost_usd": 0.010236190000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 13314,
+            "output_tokens": 1043,
+            "cost_usd": 0.001512266,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 13286,
+            "output_tokens": 1241,
+            "cost_usd": 0.001559134,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 13190,
+            "output_tokens": 913,
+            "cost_usd": 0.00146811,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "Gx04TnVjee": {
+        "input_tokens": 81957,
+        "output_tokens": 4475,
+        "cost_usd": 0.011797738000000002,
+        "time_s": 200.407,
+        "by_role": {
+          "leader": {
+            "input_tokens": 52925,
+            "output_tokens": 1689,
+            "cost_usd": 0.008372230000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9737,
+            "output_tokens": 959,
+            "cost_usd": 0.001155028,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9698,
+            "output_tokens": 1257,
+            "cost_usd": 0.001225862,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9597,
+            "output_tokens": 570,
+            "cost_usd": 0.001044618,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "KlN00vQEY2": {
+        "input_tokens": 95642,
+        "output_tokens": 2907,
+        "cost_usd": 0.01286353,
+        "time_s": 130.6483,
+        "by_role": {
+          "leader": {
+            "input_tokens": 59552,
+            "output_tokens": 1272,
+            "cost_usd": 0.00906232,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 12082,
+            "output_tokens": 569,
+            "cost_usd": 0.001277958,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 12055,
+            "output_tokens": 705,
+            "cost_usd": 0.00130942,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11953,
+            "output_tokens": 361,
+            "cost_usd": 0.001213832,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "LFn7s8yRUF": {
+        "input_tokens": 16465,
+        "output_tokens": 3653,
+        "cost_usd": 0.0035285340000000003,
+        "time_s": 136.4383,
+        "by_role": {
+          "leader": {
+            "input_tokens": 13789,
+            "output_tokens": 1354,
+            "cost_usd": 0.00270224,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 916,
+            "output_tokens": 758,
+            "cost_usd": 0.000275604,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 925,
+            "output_tokens": 1088,
+            "cost_usd": 0.00035895,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 835,
+            "output_tokens": 453,
+            "cost_usd": 0.00019174,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "MKpiaqh7R0": {
+        "input_tokens": 88003,
+        "output_tokens": 4610,
+        "cost_usd": 0.012455185999999998,
+        "time_s": 130.406,
+        "by_role": {
+          "leader": {
+            "input_tokens": 56334,
+            "output_tokens": 1372,
+            "cost_usd": 0.0086688,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 10614,
+            "output_tokens": 1325,
+            "cost_usd": 0.001328966,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10579,
+            "output_tokens": 1115,
+            "cost_usd": 0.001273176,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10476,
+            "output_tokens": 798,
+            "cost_usd": 0.0011842439999999999,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "RwCxxaHvyp": {
+        "input_tokens": 116515,
+        "output_tokens": 3866,
+        "cost_usd": 0.01564428,
+        "time_s": 125.9132,
+        "by_role": {
+          "leader": {
+            "input_tokens": 71915,
+            "output_tokens": 1304,
+            "cost_usd": 0.01081138,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 14925,
+            "output_tokens": 1205,
+            "cost_usd": 0.0017042,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14894,
+            "output_tokens": 937,
+            "cost_usd": 0.001634286,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14781,
+            "output_tokens": 420,
+            "cost_usd": 0.0014944140000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ScVnYBaSEw": {
+        "input_tokens": 108910,
+        "output_tokens": 4797,
+        "cost_usd": 0.015119344,
+        "time_s": 164.3295,
+        "by_role": {
+          "leader": {
+            "input_tokens": 69099,
+            "output_tokens": 1575,
+            "cost_usd": 0.01057161,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 13321,
+            "output_tokens": 1092,
+            "cost_usd": 0.001525174,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 13295,
+            "output_tokens": 1039,
+            "cost_usd": 0.00150948,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 13195,
+            "output_tokens": 1091,
+            "cost_usd": 0.00151308,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "TU3wJQfKz8": {
+        "input_tokens": 142568,
+        "output_tokens": 5059,
+        "cost_usd": 0.019308912000000004,
+        "time_s": 233.19570000000002,
+        "by_role": {
+          "leader": {
+            "input_tokens": 90815,
+            "output_tokens": 1454,
+            "cost_usd": 0.013542880000000002,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 17307,
+            "output_tokens": 1374,
+            "cost_usd": 0.0019703579999999997,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 17276,
+            "output_tokens": 1058,
+            "cost_usd": 0.001888444,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 17170,
+            "output_tokens": 1173,
+            "cost_usd": 0.0019072300000000002,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "WoGnnggVCZ": {
+        "input_tokens": 85546,
+        "output_tokens": 4235,
+        "cost_usd": 0.012001402000000001,
+        "time_s": 161.74820000000003,
+        "by_role": {
+          "leader": {
+            "input_tokens": 53848,
+            "output_tokens": 1326,
+            "cost_usd": 0.008294540000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 10623,
+            "output_tokens": 953,
+            "cost_usd": 0.0012368120000000001,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 10589,
+            "output_tokens": 1217,
+            "cost_usd": 0.001299616,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 10486,
+            "output_tokens": 739,
+            "cost_usd": 0.0011704340000000001,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "XYRPm8rAGM": {
+        "input_tokens": 94085,
+        "output_tokens": 3705,
+        "cost_usd": 0.012875840000000001,
+        "time_s": 180.0615,
+        "by_role": {
+          "leader": {
+            "input_tokens": 59360,
+            "output_tokens": 1172,
+            "cost_usd": 0.00897844,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 11634,
+            "output_tokens": 751,
+            "cost_usd": 0.001281346,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 11602,
+            "output_tokens": 1028,
+            "cost_usd": 0.001347588,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11489,
+            "output_tokens": 754,
+            "cost_usd": 0.001268466,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "aisfb733DW": {
+        "input_tokens": 80318,
+        "output_tokens": 4198,
+        "cost_usd": 0.011418072000000001,
+        "time_s": 264.176,
+        "by_role": {
+          "leader": {
+            "input_tokens": 52260,
+            "output_tokens": 1296,
+            "cost_usd": 0.00805512,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9404,
+            "output_tokens": 1225,
+            "cost_usd": 0.001190226,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9389,
+            "output_tokens": 920,
+            "cost_usd": 0.001112566,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9265,
+            "output_tokens": 757,
+            "cost_usd": 0.00106016,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "bgcdO9lmug": {
+        "input_tokens": 68600,
+        "output_tokens": 3696,
+        "cost_usd": 0.009785704,
+        "time_s": 133.6509,
+        "by_role": {
+          "leader": {
+            "input_tokens": 43204,
+            "output_tokens": 1331,
+            "cost_usd": 0.006807230000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 8526,
+            "output_tokens": 880,
+            "cost_usd": 0.001021444,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 8497,
+            "output_tokens": 673,
+            "cost_usd": 0.0009669679999999999,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8373,
+            "output_tokens": 812,
+            "cost_usd": 0.000990062,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "hvLBTpiDt3": {
+        "input_tokens": 115249,
+        "output_tokens": 4092,
+        "cost_usd": 0.015551048000000001,
+        "time_s": 174.0666,
+        "by_role": {
+          "leader": {
+            "input_tokens": 72047,
+            "output_tokens": 1189,
+            "cost_usd": 0.010764310000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 14458,
+            "output_tokens": 1398,
+            "cost_usd": 0.0017085520000000001,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 14427,
+            "output_tokens": 841,
+            "cost_usd": 0.001566388,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 14317,
+            "output_tokens": 664,
+            "cost_usd": 0.001511798,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "ju4EwaLeoI": {
+        "input_tokens": 91659,
+        "output_tokens": 4717,
+        "cost_usd": 0.012889194,
+        "time_s": 235.8821,
+        "by_role": {
+          "leader": {
+            "input_tokens": 57633,
+            "output_tokens": 1384,
+            "cost_usd": 0.0088575,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 11397,
+            "output_tokens": 864,
+            "cost_usd": 0.001287318,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 11371,
+            "output_tokens": 1558,
+            "cost_usd": 0.0014583739999999997,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 11258,
+            "output_tokens": 911,
+            "cost_usd": 0.001286002,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "l2zFn6TIQi": {
+        "input_tokens": 133440,
+        "output_tokens": 5156,
+        "cost_usd": 0.018009588000000003,
+        "time_s": 259.768,
+        "by_role": {
+          "leader": {
+            "input_tokens": 82698,
+            "output_tokens": 1166,
+            "cost_usd": 0.01224234,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 16978,
+            "output_tokens": 1404,
+            "cost_usd": 0.001946932,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 16940,
+            "output_tokens": 1553,
+            "cost_usd": 0.0019806100000000003,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 16824,
+            "output_tokens": 1033,
+            "cost_usd": 0.001839706,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "pNxD5dpu1M": {
+        "input_tokens": 69415,
+        "output_tokens": 4143,
+        "cost_usd": 0.01014441,
+        "time_s": 182.7296,
+        "by_role": {
+          "leader": {
+            "input_tokens": 45495,
+            "output_tokens": 1534,
+            "cost_usd": 0.007243680000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 8029,
+            "output_tokens": 623,
+            "cost_usd": 0.0009104759999999999,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 7996,
+            "output_tokens": 1062,
+            "cost_usd": 0.001017124,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 7895,
+            "output_tokens": 924,
+            "cost_usd": 0.0009731299999999999,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "r0opxuq8T8": {
+        "input_tokens": 108673,
+        "output_tokens": 4309,
+        "cost_usd": 0.014896286000000002,
+        "time_s": 187.3837,
+        "by_role": {
+          "leader": {
+            "input_tokens": 69529,
+            "output_tokens": 1267,
+            "cost_usd": 0.01045625,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 13102,
+            "output_tokens": 980,
+            "cost_usd": 0.001476588,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 13076,
+            "output_tokens": 1317,
+            "cost_usd": 0.0015583940000000003,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 12966,
+            "output_tokens": 745,
+            "cost_usd": 0.001405054,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "wMj6PgKVuJ": {
+        "input_tokens": 76404,
+        "output_tokens": 3347,
+        "cost_usd": 0.010625326000000001,
+        "time_s": 138.4953,
+        "by_role": {
+          "leader": {
+            "input_tokens": 49180,
+            "output_tokens": 1076,
+            "cost_usd": 0.00749852,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9129,
+            "output_tokens": 996,
+            "cost_usd": 0.001107126,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9099,
+            "output_tokens": 1032,
+            "cost_usd": 0.0011133059999999999,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 8996,
+            "output_tokens": 243,
+            "cost_usd": 0.000906374,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      },
+      "zmHqlXGTTl": {
+        "input_tokens": 77582,
+        "output_tokens": 4620,
+        "cost_usd": 0.011107202000000002,
+        "time_s": 185.2209,
+        "by_role": {
+          "leader": {
+            "input_tokens": 49349,
+            "output_tokens": 1217,
+            "cost_usd": 0.007602550000000001,
+            "llm_calls": 4
+          },
+          "clarity": {
+            "input_tokens": 9464,
+            "output_tokens": 1000,
+            "cost_usd": 0.001139616,
+            "llm_calls": 1
+          },
+          "experiments": {
+            "input_tokens": 9436,
+            "output_tokens": 1679,
+            "cost_usd": 0.001306734,
+            "llm_calls": 1
+          },
+          "impact": {
+            "input_tokens": 9333,
+            "output_tokens": 724,
+            "cost_usd": 0.001058302,
+            "llm_calls": 1
+          }
+        },
+        "missing_price_models": []
+      }
+    }
+  },
+  "per_config": {
+    "All-A": {
+      "input_tokens": {
+        "mean": 117057.6,
+        "sem": 11205.381950503368,
+        "n": 25.0
+      },
+      "output_tokens": {
+        "mean": 9234.76,
+        "sem": 528.7850202114276,
+        "n": 25.0
+      },
+      "cost_usd": {
+        "mean": 0.0216518772,
+        "sem": 0.0017633678596630103,
+        "n": 25.0
+      },
+      "time_s": {
+        "mean": 440.210296,
+        "sem": 29.923603557961552,
+        "n": 25.0
+      },
+      "by_role": {
+        "leader": {
+          "input_tokens": {
+            "mean": 76859.76,
+            "sem": 7153.315293456593,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1600.4,
+            "sem": 68.76059918296234,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0116725944,
+            "sem": 0.0010283463549715923,
+            "n": 25.0
+          }
+        },
+        "clarity": {
+          "input_tokens": {
+            "mean": 12556.08,
+            "sem": 1049.6047191204887,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 2782.68,
+            "sem": 154.70824929524605,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0033439788,
+            "sem": 0.00019765085141086543,
+            "n": 25.0
+          }
+        },
+        "experiments": {
+          "input_tokens": {
+            "mean": 13580.8,
+            "sem": 1457.1313404540215,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 2963.04,
+            "sem": 253.71426500428916,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0035902447999999997,
+            "sem": 0.00030562540933367006,
+            "n": 25.0
+          }
+        },
+        "impact": {
+          "input_tokens": {
+            "mean": 14060.96,
+            "sem": 1821.476480294672,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1888.64,
+            "sem": 182.10132600652125,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0030450592,
+            "sem": 0.0002824859170052672,
+            "n": 25.0
+          }
+        }
+      }
+    },
+    "All-B": {
+      "input_tokens": {
+        "mean": 62668.64,
+        "sem": 4422.949799956284,
+        "n": 25.0
+      },
+      "output_tokens": {
+        "mean": 5293.6,
+        "sem": 381.92493154196325,
+        "n": 25.0
+      },
+      "cost_usd": {
+        "mean": 0.00721425216,
+        "sem": 0.00044565996328710703,
+        "n": 25.0
+      },
+      "time_s": {
+        "mean": 82.350588,
+        "sem": 7.436651719177388,
+        "n": 25.0
+      },
+      "by_role": {
+        "leader": {
+          "input_tokens": {
+            "mean": 29439.48,
+            "sem": 1725.3629947733705,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 2242.2,
+            "sem": 333.7986019543321,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0033278611199999996,
+            "sem": 0.00017099570927330622,
+            "n": 25.0
+          }
+        },
+        "clarity": {
+          "input_tokens": {
+            "mean": 11000.04,
+            "sem": 937.5807795953726,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1116.68,
+            "sem": 85.52201899705906,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.00131317376,
+            "sem": 0.00010106546462732757,
+            "n": 25.0
+          }
+        },
+        "experiments": {
+          "input_tokens": {
+            "mean": 11408.36,
+            "sem": 1086.7180067831152,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1176.92,
+            "sem": 82.20111353665877,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.00136661584,
+            "sem": 0.00011591716090737212,
+            "n": 25.0
+          }
+        },
+        "impact": {
+          "input_tokens": {
+            "mean": 10820.76,
+            "sem": 946.8651880107678,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 757.8,
+            "sem": 49.3489614885663,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.00120660144,
+            "sem": 9.800635419968237e-05,
+            "n": 25.0
+          }
+        }
+      }
+    },
+    "All-C": {
+      "input_tokens": {
+        "mean": 23714.84,
+        "sem": 3718.5087690632113,
+        "n": 25.0
+      },
+      "output_tokens": {
+        "mean": 1344.96,
+        "sem": 291.1657001319581,
+        "n": 25.0
+      },
+      "cost_usd": {
+        "mean": 0.0028018712,
+        "sem": 0.00045521145376052803,
+        "n": 25.0
+      },
+      "time_s": {
+        "mean": 100.105524,
+        "sem": 14.64667459502245,
+        "n": 25.0
+      },
+      "by_role": {
+        "leader": {
+          "input_tokens": {
+            "mean": 16635.4,
+            "sem": 1269.2263588501462,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 704.52,
+            "sem": 85.84057160418571,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0018889864,
+            "sem": 0.00014820391184994637,
+            "n": 25.0
+          }
+        },
+        "clarity": {
+          "input_tokens": {
+            "mean": 2378.68,
+            "sem": 880.8035000687345,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 187.24,
+            "sem": 61.51366460660049,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0002977848,
+            "sem": 0.0001055224814737283,
+            "n": 25.0
+          }
+        },
+        "experiments": {
+          "input_tokens": {
+            "mean": 2365.4,
+            "sem": 877.4106469227129,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 247.68,
+            "sem": 82.22156489226737,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0003157976,
+            "sem": 0.00011145979427769757,
+            "n": 25.0
+          }
+        },
+        "impact": {
+          "input_tokens": {
+            "mean": 2335.36,
+            "sem": 868.4975856423935,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 205.52,
+            "sem": 68.41184400379805,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0002993024,
+            "sem": 0.00010585288799284916,
+            "n": 25.0
+          }
+        }
+      }
+    },
+    "rot_2": {
+      "input_tokens": {
+        "mean": 140802.08,
+        "sem": 57622.21234182527,
+        "n": 25.0
+      },
+      "output_tokens": {
+        "mean": 8976.64,
+        "sem": 952.1214801344067,
+        "n": 25.0
+      },
+      "cost_usd": {
+        "mean": 0.017646479519999998,
+        "sem": 0.005791757395521811,
+        "n": 25.0
+      },
+      "time_s": {
+        "mean": 219.358992,
+        "sem": 27.300996989929338,
+        "n": 25.0
+      },
+      "by_role": {
+        "leader": {
+          "input_tokens": {
+            "mean": 89559.4,
+            "sem": 49730.608750748266,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 2746.56,
+            "sem": 420.16421424644597,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0091052236,
+            "sem": 0.004774151799532484,
+            "n": 25.0
+          }
+        },
+        "clarity": {
+          "input_tokens": {
+            "mean": 16863.84,
+            "sem": 2107.278314698844,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1234.84,
+            "sem": 127.6713055728133,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0020815328000000004,
+            "sem": 0.0002398711244755678,
+            "n": 25.0
+          }
+        },
+        "experiments": {
+          "input_tokens": {
+            "mean": 16715.96,
+            "sem": 2112.7248775613607,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 3782.4,
+            "sem": 374.13752818983556,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0044962024,
+            "sem": 0.000484281824694492,
+            "n": 25.0
+          }
+        },
+        "impact": {
+          "input_tokens": {
+            "mean": 14442.32,
+            "sem": 1563.0298671917096,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1169.28,
+            "sem": 136.25948921084358,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0016498980799999998,
+            "sem": 0.00016815340846923005,
+            "n": 25.0
+          }
+        }
+      }
+    },
+    "specialist": {
+      "input_tokens": {
+        "mean": 99065.12,
+        "sem": 7057.741109429655,
+        "n": 25.0
+      },
+      "output_tokens": {
+        "mean": 5776.88,
+        "sem": 140.2451819730955,
+        "n": 25.0
+      },
+      "cost_usd": {
+        "mean": 0.015616096320000002,
+        "sem": 0.000912889065769963,
+        "n": 25.0
+      },
+      "time_s": {
+        "mean": 285.89385999999996,
+        "sem": 9.201479236668053,
+        "n": 25.0
+      },
+      "by_role": {
+        "leader": {
+          "input_tokens": {
+            "mean": 63354.64,
+            "sem": 4124.309831507166,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1400.76,
+            "sem": 30.436232793607466,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0096680828,
+            "sem": 0.000584381573758539,
+            "n": 25.0
+          }
+        },
+        "clarity": {
+          "input_tokens": {
+            "mean": 12076.08,
+            "sem": 1135.3726978691475,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1061.52,
+            "sem": 49.45213578131215,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.00140053152,
+            "sem": 0.00011473287200590655,
+            "n": 25.0
+          }
+        },
+        "experiments": {
+          "input_tokens": {
+            "mean": 12083.0,
+            "sem": 972.7748883134952,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 2560.2,
+            "sem": 115.55728738018502,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.003150934,
+            "sem": 0.00014702821054931374,
+            "n": 25.0
+          }
+        },
+        "impact": {
+          "input_tokens": {
+            "mean": 11551.4,
+            "sem": 932.9361160694052,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 754.4,
+            "sem": 23.814281429428014,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.001396548,
+            "sem": 9.235005209166553e-05,
+            "n": 25.0
+          }
+        }
+      }
+    },
+    "swap_experiments": {
+      "input_tokens": {
+        "mean": 71830.84,
+        "sem": 4822.753059432617,
+        "n": 25.0
+      },
+      "output_tokens": {
+        "mean": 7528.8,
+        "sem": 490.08052739660377,
+        "n": 25.0
+      },
+      "cost_usd": {
+        "mean": 0.01014028592,
+        "sem": 0.0006112521254493434,
+        "n": 25.0
+      },
+      "time_s": {
+        "mean": 168.352284,
+        "sem": 14.422833311414786,
+        "n": 25.0
+      },
+      "by_role": {
+        "leader": {
+          "input_tokens": {
+            "mean": 35067.52,
+            "sem": 1880.520705478494,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 2255.0,
+            "sem": 174.51639846539734,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0038600968800000003,
+            "sem": 0.0001819856479954058,
+            "n": 25.0
+          }
+        },
+        "clarity": {
+          "input_tokens": {
+            "mean": 13254.84,
+            "sem": 1256.1959622606657,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1285.76,
+            "sem": 123.68154375923139,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.00156739496,
+            "sem": 0.0001367773890112017,
+            "n": 25.0
+          }
+        },
+        "experiments": {
+          "input_tokens": {
+            "mean": 11920.76,
+            "sem": 1080.521895937329,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 2992.6,
+            "sem": 235.234308722176,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0033746884,
+            "sem": 0.00025030274309435763,
+            "n": 25.0
+          }
+        },
+        "impact": {
+          "input_tokens": {
+            "mean": 11587.72,
+            "sem": 1050.1236633844605,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 995.44,
+            "sem": 77.32925449013459,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.00133810568,
+            "sem": 0.00011042873591758502,
+            "n": 25.0
+          }
+        }
+      }
+    },
+    "swap_leader": {
+      "input_tokens": {
+        "mean": 94016.44,
+        "sem": 6671.417501071267,
+        "n": 25.0
+      },
+      "output_tokens": {
+        "mean": 4309.48,
+        "sem": 117.9879248058885,
+        "n": 25.0
+      },
+      "cost_usd": {
+        "mean": 0.0130922328,
+        "sem": 0.0008238035134658992,
+        "n": 25.0
+      },
+      "time_s": {
+        "mean": 196.64650799999998,
+        "sem": 10.981816137533778,
+        "n": 25.0
+      },
+      "by_role": {
+        "leader": {
+          "input_tokens": {
+            "mean": 59676.64,
+            "sem": 3976.568828307473,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1350.6,
+            "sem": 33.67753949840556,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0091245716,
+            "sem": 0.0005595447921035695,
+            "n": 25.0
+          }
+        },
+        "clarity": {
+          "input_tokens": {
+            "mean": 11500.4,
+            "sem": 901.985552360273,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1057.16,
+            "sem": 49.17708409411847,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0013453276,
+            "sem": 9.083381904914783e-05,
+            "n": 25.0
+          }
+        },
+        "experiments": {
+          "input_tokens": {
+            "mean": 11473.88,
+            "sem": 900.9358140659448,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 1152.44,
+            "sem": 57.102045497512606,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.00136665472,
+            "sem": 8.580688043740083e-05,
+            "n": 25.0
+          }
+        },
+        "impact": {
+          "input_tokens": {
+            "mean": 11365.52,
+            "sem": 900.5990267964244,
+            "n": 25.0
+          },
+          "output_tokens": {
+            "mean": 749.28,
+            "sem": 44.330295133990106,
+            "n": 25.0
+          },
+          "cost_usd": {
+            "mean": 0.0012556788799999998,
+            "sem": 9.001474014612495e-05,
+            "n": 25.0
+          }
+        }
+      }
+    }
+  }
+}

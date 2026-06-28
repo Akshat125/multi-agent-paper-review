@@ -181,11 +181,41 @@ def build_matrix(spec: EvalPlan, paper_ids: list[str]) -> list[RunItem]:
 
 
 def is_run_complete(run_dir: Path) -> bool:
-    """True iff all required artifacts exist and the trace has a ``run_footer``."""
+    """True iff all artifacts exist, the trace has a ``run_footer``, and the
+    review parsed to a non-null rating.
+
+    The rating gate matters because a run whose leader output failed to parse
+    (e.g. an upstream rate-limit wiped the experts, or the leader emitted only a
+    plan) still writes all three artifacts plus a ``run_footer`` with
+    ``rating: null``. Without this check such a run counts as "complete", so the
+    generator skips it on resume and the metric loaders silently ingest an empty
+    review. Treating null-rating runs as incomplete makes them auto-regenerate
+    and keeps them out of the metric set.
+    """
     for name in REQUIRED_ARTIFACTS:
         if not (run_dir / name).is_file():
             return False
-    return _has_run_footer(run_dir / "trace.jsonl")
+    if not _has_run_footer(run_dir / "trace.jsonl"):
+        return False
+    return review_is_substantive(run_dir / "review.json")
+
+
+def review_is_substantive(review_json_path: Path) -> bool:
+    """True iff ``review.json`` parsed a non-null rating *and* every section body
+    is non-empty.
+
+    A rating alone is not enough: some Mistral-leader runs emit only a plan or a
+    bare ``RATING:`` line, which yields a rating but blank Summary/Strengths/
+    Weaknesses/Questions. Such a review carries no content for the judges, so it
+    is treated as incomplete (auto-regenerated, excluded from metrics).
+    """
+    try:
+        data = json.loads(review_json_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return False
+    if data.get("rating") is None:
+        return False
+    return all((data.get(name) or "").strip() for name in ("summary", "strengths", "weaknesses", "questions"))
 
 
 def _has_run_footer(trace_path: Path) -> bool:

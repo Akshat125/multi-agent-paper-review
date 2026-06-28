@@ -1,28 +1,41 @@
-### Current Step: Drafting the high-level plan
+### Summary
 
-### High-Level Plan
+The paper titled "Controlling Language and Diffusion Models by Transporting Activations" introduces Activation Transport (\method), a framework that leverages optimal transport theory to steer activations in generative models. The paper demonstrates the effectiveness of \method across various tasks and models, including large language models (LLMs) and text-to-image diffusion models (T2Is). The authors show that \method can effectively mitigate toxicity, induce arbitrary concepts, increase truthfulness, enable fine-grained style control, and achieve concept negation. The paper also highlights the robustness and interpretability of the method, which are crucial for practical applications.
 
-1. **Delegate Tasks to Reviewers**:
-   - Assign specific questions to each of the three expert reviewers (Clarity and Reproducibility Reviewer, Experiments and Methodology Reviewer, Impact and Contribution Reviewer) to cover all necessary areas of the paper.
+### Strengths
 
-2. **Receive and Review Feedback**:
-   - Collect feedback from each reviewer.
-   - Assess the quality and completeness of the feedback. If any responses are weak or unclear, delegate follow-up questions to the respective reviewers.
+1. **Novel Framework**: The paper introduces a novel framework based on optimal transport theory, which provides a more principled and theoretically grounded approach to controlling generative models. This is a significant departure from previous methods that often rely on simpler heuristics or fine-tuning.
 
-3. **Synthesize Feedback**:
-   - Compile the feedback from all reviewers into a coherent and structured review.
-   - Ensure that the review covers all necessary sections (Summary, Strengths, Weaknesses, Questions) and adheres to the specified format.
+2. **Comprehensive Evaluation**: The paper provides a comprehensive evaluation of \method across various tasks and models. The experimental results are well-documented and supported by clear and detailed tables, figures, and qualitative examples. The authors also include ablations that provide valuable insights into the strengths and weaknesses of the method.
 
-4. **Write the Final Review**:
-   - Draft the final review based on the synthesized feedback.
-   - Ensure that the review is clear, professional, and specific, referencing concrete details from the paper.
-   - Include an overall rating based on the provided rubric.
+3. **Robustness and Interpretability**: The paper highlights the robustness and interpretability of \method. The method provides a robust parameter to control the amount of conditioning, bounded between 0 and 1, which makes it user-friendly and interpretable. This is a crucial aspect for practical applications.
 
-5. **Final Check and Submission**:
-   - Review the final draft for clarity, completeness, and adherence to the specified format.
-   - Make any necessary revisions.
-   - Submit the final review.
+4. **Generalization**: The paper demonstrates that \method generalizes well across different models and tasks. This is a significant contribution as it shows the broad applicability of the method.
 
-### Next Step: Delegate Tasks to Reviewers
+5. **Clear Writing**: The paper is generally well-written and presents a clear and coherent narrative. The introduction effectively sets the stage by highlighting the importance of controlling generative models and the limitations of existing methods. The abstract succinctly summarizes the contributions and the main findings.
 
-I will now delegate specific questions to each of the three expert reviewers to cover all necessary areas of the paper.
+### Weaknesses
+
+1. **Technical Jargon**: The paper uses a significant amount of technical jargon, especially in the sections related to optimal transport theory and activation steering. While this is expected in a technical paper, some explanations could be more accessible to a broader audience. For example, the definitions and propositions could benefit from more intuitive explanations or examples.
+
+2. **Consistency in Terminology**: The paper uses terms like "GMs," "LLMs," and "T2Is" frequently. While these abbreviations are standard in the field, it might be helpful to spell them out more frequently to avoid confusion, especially for readers who are not deeply familiar with the terminology.
+
+3. **Flow and Organization**: The paper is well-organized, but the transition between sections could be smoother. For instance, the transition from the introduction to the related work section could be more seamless. Additionally, the experimental sections could benefit from a brief recap of the main objectives before diving into the details.
+
+4. **Related Work**: While the related work section is informative, it could benefit from a more structured organization and clearer connections to the proposed method. Some of the references could be integrated more seamlessly into the discussion.
+
+5. **Limitations and Discussion**: This section is somewhat brief and could be expanded to provide a more thorough discussion of the limitations and potential future directions. The authors could have provided more insights into the assumptions and simplifications made in the method, and how these might affect its performance in real-world applications.
+
+### Questions
+
+1. **Hyperparameters**: The paper mentions the use of hyperparameters, such as the strength parameter λ. Could the authors provide more details about the values of these hyperparameters and how they were chosen? Additionally, could they discuss the sensitivity of the method to these hyperparameters?
+
+2. **Implementation Details**: The paper could benefit from more details about the implementation of the proposed method. For example, the exact steps involved in estimating the transport maps and applying them to the activations could be described in more detail. Could the authors provide more information about the computational resources required for the experiments?
+
+3. **Code and Data Availability**: The paper does not explicitly state whether the code and data used in the experiments will be made available. This information is important for reproducibility and should be included. Could the authors confirm whether the code and data will be made publicly available?
+
+4. **Generalization to Other Models**: The paper demonstrates the effectiveness of \method on LLMs and T2Is. Could the authors discuss the potential generalization of the method to other types of generative models, such as audio or video generation models?
+
+5. **Real-World Applications**: The paper highlights the potential of \method for practical applications. Could the authors provide more examples or case studies of how the method could be applied in real-world scenarios, such as content moderation, creative design, or educational tools?
+
+RATING: 8

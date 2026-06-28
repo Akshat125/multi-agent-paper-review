@@ -1,22 +1,35 @@
-### Review of "Last-Iterate Convergence of Smooth Regret Matching$^+$ Variants in Learning Nash Equilibria"
+### Summary
 
-#### Clarity and Writing Quality
-The paper is generally well-written and easy to understand. The authors have done a commendable job of explaining complex concepts in a clear and concise manner. The introduction provides a good overview of the problem and the contributions of the paper. The notation is consistent and well-defined, which helps in following the mathematical derivations.
+The paper titled "Last-Iterate Convergence of Smooth Regret Matching$^+$ Variants in Learning Nash Equilibria" introduces a novel proof paradigm for demonstrating the last-iterate convergence of Regret Matching$^+$ (RM$^+$) variants in learning Nash Equilibria (NE) for games that satisfy monotonicity or the weak Minty variation inequality (MVI). The authors propose a new variant, Smooth Optimistic Gradient RM$^+$ (SOGRM$^+$), which achieves last-iterate convergence in games satisfying the weak MVI. The paper includes theoretical analysis and experimental results on randomly generated two-player zero-sum matrix games.
 
-However, there are a few sections that could benefit from further clarification. For instance, the description of the novel proof paradigm in Section 3 could be more detailed. While the authors provide a high-level overview, some of the steps in the proof could be explained in more detail to ensure complete understanding. Additionally, the experimental setup and results in Section 6 could be more thoroughly described. The figures and tables are clear and informative, but the text accompanying them could provide more context and interpretation of the results.
+### Strengths
 
-#### Reproducibility of Experiments
-The experiments are well-designed and appear to be reproducible. The authors provide sufficient details about the experimental setup, including the generation of two-player zero-sum matrix games and the initialization of the algorithms. The use of the duality gap as a metric to evaluate the distance to NE is appropriate and well-justified.
+- **Novel Proof Paradigm**: The paper introduces a novel proof paradigm that leverages the equivalence between RM$^+$ and Online Mirror Descent (OMD) to recover key properties such as monotonicity or the weak MVI. This approach is innovative and addresses a significant gap in the literature.
 
-However, there are a few areas where more information would be helpful. For example, the specific values of the hyperparameters used in the experiments, such as the step-size $\eta$, are not explicitly mentioned. Including these details would make it easier for other researchers to reproduce the results. Additionally, the authors could provide more information about the computational resources used and the time taken for the experiments.
+- **New Algorithm (SOGRM$^+$)**: The introduction of SOGRM$^+$ is a significant contribution, as it achieves last-iterate convergence in games satisfying the weak MVI, a weaker condition than those used in existing proofs for RM$^+$ variants.
 
-#### Figures and Tables
-The figures and tables in the paper are clear and informative. Figure 1, which shows the performance of different algorithms in two-player zero-sum matrix games of varying sizes, is particularly useful. It provides a visual comparison of the convergence rates and the sensitivity to parameter changes. The tables comparing the last-iterate convergence results with previous studies are also well-organized and provide valuable context.
+- **Theoretical and Experimental Results**: The paper provides rigorous theoretical analysis and comprehensive experimental results. The experiments are well-designed and include comparisons with existing RM$^+$ variants and traditional OMD-based algorithms.
 
-#### Well-Written and Poorly Written Sections
-The introduction and the sections describing the novel proof paradigm and the proposal of SOGRM$^+$ are particularly well-written. These sections provide a clear and concise explanation of the key contributions of the paper. The experimental results section is also well-written, although it could benefit from more detailed descriptions and interpretations.
+- **Clear Writing**: The paper is generally well-written, with a clear narrative and effective use of figures and tables. The introduction and conclusions are particularly well-written, providing a clear overview of the paper's contributions.
 
-Some sections, such as the detailed mathematical derivations in Section 3, could be improved for clarity. While the derivations are correct, they could be explained in more detail to ensure that readers can follow the logic step-by-step. Additionally, the conclusions section could be expanded to provide a more comprehensive summary of the findings and their implications.
+### Weaknesses
 
-#### Summary
-Overall, the paper is well-written and presents a significant contribution to the field of NE learning. The clarity and writing quality are generally good, although some sections could benefit from further explanation. The experiments are well-designed and reproducible, with clear and informative figures and tables. The authors should consider providing more details about the experimental setup and hyperparameters to enhance reproducibility. The well-written sections provide a clear explanation of the key contributions, while the poorly written sections could be improved for clarity and understanding.
+- **Clarity of Technical Details**: Some sections, particularly the preliminaries, could benefit from more intuitive explanations and clearer definitions. The mathematical notations are sometimes introduced without sufficient context, which can be confusing for readers not familiar with the topic.
+
+- **Experimental Reproducibility**: While the experimental setup is clearly described, the exact values of hyperparameters used in the experiments are not explicitly stated. Including these details would improve reproducibility. Additionally, the paper could reference any available code or data to facilitate reproducibility.
+
+- **Scope of Experiments**: The experiments are conducted on two-player zero-sum matrix games, but it would be beneficial to include other types of games, such as convex-concave games or games with more than two players, to demonstrate the broader applicability of the proposed algorithms.
+
+### Questions
+
+1. **Hyperparameter Values**: What are the exact values of the hyperparameters (e.g., step-size $\eta$) used in the experiments? Including these details would improve the reproducibility of the results.
+
+2. **Additional Game Types**: Have the authors considered conducting experiments on other types of games, such as convex-concave games or games with more than two players? Including these experiments could provide a more comprehensive evaluation of the proposed algorithms.
+
+3. **Ablation Studies**: Have the authors conducted any ablation studies to understand the impact of specific components of the proposed algorithms, such as the smoothness condition or the choice of the regularizer?
+
+4. **Real-World Applications**: Are there any plans to test the proposed algorithms on real-world games, such as poker or other strategic games, to validate their performance in practical scenarios?
+
+5. **Asynchronous Updates**: Have the authors explored the performance of the algorithms under asynchronous updates, which is a more realistic setting in many applications?
+
+RATING: 8

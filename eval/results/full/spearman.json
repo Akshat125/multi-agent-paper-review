@@ -1,0 +1,1247 @@
+{
+  "metric": "spearman",
+  "run_set": "full",
+  "computed_at": "2026-06-28T07:40:25.667550+00:00",
+  "bootstrap_n": 2000,
+  "per_config": {
+    "All-A": {
+      "overall": {
+        "rho": 0.4733727827090182,
+        "p_value": 0.01684436010429444,
+        "ci_low": 0.1253779280456656,
+        "ci_high": 0.708021277597778,
+        "n": 25
+      },
+      "by_stratum": {
+        "normal": {
+          "rho": 0.6201736729460423,
+          "p_value": 0.007909722589679907,
+          "ci_low": 0.22545292024493338,
+          "ci_high": 0.8692769082098645,
+          "n": 17
+        },
+        "controversial": {
+          "rho": null,
+          "p_value": null,
+          "ci_low": null,
+          "ci_high": null,
+          "n": 8
+        }
+      },
+      "pairs": [
+        {
+          "paper_id": "1Qpt43cqhg",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "6jxUsDAdAu",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "7EhS3YBxjY",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "85WHuB5CUK",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "8dzKkeWUUb",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "FXJm5r17Q7",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 5.75
+        },
+        {
+          "paper_id": "GjM61KRiTG",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "Gx04TnVjee",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.75
+        },
+        {
+          "paper_id": "KlN00vQEY2",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.6
+        },
+        {
+          "paper_id": "LFn7s8yRUF",
+          "stratum": "normal",
+          "config_score": 5.0,
+          "human_mean": 1.5
+        },
+        {
+          "paper_id": "MKpiaqh7R0",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "RwCxxaHvyp",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "ScVnYBaSEw",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "TU3wJQfKz8",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "WoGnnggVCZ",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "XYRPm8rAGM",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.8
+        },
+        {
+          "paper_id": "aisfb733DW",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "bgcdO9lmug",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 4.0
+        },
+        {
+          "paper_id": "hvLBTpiDt3",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "ju4EwaLeoI",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 3.25
+        },
+        {
+          "paper_id": "l2zFn6TIQi",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "pNxD5dpu1M",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "r0opxuq8T8",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "wMj6PgKVuJ",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.2
+        },
+        {
+          "paper_id": "zmHqlXGTTl",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 5.75
+        }
+      ]
+    },
+    "All-B": {
+      "overall": {
+        "rho": 0.3672725802334898,
+        "p_value": 0.07090803518008056,
+        "ci_low": -0.05811950342008708,
+        "ci_high": 0.7075472209130703,
+        "n": 25
+      },
+      "by_stratum": {
+        "normal": {
+          "rho": 0.4472135954999579,
+          "p_value": 0.07187959750119996,
+          "ci_low": -0.0743871890037812,
+          "ci_high": 0.8044714922897076,
+          "n": 17
+        },
+        "controversial": {
+          "rho": 0.1912730139190015,
+          "p_value": 0.6500143340830317,
+          "ci_low": -0.6622661785325219,
+          "ci_high": 0.8770580193070292,
+          "n": 8
+        }
+      },
+      "pairs": [
+        {
+          "paper_id": "1Qpt43cqhg",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "6jxUsDAdAu",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "7EhS3YBxjY",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "85WHuB5CUK",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "8dzKkeWUUb",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "FXJm5r17Q7",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 5.75
+        },
+        {
+          "paper_id": "GjM61KRiTG",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "Gx04TnVjee",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.75
+        },
+        {
+          "paper_id": "KlN00vQEY2",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.6
+        },
+        {
+          "paper_id": "LFn7s8yRUF",
+          "stratum": "normal",
+          "config_score": 6.0,
+          "human_mean": 1.5
+        },
+        {
+          "paper_id": "MKpiaqh7R0",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "RwCxxaHvyp",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "ScVnYBaSEw",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "TU3wJQfKz8",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "WoGnnggVCZ",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "XYRPm8rAGM",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.8
+        },
+        {
+          "paper_id": "aisfb733DW",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "bgcdO9lmug",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 4.0
+        },
+        {
+          "paper_id": "hvLBTpiDt3",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "ju4EwaLeoI",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 3.25
+        },
+        {
+          "paper_id": "l2zFn6TIQi",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "pNxD5dpu1M",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "r0opxuq8T8",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "wMj6PgKVuJ",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 6.2
+        },
+        {
+          "paper_id": "zmHqlXGTTl",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 5.75
+        }
+      ]
+    },
+    "All-C": {
+      "overall": {
+        "rho": 0.26465230046236765,
+        "p_value": 0.20108850120444074,
+        "ci_low": -0.18121553791603826,
+        "ci_high": 0.6405468143010895,
+        "n": 25
+      },
+      "by_stratum": {
+        "normal": {
+          "rho": 0.3653385036130496,
+          "p_value": 0.14930172399535227,
+          "ci_low": -0.21127203569630204,
+          "ci_high": 0.7607161846712269,
+          "n": 17
+        },
+        "controversial": {
+          "rho": -0.11043152607484653,
+          "p_value": 0.7946181372117439,
+          "ci_low": -0.8502596849666262,
+          "ci_high": 0.6885303726590963,
+          "n": 8
+        }
+      },
+      "pairs": [
+        {
+          "paper_id": "1Qpt43cqhg",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "6jxUsDAdAu",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "7EhS3YBxjY",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "85WHuB5CUK",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "8dzKkeWUUb",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "FXJm5r17Q7",
+          "stratum": "controversial",
+          "config_score": 9.0,
+          "human_mean": 5.75
+        },
+        {
+          "paper_id": "GjM61KRiTG",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "Gx04TnVjee",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.75
+        },
+        {
+          "paper_id": "KlN00vQEY2",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.6
+        },
+        {
+          "paper_id": "LFn7s8yRUF",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 1.5
+        },
+        {
+          "paper_id": "MKpiaqh7R0",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "RwCxxaHvyp",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "ScVnYBaSEw",
+          "stratum": "controversial",
+          "config_score": 9.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "TU3wJQfKz8",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "WoGnnggVCZ",
+          "stratum": "controversial",
+          "config_score": 9.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "XYRPm8rAGM",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 6.8
+        },
+        {
+          "paper_id": "aisfb733DW",
+          "stratum": "controversial",
+          "config_score": 9.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "bgcdO9lmug",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 4.0
+        },
+        {
+          "paper_id": "hvLBTpiDt3",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "ju4EwaLeoI",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 3.25
+        },
+        {
+          "paper_id": "l2zFn6TIQi",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "pNxD5dpu1M",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "r0opxuq8T8",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "wMj6PgKVuJ",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.2
+        },
+        {
+          "paper_id": "zmHqlXGTTl",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 5.75
+        }
+      ]
+    },
+    "rot_2": {
+      "overall": {
+        "rho": 0.3324751211165133,
+        "p_value": 0.10440838367447045,
+        "ci_low": -0.12247833090014015,
+        "ci_high": 0.6706256365133497,
+        "n": 25
+      },
+      "by_stratum": {
+        "normal": {
+          "rho": 0.4490731195102493,
+          "p_value": 0.07056345695043675,
+          "ci_low": -0.09183933988764292,
+          "ci_high": 0.8192685067533138,
+          "n": 17
+        },
+        "controversial": {
+          "rho": 0.0,
+          "p_value": 1.0,
+          "ci_low": -0.7741423564260171,
+          "ci_high": 0.7745966692414833,
+          "n": 8
+        }
+      },
+      "pairs": [
+        {
+          "paper_id": "1Qpt43cqhg",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "6jxUsDAdAu",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "7EhS3YBxjY",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "85WHuB5CUK",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "8dzKkeWUUb",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "FXJm5r17Q7",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 5.75
+        },
+        {
+          "paper_id": "GjM61KRiTG",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "Gx04TnVjee",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 6.75
+        },
+        {
+          "paper_id": "KlN00vQEY2",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.6
+        },
+        {
+          "paper_id": "LFn7s8yRUF",
+          "stratum": "normal",
+          "config_score": 6.0,
+          "human_mean": 1.5
+        },
+        {
+          "paper_id": "MKpiaqh7R0",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "RwCxxaHvyp",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "ScVnYBaSEw",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "TU3wJQfKz8",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "WoGnnggVCZ",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "XYRPm8rAGM",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.8
+        },
+        {
+          "paper_id": "aisfb733DW",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "bgcdO9lmug",
+          "stratum": "normal",
+          "config_score": 6.0,
+          "human_mean": 4.0
+        },
+        {
+          "paper_id": "hvLBTpiDt3",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "ju4EwaLeoI",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 3.25
+        },
+        {
+          "paper_id": "l2zFn6TIQi",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "pNxD5dpu1M",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "r0opxuq8T8",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "wMj6PgKVuJ",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 6.2
+        },
+        {
+          "paper_id": "zmHqlXGTTl",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 5.75
+        }
+      ]
+    },
+    "specialist": {
+      "overall": {
+        "rho": 0.6000500062508681,
+        "p_value": 0.0015199120897685487,
+        "ci_low": 0.30960660855913125,
+        "ci_high": 0.797685401693315,
+        "n": 25
+      },
+      "by_stratum": {
+        "normal": {
+          "rho": 0.6681531047810609,
+          "p_value": 0.0033721029805971322,
+          "ci_low": 0.3729829076355173,
+          "ci_high": 0.878499175756528,
+          "n": 17
+        },
+        "controversial": {
+          "rho": 0.41739193556484105,
+          "p_value": 0.30353494355994454,
+          "ci_low": 0.08504865111251245,
+          "ci_high": 0.8885233166386386,
+          "n": 8
+        }
+      },
+      "pairs": [
+        {
+          "paper_id": "1Qpt43cqhg",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "6jxUsDAdAu",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "7EhS3YBxjY",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "85WHuB5CUK",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "8dzKkeWUUb",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "FXJm5r17Q7",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 5.75
+        },
+        {
+          "paper_id": "GjM61KRiTG",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "Gx04TnVjee",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.75
+        },
+        {
+          "paper_id": "KlN00vQEY2",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.6
+        },
+        {
+          "paper_id": "LFn7s8yRUF",
+          "stratum": "normal",
+          "config_score": 5.0,
+          "human_mean": 1.5
+        },
+        {
+          "paper_id": "MKpiaqh7R0",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "RwCxxaHvyp",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "ScVnYBaSEw",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "TU3wJQfKz8",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "WoGnnggVCZ",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "XYRPm8rAGM",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.8
+        },
+        {
+          "paper_id": "aisfb733DW",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "bgcdO9lmug",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 4.0
+        },
+        {
+          "paper_id": "hvLBTpiDt3",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "ju4EwaLeoI",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 3.25
+        },
+        {
+          "paper_id": "l2zFn6TIQi",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "pNxD5dpu1M",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "r0opxuq8T8",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "wMj6PgKVuJ",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.2
+        },
+        {
+          "paper_id": "zmHqlXGTTl",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 5.75
+        }
+      ]
+    },
+    "swap_experiments": {
+      "overall": {
+        "rho": 0.3673698372180509,
+        "p_value": 0.07082766945677425,
+        "ci_low": -0.056147232510706635,
+        "ci_high": 0.6938461036264341,
+        "n": 25
+      },
+      "by_stratum": {
+        "normal": {
+          "rho": 0.37762966867907327,
+          "p_value": 0.13507276798020168,
+          "ci_low": -0.20306637027450417,
+          "ci_high": 0.7815838573474247,
+          "n": 17
+        },
+        "controversial": {
+          "rho": 0.31878835653166915,
+          "p_value": 0.44153367084767536,
+          "ci_low": -0.2969211015681668,
+          "ci_high": 0.8969665993833226,
+          "n": 8
+        }
+      },
+      "pairs": [
+        {
+          "paper_id": "1Qpt43cqhg",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "6jxUsDAdAu",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "7EhS3YBxjY",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "85WHuB5CUK",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "8dzKkeWUUb",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "FXJm5r17Q7",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 5.75
+        },
+        {
+          "paper_id": "GjM61KRiTG",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "Gx04TnVjee",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 6.75
+        },
+        {
+          "paper_id": "KlN00vQEY2",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.6
+        },
+        {
+          "paper_id": "LFn7s8yRUF",
+          "stratum": "normal",
+          "config_score": 6.0,
+          "human_mean": 1.5
+        },
+        {
+          "paper_id": "MKpiaqh7R0",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "RwCxxaHvyp",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "ScVnYBaSEw",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "TU3wJQfKz8",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "WoGnnggVCZ",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "XYRPm8rAGM",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 6.8
+        },
+        {
+          "paper_id": "aisfb733DW",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "bgcdO9lmug",
+          "stratum": "normal",
+          "config_score": 6.0,
+          "human_mean": 4.0
+        },
+        {
+          "paper_id": "hvLBTpiDt3",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "ju4EwaLeoI",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 3.25
+        },
+        {
+          "paper_id": "l2zFn6TIQi",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "pNxD5dpu1M",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "r0opxuq8T8",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "wMj6PgKVuJ",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 6.2
+        },
+        {
+          "paper_id": "zmHqlXGTTl",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 5.75
+        }
+      ]
+    },
+    "swap_leader": {
+      "overall": {
+        "rho": 0.5971896903086072,
+        "p_value": 0.0016225261628455905,
+        "ci_low": 0.25917643754603115,
+        "ci_high": 0.7869286084017599,
+        "n": 25
+      },
+      "by_stratum": {
+        "normal": {
+          "rho": 0.5898215179839771,
+          "p_value": 0.012698767375784435,
+          "ci_low": 0.1799183078517846,
+          "ci_high": 0.8231990922051312,
+          "n": 17
+        },
+        "controversial": {
+          "rho": 0.5843487097907775,
+          "p_value": 0.12821325367843792,
+          "ci_low": 0.5843487097907775,
+          "ci_high": 0.8885233166386386,
+          "n": 8
+        }
+      },
+      "pairs": [
+        {
+          "paper_id": "1Qpt43cqhg",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "6jxUsDAdAu",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.0
+        },
+        {
+          "paper_id": "7EhS3YBxjY",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "85WHuB5CUK",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "8dzKkeWUUb",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "FXJm5r17Q7",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 5.75
+        },
+        {
+          "paper_id": "GjM61KRiTG",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "Gx04TnVjee",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.75
+        },
+        {
+          "paper_id": "KlN00vQEY2",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.6
+        },
+        {
+          "paper_id": "LFn7s8yRUF",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 1.5
+        },
+        {
+          "paper_id": "MKpiaqh7R0",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "RwCxxaHvyp",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "ScVnYBaSEw",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "TU3wJQfKz8",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "WoGnnggVCZ",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 6.25
+        },
+        {
+          "paper_id": "XYRPm8rAGM",
+          "stratum": "normal",
+          "config_score": 9.0,
+          "human_mean": 6.8
+        },
+        {
+          "paper_id": "aisfb733DW",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "bgcdO9lmug",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 4.0
+        },
+        {
+          "paper_id": "hvLBTpiDt3",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.0
+        },
+        {
+          "paper_id": "ju4EwaLeoI",
+          "stratum": "controversial",
+          "config_score": 7.0,
+          "human_mean": 3.25
+        },
+        {
+          "paper_id": "l2zFn6TIQi",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 7.5
+        },
+        {
+          "paper_id": "pNxD5dpu1M",
+          "stratum": "normal",
+          "config_score": 7.0,
+          "human_mean": 5.0
+        },
+        {
+          "paper_id": "r0opxuq8T8",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 4.5
+        },
+        {
+          "paper_id": "wMj6PgKVuJ",
+          "stratum": "normal",
+          "config_score": 8.0,
+          "human_mean": 6.2
+        },
+        {
+          "paper_id": "zmHqlXGTTl",
+          "stratum": "controversial",
+          "config_score": 8.0,
+          "human_mean": 5.75
+        }
+      ]
+    }
+  }
+}

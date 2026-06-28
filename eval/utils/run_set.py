@@ -53,6 +53,33 @@ class RunArtifacts:
             raise ValueError(f"missing rating in {path}")
         return float(rating)
 
+    def _parse_trace_roles(self) -> tuple[dict[str, str], dict[str, str]]:
+        """Parse ``trace.jsonl`` once into role-label and delegation-output maps.
+
+        Returns ``(role_labels, outputs_by_label)`` where ``role_labels`` maps
+        each role key from ``run_header.roles`` to its display label, and
+        ``outputs_by_label`` maps an expert label to the ``output`` of its
+        ``delegation_finished`` record. A single-agent run (leader emits a
+        review without delegating) yields an empty ``outputs_by_label``.
+        """
+        trace_path = self.run.run_dir / "trace.jsonl"
+        role_labels: dict[str, str] = {}
+        outputs_by_label: dict[str, str] = {}
+
+        for line in trace_path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            record = json.loads(line)
+            rtype = record.get("type")
+            if rtype == "run_header":
+                role_labels = record.get("roles", {})
+            elif rtype == "delegation_finished":
+                label = record.get("expert_role", "")
+                if label:
+                    outputs_by_label[label] = record.get("output", "")
+
+        return role_labels, outputs_by_label
+
     def role_output(self, role: str) -> str:
         """Read the full text output of a reviewer role from this run (P1).
 
@@ -65,34 +92,32 @@ class RunArtifacts:
         if role == "leader":
             return self.final_review()
 
-        trace_path = self.run.run_dir / "trace.jsonl"
-        role_labels: dict[str, str] = {}
-        outputs: dict[str, str] = {}
-
-        for line in trace_path.read_text(encoding="utf-8").splitlines():
-            if not line.strip():
-                continue
-            record = json.loads(line)
-            rtype = record.get("type")
-            if rtype == "run_header":
-                role_labels = record.get("roles", {})
-            elif rtype == "delegation_finished":
-                label = record.get("expert_role", "")
-                output = record.get("output", "")
-                if label:
-                    outputs[label] = output
-
+        role_labels, outputs_by_label = self._parse_trace_roles()
         label = role_labels.get(role)
         if label is None:
             raise KeyError(
                 f"role {role!r} not found in run_header.roles for run {self.run.run_dir}"
             )
-        if label not in outputs:
+        if label not in outputs_by_label:
             raise KeyError(
                 f"no delegation_finished record for role {role!r} "
-                f"(label={label!r}) in {trace_path}"
+                f"(label={label!r}) in {self.run.run_dir / 'trace.jsonl'}"
             )
-        return outputs[label]
+        return outputs_by_label[label]
+
+    def has_role_output(self, role: str) -> bool:
+        """Whether this run produced an output for ``role`` without raising (P1).
+
+        ``leader`` is always available (``final_review.md`` is a required
+        artifact). Expert roles are available only when the leader actually
+        delegated to them; single-agent runs that skipped delegation (e.g. a
+        llama leader that never calls a tool) return ``False``.
+        """
+        if role == "leader":
+            return True
+        role_labels, outputs_by_label = self._parse_trace_roles()
+        label = role_labels.get(role)
+        return label is not None and label in outputs_by_label
 
 
 class RunSet:

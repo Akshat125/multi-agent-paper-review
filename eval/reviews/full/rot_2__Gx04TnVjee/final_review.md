@@ -1,53 +1,55 @@
-### High-Level Plan
+## Summary
 
-1. **Delegate Tasks to Co-Workers**:
-   - Ask the Clarity and Reproducibility Reviewer to evaluate the clarity, writing quality, and reproducibility of the paper.
-   - Ask the Experiments and Methodology Reviewer to assess the methodology, experimental design, and ablations.
-   - Ask the Impact and Contribution Reviewer to review the novelty, significance, and contribution of the paper.
+The paper "3DTrajMaster: Mastering 3D Trajectory for Multi-Entity Motion in Video Generation" introduces a novel approach for controlling multi-entity 3D motions in video generation. The method leverages 6DoF pose sequences as control signals, addressing the limitations of 2D control signals in expressing the 3D nature of object motions. The core of the approach is a plug-and-play 3D-motion grounded object injector that fuses multiple input entities with their respective 3D trajectories using a gated self-attention mechanism. The paper also introduces a domain adaptor to mitigate video quality degradation and an annealed sampling strategy to enhance video quality during inference. Extensive experiments demonstrate that 3DTrajMaster sets a new state-of-the-art in both accuracy and generalization for controlling multi-entity 3D motions.
 
-2. **Review Responses**:
-   - Review the responses from each co-worker.
-   - If any response is weak or unclear, ask follow-up questions to clarify or provide more detailed feedback.
+## Strengths
 
-3. **Synthesize Feedback**:
-   - Combine the feedback from all co-workers into a coherent, well-structured peer review.
-   - Ensure the review follows the specified Markdown headers and includes a summary, strengths, weaknesses, questions, and a rating.
+- **Novel 3D Motion Control**: The introduction of 6DoF pose sequences as control signals is a significant advancement over previous 2D control methods. This allows for more precise and realistic motion control, addressing the inherent limitations of 2D signals in expressing 3D motions.
 
-4. **Final Review**:
-   - Write the final review incorporating all feedback.
-   - Ensure the review is clear, professional, and specific, referencing concrete details from the paper.
-   - Include an overall rating based on the provided rubric.
+- **Plug-and-Play Architecture**: The 3D-motion grounded object injector is designed to be modular and compatible with existing video diffusion models. This makes the approach practical and generalizable, as it can be integrated into various video generation frameworks.
 
-### Step 1: Delegate Tasks to Co-Workers
+- **Gated Self-Attention Mechanism**: The use of a gated self-attention mechanism to fuse entity descriptions and their 3D trajectories is a well-motivated design choice. It allows for flexible and scalable integration of multiple entities with varying motion patterns, ensuring entity-wise correspondence.
 
-I will now delegate specific tasks to each co-worker, asking them to focus on their respective areas of expertise.
+- **Domain Adaptor and Annealed Sampling**: The introduction of a domain adaptor to mitigate video domain shifts and an annealed sampling strategy to enhance video quality during inference are innovative techniques. These techniques improve the practical applicability of the method, ensuring that the generated videos are of high quality and accurately reflect the input 3D trajectories.
 
-#### Clarity and Reproducibility Reviewer
+- **Comprehensive Experiments**: The paper includes extensive experiments that demonstrate the effectiveness of 3DTrajMaster in controlling multi-entity 3D motions. The experiments cover a wide range of scenarios, including single and multi-entity settings, and compare the method with state-of-the-art baselines. The results show that 3DTrajMaster outperforms existing methods, particularly in handling 3D occlusions and generating precise entity motions.
 
-**Task**: Evaluate the clarity, writing quality, and reproducibility of the paper. Specifically, assess the following:
-- Is the paper well-written and easy to understand?
-- Are the methods and experiments described in sufficient detail to be reproducible?
-- Are the figures and tables clear and informative?
-- Are there any sections that are particularly well-written or poorly written?
+- **Diverse Applications**: The method has potential applications in various domains, including virtual cinematography, interactive games, and providing world models for embodied AI systems. The ability to control multi-entity 3D motions in video generation opens up new possibilities for creating dynamic and immersive environments.
 
-**Context**: The paper is titled "3DTrajMaster: Mastering 3D Trajectory for Multi-Entity Motion in Video Generation." It introduces a new method for controlling multi-entity 3D motions in video generation using 6DoF pose sequences. The paper includes sections on related work, methodology, experiments, and conclusions.
+## Weaknesses
 
-#### Experiments and Methodology Reviewer
+- **Limited Real-World Testing**: The experiments are primarily conducted on a synthetic dataset, and the paper does not provide results on real-world video generation tasks. While the domain adaptor is introduced to mitigate domain shift, the lack of real-world validation makes it difficult to assess the model's practical utility in real-world scenarios.
 
-**Task**: Assess the methodology, experimental design, and ablations. Specifically, evaluate the following:
-- Is the methodology sound and well-justified?
-- Are the experiments well-designed and do they effectively demonstrate the strengths of the proposed method?
-- Are the ablations meaningful and do they provide insights into the contributions of different components of the method?
-- Are the baselines appropriate and are the comparisons fair?
+- **Absence of 3D-Aware Baselines**: The paper compares 3DTrajMaster with 2D-based methods but does not include any 3D-aware baselines. This is a missed opportunity to demonstrate the novelty and effectiveness of the 3D motion control in a more relevant context. Including comparisons with methods like SynCamMaster, VD3D, or CameraCtrl would better contextualize the advancements made by 3DTrajMaster.
 
-**Context**: The paper introduces a new method called 3DTrajMaster for controlling multi-entity 3D motions in video generation. The methodology involves a plug-and-play 3D-motion grounded object injector and a domain adaptor. The experiments include comparisons with state-of-the-art methods and ablations to evaluate the contributions of different components.
+- **Insufficient Ablation Studies**: The ablation studies are meaningful but incomplete. The paper does not include ablations on the pose encoder design, the number of entities, or the use of 3D vs. 2D motion representations. These ablations would provide deeper insights into the model's behavior and the importance of each design choice.
 
-#### Impact and Contribution Reviewer
+- **Lack of Statistical Significance Testing**: The quantitative results are reported as averages, but there is no mention of standard deviations or statistical tests to determine whether the improvements are significant. Including statistical significance testing would strengthen the claims made in the paper.
 
-**Task**: Review the novelty, significance, and contribution of the paper. Specifically, assess the following:
-- Is the paper novel and does it make a significant contribution to the field?
-- Are the results impressive and do they demonstrate a clear advantage over existing methods?
-- Are the potential applications of the method well-described and compelling?
-- Are there any limitations or potential drawbacks that should be noted?
+- **Limited Analysis of GPT-Generated Trajectories**: The paper uses GPT to generate 3D trajectory templates but does not provide any analysis of the quality of these trajectories. Ensuring that the generated trajectories are realistic and consistent with the entity descriptions is crucial for training a high-quality model. A detailed analysis of the GPT-generated trajectories would help validate the training data's quality.
 
-**Context**: The paper introduces 3DTrajMaster, a method for controlling multi-entity 3D motions in video generation. The method uses 6DoF pose sequences to control the motions of multiple entities in 3D space. The paper includes extensive experiments showing that 3DTrajMaster sets a new state-of-the-art in both accuracy and generalization for controlling multi-entity 3D motions.
+- **Trade-off Analysis in Annealed Sampling**: The paper introduces an annealed sampling strategy but does not provide a detailed analysis of the trade-off between motion accuracy and video quality. Quantifying the impact of the annealing threshold and comparing it with baselines that use or do not use 3D trajectories throughout the sampling process would provide a better understanding of the strategy's effectiveness.
+
+## Questions
+
+1. **Real-World Validation**: How does 3DTrajMaster perform on real-world video generation tasks? Are there any plans to test the model on real-world datasets and compare its performance with the synthetic dataset results?
+
+2. **3D-Aware Baselines**: Why were 3D-aware baselines like SynCamMaster, VD3D, or CameraCtrl not included in the comparison? How do you plan to address this in future work to better contextualize the novelty of 3DTrajMaster?
+
+3. **Pose Encoder Design**: Can you provide a more detailed description of the pose encoder architecture, including the number of layers, hidden dimensions, activation functions, and downsampling mechanism? How does this design choice impact the model's ability to learn and represent 3D motion patterns?
+
+4. **Ablation Studies**: Are there any plans to conduct additional ablation studies on the pose encoder design, the number of entities, and the use of 3D vs. 2D motion representations? How would these ablations help in understanding the model's behavior and the importance of each design choice?
+
+5. **Statistical Significance**: Why was statistical significance testing not included in the quantitative results? How do you plan to address this in future work to ensure the robustness and reliability of the reported improvements?
+
+6. **GPT-Generated Trajectories**: How was the quality of the GPT-generated 3D trajectory templates ensured? Were there any metrics or validation processes used to assess the realism and consistency of these trajectories with the entity descriptions?
+
+7. **Annealed Sampling Strategy**: Can you provide a more detailed analysis of the trade-off between motion accuracy and video quality in the annealed sampling strategy? How does varying the annealing threshold impact the model's performance, and how does it compare with baselines that use or do not use 3D trajectories throughout the sampling process?
+
+8. **Entity Interactions**: How does 3DTrajMaster handle interactions between entities, such as a person picking up a dog or two animals interacting? Are there any plans to model these interactions more explicitly in future work?
+
+9. **Dataset Diversity**: How diverse is the 360°-Motion Dataset in terms of entities, environments, and motion patterns? Are there any plans to expand the dataset with more diverse and detailed 3D assets to improve the model's generalization capability?
+
+10. **Broader Impact**: What are the potential broader impacts of 3DTrajMaster on the field of controllable video generation and its applications in various industries? How do you envision this method influencing future research directions and promoting interdisciplinary collaboration?
+
+RATING: 7

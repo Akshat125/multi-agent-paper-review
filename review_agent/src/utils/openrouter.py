@@ -58,7 +58,14 @@ def build_openrouter_llm_kwargs(
     api_key: str | None = None,
     temperature: float = 0.0,
 ) -> dict:
-    """Keyword arguments for ``crewai.LLM`` pointed at OpenRouter."""
+    """Keyword arguments for ``crewai.LLM`` pointed at OpenRouter.
+
+    Note on rate limits: CrewAI forwards unknown kwargs (``additional_params``)
+    straight to the OpenAI SDK ``Completions.create`` call, so litellm-style
+    ``num_retries``/``max_retries`` cannot be injected here. Transient upstream
+    ``429`` resilience is therefore handled at the orchestration level (run the
+    generator at low ``--concurrency`` so the pinned providers aren't hammered).
+    """
     kwargs: dict = {
         "model": normalize_openrouter_model(model_name),
         "base_url": OPENROUTER_BASE_URL,

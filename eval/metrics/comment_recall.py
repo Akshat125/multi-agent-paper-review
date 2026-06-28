@@ -44,6 +44,35 @@ from utils.stats import derive_seed, mean  # noqa: E402
 
 DEFAULT_ALIGNMENT_MODEL = "openai/gpt-5-mini"
 DEFAULT_SEED = 42
+PARSE_MAX_ATTEMPTS = 3
+
+
+def _call_and_parse(
+    llm: LLMClient,
+    prompt: str,
+    parse: Callable[[str], Any],
+    *,
+    what: str,
+    max_attempts: int = PARSE_MAX_ATTEMPTS,
+) -> Any:
+    """Call the alignment model and parse its response, re-calling on parse failure.
+
+    ``OpenRouterLLM.call`` already retries transport errors (429/5xx) internally, but
+    parsing happens here, after it returns — so a syntactically malformed or
+    schema-invalid JSON response (which raises ``ValueError``) would otherwise abort
+    the whole unit, and with it the entire metric. This mirrors win_rate's
+    ``_execute_task``: a fresh call is issued each attempt because provider/sampling
+    variation usually yields parseable JSON on a retry even at temperature 0.
+    """
+    last_error: ValueError | None = None
+    for _ in range(max(1, max_attempts)):
+        try:
+            return parse(llm.call(prompt))
+        except ValueError as exc:  # raised by extract_json / the stage parsers
+            last_error = exc
+    raise ValueError(
+        f"{what}: unparseable response after {max_attempts} attempts: {last_error}"
+    ) from last_error
 
 
 def _text_hash(text: str) -> str:
@@ -52,12 +81,16 @@ def _text_hash(text: str) -> str:
 
 
 def _human_review_text(paper: dict[str, Any]) -> str:
-    """Reconstruct the exact text fed to human-comment extraction (for cache hashing)."""
-    sections = [
-        format_human_review(review)
-        for review in paper.get("human_reviews", [])
-        if format_human_review(review).strip()
-    ]
+    """Reconstruct the exact text fed to human-comment extraction (for cache hashing).
+
+    Uses the same non-empty predicate as :func:`extract_human_comments`, so the hash
+    changes iff the set/content of contributing human reviews changes.
+    """
+    sections: list[str] = []
+    for review in paper.get("human_reviews", []):
+        formatted = format_human_review(review)
+        if formatted.strip():
+            sections.append(formatted)
     return "\n\n".join(sections)
 
 
@@ -65,8 +98,12 @@ def extract_comments(llm: LLMClient, review_text: str, id_prefix: str) -> list[C
     """Run stage 1 extraction on one review body."""
     if not review_text.strip():
         return []
-    response = llm.call(build_extraction_prompt(review_text))
-    return parse_extraction_response(response, id_prefix)
+    return _call_and_parse(
+        llm,
+        build_extraction_prompt(review_text),
+        lambda response: parse_extraction_response(response, id_prefix),
+        what="extraction",
+    )
 
 
 def extract_human_comments(llm: LLMClient, paper: dict[str, Any]) -> list[Comment]:
@@ -99,8 +136,14 @@ def match_candidates(
         rng = (rng_factory or random.Random)(seed + pass_index)
         shuffled_gen = shuffle_comments(c_gen, rng)
         shuffled_real = shuffle_comments(c_real, rng)
-        response = llm.call(build_match_prompt(shuffled_gen, shuffled_real))
-        pass_pairs.append(parse_match_response(response))
+        pass_pairs.append(
+            _call_and_parse(
+                llm,
+                build_match_prompt(shuffled_gen, shuffled_real),
+                parse_match_response,
+                what="match",
+            )
+        )
     return consolidate_candidates(pass_pairs, threshold)
 
 
@@ -120,8 +163,12 @@ def filter_pairs(
         real_comment = real_by_id.get(real_id)
         if gen_comment is None or real_comment is None:
             continue
-        response = llm.call(build_filter_prompt(gen_comment, real_comment))
-        relatedness, specificity = parse_filter_response(response)
+        relatedness, specificity = _call_and_parse(
+            llm,
+            build_filter_prompt(gen_comment, real_comment),
+            parse_filter_response,
+            what="filter",
+        )
         if is_match(relatedness, specificity):
             matches.append(
                 {
@@ -248,7 +295,7 @@ class CommentRecallMetric(Metric):
             human_hash_by_paper[paper_id] = human_hash
             key = self._creal_cache_key(paper_id, human_hash)
             cached = cache.get(key)
-            if cached is not None:
+            if cached is not None and isinstance(cached.get("c_real"), list):
                 c_real_by_paper[paper_id] = cached["c_real"]
             else:
                 pending.append((paper_id, key))
@@ -290,7 +337,7 @@ class CommentRecallMetric(Metric):
                     human_hash=human_hash_by_paper[paper_id],
                 )
                 cached = cache.get(key)
-                if cached is not None:
+                if cached is not None and isinstance(cached.get("row"), dict):
                     per_paper[config_id][paper_id] = cached["row"]
                 else:
                     pending.append((config_id, paper_id, key, review_text))
