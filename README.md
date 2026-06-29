@@ -49,7 +49,9 @@ multi-agent-peer-review/
 ├── eval/                  # Experiment orchestration + metrics
 │   ├── batches.json       # Run-set definitions (configs × papers)
 │   ├── experiments.py     # Batch generation CLI
+│   ├── estimate.py        # Pre-spend budget estimator (stdlib-only)
 │   ├── metrics/           # Five evaluation metrics
+│   ├── analysis/          # Result notebooks + figures (tracked)
 │   ├── reviews/           # Generated review artifacts (gitignored)
 │   └── results/           # Metric outputs (gitignored)
 ├── dataset/
@@ -69,17 +71,20 @@ multi-agent-peer-review/
 ```bash
 git clone <repo-url>
 cd multi-agent-peer-review
-poetry install
-
-# Core dependencies only (reviewer + tests)
-poetry install --with dev
-
-# Full eval stack (pandas, sentence-transformers, etc.)
-poetry install --with dev --with eval
+poetry install --with dev              # reviewer + scipy
+poetry install --with dev --with eval  # metrics stack (run this for experiments)
 
 cp review_agent/.env.example review_agent/.env
 # Edit review_agent/.env and set OPENROUTER_API_KEY
 ```
+
+Optional dependency groups:
+
+| Group | Purpose |
+|-------|---------|
+| `dev` | scipy |
+| `eval` | pandas, numpy, scipy, sentence-transformers, matplotlib |
+| `notebook` | Jupyter, pandas (for dataset sampling) |
 
 ## Quick start
 
@@ -127,11 +132,17 @@ Run sets are defined in `eval/batches.json`. Each entry specifies:
 - **`configs`** — role → pool key or raw model slug for each experimental configuration
 - **`papers`** — `"all"` or a list of paper IDs from the dataset
 
-The included `pilot` run set has 12 configs (3 homogeneous + 9 heterogeneous) × 5 papers = 60 runs.
+| Run set | Size | Purpose |
+|---------|------|---------|
+| `pilot` | 12 configs × 5 papers = **60 runs** | Full het matrix for quick iteration |
+| `full` | 8 configs × 25 papers = **200 runs** | Pruned subset for main eval |
 
 ```bash
 # Preflight: print the run matrix without spending API credits
 poetry run python eval/experiments.py --run-set pilot --dry-run
+
+# Stdlib-only cost estimate before spending
+poetry run python eval/estimate.py
 
 # Generate reviews (skips runs already complete on disk)
 poetry run python eval/experiments.py --run-set pilot
@@ -140,7 +151,7 @@ poetry run python eval/experiments.py --run-set pilot
 poetry run python eval/experiments.py --run-set pilot --limit 2
 ```
 
-Reviews are written to `eval/reviews/<run-set>/<config>__<paper_id>/`. Each run directory must contain `final_review.md`, `review.json`, and `trace.jsonl` to be considered complete. Re-running is idempotent — completed runs are skipped.
+Reviews are written to `eval/reviews/<run-set>/<config>__<paper_id>/`. Each run directory must contain `final_review.md`, `review.json`, and `trace.jsonl` to be considered complete. Re-running is idempotent — completed runs are skipped. Failed or unparseable runs are retried automatically (up to 3 attempts). Use `--concurrency N` (default 4) to parallelize generation.
 
 ### Adding a run set
 
@@ -152,7 +163,7 @@ Add a new top-level key to `eval/batches.json`:
     "pool": { "A": "qwen/qwen3-32b", "B": "mistralai/mistral-small-3.2-24b-instruct" },
     "configs": {
       "All-A": { "leader": "A", "clarity": "A", "experiments": "A", "impact": "A" },
-      "het_swap_leader": { "leader": "B", "clarity": "A", "experiments": "A", "impact": "A" }
+      "swap_leader": { "leader": "B", "clarity": "A", "experiments": "A", "impact": "A" }
     },
     "papers": ["8dzKkeWUUb", "FXJm5r17Q7"]
   }
@@ -178,7 +189,7 @@ poetry run python eval/metrics/cost.py --run-set pilot
 poetry run python eval/metrics/diversity.py --run-set pilot
 
 # LLM-judge metrics (require OPENROUTER_API_KEY)
-poetry run python eval/metrics/win_rate.py --run-set pilot
+poetry run python eval/metrics/win_rate.py --run-set full
 poetry run python eval/metrics/comment_recall.py --run-set pilot
 ```
 
@@ -194,7 +205,12 @@ poetry run python eval/metrics/win_rate.py --run-set pilot \
 
 # Refresh OpenRouter price table before cost computation
 poetry run python eval/metrics/cost.py --run-set pilot --refresh-prices
+
+# Resume caches for expensive LLM-judge metrics (default: on)
+poetry run python eval/metrics/win_rate.py --run-set full --no-cache
 ```
+
+LLM-judge metrics cache intermediate results under `eval/results/<run-set>/cache/`; pass `--no-cache` to recompute.
 
 ## Dataset
 
@@ -207,27 +223,10 @@ Each paper record includes `paper_text`, human `ratings`, `decision`, `stratum`,
 
 Archived reference datasets (PeerRead, DeepReview-13K) live under `archived-datasets/` and are not tracked in git.
 
-## Development
-
-```bash
-# Run tests (review_agent + eval unit tests)
-poetry run pytest
-
-# Run a specific test module
-poetry run pytest eval/tests/test_spec.py -v
-```
-
-Optional dependency groups:
-
-| Group | Purpose |
-|-------|---------|
-| `dev` | pytest, scipy |
-| `eval` | pandas, numpy, scipy, sentence-transformers |
-| `notebook` | Jupyter, pandas (for dataset sampling) |
-
 ## Design notes
 
 - **Fixed prompts** — System prompts are adapted from the MAMORX appendix; task prompts are project-specific. See `review_agent/src/agents/prompts/`.
 - **Deterministic generation** — All reviewer LLMs use `temperature=0.0`. Qwen models have thinking mode disabled.
 - **Tracing** — CrewAI's built-in tracing is off; this project records its own `trace.jsonl` via `ReviewTraceListener`.
+- **Expert grounding** — The full paper is injected into each expert's context directly (`review_agent/src/agents/reviewer.py`, `_EXPERT_PAPER_BLOCK`), so grounding does not depend on what the leader forwards.
 - **Homogeneous vs. heterogeneous configs** — Homogeneous configs (e.g. `All-A`) assign the same model to all four roles. Heterogeneous configs swap one role or rotate models to isolate role-specific effects.
